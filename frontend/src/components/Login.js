@@ -32,9 +32,6 @@ function Login()
             try
             {
 
-
-                
-                //const response = await fetch('http://localhost:5000/api/login',{method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
                 const response = await fetch(buildPath('api/login'),{method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 
 
@@ -49,7 +46,7 @@ function Login()
                     localStorage.setItem('user_data', JSON.stringify(user));
     
                     setMessage('');
-                    window.location.href = '/cards';
+                    window.location.href = '/users';
                 }
             }
             catch(e)
