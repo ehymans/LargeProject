@@ -46,7 +46,7 @@ function Login()
                     localStorage.setItem('user_data', JSON.stringify(user));
     
                     setMessage('');
-                    window.location.href = '/users';
+                    window.location.href = '/users';            /// sends the user to a page /users which does not exist in this case.      // could change to /home
                 }
             }
             catch(e)
