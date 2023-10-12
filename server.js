@@ -120,6 +120,32 @@ const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(url);
 client.connect();
 
+// edit so it does not await the API call.
+app.post('/api/addcard', (req, res, next) => {
+    // incoming: userId, card
+    // outgoing: error
+    
+    const { userId, card } = req.body;
+  
+    const newCard = {Card:card,UserId:userId};
+    var error = '';
+  
+    try {
+      const db = client.db('COP4331Cards');
+      db.collection('Cards').insertOne(newCard);
+    }
+    catch(e) {
+      error = e.toString();
+    }
+  
+    cardList.push(card);
+  
+    var ret = { error: error };
+    res.status(200).json(ret);
+  });
+  
+
+/*
 
 app.post('/api/addcard', async (req, res, next) =>
 {
@@ -145,7 +171,7 @@ app.post('/api/addcard', async (req, res, next) =>
 
   var ret = { error: error };
   res.status(200).json(ret);
-});
+});*/
 
 app.post('/api/login', async (req, res, next) => 
 {
