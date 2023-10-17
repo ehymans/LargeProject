@@ -11,7 +11,7 @@
 
 .background-container::after {
   content: "";
-  background-image: url("/src/images/background.jpg");
+  background-image: url("/src/images/background2.jpg.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -19,7 +19,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 200%; /* Increase the width for a smoother loop */
+  width: 150%; /* Increase the width for a smoother loop */
   height: 100%;
   animation: backgroundAnimation 60s linear infinite;
 }
