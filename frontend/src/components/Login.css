@@ -12,6 +12,7 @@
 .background-container::after {
   content: "";
   background-image: url("/src/images/background2.jpg.webp");
+  background-color: #d5e5fb;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
