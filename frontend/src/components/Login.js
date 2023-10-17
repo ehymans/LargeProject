@@ -60,7 +60,7 @@ function Login()
         
     
     return(
-        
+        <div class="background-container">
         <div id="loginDiv">
         <form onSubmit={doLogin} class="login-form">
           <h2 class="form-title">PLEASE LOG IN</h2>
@@ -73,6 +73,7 @@ function Login()
           <button type="submit" id="loginButton" class="login-button" onClick={doLogin}>Do It</button>
         </form>
         <p id="loginResult" class="login-message">{message}</p>
+      </div>
       </div>
     );
 };
