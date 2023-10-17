@@ -4,14 +4,17 @@ import './App.css';
 
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import RegisterPage from './pages/RegisterPage';
 //import CardPage from './pages/CardPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+      <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} /> {/* Add a route for /login */}
+        <Route path="/register" element={<RegisterPage />} /> {/* Add a route for /register */}
       </Routes>
     </BrowserRouter>
       );
