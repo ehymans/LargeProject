@@ -24,21 +24,6 @@
   z-index: -3;
 }
 
-.background-container::after {
-  content: "";
-  background-image: url("/src/images/background2.jpg.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -2;
-  width: 120%; /* Increase the width for a smoother loop */
-  height: 100%;
-  animation: backgroundAnimation 60s linear infinite;
-}
 
 @keyframes backgroundAnimation {
   0% {
