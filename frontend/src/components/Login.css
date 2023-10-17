@@ -1,16 +1,29 @@
-#loginDiv {
+body {
+    background-image: url('/images/background.jpg'); /* Replace 'your-background-image.jpg' with the actual path to your background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  #loginDiv {
     text-align: center;
     margin: 0 auto;
     max-width: 300px;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: rgba(255, 255, 255, 0.9); /* Background with some transparency */
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
   
   .login-form {
     display: flex;
     flex-direction: column;
+    padding: 20px;
   }
   
   .form-title {
