@@ -5,41 +5,71 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; /* Change this back to -2 */
+  z-index: -1; /* Place it behind other content */
   overflow: hidden;
+}
+
+.background-container::before {
+  content: "";
   background-image: url("/src/images/background2.jpg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%; /* Increase the width for a smoother loop */
+  height: 100%;
+}
+
+.background-container::after {
+  content: "";
+  background-image: url("/src/images/background2.jpg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%; /* Increase the width for a smoother loop */
+  height: 100%;
+  animation: backgroundAnimation 60s linear infinite;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%); /* Change to -100% to create a continuous loop */
+  }
 }
 
 /* Reset some default styles */
-body, html {
+body, h1 {
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 body {
   font-family: 'Roboto', 'Arial', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  margin-top: 200px; /* Adjust the margin-top to move the login box down */
 }
 
 /* Login Box Styles */
 #loginDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
   max-width: 300px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1; /* Change this back to 1 */
+  z-index: 1; /* Ensure the login box stays in front of the background */
 }
-
-/* ... (other styles) */
-
 
 .login-form {
   display: flex;
@@ -66,7 +96,7 @@ input[type="password"] {
   border-radius: 5px;
   font-size: 16px;
   font-family: 'Roboto', 'Arial', sans-serif;
-  z-index: 2;
+  z-index: 2; /* Add a higher z-index value */
 }
 
 .login-button {
