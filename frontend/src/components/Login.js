@@ -1,5 +1,6 @@
 //import React from 'react';
 import React, { useState } from 'react';
+import './Login.css';
 
 const app_name = 'progress-tracker-4331-88c53c23c126'
 
@@ -59,19 +60,20 @@ function Login()
         
     
     return(
-      <div id="loginDiv">
-        <form onSubmit={doLogin}>
-        <span id="inner-title">PLEASE LOG IN</span><br />
-    <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c} />
-    <br/>
-    <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} />
-    <br/>
-    <input type="submit" id="loginButton" class="buttons" value = "Do It"
-          onClick={doLogin} />
+        
+        <div id="loginDiv">
+        <form onSubmit={doLogin} class="login-form">
+          <h2 class="form-title">PLEASE LOG IN</h2>
+          <div class="form-group">
+            <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c} />
+          </div>
+          <div class="form-group">
+            <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} />
+          </div>
+          <button type="submit" id="loginButton" class="login-button" onClick={doLogin}>Do It</button>
         </form>
-        <span id="loginResult">{message}</span>
-
-     </div>
+        <p id="loginResult" class="login-message">{message}</p>
+      </div>
     );
 };
 
