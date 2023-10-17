@@ -1,111 +1,112 @@
 /* Background animation container */
 .background-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Place it behind other content */
-  overflow: hidden;
-}
-
-.background-container::before {
-  content: "";
-  background-image: url("/src/images/background2.jpg.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120%;
-  height: 100%;
-  z-index: -1;
-}
-
-@keyframes backgroundAnimation {
-  0% {
-    transform: translateX(0%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place it behind other content */
+    overflow: hidden;
   }
-  100% {
-    transform: translateX(-100%); /* Change to -100% to create a continuous loop */
+  
+  .background-container::before {
+    content: "";
+    background-image: url("/src/images/background2.jpg.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 100%;
+    z-index: -1;
   }
-}
-
-/* Reset some default styles */
-body, h1 {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Roboto', 'Arial', sans-serif;
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  height: 100vh; /* Ensure the body takes up the full viewport height */
-}
-
-/* Register Box Styles */
-#loginDiv {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 300px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1; /* Ensure the login box stays in front of the background */
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.form-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  font-family: 'Roboto', 'Arial', sans-serif;
-  z-index: 2; /* Add a higher z-index value */
-}
-
-.login-button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
-
-.login-button:hover {
-  background-color: #0056b3;
-}
-
-.login-message {
-  margin-top: 10px;
-  color: #777;
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
+  
+  @keyframes backgroundAnimation {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%); /* Change to -100% to create a continuous loop */
+    }
+  }
+  
+  /* Reset some default styles */
+  body, h1 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Ensure the body takes up the full viewport height */
+  }
+  
+  /* Register Box Styles */
+  #loginDiv {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1; /* Ensure the login box stays in front of the background */
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Roboto', 'Arial', sans-serif;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    z-index: 2; /* Add a higher z-index value */
+  }
+  
+  .login-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    font-family: 'Roboto', 'Arial', sans-serif;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .login-message {
+    margin-top: 10px;
+    color: #777;
+    font-family: 'Roboto', 'Arial', sans-serif;
+  }
+  
