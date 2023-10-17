@@ -12,6 +12,7 @@
 .background-container::before {
   content: "";
   background-color: #eaf3ff75; /* Add your desired background color */
+  background-image: url("/src/images/background2.jpg.webp");
   position: absolute;
   top: 0;
   left: 0;
