@@ -51,6 +51,7 @@ body {
 /* Login Box Styles */
 #loginDiv {
   text-align: center;
+  margin: auto; /* Center horizontally and vertically */
   max-width: 300px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
