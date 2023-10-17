@@ -21,6 +21,7 @@
     left: 0;
     width: 120%; /* Increase the width for a smoother loop */
     height: 100%;
+    z-index: -1;
   }
   
   .background-container::after {
@@ -36,6 +37,7 @@
     width: 120%; /* Increase the width for a smoother loop */
     height: 100%;
     animation: backgroundAnimation 60s linear infinite;
+    z-index: 0;
   }
   
   @keyframes backgroundAnimation {
