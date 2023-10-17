@@ -7,10 +7,10 @@ function PageTitle() {
     <div className="page-title">
       <h1 id="title">Productivity Dashboard</h1>
       <div className="page-buttons">
-        <Link to="/pages/LoginPage.js">
+        <Link to="/login">
           <button>Login</button>
         </Link>
-        <Link to="/pages/RegisterPage.js">
+        <Link to="/register">
           <button>Register</button>
         </Link>
       </div>
