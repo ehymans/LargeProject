@@ -1,5 +1,5 @@
 body {
-    background-image: url("./assets/images/background.jpg"); /* Replace 'your-background-image.jpg' with the actual path to your background image */
+    background-image: url("/src/images/background.jpg"); /* Replace 'your-background-image.jpg' with the actual path to your background image */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
