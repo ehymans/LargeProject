@@ -7,7 +7,17 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  font-family: 'Roboto', 'Arial', sans-serif; /* Use 'Roboto' as the primary font, and fall back to Arial and sans-serif */
+  font-family: 'Roboto', 'Arial', sans-serif;
+  animation: backgroundAnimation 30s linear infinite; /* Adjust the animation duration (30s) and other properties as needed */
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
 }
 
 #loginDiv {
