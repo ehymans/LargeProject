@@ -11,7 +11,7 @@
 
 .background-container::before {
   content: "";
-  background-color: #d5e5fb; /* Add your desired background color */
+  background-color: #d5e5fb75; /* Add your desired background color */
   position: absolute;
   top: 0;
   left: 0;
