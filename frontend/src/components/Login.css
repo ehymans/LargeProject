@@ -50,15 +50,17 @@ body {
 
 /* Login Box Styles */
 #loginDiv {
-  text-align: center;
-  
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 300px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1;
-  margin-top: 200px;
+  
   
 }
 
