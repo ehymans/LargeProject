@@ -8,7 +8,7 @@ body {
   padding: 0;
   height: 100vh;
   font-family: 'Roboto', 'Arial', sans-serif;
-  animation: backgroundAnimation 30s linear infinite; /* Adjust the animation duration (30s) and other properties as needed */
+  animation: backgroundAnimation 20s linear infinite; /* Adjust the animation duration (30s) and other properties as needed */
 }
 
 @keyframes backgroundAnimation {
