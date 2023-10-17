@@ -1,67 +1,70 @@
 body {
-    background-image: url("/src/images/background.jpg"); /* Replace 'your-background-image.jpg' with the actual path to your background image */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-  }
-  
-  #loginDiv {
-    text-align: center;
-    margin: 0 auto;
-    max-width: 300px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Background with some transparency */
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  .form-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .login-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .login-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .login-message {
-    margin-top: 10px;
-    color: #777;
-  }
-  
+  background-image: url("/src/images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: 'Roboto', 'Arial', sans-serif; /* Use 'Roboto' as the primary font, and fall back to Arial and sans-serif */
+}
+
+#loginDiv {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 300px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.login-button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-message {
+  margin-top: 10px;
+  color: #777;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
