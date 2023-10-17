@@ -19,17 +19,17 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 200%; /* Increase the width for a smoother loop */
   height: 100%;
-  animation: backgroundAnimation 60s linear infinite; /* Adjust the animation duration (60s) and set it to infinite */
+  animation: backgroundAnimation 60s linear infinite;
 }
 
 @keyframes backgroundAnimation {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(100%); /* Change to 100% to create a continuous loop */
+    transform: translateX(-100%); /* Change to -100% to create a continuous loop */
   }
 }
 
