@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';
+import './Register.css';
 
 const app_name = 'progress-tracker-4331-88c53c23c126';
 
