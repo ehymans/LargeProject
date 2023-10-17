@@ -7,31 +7,10 @@
   height: 100%;
   z-index: -2;
   overflow: hidden;
-}
-
-.background-container::before {
-  content: "";
   background-image: url("/src/images/background2.jpg.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120%;
-  height: 100%;
-  z-index: -3;
 }
 
-@keyframes backgroundAnimation {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
+
 
 /* Reset some default styles */
 body, h1 {
