@@ -21,7 +21,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  animation: backgroundAnimation 60s linear infinite; /* Adjust the animation duration (60s) */
+  animation: backgroundAnimation 60s linear infinite; /* Adjust the animation duration (60s) and set it to infinite */
 }
 
 @keyframes backgroundAnimation {
@@ -29,20 +29,23 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(100%); /* Change to 100% to create a continuous loop */
   }
 }
 
-/* Rest of your CSS */
-
-body {
+/* Reset some default styles */
+body, h1 {
   margin: 0;
   padding: 0;
+}
+
+body {
   font-family: 'Roboto', 'Arial', sans-serif;
 }
 
+/* Login Box Styles */
 #loginDiv {
-  position: relative; /* Set position to relative */
+  position: relative;
   text-align: center;
   margin: 0 auto;
   max-width: 300px;
@@ -78,6 +81,7 @@ input[type="password"] {
   border-radius: 5px;
   font-size: 16px;
   font-family: 'Roboto', 'Arial', sans-serif;
+  z-index: 2; /* Add a higher z-index value */
 }
 
 .login-button {
