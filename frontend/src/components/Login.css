@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;
+  z-index: -2; /* Change this back to -2 */
   overflow: hidden;
   background-image: url("/src/images/background2.jpg.webp");
 }
@@ -35,8 +35,11 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1;
+  z-index: 1; /* Change this back to 1 */
 }
+
+/* ... (other styles) */
+
 
 .login-form {
   display: flex;
