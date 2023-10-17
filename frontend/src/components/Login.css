@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; /* Update the z-index to a lower value */
+  z-index: -2;
   overflow: hidden;
 }
 
@@ -19,18 +19,17 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 120%; /* Increase the width for a smoother loop */
+  width: 120%;
   height: 100%;
   z-index: -3;
 }
-
 
 @keyframes backgroundAnimation {
   0% {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-100%); /* Change to -100% to create a continuous loop */
+    transform: translateX(-100%);
   }
 }
 
@@ -43,21 +42,21 @@ body, h1 {
 body {
   font-family: 'Roboto', 'Arial', sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Ensure the body takes up the full viewport height */
+  flex-direction: column; /* Adjusted to column layout for vertical centering */
+  justify-content: center; /* Center content both horizontally and vertically */
+  align-items: center; /* Center content vertically */
+  height: 100vh;
 }
 
 /* Login Box Styles */
 #loginDiv {
   text-align: center;
-  margin: 0 auto;
   max-width: 300px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1; /* Ensure the login box stays in front of the background */
+  z-index: 1;
 }
 
 .login-form {
@@ -85,7 +84,7 @@ input[type="password"] {
   border-radius: 5px;
   font-size: 16px;
   font-family: 'Roboto', 'Arial', sans-serif;
-  z-index: 2; /* Add a higher z-index value */
+  z-index: 2;
 }
 
 .login-button {
