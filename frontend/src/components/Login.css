@@ -11,12 +11,15 @@
 
 .background-container::before {
   content: "";
-  background-color: #eaf3ff75; /* Add your desired background color */
   background-image: url("/src/images/background2.jpg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 120%; /* Increase the width for a smoother loop */
   height: 100%;
 }
 
