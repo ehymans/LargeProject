@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link for navigation
+import './PageTitle.css';
 
 function PageTitle() {
   return (
     <div className="page-title">
-      <h1 id="title">LARGE PROJECT</h1>
+      <h1 id="title">Productivity Dashboard</h1>
       <div className="page-buttons">
-        <Link to="/login">
+        <Link to="/pages/LoginPage.js">
           <button>Login</button>
         </Link>
-        <Link to="/register">
+        <Link to="/pages/RegisterPage.js">
           <button>Register</button>
         </Link>
       </div>
