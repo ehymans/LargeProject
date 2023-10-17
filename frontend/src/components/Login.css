@@ -55,12 +55,14 @@ body, h1 {
 
 body {
   font-family: 'Roboto', 'Arial', sans-serif;
-  margin-top: 200px; /* Adjust the margin-top to move the login box down */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure the body takes up the full viewport height */
 }
 
 /* Login Box Styles */
 #loginDiv {
-  position: relative;
   text-align: center;
   margin: 0 auto;
   max-width: 300px;
