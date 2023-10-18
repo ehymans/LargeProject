@@ -28,7 +28,7 @@ function LoggedInName() {
       {/* Add the blank table here */}
       <table
   style={{
-    border: '1px solid #000',
+    border: '.5px solid #000',
     margin: '0 auto', // Center the table horizontally
     marginTop: '20px', // Add some top margin for spacing
     padding: '10px', // Add padding for better visual separation
