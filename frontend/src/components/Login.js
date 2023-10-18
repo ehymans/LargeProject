@@ -63,14 +63,14 @@ function Login()
         <div class="background-container">
         <div id="loginDiv">
         <form onSubmit={doLogin} class="login-form">
-          <h2 class="form-title">PLEASE LOG IN</h2>
+          <h2 class="form-title">LOG IN</h2>
           <div class="form-group">
             <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c} />
           </div>
           <div class="form-group">
             <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} />
           </div>
-          <button type="submit" id="loginButton" class="login-button" onClick={doLogin}>Do It</button>
+          <button type="submit" id="loginButton" class="login-button" onClick={doLogin}>SUBMIT</button>
         </form>
         <p id="loginResult" class="login-message">{message}</p>
       </div>
