@@ -54,7 +54,7 @@ body, h1 {
 }
 
 body {
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   margin-top: 200px; /* Adjust the margin-top to move the login box down */
 }
 
@@ -82,9 +82,10 @@ padding: 20px;
 
 .form-title {
   font-size: 24px;
+  font-family: 'Courier New', Courier, monospace;
   margin-bottom: 20px;
   color: #333;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  
 }
 
 .form-group {
@@ -98,7 +99,10 @@ input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-weight: 500;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  color:#333;
   z-index: 2; /* Add a higher z-index value */
 }
 
@@ -111,7 +115,7 @@ input[type="password"] {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .login-button:hover {
