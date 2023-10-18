@@ -7,10 +7,6 @@
   height: 100%;
   z-index: -1; /* Place it behind other content */
   overflow: hidden;
-}
-
-.background-container::before {
-  content: "";
   background-image: url("/src/images/background3.jpg.webp");
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,6 +32,7 @@
   width: 170%; /* Increase the width for a smoother loop */
   height: 120%;
   animation: backgroundAnimation 800s linear infinite;
+  z-index: 0;
 }
 
 @keyframes backgroundAnimation {
@@ -64,7 +61,7 @@ body {
   text-align: center;
   margin-top: 200px;
   margin-left: 500px;
-  margin-right: 500px;
+  margin-right: 1450px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 5px;
@@ -114,6 +111,7 @@ input[type="password"] {
   padding: 10px;
   cursor: pointer;
   font-size: 16px;
+  margin-right: -22px;
   transition: background-color 0.3s;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
