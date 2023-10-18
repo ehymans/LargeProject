@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '/Dash.css'
+import 'Dash.css'
 
 function LoggedInName() {
   const [user, setUser] = useState({});
