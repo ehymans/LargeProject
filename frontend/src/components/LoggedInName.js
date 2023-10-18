@@ -26,24 +26,34 @@ function LoggedInName() {
       </button>
 
       {/* Add the blank table here */}
-      <table style={{ border: '1px solid #000' }}>
+      <table
+  style={{
+    border: '1px solid #000',
+    margin: '0 auto', // Center the table horizontally
+    marginTop: '20px', // Add some top margin for spacing
+    padding: '10px', // Add padding for better visual separation
+  }}
+>
         <thead>
           <tr>
-            <th>Table Header 1</th>
-            <th>Table Header 2</th>
-            <th>Table Header 3</th>
+            <th>Task</th>
+            <th>Date Created</th>
+            <th>Due Date</th>
+            <th>Task Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Table Data 1</td>
-            <td>Table Data 2</td>
-            <td>Table Data 3</td>
+            <td>Sample Task</td>
+            <td>1/1/1111</td>
+            <td>1/2/1111</td>
+            <td>Completed</td>
           </tr>
           <tr>
-            <td>Table Data 4</td>
-            <td>Table Data 5</td>
-            <td>Table Data 6</td>
+          <td>Sample Task 2</td>
+            <td>1/4/1111</td>
+            <td>1/5/1111</td>
+            <td>Completed</td>
           </tr>
         </tbody>
       </table>
