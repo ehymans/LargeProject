@@ -86,7 +86,7 @@ function Register() {
             />
           </div>
           <button type="submit" id="registerButton" className="login-button" onClick={doRegister}>
-            Register
+            SUBMIT
           </button>
         </form>
         <p id="registerResult" className="login-message">
