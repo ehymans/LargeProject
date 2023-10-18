@@ -11,7 +11,7 @@
 
 .background-container::before {
   content: "";
-  background-image: url("/src/images/background2.jpg.webp");
+  background-image: url("/src/images/background3.jpg.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -19,13 +19,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 120%; /* Increase the width for a smoother loop */
-  height: 100%;
+  width: 170%; /* Increase the width for a smoother loop */
+  height: 120%;
 }
 
 .background-container::after {
   content: "";
-  background-image: url("/src/images/background2.jpg.webp");
+  background-image: url("/src/images/background3.jpg.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -33,9 +33,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 120%; /* Increase the width for a smoother loop */
-  height: 100%;
-  animation: backgroundAnimation 60s linear infinite;
+  width: 170%; /* Increase the width for a smoother loop */
+  height: 120%;
+  animation: backgroundAnimation 800s linear infinite;
 }
 
 @keyframes backgroundAnimation {
