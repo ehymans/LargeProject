@@ -71,7 +71,7 @@ function Register() {
           </div>
           <div className="form-group">
             <input
-              type="email"
+              type="text"
               id="registerEmail"
               placeholder="Email"
               ref={(c) => (registerEmail = c)}
