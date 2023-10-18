@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Home.css';
 
 function LoggedInName() {
 
@@ -28,6 +29,14 @@ function LoggedInName() {
 };
 
 export default LoggedInName;
+
+
+
+
+
+
+
+
 
 /*
 import React from 'react';
