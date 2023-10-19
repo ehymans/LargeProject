@@ -1,3 +1,4 @@
+import decode from "jwt-decode";
 import React, { useState } from 'react';
 import './Login.css';
 
@@ -23,6 +24,16 @@ function Login() {
         const response = await fetch(bp.buildPath('api/login/'),
         {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
           var res = JSON.parse(await response.text());
+          var storage = require('../tokenStorage.js');
+          storage.storeToken(res);
+          const { accessToken } = res;
+          const decoded = decode(accessToken,{complete:true});
+
+          var ud = decoded;
+          var userId = ud.userId;
+          var firstName = ud.firstName;
+          var lastName = ud.lastName;  
+
           if (res.id <= 0) {
               setMessage('User/Password combination incorrect');
           } else {

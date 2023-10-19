@@ -10,7 +10,7 @@ const app = express();
 
 app.set('port', (process.env.PORT || 3000));
 
-// app.use(cors());
+app.use(cors());
 app.use(bodyParser.json());
 
 require('dotenv').config();

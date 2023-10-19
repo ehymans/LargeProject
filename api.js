@@ -50,7 +50,9 @@ exports.setApp = function (app , client)
         fn = results[0].FirstName;
         ln = results[0].LastName;
       }
-    
+      const token = require("./createJWT.js");
+      ret = token.createToken( fn, ln, id );
+      
       var ret = { id:id, firstName:fn, lastName:ln, error:''};
       res.status(200).json(ret);
     });
