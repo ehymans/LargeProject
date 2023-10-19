@@ -3,16 +3,19 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 console.log("here");
 const path = require('path');    // MAY NEED TO DELETE!!       
-const PORT = process.env.PORT || 3000;  
+const PORT = process.env.PORT || 5000;  
 
 
 const app = express();
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 5000));
 
-app.use(cors({ origin: 'https://progress-tracker-4331-88c53c23c126.herokuapp.com' }));
+const corsOptions = {
+  origin: 'https://progress-tracker-4331-88c53c23c126.herokuapp.com',
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
-
 
 require('dotenv').config();
 const url = process.env.MONGODB_URI;
@@ -22,7 +25,6 @@ client.connect();
 var api = require('./api.js');
 api.setApp( app, client );
 // edit so it does not await the API call.
-app.options('*', cors()); // Respond to preflight requests
 console.log("here2");
 
 app.use((req, res, next) => 
@@ -38,11 +40,7 @@ app.use((req, res, next) =>
   );
   next();
 });
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://progress-tracker-4331-88c53c23c126.herokuapp.com/login');
-  // ...
-  next();
-});
+
 app.listen(PORT, () => 
 {
   console.log('Server listening on port ' + PORT);
