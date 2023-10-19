@@ -21,7 +21,6 @@ function Register() {
       lastName: registerLastName.value,
       username: registerUsername.value,
       password: registerPassword.value,
-      jwtToken:storage.retrieveToken()
     };
     var js = JSON.stringify(obj);
   
