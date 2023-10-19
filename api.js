@@ -68,7 +68,11 @@ exports.setApp = function (app , client)
         {
         const db = client.db('LargeProject'); 
         const result = await db.collection('Users').insertOne(newUser);
-        res.status(200).json({ success: 'Registration successful' });
+        const token = require("./createJWT.js");
+        const jwtToken = token.createToken(firstName, lastName, result.userId); // Use the user's ID or a unique identifier
+    
+        // Send the JWT token as part of the response
+        res.status(200).json({ success: 'Registration successful', jwtToken });
         } 
       catch (e) 
         {

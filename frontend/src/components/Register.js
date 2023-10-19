@@ -40,7 +40,7 @@ function Register() {
       else
       {
         setMessage('User added');
-//        storage.storeToken(res.jwtToken);
+        storage.storeToken(res.jwtToken);
       }
   }
   catch(e)
