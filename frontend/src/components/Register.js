@@ -15,35 +15,41 @@ function Register() {
 
   const doRegister = async (event) => {
     event.preventDefault();
-  
+    var storage = require('../tokenStorage.js');
     var obj = {
       firstName: registerFirstName.value,
       lastName: registerLastName.value,
       username: registerUsername.value,
       password: registerPassword.value,
+      jwtToken:storage.retrieveToken()
     };
     var js = JSON.stringify(obj);
   
-    try {
+    try 
+    {
       const response = await fetch(bp.buildPath('api/register'), {
         method: 'POST',
         body: js,
         headers: { 'Content-Type': 'application/json' },
       });
   
-      const data = await response.json();
-      if (data.success) {
-        setMessage('Registration successful!');
-        // You can also navigate the user to the login page or perform any other actions here
-      } else {
-        setMessage('Registration failed. Please try again.');
+      var data = await response.text();
+      var res = JSON.parse(data);
+      if( res.error && res.error.length > 0 )
+      {
+        setMessage("API Error:" + res.error);
       }
-    } catch (error) {
-      console.error('Registration failed', error);
-      setMessage('Registration failed. Please try again.');
-    }
-  };
-  
+      else
+      {
+        setMessage('User added');
+        storage.storeToken(res.jwtToken);
+      }
+  }
+  catch(e)
+  {
+    setMessage(e.toString());
+  }
+  }; 
 
   return (
     <div className="background-container">

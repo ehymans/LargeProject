@@ -49,36 +49,34 @@ exports.setApp = function (app , client)
         res.status(200).json(ret);
       });
       
-      app.post('/api/register', async (req, res, next) => {
-        // Incoming: first name, last name, username, password
-        const { firstName, lastName, username, password } = req.body;
+    app.post('/api/register', async (req, res, next) => {
+      // Incoming: first name, last name, username, password
+      const { firstName, lastName, username, password, jwtToken } = req.body;
       
-        // Check if a user with the given username already exists (you can add this logic)
-        // If the username exists, return an error response
+      // Check if a user with the given username already exists (you can add this logic)
+      // If the username exists, return an error response
       
-        // If the username is unique, insert the new user into your database
-        const newUser = {
-          FirstName: firstName,
-          LastName: lastName,
-          Username: username,
-          Password: password, // Be sure to securely hash the password
-        };
+      // If the username is unique, insert the new user into your database
+      const newUser = {
+        FirstName: firstName,
+        LastName: lastName,
+        Username: username,
+        Password: password, // Be sure to securely hash the password
+      };
       
-        try {
-          const db = client.db('LargeProject'); 
-          const result = await db.collection('Users').insertOne(newUser);
-          if (result.insertedCount === 1) {
-            // Registration successful
-            res.status(200).json({ success: true });
-          } else {
-            // Registration failed
-            res.status(500).json({ success: false, error: 'Registration failed' });
-          }
-        } catch (error) {
-          // Handle any database or other errors
-          res.status(500).json({ success: false, error: 'Registration failed' });
-        }
-      });
+      try 
+        {
+        const db = client.db('LargeProject'); 
+        const result = await db.collection('Users').insertOne(newUser);
+        } 
+      catch (error) 
+        {
+        // Handle any database or other errors
+          console.log(error.message);
+        } 
+        var ret = { error: error };
+        res.status(200).json(ret);
+    });
       
     
     app.post('/api/login', async (req, res, next) => 
