@@ -27,8 +27,11 @@ function Login() {
           var res = JSON.parse(await response.text());
           console.log("test2");
           var storage = require('../tokenStorage.js');
+          console.log("test2.1");
           storage.storeToken(res);
+          console.log("test2.2");
           const { accessToken } = res;
+          console.log("test2.3");
           const decoded = decode(accessToken,{complete:true});
           console.log("test3");
 
