@@ -1,4 +1,5 @@
 var bp = require('./Path.js');
+import decode from "jwt-decode"
 const response = await fetch(bp.buildPath('api/login'),
 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}})
 
@@ -28,8 +29,9 @@ function CardUI()
 
 	    event.preventDefault();
 
-        var obj = {userId:userId,card:card.value};
-        var js = JSON.stringify(obj);
+        var storage = require('../tokenStorage.js');
+        var obj = {userId:userId,card:card.value,jwtToken:storage.retrieveToken()};
+        var js = JSON.stringify(obj)
 
         try
         {
@@ -63,7 +65,9 @@ function CardUI()
         var lastName = ud.lastName;
         event.preventDefault();
         		
-        var obj = {userId:userId,search:search.value};
+        		
+        var storage = require('../tokenStorage.js');
+        var obj = {userId:userId,search:search.value,jwtToken:storage.retrieveToken()};
         var js = JSON.stringify(obj);
 
         try

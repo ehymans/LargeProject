@@ -7,8 +7,23 @@ exports.setApp = function (app , client)
         // incoming: userId, card
         // outgoing: error
         
-        const { userId, card } = req.body;
-      
+        const { userId, card, jwtToken } = req.body;
+        try
+          {
+          if( token.isExpired(jwtToken))
+            {
+              var r = {error:'The JWT is no longer valid', jwtToken: ''};
+              res.status(200).json(r);
+              return;
+            }
+          }
+        catch(e)
+          {
+            console.log(e.message);
+            var r = {error:e.message, jwtToken: ''};
+            res.status(200).json(r);
+            return;
+          }
         const newCard = {Card:card,UserId:userId};
         var error = '';
       
@@ -19,9 +34,17 @@ exports.setApp = function (app , client)
         catch(e) {
           error = e.toString();
         }
-      
+        var refreshedToken = null;
+        try
+          {
+            refreshedToken = token.refresh(jwtToken);
+          }
+          catch(e)
+          {
+          console.log(e.message);
+          }
         //cardList.push(card);
-      
+        
         var ret = { error: error };
         res.status(200).json(ret);
       });
@@ -65,20 +88,43 @@ exports.setApp = function (app , client)
     
       var error = '';
     
-      const { userId, search } = req.body;
+      const { userId, search , jwtToken } = req.body;
+    try
+    {
+    if( token.isExpired(jwtToken))
+      {
+        var r = {error:'The JWT is no longer valid', jwtToken: ''};
+        res.status(200).json(r);
+        return;
+      }
+    }
+  catch(e)
+    {
+      console.log(e.message);
+      var r = {error:e.message, jwtToken: ''};
+      res.status(200).json(r);
+      return;
+    }
+    var _search = search.trim();
     
-      var _search = search.trim();
-      
-      const db = client.db('COP4331Cards');
-      const results = await db.collection('Cards').find({"Card":{$regex:_search+'.*', $options:'i'}}).toArray();
-      
-      var _ret = [];
-      for( var i=0; i<results.length; i++ )
-      {
-        _ret.push( results[i].Card );
-      }
-      
-      var ret = {results:_ret, error:error};
-      res.status(200).json(ret);
+    const db = client.db('COP4331Cards');
+    const results = await db.collection('Cards').find({"Card":{$regex:_search+'.*', $options:'i'}}).toArray();
+    
+    var _ret = [];
+    for( var i=0; i<results.length; i++ )
+    {
+      _ret.push( results[i].Card );
+    }
+    var refreshedToken = null;
+    try
+      {
+        refreshedToken = token.refresh(jwtToken);
+      }
+      catch(e)
+      {
+        console.log(e.message);
+      }   
+      var ret = {results:_ret, error:error};
+      res.status(200).json(ret);
     });
 }
