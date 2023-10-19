@@ -69,12 +69,11 @@ exports.setApp = function (app , client)
         const db = client.db('LargeProject'); 
         const result = await db.collection('Users').insertOne(newUser);
         } 
-      catch (error) 
+      catch (e) 
         {
         // Handle any database or other errors
-          console.log(error.message);
+          ret = {error:e.message}
         } 
-        var ret = { error: error };
         res.status(200).json(ret);
     });
       
