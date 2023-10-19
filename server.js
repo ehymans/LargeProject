@@ -1,7 +1,7 @@
+console.log("here");
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-console.log("here");
 const path = require('path');    // MAY NEED TO DELETE!!       
 const PORT = process.env.PORT || 5000;  
 
@@ -11,7 +11,7 @@ const app = express();
 app.set('port', (process.env.PORT || 5000));
 
 const corsOptions = {
-   origin: 'https://progress-tracker-4331-88c53c23c126.herokuapp.com',
+   origin: 'https://progress-tracker-4331-88c53c23c126.herokuapp.com/',
 };
 
 app.use(cors(corsOptions));
