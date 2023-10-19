@@ -37,7 +37,11 @@ app.use((req, res, next) =>
   );
   next();
 });
-
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://progress-tracker-4331-88c53c23c126.herokuapp.com');
+  // ...
+  next();
+});
 app.listen(PORT, () => 
 {
   console.log('Server listening on port ' + PORT);
