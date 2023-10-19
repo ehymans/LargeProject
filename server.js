@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+console.log("here");
 const path = require('path');    // MAY NEED TO DELETE!!       
 const PORT = process.env.PORT || 3000;  
 
@@ -22,6 +22,7 @@ var api = require('./api.js');
 api.setApp( app, client );
 // edit so it does not await the API call.
 app.options('*', cors()); // Respond to preflight requests
+console.log("here2");
 
 app.use((req, res, next) => 
 {
@@ -57,5 +58,6 @@ if (process.env.NODE_ENV === 'production')
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
   });
 
-  
+  console.log("here3");
+
 }
