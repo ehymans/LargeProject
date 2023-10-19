@@ -14,7 +14,7 @@ function buildPath(route) {
 function Register() {
   var registerFirstName;
   var registerLastName;
-  var registerEmail;
+  var registerUsername;
   var registerPassword;
   const [message, setMessage] = useState('');
 
@@ -24,7 +24,7 @@ function Register() {
     var obj = {
       firstName: registerFirstName.value,
       lastName: registerLastName.value,
-      email: registerEmail.value,
+      username: registerUsername.value,
       password: registerPassword.value,
     };
     var js = JSON.stringify(obj);
@@ -71,10 +71,10 @@ function Register() {
           </div>
           <div className="form-group">
             <input
-              type="email"
-              id="registerEmail"
-              placeholder="Email"
-              ref={(c) => (registerEmail = c)}
+              type="text"
+              id="registerUsername"
+              placeholder="Username"
+              ref={(c) => (registerUsername = c)}
             />
           </div>
           <div className="form-group">
@@ -86,7 +86,7 @@ function Register() {
             />
           </div>
           <button type="submit" id="registerButton" className="login-button" onClick={doRegister}>
-            Register
+            SUBMIT
           </button>
         </form>
         <p id="registerResult" className="login-message">
