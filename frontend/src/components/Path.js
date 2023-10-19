@@ -1,4 +1,4 @@
-const app_name = 'cop4331-10'
+const app_name = 'progress-tracker-4331-88c53c23c126'
 exports.buildPath =
 function buildPath(route)
 {
