@@ -32,6 +32,7 @@ function Login() {
           console.log("test2.2");
           const { accessToken } = res;
           console.log("test2.3");
+          console.log('Received access token:', accessToken);
           const decoded = decode(accessToken,{complete:true});
           console.log("test3");
 
