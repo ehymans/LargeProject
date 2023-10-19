@@ -13,11 +13,10 @@ app.set('port', (process.env.PORT || 3000));
 app.use(cors());
 app.use(bodyParser.json());
 
-require('dotenv').config();
-const url = process.env.MONGODB_URI;
-const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb+srv://testUser1110:passwordtest@largeproject.ditppqp.mongodb.net/?retryWrites=true&w=majority'
 const client = new MongoClient(url);
 client.connect();
+
 var api = require('./api.js');
 api.setApp( app, client );
 // edit so it does not await the API call.
