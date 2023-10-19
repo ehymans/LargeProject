@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 
 const app_name = 'progress-tracker-4331-88c53c23c126';
+var bp = require('./Path.js');
 
 
 
@@ -22,7 +23,6 @@ function Register() {
       password: registerPassword.value,
     };
     var js = JSON.stringify(obj);
-    var bp = require('./Path.js');
     const response = await fetch(bp.buildPath('api/register'),
     {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
   };

@@ -5,7 +5,7 @@ import './Login.css';
 // const app_name = 'progress-tracker-4331-88c53c23c126';
 
 // Import or define buildPath
-import { buildPath } from './Path.js'; // Assuming 'buildPath' is a function you need to import
+var bp = require('./Path.js');
 
 
 function Login() {
@@ -20,7 +20,6 @@ function Login() {
       var js = JSON.stringify(obj);
 
       try {
-        var bp = require('./Path.js');
         const response = await fetch(bp.buildPath('api/login/'),
         {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
           var res = JSON.parse(await response.text());
