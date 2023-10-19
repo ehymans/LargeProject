@@ -52,7 +52,7 @@ exports.setApp = function (app , client)
     app.post('/api/register', async (req, res, next) => {
       ret = "";
       // Incoming: first name, last name, username, password
-      const { firstName, lastName, username, password, jwtToken } = req.body;
+      const { firstName, lastName, username, password} = req.body;
       
       // Check if a user with the given username already exists (you can add this logic)
       // If the username exists, return an error response
