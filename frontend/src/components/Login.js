@@ -25,15 +25,18 @@ function Login() {
         const response = await fetch(bp.buildPath('api/login'),
         {method:'POST',body:js,headers:{'Content-Type': 'application/json'}, mode: "no-cors"});
           var res = JSON.parse(await response.text());
+          console.log("test2");
           var storage = require('../tokenStorage.js');
           storage.storeToken(res);
           const { accessToken } = res;
           const decoded = decode(accessToken,{complete:true});
+          console.log("test3");
 
           var ud = decoded;
           var userId = ud.userId;
           var firstName = ud.firstName;
           var lastName = ud.lastName;  
+          console.log("test4");
 
           if (res.id <= 0) {
               setMessage('User/Password combination incorrect');
