@@ -7,26 +7,24 @@ const PORT = process.env.PORT || 5000;
 
 
 const app = express();
-
-app.set('port', (process.env.PORT || 5000));
-
-const corsOptions = {
-   origin: 'https://progress-tracker-4331-88c53c23c126.herokuapp.com/',
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 
-require('dotenv').config();
-const url = process.env.MONGODB_URI;
-const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(url);
-client.connect();
-var api = require('./api.js');
-api.setApp( app, client );
+try
+{
+  require('dotenv').config();
+  const url = process.env.MONGODB_URI;
+  const MongoClient = require('mongodb').MongoClient;
+  const client = new MongoClient(url);
+  client.connect(console.log("mongodb connected"));
+  var api = require('./api.js');
+  api.setApp( app, client );
 // edit so it does not await the API call.
-console.log("here2");
-
+  }
+  catch(e)
+  {
+    console.log(e.message);
+  }
 app.use((req, res, next) => 
 {
   res.setHeader('Access-Control-Allow-Origin', '*');
