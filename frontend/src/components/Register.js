@@ -32,7 +32,7 @@ function Register() {
         headers: { 'Content-Type': 'application/json' },
       });
   
-      var data = await response.text();
+      var data = (await response.text());
       var res = JSON.parse(data);
       if( res.error && res.error.length > 0 )
       {
@@ -41,7 +41,7 @@ function Register() {
       else
       {
         setMessage('User added');
-        storage.storeToken(res.jwtToken);
+//        storage.storeToken(res.jwtToken);
       }
   }
   catch(e)
