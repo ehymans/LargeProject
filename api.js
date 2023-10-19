@@ -50,7 +50,6 @@ exports.setApp = function (app , client)
       });
       
     app.post('/api/register', async (req, res, next) => {
-      console.log("inside register api.");
       // Incoming: first name, last name, username, password
       const { firstName, lastName, username, password, jwtToken } = req.body;
       
@@ -76,7 +75,6 @@ exports.setApp = function (app , client)
           console.log(error.message);
         } 
         var ret = { error: error };
-        console.log("done register api.");
         res.status(200).json(ret);
     });
       
