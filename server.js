@@ -10,8 +10,9 @@ const app = express();
 
 app.set('port', (process.env.PORT || 3000));
 
-app.use(cors());
+app.use(cors({ origin: 'https://progress-tracker-4331-88c53c23c126.herokuapp.com' }));
 app.use(bodyParser.json());
+
 
 require('dotenv').config();
 const url = process.env.MONGODB_URI;
