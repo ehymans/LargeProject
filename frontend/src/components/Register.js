@@ -15,7 +15,7 @@ function Register() {
 
   const doRegister = async (event) => {
     event.preventDefault();
-
+  
     var obj = {
       firstName: registerFirstName.value,
       lastName: registerLastName.value,
@@ -23,9 +23,27 @@ function Register() {
       password: registerPassword.value,
     };
     var js = JSON.stringify(obj);
-    const response = await fetch(bp.buildPath('api/register'),
-    {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
+  
+    try {
+      const response = await fetch(bp.buildPath('api/register'), {
+        method: 'POST',
+        body: js,
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      const data = await response.json();
+      if (data.success) {
+        setMessage('Registration successful!');
+        // You can also navigate the user to the login page or perform any other actions here
+      } else {
+        setMessage('Registration failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Registration failed', error);
+      setMessage('Registration failed. Please try again.');
+    }
   };
+  
 
   return (
     <div className="background-container">
