@@ -15,7 +15,6 @@ function Register() {
 
   const doRegister = async (event) => {
     event.preventDefault();
-    var storage = require('../tokenStorage.js');
     var obj = {
       firstName: registerFirstName.value,
       lastName: registerLastName.value,
