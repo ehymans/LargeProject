@@ -23,7 +23,7 @@ function Login() {
       console.log("test");
       try {
         const response = await fetch(bp.buildPath('api/login'),
-        {method:'POST',body:js,headers:{'Content-Type': 'application/json'}, mode: "no-cors"});
+        {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
           var res = JSON.parse(await response.text());
           console.log("test2");
           var storage = require('../tokenStorage.js');
