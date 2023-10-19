@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import './Login.css';
 
 const app_name = 'progress-tracker-4331-88c53c23c126';
-
+var bp = require('./Path.js');
+const response = await fetch(bp.buildPath('api/login'),
+{method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 function buildPath(route) {
   if (process.env.NODE_ENV === 'production') {
     return 'https://' + app_name + '.herokuapp.com/' + route;
@@ -28,24 +30,9 @@ function Register() {
       password: registerPassword.value,
     };
     var js = JSON.stringify(obj);
-
-    try {
-      const response = await fetch(buildPath('Register.js'), {
-        method: 'POST',
-        body: js,
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      var res = JSON.parse(await response.text());
-      if (res.id <= 0) {
-        setMessage('Registration failed. Please check your data.');
-      } else {
-        setMessage('Registration successful.');
-      }
-    } catch (e) {
-      alert(e.toString());
-      return;
-    }
+    var bp = require('./Path.js');
+    const response = await fetch(bp.buildPath('api/login'),
+    {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
   };
 
   return (
