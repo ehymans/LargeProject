@@ -21,6 +21,7 @@ client.connect();
 var api = require('./api.js');
 api.setApp( app, client );
 // edit so it does not await the API call.
+app.options('*', cors()); // Respond to preflight requests
 
 app.use((req, res, next) => 
 {
