@@ -50,7 +50,6 @@ exports.setApp = function (app , client)
       });
       
     app.post('/api/register', async (req, res, next) => {
-      ret = "";
       // Incoming: first name, last name, username, password
       const { firstName, lastName, username, password} = req.body;
       
@@ -69,13 +68,13 @@ exports.setApp = function (app , client)
         {
         const db = client.db('LargeProject'); 
         const result = await db.collection('Users').insertOne(newUser);
+        res.status(200).json({ success: 'Registration successful' });
         } 
       catch (e) 
         {
         // Handle any database or other errors
-          ret = {error:e.message}
-        } 
-        res.status(200).json(ret);
+        res.status(500).json({ error: e.message });
+       } 
     });
       
     
