@@ -21,6 +21,7 @@ function Register() {
       username: registerUsername.value,
       password: registerPassword.value,
     };
+    var storage = require('../tokenStorage.js');
     var js = JSON.stringify(obj);
   
     try 
