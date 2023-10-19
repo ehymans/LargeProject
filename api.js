@@ -50,6 +50,7 @@ exports.setApp = function (app , client)
       });
       
     app.post('/api/register', async (req, res, next) => {
+      ret = "";
       // Incoming: first name, last name, username, password
       const { firstName, lastName, username, password, jwtToken } = req.body;
       
