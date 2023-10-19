@@ -22,7 +22,7 @@ var api = require('./api.js');
 api.setApp( app, client );
 // edit so it does not await the API call.
 
-app.use(async (req, res, next) => 
+app.use((req, res, next) => 
 {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
@@ -55,4 +55,6 @@ if (process.env.NODE_ENV === 'production')
  {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
   });
+
+  
 }
