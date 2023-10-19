@@ -30,7 +30,7 @@ function Register() {
     var js = JSON.stringify(obj);
 
     try {
-      const response = await fetch(buildPath('Register'), {
+      const response = await fetch(buildPath('Register.js'), {
         method: 'POST',
         body: js,
         headers: { 'Content-Type': 'application/json' },
