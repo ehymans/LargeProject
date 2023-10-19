@@ -13,7 +13,7 @@ app.set('port', (process.env.PORT || 3000));
 app.use(cors());
 app.use(bodyParser.json());
 
-const url = 'mongodb+srv://testUser1110:passwordtest@largeproject.ditppqp.mongodb.net/?retryWrites=true&w=majority'
+const url = 'mongodb+srv://testUser1110:passwordtest@largeproject.ditppqp.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(url);
 client.connect();
 
