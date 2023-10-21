@@ -7,11 +7,12 @@ var bp = require('./Path.js');
 
 
 function Register() {
-  var registerFirstName;
-  var registerLastName;
-  var registerUsername;
-  var registerPassword;
+  const [registerFirstName, setRegisterFirstName] = useState('');
+  const [registerLastName, setRegisterLastName] = useState('');
+  const [registerUsername, setRegisterUsername] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('');
 
   const doRegister = async (event) => {
     event.preventDefault();
@@ -23,7 +24,12 @@ function Register() {
     };
     var storage = require('../tokenStorage.js');
     var js = JSON.stringify(obj);
-  
+    const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
+    if (!registerPassword.match(passwordPattern)) {
+      setMessage("Password must be at least 8 characters with at least 1 number and 1 special character.");
+      return;
+    }
+
     try 
     {
       const response = await fetch(bp.buildPath('api/register'), {
@@ -50,6 +56,21 @@ function Register() {
   }
   }; 
 
+  const handlePasswordChange = (event) => {
+    const password = event.target.value;
+    setRegisterPassword(password);
+
+    // Update password strength indicator
+    if (password.length === 0) {
+      setPasswordStrength('');
+    } else {
+      const passwordStrengthMessage = password.match(passwordPattern)
+        ? 'Password is strong.'
+        : 'Password requirements: at least 8 characters, 1 number, and 1 special character.';
+      setPasswordStrength(passwordStrengthMessage);
+    }
+  };
+
   return (
     <div className="background-container">
       <div id="loginDiv">
@@ -60,7 +81,8 @@ function Register() {
               type="text"
               id="registerFirstName"
               placeholder="First Name"
-              ref={(c) => (registerFirstName = c)}
+              value={registerFirstName}
+              onChange={(e) => setRegisterFirstName(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -68,7 +90,8 @@ function Register() {
               type="text"
               id="registerLastName"
               placeholder="Last Name"
-              ref={(c) => (registerLastName = c)}
+              value={registerLastName}
+              onChange={(e) => setRegisterLastName(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -76,7 +99,8 @@ function Register() {
               type="text"
               id="registerUsername"
               placeholder="Username"
-              ref={(c) => (registerUsername = c)}
+              value={registerUsername}
+              onChange={(e) => setRegisterUsername(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -84,9 +108,13 @@ function Register() {
               type="password"
               id="registerPassword"
               placeholder="Password"
-              ref={(c) => (registerPassword = c)}
+              value={registerPassword}
+              onChange={handlePasswordChange}
             />
           </div>
+          {passwordStrength && (
+            <p className="password-strength">{passwordStrength}</p>
+          )}
           <button type="submit" id="registerButton" className="login-button" onClick={doRegister}>
             SUBMIT
           </button>
