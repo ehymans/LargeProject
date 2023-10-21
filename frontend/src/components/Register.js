@@ -3,7 +3,7 @@ import './Login.css';
 
 const app_name = 'progress-tracker-4331-88c53c23c126';
 var bp = require('./Path.js');
-
+const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
 
 
 function Register() {
