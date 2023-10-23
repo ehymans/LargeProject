@@ -112,9 +112,6 @@ function Register() {
               onChange={handlePasswordChange}
             />
           </div>
-          {passwordStrength && (
-            <p className="password-strength">{passwordStrength}</p>
-          )}
           <button type="submit" id="registerButton" className="login-button" onClick={doRegister}>
             SUBMIT
           </button>
