@@ -18,6 +18,10 @@ function LoggedInName() {
     window.location.href = '/'; // Redirect to the login page
     alert('Logged out successfully');
   };
+  const addExperience = () => {
+    // For you to do Ollie.
+    alert('Add this endpoint - Julian');
+  };
 
   return (
     <div id="loggedInDiv">
