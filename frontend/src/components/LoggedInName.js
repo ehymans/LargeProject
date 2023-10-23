@@ -28,9 +28,7 @@ function LoggedInName() {
       <span id="userName">Logged In As {user.firstName} {user.lastName}</span><br />
       <button type="button" id="logoutButton" className="buttons" onClick={addExperience}>
         Add Exp</button>
-      <button type="button" id="logoutButton" className="buttons" onClick={doLogout}>
-        Log Out
-      </button>
+     
 
       {/* Add the blank table here */}
       <table
