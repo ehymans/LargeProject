@@ -1,11 +1,12 @@
 /* Background animation container */
+/*
 .background-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Place it behind other content */
+  z-index: -1; 
   overflow: hidden;
   background-image: url("/src/images/background3.jpg.webp");
   background-size: cover;
@@ -15,7 +16,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 170%; /* Increase the width for a smoother loop */
+  width: 170%; 
   height: 120%;
 }
 
@@ -29,10 +30,39 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 170%; /* Increase the width for a smoother loop */
+  width: 170%; 
   height: 120%;
   animation: backgroundAnimation 800s linear infinite;
   z-index: 0;
+}
+// This is the old background, Julian adding in a new background.
+*/ 
+
+.background-container{
+  background-image: linear-gradient(to right, black, gray );
+
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-image: linear-gradient(to right, #222233, #555577);
+  background-size: 100% 100%;
+  position: relative; /* Required for absolute positioning of the login box */
 }
 
 @keyframes backgroundAnimation {
@@ -56,32 +86,33 @@ body {
 }
 
 /* Login Box Styles */
+
 #loginDiv {
-  position:relative;
+  position: absolute;
+  top: 20%; /* Adjust the vertical position */
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  margin-top: 200px;
-  margin-left: 500px;
-  margin-right: 1450px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1; /* Ensure the login box stays in front of the background */
+  background-color: #111122; /* Darker background color */
+  border-radius: 10px; 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Subtle shadow for the "pop-out" effect */
+  z-index: 1;
+  width: 400px; /* Adjust the width as needed */
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   margin-right: 15px;
-
-padding: 20px;
+  padding: 20px;
 }
 
 .form-title {
   font-size: 24px;
   font-family: 'Courier New', Courier, monospace;
   margin-bottom: 20px;
-  color: #333;
+  color: white;
   
 }
 
@@ -104,21 +135,21 @@ input[type="password"] {
 }
 
 .login-button {
-  background-color: #007BFF;
+  background-color: #FF6B6B; /* Salmon pink color */
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
   font-size: 16px;
-  margin-right: -22px;
   transition: background-color 0.3s;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color: #FF4848; /* Slightly darker salmon pink on hover */
 }
+
 
 .login-message {
   margin-top: 10px;
