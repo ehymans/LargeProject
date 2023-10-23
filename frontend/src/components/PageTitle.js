@@ -5,7 +5,7 @@ import './PageTitle.css';
 function PageTitle() {
   return (
     <div className="page-title">
-      <h1 id="title">Productivity Dashboard</h1>
+      <h1 id="title">Dare2Do</h1>
       <div className="page-buttons">
         <Link to="/login">
           <button>Login</button>
