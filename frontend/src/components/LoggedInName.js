@@ -24,11 +24,18 @@ function LoggedInName() {
     alert('Add this endpoint - Julian');
   };
 
+  const addTask = () =>{
+    //NEW API FOR TASK ADD
+    alert('Add this endpoint for task add');
+  };
+
   return (
     <div id="loggedInDiv">
      
       <button type="button" id="addExp" className="buttons" onClick={addExperience}>
         Add Exp</button>
+        <button type="button" id= "addTask" className="buttons" onClick={addTask}>
+          Add Task</button>
      
 
       
