@@ -27,7 +27,7 @@ function LoggedInName() {
   return (
     <div id="loggedInDiv">
      
-      <button type="button" id="logoutButton" className="buttons" onClick={addExperience}>
+      <button type="button" id="addExp" className="buttons" onClick={addExperience}>
         Add Exp</button>
      
 
