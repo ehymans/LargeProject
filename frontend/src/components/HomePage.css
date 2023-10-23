@@ -24,6 +24,18 @@
     transition: background-color 0.3s; /* Add a subtle hover effect */
     margin-top: 10px; /* Add spacing above the button */
   }
+
+  #addTask{
+    background-color: #ff3f65c7; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove the button border */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 10px 20px; /* Adjust padding for button size */
+    font-size: 16px; /* Adjust the font size as needed */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add a subtle hover effect */
+    margin-top: 10px; /* Add spacing above the button */
+  }
   
   #logoutButton:hover {
     background-color: #bd273d; /* Darker background color on hover */
