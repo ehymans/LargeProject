@@ -1,0 +1,31 @@
+/* Styles for the container div */
+#loggedInDiv {
+    text-align: center; /* Center the content horizontally */
+    margin: 20px; /* Add margin to provide spacing */
+  }
+  
+  /* Styles for the user name span */
+  #userName {
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: #333; /* Change the text color to your preference */
+    margin-bottom: 10px; /* Add spacing below the user name */
+  }
+  
+  /* Styles for the logout button */
+  #logoutButton {
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove the button border */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 10px 20px; /* Adjust padding for button size */
+    font-size: 16px; /* Adjust the font size as needed */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add a subtle hover effect */
+    margin-top: 10px; /* Add spacing above the button */
+  }
+  
+  #logoutButton:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+  }
+  
