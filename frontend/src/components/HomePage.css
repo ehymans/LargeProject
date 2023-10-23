@@ -14,7 +14,7 @@
   
   /* Styles for the logout button */
   #logoutButton {
-    background-color: #007BFF; /* Button background color */
+    background-color: #ff3f65c7; /* Button background color */
     color: #fff; /* Button text color */
     border: none; /* Remove the button border */
     border-radius: 5px; /* Add rounded corners */
@@ -26,6 +26,6 @@
   }
   
   #logoutButton:hover {
-    background-color: #0056b3; /* Darker background color on hover */
+    background-color: #bd273d; /* Darker background color on hover */
   }
   
