@@ -26,10 +26,10 @@ function HomeHeader() {
 
   return (
     <div className="page-title">
-      <h1 id="title">Productivity Dashboard</h1>
+      <h1 id="title">Dare2Do</h1>
       <span id="userName">Logged In As {user.firstName} {user.lastName}</span><br />
       <div className="page-buttons">
-        <button onClick={addExperience}>Add Exp</button>
+        
         <button onClick={doLogout}>Logout</button>
       </div>
     </div>
