@@ -53,4 +53,10 @@
     left: 15%;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
   }
+  .main-tasks{
+    width: 200px;
+    height: 400px;
+    background-color: #3498db;
+    margin: 20px auto;
+  }
 
