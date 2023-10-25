@@ -32,7 +32,7 @@ function LoggedInName() {
 
   return (
     <div>
-  <div id="topbar"></div>
+  
   <div id="loggedInDiv">
     <span id="userName">{user.name}</span>
     <CircularProgressBar />
