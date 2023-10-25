@@ -15,7 +15,7 @@ exports.createToken = function ( fn, ln, id )
     }
 catch(e)
     {
-        console.log("error at createJWT.js");
+        // console.log("error at createJWT.js");
         var ret = {error:e.message};
     }
     return ret;
@@ -42,6 +42,6 @@ exports.refresh = function( token )
     var userId = ud.payload.id;
     var firstName = ud.payload.firstName;
     var lastName = ud.payload.lastName;
-    console.log("made it to end of creating token.")
+    // console.log("made it to end of creating token.")
     return _createToken( firstName, lastName, userId );
 }

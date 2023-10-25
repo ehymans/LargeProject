@@ -25,22 +25,26 @@ function Login() {
         const response = await fetch(bp.buildPath('api/login'),
         {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
           var res = JSON.parse(await response.text());
-          console.log("test2");
+        //   console.log("test2");
           var storage = require('../tokenStorage.js');
-          console.log("test2.1");
+        //   console.log("test2.1");
           storage.storeToken(res);
-          console.log("test2.2");
+        //   console.log("test2.2");
           const { accessToken } = res;
-          console.log("test2.3");
-          console.log('Received access token:', accessToken);
+        //   console.log("test2.3");
+        if (!accessToken) {
+            setMessage('Invalid access token');
+            return;
+          }
+        //   console.log('Received access token:', accessToken);
           const decoded = decode(accessToken,{complete:true});
-          console.log("test3");
+        //   console.log("test3");
 
           var ud = decoded;
           var userId = ud.userId;
           var firstName = ud.firstName;
           var lastName = ud.lastName;  
-          console.log("test4");
+        //   console.log("test4");
 
           if (res.id <= 0) {
               setMessage('User/Password combination incorrect');
