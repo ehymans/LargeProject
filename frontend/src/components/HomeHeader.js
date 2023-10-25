@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import './PageTitle';
+import './PageTitle';
 function HomeHeader() {
   const [user, setUser] = useState({});
 
