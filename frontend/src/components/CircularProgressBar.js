@@ -20,6 +20,7 @@ function CircularProgressBar() {
         number.innerHTML = counter + "%";
       }
     }, 30);
+      return () => clearInterval(interval);  // clear the interval when the component is unmounted
   }, [circumference]);
 
   return (
