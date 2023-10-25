@@ -1,33 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CircularProgressBar.css';
 
 function CircularProgressBar() {
+  const [counter, setCounter] = useState(0);
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (counter / 100) * circumference;
 
   useEffect(() => {
-    let number = document.getElementById("number");
-    let circle = document.getElementById("progressCircle");
-    let counter = 0;
-
     const interval = setInterval(() => {
-      if (counter === 100) {
-        clearInterval(interval);
+      if (counter < 100) {
+        setCounter(prevCounter => prevCounter + 1);  // Increment the counter
       } else {
-        counter += 1;
-        let offset = circumference - (counter / 100) * circumference;
-        circle.setAttribute("stroke-dashoffset", offset);
-        number.innerHTML = counter + "%";
+        clearInterval(interval);  // Clear interval when counter reaches 100
       }
     }, 30);
-      return () => clearInterval(interval);  // clear the interval when the component is unmounted
-  }, [circumference]);
+
+    return () => clearInterval(interval);  // clear the interval when the component is unmounted
+  }, [counter]);  // Add counter to the dependency array
 
   return (
     <div className="skill">
       <div className="outer">
         <div className="inner">
-          <div id="number"></div>
+          <div>{counter}%</div>  {/* Directly use state value here */}
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
           <defs>
@@ -37,16 +33,15 @@ function CircularProgressBar() {
             </linearGradient>
           </defs>
           <circle 
-            id="progressCircle"
             cx="80" 
             cy="80" 
-            r="70" 
+            r={radius} 
             stroke-linecap="round"
             stroke-width="10" 
             stroke="url(#GradientColor)"
             fill="none"
             stroke-dasharray={circumference}
-            stroke-dashoffset={circumference}
+            stroke-dashoffset={offset}  // Use the offset value calculated above
           />
         </svg>
       </div>
