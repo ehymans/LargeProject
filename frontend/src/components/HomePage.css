@@ -46,9 +46,10 @@
   
   #topbar {
     background-color: #111122; 
-    height: 20px; 
+    height: 60px; 
     width: 70%; 
-    position: fixed; 
+    position: absolute; 
     top: 20%; 
+    left: 15%;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
   }
