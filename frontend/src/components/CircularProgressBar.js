@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CircularProgressBar.css';
+
 function CircularProgressBar() {
   useEffect(() => {
     let number = document.getElementById("number");
