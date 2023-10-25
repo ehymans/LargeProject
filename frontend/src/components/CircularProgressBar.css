@@ -4,8 +4,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 400px;
-    margin-top: 400px;
+    margin-right: 4000px;
+    margin-bottom: 4000px;
 }
 .skill{
     width: 160px;
