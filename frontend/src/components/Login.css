@@ -65,14 +65,6 @@ body {
   position: relative; /* Required for absolute positioning of the login box */
 }
 
-@keyframes backgroundAnimation {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%); /* Change to -100% to create a continuous loop */
-  }
-}
 
 /* Reset some default styles */
 body, h1 {
