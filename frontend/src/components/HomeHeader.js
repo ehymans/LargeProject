@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './PageTitle';
-
+// import './PageTitle';
 function HomeHeader() {
   const [user, setUser] = useState({});
 
@@ -26,7 +25,6 @@ function HomeHeader() {
 
   return (
     <div className="page-title">
-      <h1 id="title">Dare2Do</h1>
       
       <div className="page-buttons">
         
