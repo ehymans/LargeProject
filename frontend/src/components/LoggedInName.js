@@ -14,13 +14,6 @@ function LoggedInName() {
     }
   }, []);
 
-  const doLogout = event => {
-    event.preventDefault();
-    localStorage.removeItem('user_data');
-    window.location.href = '/';
-    alert('Logged out successfully');
-  };
-
   const addExperience = () => {
     // Ollie.
     setProgress(progress + 10);
@@ -44,7 +37,6 @@ function LoggedInName() {
     <button type="button" id="addTask" className="buttons" onClick={addTask}>
       Add Task
     </button>
-    <button onClick={doLogout}>Logout</button>
   </div>
 </div>
 
