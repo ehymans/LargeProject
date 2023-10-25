@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './HomePage.css';
+import CircularProgressBar from './CircularProgressBar.js'; 
 
 function LoggedInName() {
   const [user, setUser] = useState({});
@@ -32,14 +33,7 @@ function LoggedInName() {
   return (
     <div id="loggedInDiv">
       <span id="userName">{user.name}</span>
-
-      <div id="progress-bar">
-        <div
-          id="progress-fill"
-          style={{ transform: `rotate(${progress * 3.6}deg)` }}
-        ></div>
-      </div>
-
+      <CircularProgressBar />
       <button type="button" id="addExp" className="buttons" onClick={addExperience}>
         Add Exp
       </button>
@@ -47,6 +41,7 @@ function LoggedInName() {
         Add Task
       </button>
     </div>
+
   );
 }
 
