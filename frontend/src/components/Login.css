@@ -63,7 +63,6 @@ body {
   background-image: linear-gradient(to right, #222233, #555577);
   background-size: 100% 100%;
   position: relative; /* Required for absolute positioning of the login box */
-  z-index: 0;
 }
 
 
@@ -73,12 +72,16 @@ body, h1 {
   padding: 0;
 }
 
+body {
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 200px; /* Adjust the margin-top to move the login box down */
+}
 
 /* Login Box Styles */
 
 #loginDiv {
   position: absolute;
-  top: 40%; /* Adjust the vertical position */
+  top: 20%; /* Adjust the vertical position */
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
