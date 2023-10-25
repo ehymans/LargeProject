@@ -72,10 +72,6 @@ body, h1 {
   padding: 0;
 }
 
-body {
-  font-family: 'Courier New', Courier, monospace;
-  margin-top: 200px; /* Adjust the margin-top to move the login box down */
-}
 
 /* Login Box Styles */
 
