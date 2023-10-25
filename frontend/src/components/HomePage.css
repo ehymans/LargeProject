@@ -1,65 +1,59 @@
-/* Styles for the container div */
-/* Styles for the container div */
-#loggedInDiv {
-  text-align: center; /* Center the content horizontally */
-  margin: 20px; /* Add margin to provide spacing */
+import React, { useState, useEffect } from 'react';
+import './HomePage.css';
+import CircularProgressBar from './CircularProgressBar';
+
+function LoggedInName() {
+  const [user, setUser] = useState({});
+  const [progress, setProgress] = useState(0); // Add progress state
+
+  useEffect(() => {
+    let _ud = localStorage.getItem('user_data');
+    if (_ud) {
+      let ud = JSON.parse(_ud);
+      setUser(ud);
+    }
+  }, []);
+
+  const doLogout = event => {
+    event.preventDefault();
+    localStorage.removeItem('user_data');
+    window.location.href = '/';
+    alert('Logged out successfully');
+  };
+
+  const addExperience = () => {
+    // Ollie.
+    setProgress(progress + 10);
+  };
+
+  const addTask = () => {
+    // Julian.
+  };
+
+  return (
+<div>
+
+  <div class="main-task"></div>
+  <div class="main-task"></div>
+  <div class="main-task"></div>
+  <div class="main-task"></div>
+
+
+  <div id="loggedInDiv">
+    <span id="userName">{user.name}</span>
+    <CircularProgressBar />
+    <button type="button" id="addExp" className="buttons" onClick={addExperience}>
+      Add Exp
+    </button>
+    <button type="button" id="addTask" className="buttons" onClick={addTask}>
+      Add Task
+    </button>
+    <button onClick={doLogout}>Logout</button>
+  </div>
+</div>
+
+
+  );
 }
 
-
-  
-  /* Styles for the user name span */
-  #userName {
-    font-size: 18px; /* Adjust the font size as needed */
-    font-weight: bold;
-    color: #fefefe; /* Change the text color to your preference */
-    margin-bottom: 10px; /* Add spacing below the user name */
-  }
-  
-  /* Styles for the logout button */
-  #addExp {
-    background-color: #ff3f65c7; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none; /* Remove the button border */
-    border-radius: 5px; /* Add rounded corners */
-    padding: 10px 20px; /* Adjust padding for button size */
-    font-size: 16px; /* Adjust the font size as needed */
-    cursor: pointer;
-    transition: background-color 0.3s; /* Add a subtle hover effect */
-    margin-top: 10px; /* Add spacing above the button */
-  }
-
-  #addTask{
-    background-color: #ff3f65c7; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none; /* Remove the button border */
-    border-radius: 5px; /* Add rounded corners */
-    padding: 10px 20px; /* Adjust padding for button size */
-    font-size: 16px; /* Adjust the font size as needed */
-    cursor: pointer;
-    transition: background-color 0.3s; /* Add a subtle hover effect */
-    margin-top: 10px; /* Add spacing above the button */
-  }
-  
-  #logoutButton:hover {
-    background-color: #bd273d; /* Darker background color on hover */
-  }
-  
-  #topbar {
-    background-color: #111122; 
-    height: 60px; 
-    width: 70%; 
-    position: absolute; 
-    top: 14%; 
-    left: 15%;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-  }
-  .main-task{
-    width: 200px;
-    height: 50px;
-    background-color: #3498db;
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    
-  }
-
+export default LoggedInName;
