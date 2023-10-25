@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './HomePage.css';
-import './CircularProgressBar.js';
+import CircularProgressBar from './CircularProgressBar';
 
 function LoggedInName() {
   const [user, setUser] = useState({});
