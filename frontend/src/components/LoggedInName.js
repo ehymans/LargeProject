@@ -43,12 +43,13 @@ function LoggedInName() {
       Add Task
     </button>
     <button onClick={doLogout}>Logout</button>
+    <div class="main-task"></div>
+  <div class="main-task"></div>
+  <div class="main-task"></div>
+  <div class="main-task"></div>
   </div>
  
-  <div class="main-task"></div>
-  <div class="main-task"></div>
-  <div class="main-task"></div>
-  <div class="main-task"></div>
+  
 </div>
 
   );
