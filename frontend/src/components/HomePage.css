@@ -53,7 +53,7 @@
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.main-task {
+#main-task {
   width: 200px;
   height: 50px;
   background-color: #3498db;
