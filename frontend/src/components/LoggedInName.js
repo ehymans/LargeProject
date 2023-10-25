@@ -35,13 +35,14 @@ function LoggedInName() {
     <div id="topbar"></div>
     <div id="loggedInDiv">
       <span id="userName">{user.name}</span>
-      {/* <CircularProgressBar /> */}
+      <CircularProgressBar />
       <button type="button" id="addExp" className="buttons" onClick={addExperience}>
         Add Exp
       </button>
       <button type="button" id="addTask" className="buttons" onClick={addTask}>
         Add Task
       </button>
+      <button onClick={doLogout}>Logout</button>
     </div>
     </div>
   );
