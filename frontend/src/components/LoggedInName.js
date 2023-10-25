@@ -22,15 +22,17 @@ function LoggedInName() {
   };
 
   const addExperience = () => {
-    // Update progress here
+    // Ollie.
     setProgress(progress + 10);
   };
 
   const addTask = () => {
-    // Add your task-related code here
+    // Julian.
   };
 
   return (
+    <div>
+    <div id="topbar"></div>
     <div id="loggedInDiv">
       <span id="userName">{user.name}</span>
       <CircularProgressBar />
@@ -41,7 +43,7 @@ function LoggedInName() {
         Add Task
       </button>
     </div>
-
+    </div>
   );
 }
 
