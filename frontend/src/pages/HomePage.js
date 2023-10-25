@@ -8,7 +8,7 @@ const HomePage = () =>
 {
     return(
         <div>
-           
+            <HomeHeader />
             <LoggedInName />
         </div>
     );
