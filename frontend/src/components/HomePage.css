@@ -58,6 +58,8 @@
     height: 50px;
     background-color: #3498db;
     border-radius: 5px;
+    position: absolute;
+    top: 0;
     
   }
 
