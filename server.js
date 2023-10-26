@@ -12,13 +12,23 @@ app.use(bodyParser.json());
 
 try
 {
+  console.log("here");
   require('dotenv').config();
+  console.log("here2");
   const url = process.env.MONGODB_URI;
+  console.log("here3");
   const MongoClient = require('mongodb').MongoClient;
+  console.log("here4");
   const client = new MongoClient(url);
+  console.log("here5");
   client.connect(console.log("mongodb connected"));
+  console.log("here6");
   var api = require('./api.js');
+  console.log("here7");
   api.setApp( app, client );
+  console.log("here8");
+  console.log("here2");
+
 // edit so it does not await the API call.
   }
   catch(e)
@@ -38,6 +48,7 @@ app.use((req, res, next) =>
   );
   next();
 });
+console.log("here3");
 
 app.listen(PORT, () => 
 {
