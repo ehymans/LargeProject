@@ -51,43 +51,44 @@ function LoggedInName() {
         Add Task
       </button>
       {showTaskForm && (
-        <form className="task-form" onSubmit={handleTaskFormSubmit}>
-          <input
-            type="text"
-            id="taskName"
-            placeholder="Task Name"
-            value={taskInfo.taskName}
-            onChange={handleTaskInputChange}
-          />
-          <input
-            type="text"
-            name="taskDescription"
-            placeholder="Task Description"
-            value={taskInfo.taskDescription}
-            onChange={handleTaskInputChange}
-          />
-          <input
-            type="text"
-            name="taskImportance"
-            placeholder="Task Importance"
-            value={taskInfo.taskImportance}
-            onChange={handleTaskInputChange}
-          />
-          <input
-            type="date"
-            name="taskDate"
-            value={taskInfo.taskDate}
-            onChange={handleTaskInputChange}
-          />
-          <input
-            type="time"
-            name="taskTime"
-            value={taskInfo.taskTime}
-            onChange={handleTaskInputChange}
-          />
-          
-          <button type="submit">Add</button>
-        </form>
+        <div className="task-form">
+          <form onSubmit={handleTaskFormSubmit}>
+            <input
+              type="text"
+              id="taskName"
+              placeholder="Task Name"
+              value={taskInfo.taskName}
+              onChange={handleTaskInputChange}
+            />
+            <input
+              type="text"
+              name="taskDescription"
+              placeholder="Task Description"
+              value={taskInfo.taskDescription}
+              onChange={handleTaskInputChange}
+            />
+            <input
+              type="date"
+              name="taskDate"
+              value={taskInfo.taskDate}
+              onChange={handleTaskInputChange}
+            />
+            <input
+              type="time"
+              name="taskTime"
+              value={taskInfo.taskTime}
+              onChange={handleTaskInputChange}
+            />
+            <input
+              type="text"
+              name="taskImportance"
+              placeholder="Task Importance"
+              value={taskInfo.taskImportance}
+              onChange={handleTaskInputChange}
+            />
+            <button type="submit">Add</button>
+          </form>
+        </div>
       )}
     </div>
   );
