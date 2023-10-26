@@ -51,8 +51,9 @@ exports.setApp = function (app , client)
       
       app.post('/api/register', async (req, res, next) => {
         // Incoming: first name, last name, username, password
+        console.log("is it here");
         const { firstName, lastName, username, password } = req.body;
-      
+        console.log("is it here2");
         try {
           const db = client.db('LargeProject');
       
