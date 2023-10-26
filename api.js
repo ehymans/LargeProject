@@ -1,14 +1,14 @@
-const express = require('express');
+require('express');
 require('mongodb');
 
 exports.setApp = function (app , client)
 {
-    app.post('/api/addcard', (req, res, next) => {
-        // incoming: userId, card
+    app.post('/api/addExperience', async (req, res, next) => {
+        // incoming: userId, awardExp
         // outgoing: error
         
-        const { userId, card, jwtToken } = req.body;
-        try
+        const { userId, awardExp, jwtToken } = req.body;
+        /*try
           {
           if( token.isExpired(jwtToken))
             {
@@ -19,49 +19,81 @@ exports.setApp = function (app , client)
           }
         catch(e)
           {
+            console.log("1");
             console.log(e.message);
             var r = {error:e.message, jwtToken: ''};
             res.status(200).json(r);
             return;
-          }
-        const newCard = {Card:card,UserId:userId};
+          }*/
+
+
+        //const newCard = {Card:card,UserId:userId};
         var error = '';
       
+        //const results = await db.collection('Users').find({Login:login,Password:password}).toArray();
+
         try {
-          const db = client.db('COP4331Cards');
-          db.collection('Cards').insertOne(newCard);
+          //console.log("2");
+          const db = client.db('LargeProject');
+          const doc = await db.collection('TaskProgress').find({UserId:userId}).toArray();
+        console.log("doc before update:",doc);
+
+        if (doc.length == 0 )  { return record_not_found; }
+        else if (doc.length > 1) { return too_many_records;  }
+        else{
+        //id = results[0].UserId;
+        CurExp = doc[0].CurrentExp;
+        console.log("curExp");
+        console.log(CurExp);
+
+          //const curExp = db.collection.findOne()
+          //{'title':'MongoDB Overview'},{$set:{'title':'New MongoDB Tutorial'}}
+          const result = await db.collection('TaskProgress').findOneAndUpdate({UserId: userId},
+            {$set: {CurrentExp: (CurExp + awardExp)}});
+
+            //test printing:
+            //const newdoc = await db.collection('TaskProgress').find({UserId:"1"}).toArray();
+            //console.log("newdoc:",newdoc);
+          }
         }
         catch(e) {
+          //console.log("3");
           error = e.toString();
         }
         var refreshedToken = null;
-        try
+        /*try
           {
+            //console.log("4");
             refreshedToken = token.refresh(jwtToken);
           }
           catch(e)
           {
+            //console.log("5");
           console.log(e.message);
-          }
+          }*/
         //cardList.push(card);
         
         var ret = { error: error };
         res.status(200).json(ret);
       });
       
+
+
+
+
+
+
+
       app.post('/api/register', async (req, res, next) => {
         // Incoming: first name, last name, username, password
-        console.log("is it here");
         const { firstName, lastName, username, password } = req.body;
-        console.log("is it here2");
+      
         try {
           const db = client.db('LargeProject');
       
           // Check if the username already exists
-          console.log("I KNOW THE ISSUE");
           const existingUser = await db.collection('Users').findOne({ Login: username });
-          console.log("NOT GONNA SEE ME");
-
+      
           if (existingUser) {
             // Username is already taken
             res.status(400).json({ error: 'Username already taken' });
@@ -94,6 +126,7 @@ exports.setApp = function (app , client)
         
      var error = '';
     
+     //console.log(req.body);
       const { login, password } = req.body;
     
       const db = client.db('LargeProject');
@@ -122,6 +155,7 @@ exports.setApp = function (app , client)
       else
       {
         ret = {error:"Login/Password incorrect"};
+        //ret = {error:"req.body"};
       }
       
       res.status(200).json(ret);
