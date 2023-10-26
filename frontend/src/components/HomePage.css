@@ -1,9 +1,10 @@
+/* Styles for the container div */
 
 
 #loggedInDiv {
    /* Center the content horizontally */
   margin: 20px; /* Add margin to provide spacing */
-  position: relative; /* Add this to control child elements */
+  position: fixed; /* Add this to control child elements */
   top: 0; /* Reset the top position to 0 */
 }
 
