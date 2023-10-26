@@ -5,12 +5,13 @@ import CircularProgressBar from './CircularProgressBar';
 function LoggedInName() {
   const [user, setUser] = useState({});
   const [progress, setProgress] = useState(0);
-  const [showTaskForm, setShowTaskForm] = useState(false); // Add state for showing the task form
+  const [showTaskForm, setShowTaskForm] = useState(false);
   const [taskInfo, setTaskInfo] = useState({
     taskName: '',
     taskDescription: '',
     taskDate: '',
-    taskTime: ''
+    taskTime: '',
+    taskImportance: '', // Add task importance
   });
 
   useEffect(() => {
@@ -22,20 +23,16 @@ function LoggedInName() {
   }, []);
 
   const addExperience = () => {
-    // Update progress state
     setProgress(progress + 10);
   };
 
   const addTask = () => {
-    // Show the task form when Add Task button is clicked
     setShowTaskForm(true);
   };
 
   const handleTaskFormSubmit = (e) => {
     e.preventDefault();
-    // Process the task information here
     console.log('Task Information:', taskInfo);
-    // Close the task form
     setShowTaskForm(false);
   };
 
@@ -50,7 +47,6 @@ function LoggedInName() {
   return (
     <div id='loggedInDiv'>
       <span id="userName">{user.name}</span>
- 
       <button type="button" id="addTask" className="buttons" onClick={addTask}>
         Add Task
       </button>
@@ -58,7 +54,7 @@ function LoggedInName() {
         <form onSubmit={handleTaskFormSubmit}>
           <input
             type="text"
-            name="taskName"
+            id="taskName"
             placeholder="Task Name"
             value={taskInfo.taskName}
             onChange={handleTaskInputChange}
@@ -80,6 +76,13 @@ function LoggedInName() {
             type="time"
             name="taskTime"
             value={taskInfo.taskTime}
+            onChange={handleTaskInputChange}
+          />
+          <input
+            type="text"
+            name="taskImportance" // Task Importance input
+            placeholder="Task Importance"
+            value={taskInfo.taskImportance}
             onChange={handleTaskInputChange}
           />
           <button type="submit">Add</button>
