@@ -30,15 +30,11 @@
 
 /* Styles for the task form remain the same */
 .task-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  height: 400px; /* Adjust the height as per your preference */
-  width: 300px; /* Adjust the width as needed */
-  overflow: auto; /* Add a scrollbar if the content overflows */
+  height: 400px;
+  width: 300px;
+  overflow: auto;
 }
