@@ -1,16 +1,13 @@
 /* Styles for the container div */
-.background-container{
-  background-image: linear-gradient(to right, black, gray );
+.background-container {
+  background-image: linear-gradient(to right, black, gray);
+  min-height: 100vh; /* Ensure the container spans the full viewport height */
 
-  &::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-  }
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: flex-end; /* Align children to the bottom */
 }
+
 #loggedInDiv {
    /* Center the content horizontally */
   margin: 20px; /* Add margin to provide spacing */
