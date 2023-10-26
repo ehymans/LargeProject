@@ -11,7 +11,7 @@ function LoggedInName() {
     taskDescription: '',
     taskDate: '',
     taskTime: '',
-    taskImportance: '', // Add task importance
+    taskImportance: '',
   });
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function LoggedInName() {
         Add Task
       </button>
       {showTaskForm && (
-        <form onSubmit={handleTaskFormSubmit}>
+        <form className="task-form" onSubmit={handleTaskFormSubmit}>
           <input
             type="text"
             id="taskName"
@@ -67,6 +67,13 @@ function LoggedInName() {
             onChange={handleTaskInputChange}
           />
           <input
+            type="text"
+            name="taskImportance"
+            placeholder="Task Importance"
+            value={taskInfo.taskImportance}
+            onChange={handleTaskInputChange}
+          />
+          <input
             type="date"
             name="taskDate"
             value={taskInfo.taskDate}
@@ -78,13 +85,7 @@ function LoggedInName() {
             value={taskInfo.taskTime}
             onChange={handleTaskInputChange}
           />
-          <input
-            type="text"
-            name="taskImportance" // Task Importance input
-            placeholder="Task Importance"
-            value={taskInfo.taskImportance}
-            onChange={handleTaskInputChange}
-          />
+          
           <button type="submit">Add</button>
         </form>
       )}
