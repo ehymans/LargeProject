@@ -38,4 +38,7 @@
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  height: 400px; /* Adjust the height as per your preference */
+  width: 300px; /* Adjust the width as needed */
+  overflow: auto; /* Add a scrollbar if the content overflows */
 }
