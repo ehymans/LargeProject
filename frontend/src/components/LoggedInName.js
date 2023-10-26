@@ -24,7 +24,7 @@ function LoggedInName() {
   };
 
   return (
-<div className="background-container">
+<div>
   
   <div id="main-task"></div>
     <span id="userName">{user.name}</span>
