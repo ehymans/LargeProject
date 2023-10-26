@@ -51,8 +51,8 @@ function LoggedInName() {
         Add Task
       </button>
       {showTaskForm && (
-        <div className="task-form">
-          <form onSubmit={handleTaskFormSubmit}>
+        <div className="centered">
+          <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
               type="text"
               id="taskName"
