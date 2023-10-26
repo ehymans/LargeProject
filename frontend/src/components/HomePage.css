@@ -1,12 +1,4 @@
-/* Styles for the container div */
-.background-container {
-  
-  min-height: 100vh; /* Ensure the container spans the full viewport height */
 
-  display: flex; /* Use Flexbox */
-  flex-direction: column; /* Stack children vertically */
-  justify-content: flex-end; /* Align children to the bottom */
-}
 
 #loggedInDiv {
    /* Center the content horizontally */
