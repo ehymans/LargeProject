@@ -1,4 +1,4 @@
-require('express');
+const express = require('express');
 require('mongodb');
 
 exports.setApp = function (app , client)
@@ -57,8 +57,10 @@ exports.setApp = function (app , client)
           const db = client.db('LargeProject');
       
           // Check if the username already exists
+          console.log("I KNOW THE ISSUE");
           const existingUser = await db.collection('Users').findOne({ Login: username });
-      
+          console.log("NOT GONNA SEE ME");
+
           if (existingUser) {
             // Username is already taken
             res.status(400).json({ error: 'Username already taken' });
