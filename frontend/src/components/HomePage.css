@@ -6,6 +6,7 @@
   margin: 20px; /* Add margin to provide spacing */
   position: fixed; /* Add this to control child elements */
   top: 0; /* Reset the top position to 0 */
+  text-align: center;
 }
 
 /* Styles for the user name span */
@@ -62,4 +63,14 @@
   border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+.task-form {
+  position: absolute;
+  top: 50%;  /* Center vertically */
+  left: 50%;  /* Center horizontally */
+  transform: translate(-50%, -50%);  /* Center the form */
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
