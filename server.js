@@ -16,6 +16,7 @@ try
   require('dotenv').config();
   console.log("here2");
   const url = process.env.MONGODB_URI;
+  console.log(url);
   console.log("here3");
   const MongoClient = require('mongodb').MongoClient;
   console.log("here4");
