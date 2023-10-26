@@ -1,6 +1,6 @@
 /* Styles for the container div */
 .background-container {
-  background-image: linear-gradient(to right, black, gray);
+  
   min-height: 100vh; /* Ensure the container spans the full viewport height */
 
   display: flex; /* Use Flexbox */
