@@ -24,18 +24,7 @@ function LoggedInName() {
   };
 
   return (
-<div>
-  
-  <div id="main-task"></div>
-    <span id="userName">{user.name}</span>
-    <CircularProgressBar />
-    <button type="button" id="addExp" className="buttons" onClick={addExperience}>
-      Add Exp
-    </button>
-    <button type="button" id="addTask" className="buttons" onClick={addTask}>
-      Add Task
-    </button>
-  </div>
+<CircularProgressBar />
 
 
 
