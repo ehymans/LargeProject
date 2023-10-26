@@ -16,6 +16,11 @@ function Register() {
 
   const doRegister = async (event) => {
     event.preventDefault();
+    console.log(registerFirstName.value);
+    console.log(registerLastName.value);
+    console.log(registerUsername.value);
+    console.log(registerPassword.value);
+
     var obj = {
       firstName: registerFirstName.value,
       lastName: registerLastName.value,
