@@ -25,7 +25,7 @@ function LoggedInName() {
 
   return (
 <div>
-  <div id="loggedInDiv">
+  
   <div id="main-task"></div>
     <span id="userName">{user.name}</span>
     <CircularProgressBar />
@@ -36,7 +36,7 @@ function LoggedInName() {
       Add Task
     </button>
   </div>
-</div>
+
 
 
   );
