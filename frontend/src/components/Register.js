@@ -16,17 +16,18 @@ function Register() {
 
   const doRegister = async (event) => {
     event.preventDefault();
-    console.log(registerFirstName.value);
-    console.log(registerLastName.value);
-    console.log(registerUsername.value);
-    console.log(registerPassword.value);
-
+    console.log(registerFirstName);
+    console.log(registerLastName);
+    console.log(registerUsername);
+    console.log(registerPassword);
+    
     var obj = {
-      firstName: registerFirstName.value,
-      lastName: registerLastName.value,
-      username: registerUsername.value,
-      password: registerPassword.value,
+      firstName: registerFirstName,
+      lastName: registerLastName,
+      username: registerUsername,
+      password: registerPassword,
     };
+    
     var storage = require('../tokenStorage.js');
     var js = JSON.stringify(obj);
     const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
@@ -117,7 +118,7 @@ function Register() {
               onChange={handlePasswordChange}
             />
           </div>
-          <button type="submit" id="registerButton" className="login-button" onClick={doRegister}>
+          <button type="submit" id="registerButton" className="login-button">
             SUBMIT
           </button>
         </form>
