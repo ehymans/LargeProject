@@ -42,8 +42,8 @@
 }
 
 .background-container{
-  background-color: #555577;
- /* background-image: linear-gradient(to right, black, gray );*/
+ /* background-color: #555577;*/
+background-image: linear-gradient(to right, black, gray );
 
   &::after{
     content: '';
@@ -88,8 +88,8 @@ body, h1 {
   bottom: 0;
   z-index: -1;
   background: inherit; 
-  filter: blur(10px);
-  border-radius: 5px;
+  filter: blur(5px);
+  border-radius: 10px;
   margin: -1px; /* Adjust the pseudo-element size by 1 pixel */
 }
 
@@ -99,7 +99,7 @@ body, h1 {
   text-align: center;
   padding: 15px;
   background-color: #111122;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 2; /* Increase z-index */
   width: 400px;
