@@ -88,9 +88,9 @@ body {
   background-color: #111122;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-  z-index: 2; /* Increase z-index */
+  z-index: 2;
   width: 400px;
-  position: relative; /* Ensure z-index takes effect */
+  position: relative;
 }
 
 
@@ -114,7 +114,6 @@ body {
 }
 
 .intermediary-container {
-  background-color: transparent; /* Remove background color */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -60,27 +60,25 @@ function Login() {
           return;
       }
   };
-
   return (
     <div className="background-container">
         <div className="intermediary-container">
-            <div id="loginDiv">
-                <form onSubmit={doLogin} className="login-form">
-                    <h2 className="form-title">LOG IN</h2>
-                    <div className="form-group">
-                        <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c} />
-                    </div>
-                    <div className="form-group">
-                        <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} />
-                    </div>
-                    <button type="submit" id="loginButton" className="login-button" onClick={doLogin}>SUBMIT</button>
-                </form>
+            <form onSubmit={doLogin} className="login-form" id="loginDiv">
+                <h2 className="form-title">LOG IN</h2>
+                <div className="form-group">
+                    <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c} />
+                </div>
+                <div className="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} />
+                </div>
+                <button type="submit" id="loginButton" className="login-button" onClick={doLogin}>SUBMIT</button>
                 <p id="loginResult" className="login-message">{message}</p>
-            </div>
+            </form>
         </div>
     </div>
   );
   
+
 }
 
 export default Login;
