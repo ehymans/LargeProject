@@ -111,6 +111,22 @@ body {
   margin-bottom: 15px;
 }
 
+.intermediary-container {
+  background-color: #111122; /* Matches the login box color */
+  padding: 10px; /* Adds some space around the login box */
+  border-radius: 12px; /* Slightly larger than the login box to keep the corners smooth */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 20%; /* Adjust this if you want to change the vertical position */
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
 input[type="text"],
 input[type="password"] {
   width: 100%;
