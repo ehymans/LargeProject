@@ -43,7 +43,7 @@
 
 .background-container{
   background-color: #555577;
- /* background-image: linear-gradient(to right, black, gray );
+ /* background-image: linear-gradient(to right, black, gray );*/
 
   &::after{
     content: '';
@@ -90,6 +90,7 @@ body, h1 {
   background: inherit; /* Inherit the gradient from the body */
   filter: blur(10px); /* Add a slight blur */
   margin: -20px; /* Expand the size slightly to cover the corners */
+  
 }
 
 #loginDiv {
