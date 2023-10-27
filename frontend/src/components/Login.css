@@ -79,13 +79,26 @@ body, h1 {
   padding: 0;
 }
 
+#loginDiv::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: inherit; /* Inherit the gradient from the body */
+  filter: blur(10px); /* Add a slight blur */
+  margin: -20px; /* Expand the size slightly to cover the corners */
+}
+
 #loginDiv {
   box-sizing: border-box;  /* ensure padding and borders are included in width */
   text-align: center;
   padding: 15px;
   background-color: #111122;
   border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 2; /* Increase z-index */
   width: 400px;
   position: relative; /* Ensure z-index takes effect */
