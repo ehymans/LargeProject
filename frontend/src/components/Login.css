@@ -99,13 +99,13 @@ body, h1 {
   padding: 15px;
   background-color: #111122;
   border-radius: 10px;
+  background-image: linear-gradient(to right, #222233, #555577);
+  background-position: center center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 2; /* Increase z-index */
   width: 400px;
   position: relative; /* Ensure z-index takes effect */
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(circle at center, black 0%, black 80%, transparent 100%);
-  mask-image: radial-gradient(circle at center, black 0%, black 80%, transparent 100%);
 }
 
 
