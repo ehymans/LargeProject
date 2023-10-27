@@ -90,6 +90,8 @@ body, h1 {
   background: inherit; /* Inherit the gradient from the body */
   filter: blur(10px); /* Add a slight blur */
   margin: -20px; /* Expand the size slightly to cover the corners */
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, black 80%, transparent 100%);
+  mask-image: radial-gradient(circle at center, black 0%, black 80%, transparent 100%);
 }
 
 #loginDiv {
