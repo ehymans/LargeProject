@@ -88,9 +88,11 @@ body {
   background-color: #111122;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  z-index: 2; /* Increase z-index */
   width: 400px;
+  position: relative; /* Ensure z-index takes effect */
 }
+
 
 .login-form {
   display: flex;
@@ -112,14 +114,12 @@ body {
 }
 
 .intermediary-container {
-  background-color: #111122; /* Matches the login box color */
-  padding: 10px; /* Adds some space around the login box */
-  border-radius: 12px; /* Slightly larger than the login box to keep the corners smooth */
+  background-color: transparent; /* Remove background color */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 20%; /* Adjust this if you want to change the vertical position */
+  top: 20%; 
   left: 50%;
   transform: translate(-50%, -50%);
 }
