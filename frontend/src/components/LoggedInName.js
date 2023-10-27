@@ -67,18 +67,6 @@ function LoggedInName() {
               onChange={handleTaskInputChange}
             />
             <input
-              type="date"
-              name="taskDate"
-              value={taskInfo.taskDate}
-              onChange={handleTaskInputChange}
-            />
-            <input
-              type="time"
-              name="taskTime"
-              value={taskInfo.taskTime}
-              onChange={handleTaskInputChange}
-            />
-            <input
               type="text"
               name="taskImportance"
               placeholder="Task Importance"
