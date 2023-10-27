@@ -80,6 +80,7 @@ body, h1 {
 }
 
 #loginDiv {
+  box-sizing: border-box;  /* ensure padding and borders are included in width */
   text-align: center;
   padding: 20px;
   background-color: #111122;
