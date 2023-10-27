@@ -56,6 +56,9 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden; /* Prevent scrolling */
+  display: flex; /* Flexbox approach */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
 }
 
 body {
@@ -74,23 +77,19 @@ body, h1 {
 
 body {
   font-family: 'Courier New', Courier, monospace;
-  margin-top: 200px; /* Adjust the margin-top to move the login box down */
+  background-image: linear-gradient(to right, #222233, #555577);
+  background-size: 100% 100%;
 }
-
 /* Login Box Styles */
 
 #loginDiv {
-  position: absolute;
-  top: 20%; /* Adjust the vertical position */
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   padding: 20px;
-  background-color: #111122; /* Darker background color */
-  border-radius: 10px; 
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Subtle shadow for the "pop-out" effect */
+  background-color: #111122;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   z-index: 1;
-  width: 400px; /* Adjust the width as needed */
+  width: 400px;
 }
 
 .login-form {
