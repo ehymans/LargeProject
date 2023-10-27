@@ -87,10 +87,12 @@ body, h1 {
   right: 0;
   bottom: 0;
   z-index: -1;
-  background: inherit; /* Inherit the gradient from the body */
-  filter: blur(10px); /* Add a slight blur */ 
-  border-radius: 10px; 
+  background: inherit; 
+  filter: blur(10px);
+  border-radius: 10px;
+  margin: -1px; /* Adjust the pseudo-element size by 1 pixel */
 }
+
 
 #loginDiv {
   box-sizing: border-box;  /* ensure padding and borders are included in width */
