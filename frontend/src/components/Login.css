@@ -68,7 +68,7 @@ html, body {
 body {
   font-family: 'Courier New', Courier, monospace;
   background-image: linear-gradient(to right, #222233, #555577);
-  background-size: 95% 95%;
+  background-size: 100% 100%;
   position: relative;
 }
 
@@ -93,16 +93,20 @@ body, h1 {
 }
 
 #loginDiv {
-  box-sizing: border-box;  /* ensure padding and borders are included in width */
+  box-sizing: border-box;
   text-align: center;
   padding: 15px;
   background-color: #111122;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  z-index: 2; /* Increase z-index */
-  width: 400px;
-  position: relative; /* Ensure z-index takes effect */
-  overflow: hidden;
+  z-index: 2;
+}
+
+.login-box-container {
+  border-radius: 10px; 
+  overflow: hidden; 
+  position: relative;
+  width: 400px; 
 }
 
 
