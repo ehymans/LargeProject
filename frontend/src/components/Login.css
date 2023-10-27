@@ -43,7 +43,7 @@
 
 .background-container{
   background-color: #555577;
- /* background-image: linear-gradient(to right, black, gray );*/
+ /* background-image: linear-gradient(to right, black, gray );
 
   &::after{
     content: '';
@@ -90,7 +90,6 @@ body, h1 {
   background: inherit; /* Inherit the gradient from the body */
   filter: blur(10px); /* Add a slight blur */
   margin: -20px; /* Expand the size slightly to cover the corners */
-  
 }
 
 #loginDiv {
@@ -99,8 +98,6 @@ body, h1 {
   padding: 15px;
   background-color: #111122;
   border-radius: 10px;
-  background-image: linear-gradient(to right, #222233, #555577);
-  background-position: center center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 2; /* Increase z-index */
   width: 400px;
