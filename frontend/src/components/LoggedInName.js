@@ -51,7 +51,6 @@ function LoggedInName() {
         Add Task
       </button>
       {showTaskForm && (
-        <div className="centered">
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
               type="text"
@@ -88,8 +87,8 @@ function LoggedInName() {
             />
             <button type="submit">Add</button>
           </form>
-        </div>
       )}
+      
     </div>
   );
 }
