@@ -37,6 +37,9 @@
 }
 // This is the old background, Julian adding in a new background.
 */ 
+* {
+  box-sizing: border-box; 
+}
 
 .background-container{
   background-image: linear-gradient(to right, black, gray );
@@ -84,6 +87,7 @@ body, h1 {
   z-index: 2; /* Increase z-index */
   width: 400px;
   position: relative; /* Ensure z-index takes effect */
+  overflow: hidden;
 }
 
 
@@ -91,7 +95,7 @@ body, h1 {
   display: flex;
   flex-direction: column;
   margin-right: 15px;
-  padding: 20px;
+  padding: 15px 15px;
 }
 
 .form-title {
@@ -103,7 +107,7 @@ body, h1 {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .intermediary-container {
@@ -136,7 +140,7 @@ input[type="password"] {
   padding: 10px;
   cursor: pointer;
   font-size: 16px;
-  width:106.5%;
+  width:100%;
   transition: background-color 0.3s;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
