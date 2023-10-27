@@ -88,9 +88,8 @@ body, h1 {
   bottom: 0;
   z-index: -1;
   background: inherit; /* Inherit the gradient from the body */
-  filter: blur(10px); /* Add a slight blur */
-  margin: -20px; /* Expand the size slightly to cover the corners */
-  
+  filter: blur(10px); /* Add a slight blur */ 
+  border-radius: 10px; 
 }
 
 #loginDiv {
