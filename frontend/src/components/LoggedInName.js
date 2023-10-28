@@ -46,7 +46,6 @@ function LoggedInName() {
   return (
     <div className="content">
         <div id="loggedInDiv">
-            <span id="userName">{userName}</span>
             <button>Create Event</button>
         </div>
         
