@@ -1,13 +1,16 @@
 import React from 'react';
 
+// Importing your components
 import PageTitle from '../components/PageTitle';
 import LoggedInName from '../components/LoggedInName';
-import HomeHeader from '../components/HomeHeader'
+import HomeHeader from '../components/HomeHeader';
 
-const HomePage = () =>
-{
+// Importing the CSS file
+import '../components/HomePage.css';
+
+const HomePage = () => {
     return(
-        <div>
+        <div id="loggedInDiv"> {/* Use an ID or className here if you want to style this specific div */}
             <HomeHeader />
             <LoggedInName />
         </div>
@@ -15,3 +18,4 @@ const HomePage = () =>
 }
 
 export default HomePage;
+
