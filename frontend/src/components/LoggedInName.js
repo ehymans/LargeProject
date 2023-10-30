@@ -43,30 +43,8 @@ function LoggedInName() {
       [name]: value
     });
   };
-  return (
-    <div className="content">
-        <div id="loggedInDiv">
-            <button>Create Event</button>
-        </div>
-        
-        <div className="sidebar">
-            <h1>Logo or Title</h1>
-            {/* Other sidebar contents go here */}
-        </div>
-        
-        <div className="central-image">
-            {/* Assuming you have the image as a background, you can leave this div empty. Otherwise, you can use an <img> tag. */}
-        </div>
-        
-        <button id="addTask">Add Task</button>
-        
-        <div className="task-form">
-            {/* Your task form elements go here */}
-        </div>
-    </div>
-);
-  /*
-  return (
+   return (
+    
     <div id='loggedInDiv'>
       <span id="userName">{user.name}</span>
       <button type="button" id="addTask" className="buttons" onClick={addTask}>
@@ -100,7 +78,7 @@ function LoggedInName() {
       )}
       
     </div>
-  );*/
+  );
 }
 
 export default LoggedInName;
