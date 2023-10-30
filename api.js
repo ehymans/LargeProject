@@ -77,7 +77,32 @@ exports.setApp = function (app , client)
         res.status(200).json(ret);
       });
       
-            app.post('/api/register', async (req, res, next) => {
+
+      app.post('/api/addTask', async (req,res, next) =>{
+        const { userId, taskName, jwtToken} = req.body;
+        try{
+          const db = client.db('LargeProject');
+          const newTask = {
+            UserID = userId,
+            TaskName = taskName,
+            GroupID = 0,
+          }
+          await db.collection('Tasks').insertOne(newTask);
+          res.status(200).json({ success: 'Task added' });
+        }
+        catch (e) {
+          // Handle any database or other errors
+          res.status(500).json({ error: e.message });
+        }
+
+
+      });
+
+
+
+
+
+        app.post('/api/register', async (req, res, next) => {
         // Incoming: first name, last name, username, password
         const { firstName, lastName, username, password } = req.body;
       
