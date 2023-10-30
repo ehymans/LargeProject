@@ -77,7 +77,7 @@ exports.setApp = function (app , client)
         res.status(200).json(ret);
       });
       
-      app.post('/api/register', async (req, res, next) => {
+            app.post('/api/register', async (req, res, next) => {
         // Incoming: first name, last name, username, password
         const { firstName, lastName, username, password } = req.body;
       
