@@ -92,6 +92,7 @@ exports.setApp = function (app , client)
           const db = client.db('LargeProject');
       
           // Check if the username already exists
+          console.log()
           const existingUser = await db.collection('Users').findOne({ Login: username });
       
           if (existingUser) {
