@@ -77,13 +77,6 @@ exports.setApp = function (app , client)
         res.status(200).json(ret);
       });
       
-
-
-
-
-
-
-
       app.post('/api/register', async (req, res, next) => {
         // Incoming: first name, last name, username, password
         const { firstName, lastName, username, password } = req.body;
@@ -91,13 +84,13 @@ exports.setApp = function (app , client)
         try {
           const db = client.db('LargeProject');
       
-          // Check if the username already exists
-          console.log()
-          const existingUser = await db.collection('Users').findOne({ Login: username });
+
+          const normalizedUsername = username.toLowerCase();
+          const existingUser = await db.collection('Users').findOne({ Login: normalizedUsername });
       
           if (existingUser) {
             // Username is already taken
-            res.status(400).json({ error: 'Username already taken' });
+            return res.status(400).json({ error: 'Username already taken' });
           } else {
             // Username is unique, insert the new user into the database
             const newUser = {
