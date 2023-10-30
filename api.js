@@ -83,9 +83,9 @@ exports.setApp = function (app , client)
         try{
           const db = client.db('LargeProject');
           const newTask = {
-            UserID = userId,
-            TaskName = taskName,
-            GroupID = 0,
+            UserID: userId,
+            TaskName: taskName,
+            GroupID: 0,
           }
           await db.collection('Tasks').insertOne(newTask);
           res.status(200).json({ success: 'Task added' });
