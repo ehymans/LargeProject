@@ -43,10 +43,16 @@ function LoggedInName() {
       [name]: value
     });
   };
-   return (
-    
+
+  return (
+    <div class = 'container'>
     <div id='loggedInDiv'>
       <span id="userName">{user.name}</span>
+      {/* Basic text */}
+     
+      <h1>Welcome</h1>
+      
+      {/* Add Task button */}
       <button type="button" id="addTask" className="buttons" onClick={addTask}>
         Add Task
       </button>
@@ -76,7 +82,7 @@ function LoggedInName() {
             <button type="submit">Add</button>
           </form>
       )}
-      
+    </div>
     </div>
   );
 }
