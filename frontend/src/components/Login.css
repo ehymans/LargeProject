@@ -37,9 +37,13 @@
 }
 // This is the old background, Julian adding in a new background.
 */ 
+* {
+  box-sizing: border-box; 
+}
 
 .background-container{
-  background-image: linear-gradient(to right, black, gray );
+ /* background-color: #555577;*/
+ /*background-image: linear-gradient(to right, #222233, #555577);*/
 
   &::after{
     content: '';
@@ -55,14 +59,17 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body {
   font-family: 'Courier New', Courier, monospace;
   background-image: linear-gradient(to right, #222233, #555577);
   background-size: 100% 100%;
-  position: relative; /* Required for absolute positioning of the login box */
+  position: relative;
 }
 
 
@@ -72,32 +79,41 @@ body, h1 {
   padding: 0;
 }
 
-body {
-  font-family: 'Courier New', Courier, monospace;
-  margin-top: 200px; /* Adjust the margin-top to move the login box down */
+#loginDiv::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: inherit; 
+  filter: blur(5px);
+  border-radius: 10px;
+  margin: -1px; /* Adjust the pseudo-element size by 1 pixel */
 }
 
-/* Login Box Styles */
 
 #loginDiv {
-  position: absolute;
-  top: 20%; /* Adjust the vertical position */
-  left: 50%;
-  transform: translate(-50%, -50%);
+  box-sizing: border-box;  /* ensure padding and borders are included in width */
   text-align: center;
-  padding: 20px;
-  background-color: #111122; /* Darker background color */
-  border-radius: 10px; 
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Subtle shadow for the "pop-out" effect */
-  z-index: 1;
-  width: 400px; /* Adjust the width as needed */
+  padding: 15px;
+  background-color: #111122;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2; /* Increase z-index */
+  width: 400px;
+  position: relative; /* Ensure z-index takes effect */
+  overflow: hidden;
 }
+
+
 
 .login-form {
   display: flex;
   flex-direction: column;
-  margin-right: 15px;
-  padding: 20px;
+  margin-right: 0;
+  padding: 15px 15px;
 }
 
 .form-title {
@@ -109,21 +125,30 @@ body {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.intermediary-container {
+  /*background-color: transparent; //Remove background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*position: relative;
+  top: 20%; 
+  left: 50%;
+  transform: translate(-50%, -50%);*/
 }
 
 input[type="text"],
 input[type="password"] {
+  box-sizing: border-box;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 500;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-  color:#333;
-  z-index: 2; /* Add a higher z-index value */
+  color: #333;
 }
 
 .login-button {
@@ -134,7 +159,7 @@ input[type="password"] {
   padding: 10px;
   cursor: pointer;
   font-size: 16px;
-  width:106.5%;
+  width:100%;
   transition: background-color 0.3s;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

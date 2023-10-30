@@ -1,62 +1,106 @@
-/* Styles for the container div */
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2a2a2a; /* Dark background color similar to the image */
+}
+
+/* Updated Styles for the container div */
 #loggedInDiv {
-  text-align: center; /* Center the content horizontally */
-  margin: 20px; /* Add margin to provide spacing */
-  position: relative; /* Add this to control child elements */
-  top: 0; /* Reset the top position to 0 */
+    margin: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Slight transparent black to give the content area a distinct look */
+    border-radius: 10px; /* Round the edges for a modern look */
+    color: #fff; /* Default text color to white */
 }
 
 /* Styles for the user name span */
 #userName {
-  font-size: 18px; /* Adjust the font size as needed */
-  font-weight: bold;
-  color: #fefefe; /* Change the text color to your preference */
-  margin-bottom: 10px; /* Add spacing below the user name */
+    font-size: 18px;
+    font-weight: bold;
+    color: #fefefe;
+    margin-bottom: 10px;
+}
+
+/* Styles for the "Create Event" button */
+button {
+    background-color: #ff4b5c; /* Bright red similar to the image */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease-out; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #e43f4f; /* Slightly darker shade of red for hover */
+}
+
+/* Left sidebar styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-top-right-radius: 10px; /* Slightly rounded top right corner */
+    border-bottom-right-radius: 10px; /* Slightly rounded bottom right corner */
+}
+
+.sidebar h1 {
+    color: #ff4b5c; /* Bright red similar to the image for the logo or title */
+    font-size: 24px;
+}
+
+/* Right content area */
+.content {
+    width: calc(100% - 270px); /* Subtracting the width of the sidebar and some margin */
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* The large central image can be added with a div or a background-image. Assuming a div: */
+.central-image {
+    width: 100%;
+    height: 400px;
+    /*background-image: url('path_to_your_image.jpg');*/
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
 }
 
 /* Styles for the logout button */
-#addExp {
-  background-color: #ff3f65c7; /* Button background color */
-  color: #fff; /* Button text color */
-  border: none; /* Remove the button border */
-  border-radius: 5px; /* Add rounded corners */
-  padding: 10px 20px; /* Adjust padding for button size */
-  font-size: 16px; /* Adjust the font size as needed */
-  cursor: pointer;
-  transition: background-color 0.3s; /* Add a subtle hover effect */
-  margin-top: 10px; /* Add spacing above the button */
-}
-
 #addTask {
-  background-color: #ff3f65c7; /* Button background color */
-  color: #fff; /* Button text color */
-  border: none; /* Remove the button border */
-  border-radius: 5px; /* Add rounded corners */
-  padding: 10px 20px; /* Adjust padding for button size */
-  font-size: 16px; /* Adjust the font size as needed */
-  cursor: pointer;
-  transition: background-color 0.3s; /* Add a subtle hover effect */
-  margin-top: 10px; /* Add spacing above the button */
-}
-
-#logoutButton:hover {
-  background-color: #bd273d; /* Darker background color on hover */
-}
-
-#topbar {
-  background-color: #111122;
-  height: 60px;
-  width: 70%;
-  position: absolute;
-  top: 0; /* Move the topbar to the top of the page */
-  left: 15%;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-#main-task {
-  width: 200px;
-  height: 50px;
-  background-color: #3498db;
+  background-color: #ff3f65c7;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  margin-bottom: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  top: 10%;
+}
+
+/* Styles for the task form remain the same */
+.task-form {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  height: 400px;
+  width: 300px;
+  overflow: visible;
 }
