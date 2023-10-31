@@ -38,7 +38,7 @@ function LoggedInName() {
     e.preventDefault();
     // Prepare the data to send to the API
     const data = {
-      userId: user.Login, 
+      userId: user.username, 
       taskName: taskInfo.taskName,
       taskDescription: taskInfo.taskDescription,
       taskDifficulty: taskInfo.taskImportance, 
