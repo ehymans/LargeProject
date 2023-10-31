@@ -15,7 +15,7 @@ function LoggedInName() {
   });
 
   useEffect(() => {
-    let _ud = localStorage.getItem('user_data');
+    let _ud = localStorage.getItem('token_data');
     if (_ud) {
       let ud = JSON.parse(_ud);
       setUser(ud);
