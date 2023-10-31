@@ -34,13 +34,12 @@ function LoggedInName() {
     e.preventDefault();
     // Prepare the data to send to the API
     const data = {
-      userId: user.userId, // You need to pass the user's ID to the API
+      userId: user._id, 
       taskName: taskInfo.taskName,
       taskDescription: taskInfo.taskDescription,
-      taskDifficulty: taskInfo.taskImportance, // You have taskImportance, but the API expects taskDifficulty
+      taskDifficulty: taskInfo.taskImportance, 
     };
 
-    // Send an HTTP POST request to the API endpoint
     fetch('/api/addTask', {
       method: 'POST',
       headers: {
@@ -50,11 +49,9 @@ function LoggedInName() {
     })
       .then((response) => response.json())
       .then((result) => {
-        // Handle the API response here (e.g., show a success message or error message)
         console.log('API Response:', result);
       })
       .catch((error) => {
-        // Handle any errors that occur during the fetch.
         console.error('API Error:', error);
       });
 
