@@ -19,9 +19,9 @@ function LoggedInName() {
     if (_ud) {
       let ud = JSON.parse(_ud);
       setUser(ud);
-      console.log(user.username);
-      console.log(user.fn);
-      console.log(user.ln);
+      console.log(User.username);
+      console.log(User.fn);
+      console.log(User.ln);
     }
     else{
       console.log("ud not found");
