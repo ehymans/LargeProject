@@ -158,11 +158,10 @@ exports.setApp = function (app , client)
         id = results[0].UserId;
         fn = results[0].FirstName;
         ln = results[0].LastName;
-        username = results[0].Login;
         try
         {
           const token = require("./createJWT.js");
-          ret = token.createToken( fn, ln, id , username);
+          ret = token.createToken( fn, ln, id);
         }
         catch(e)
         {

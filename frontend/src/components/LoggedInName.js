@@ -15,14 +15,13 @@ function LoggedInName() {
   });
 
   useEffect(() => {
-    let _ud = localStorage.getItem('token_data');
+    let _ud = localStorage.getItem('user_data');
     if (_ud) {
       let ud = JSON.parse(_ud);
       setUser(ud);
-      console.log(user.username);
+      console.log(user.firstName);
       console.log(user.fn);
       console.log(user.ln);
-      console.log(user);
     }
     else{
       console.log("ud not found");
