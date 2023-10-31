@@ -79,13 +79,14 @@ exports.setApp = function (app , client)
       
 
       app.post('/api/addTask', async (req,res, next) =>{
-        const { userId, taskName, jwtToken} = req.body;
+        const { userId, taskName, taskDescription, taskDifficulty, jwtToken} = req.body;
         try{
           const db = client.db('LargeProject');
           const newTask = {
             UserID: userId,
             TaskName: taskName,
-            GroupID: 0,
+            TaskDescription: taskDescription,
+            TaskDifficulty: taskDifficulty,
           }
           await db.collection('Tasks').insertOne(newTask);
           res.status(200).json({ success: 'Task added' });
@@ -97,9 +98,6 @@ exports.setApp = function (app , client)
 
 
       });
-
-
-
 
 
         app.post('/api/register', async (req, res, next) => {
