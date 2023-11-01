@@ -3,6 +3,7 @@ import React from 'react';
 import PageTitle from '../components/PageTitle';
 import LoggedInName from '../components/LoggedInName';
 import HomeHeader from '../components/HomeHeader'
+import DisplayTasks from '../components/DisplayTasks'
 
 
 const HomePage = () =>
@@ -11,6 +12,7 @@ const HomePage = () =>
         <div>
             <HomeHeader />
             <LoggedInName />
+            <DisplayTasks />
         </div>
     );
 }
