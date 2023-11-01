@@ -85,11 +85,11 @@ function LoggedInName() {
         {showTaskForm && (
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
-              type="text"
-              id="taskName"
-              placeholder="Task Name"
+              type = "text"
+              name = "taskName"
+              placeholder = "Task Name"
               value={taskInfo.taskName}
-              onChange={handleTaskInputChange}
+              onChange = {handleTaskInputChange}
             />
             <input
               type="text"
