@@ -27,7 +27,6 @@ function Login() {
           var res = JSON.parse(await response.text());
         //   console.log("test2");
           var storage = require('../tokenStorage.js');
-        //   console.log("test2.1");
           storage.storeToken(res);
         //   console.log("test2.2");
           const { accessToken } = res;
@@ -50,10 +49,13 @@ function Login() {
               setMessage('User/Password combination incorrect');
           } else {
               var user = { firstName: res.firstName, lastName: res.lastName, id: res.id };
+              console.log(user.firstName);
+              console.log(user.lastName);
+              console.log(user.id);
               localStorage.setItem('user_data', JSON.stringify(user));
 
               setMessage('');
-              window.location.href = '/home'; /// sends the user to the home page of the website
+              window.location.href = ''; /// sends the user to the home page of the website
           }
       } catch (e) {
           alert(e.toString());
