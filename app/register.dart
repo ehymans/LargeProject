@@ -17,15 +17,16 @@ int num = 0;
 Future<void> registerUser(
     String firstName, String lastName, String login, String password) async {
   Map data = {
-    "FirstName": firstName,
-    "LastName": lastName,
-    "Login": login,
+    "first name": firstName,
+    "last name": lastName,
+    "username": login,
     "password": password
   };
   var jsonData = jsonEncode(data);
   var response = await http.post(Uri.parse("$url/api/register"),
       body: jsonData, headers: {'Content-type': 'application/json'});
   print(response.statusCode);
+  print(response.body);
   if (response.statusCode == 200) {
     print(data);
     print('Register successfully');
