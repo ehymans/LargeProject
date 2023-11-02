@@ -155,7 +155,7 @@ exports.setApp = function (app , client)
       var username = '';
       if( results.length > 0 )
       {
-        id = results[0].UserId;
+        id = results[0].Login;
         fn = results[0].FirstName;
         ln = results[0].LastName;
         try
