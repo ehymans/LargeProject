@@ -38,8 +38,11 @@ function LoggedInName() {
   const handleTaskFormSubmit = (e) => {
     e.preventDefault();
     // Prepare the data to send to the API
+    var _ud = localStorage.getItem('user_data');
+    var ud = JSON.parse(_ud);
+    var userId = ud.id;
     const data = {
-      userId: ud.id, 
+      userId: userId, 
       taskName: taskInfo.taskName,
       taskDescription: taskInfo.taskDescription,
       taskDifficulty: taskInfo.taskImportance, 
