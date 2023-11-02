@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+var num = 0;
+
 void main() {
   runApp(MyApp());
 }
@@ -20,41 +22,6 @@ class MyApp extends StatelessWidget {
       ),
       home: const Login(title: 'Dare2Do Login'),
     );
-  }
-}
-
-const String url = "https://progress-tracker-4331-88c53c23c126.herokuapp.com";
-
-int num = 0;
-
-Future<void> signIn(String login, String password) async {
-  Map data = {
-    "login": login,
-    "password": password,
-  };
-
-  const Map<String, String> header = {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-  };
-
-  var jsonData = jsonEncode(data).toString();
-  var results;
-  var response;
-  response = await http.post(Uri.parse("$url/api/login"),
-      body: jsonData, headers: header);
-  if (response.statusCode == 200) {
-    //     print(response.body);
-    print('Login successful');
-    print(response.body.toString() == '{"error":"Login/Password incorrect"}');
-    if (response.body.toString() == '{"error":"Login/Password incorrect"}') {
-      num = 0;
-    } else {
-      num = 1;
-    }
-  } else {
-    print('failed');
-    num = 1;
   }
 }
 
@@ -169,6 +136,38 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+}
+
+const String url = "https://progress-tracker-4331-88c53c23c126.herokuapp.com";
+
+Future<void> signIn(String login, String password) async {
+  Map data = {
+    "login": login,
+    "password": password,
+  };
+
+  const Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  var jsonData = jsonEncode(data).toString();
+  var response;
+  response = await http.post(Uri.parse("$url/api/login"),
+      body: jsonData, headers: header);
+  if (response.statusCode == 200) {
+    //     print(response.body);
+    print('Login successful');
+    print(response.body.toString() == '{"error":"Login/Password incorrect"}');
+    if (response.body.toString() == '{"error":"Login/Password incorrect"}') {
+      num = 0;
+    } else {
+      num = 1;
+    }
+  } else {
+    print('failed');
+    num = 1;
   }
 }
 
