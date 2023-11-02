@@ -18,10 +18,9 @@ function LoggedInName() {
     let _ud = localStorage.getItem('user_data');
     if (_ud) {
       let ud = JSON.parse(_ud);
-      setUser(ud);
-      console.log(user.firstName);
-      console.log(user.fn);
-      console.log(user.ln);
+      console.log(ud.id);
+      console.log(ud.firstName);
+      console.log(ud.lastName);
     }
     else{
       console.log("ud not found");

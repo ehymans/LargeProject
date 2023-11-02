@@ -15,7 +15,7 @@ exports.createToken = function ( fn, ln, id )
     }
 catch(e)
     {
-        // console.log("error at createJWT.js");
+        console.log("error at createJWT.js");
         var ret = {error:e.message};
     }
     return ret;
