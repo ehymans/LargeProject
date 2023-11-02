@@ -5,10 +5,15 @@ function TaskList() {
 
   useEffect(() => {
     // Fetch task data from your backend API
-    fetch('/api/getTasks')
-      .then((response) => response.json())
+    fetch('/api/getTaskInfo/USER_ID') // Replace USER_ID with the actual user ID
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
-        setTasks(data); // Assuming data is an array of tasks
+        setTasks([data]); // Assuming data is an object representing a task
       })
       .catch((error) => {
         console.error('API Error:', error);
@@ -19,13 +24,14 @@ function TaskList() {
     <div className="task-list">
       {tasks.map((task, index) => (
         <div key={index} className="task-oval">
-          <h3>{task.taskName}</h3>
-          <p>{task.taskDescription}</p>
-          <p>Importance: {task.taskImportance}</p>
+          <h3>Task Information</h3>
+          <p>User ID: {task.UserId}</p>
+          <p>Current Experience: {task.CurrentExp}</p>
+          {/* Add more task info properties here as needed */}
         </div>
       ))}
     </div>
   );
-}
+      }
 
 export default TaskList;
