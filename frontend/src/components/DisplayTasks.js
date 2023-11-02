@@ -5,7 +5,7 @@ function TaskList() {
 
   useEffect(() => {
     // Fetch task data from your backend API
-    fetch('/api/getTaskInfo/:userId') // Replace USER_ID with the actual user ID
+    fetch('/api/getTaskInfo/userId') // Replace USER_ID with the actual user ID
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Network response was not ok: ${response.status}`);
