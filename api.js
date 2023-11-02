@@ -225,6 +225,27 @@ exports.setApp = function (app , client)
       res.status(200).json(ret);
     });
 
+
+    app.post('/api/searchtasks', async(req,res,next) =>{
+      var error = '';
+      const { userId, search , jwtToken } = req.body;
+      var _search = search.trim();
+      const db = client.db('LargeProject');
+      const results = await db.collection('Tasks').find({ UserID: userId, TaskName: { $regex: _search, $options: 'i' } }).toArray();
+      var _ret = [];
+      for( var i=0; i<results.length; i++ )
+      {
+        _ret.push( results[i].Card );
+      }     
+
+      var ret = {results:_ret, error:error};
+      res.status(200).json(ret);
+
+
+    });
+
+
+
     app.get('/api/getTaskInfo/:userId', async (req, res, next) => {
       // Incoming: userId
       // Outgoing: task info or error
