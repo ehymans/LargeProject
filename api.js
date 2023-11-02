@@ -224,4 +224,24 @@ exports.setApp = function (app , client)
       var ret = {results:_ret, error:error};
       res.status(200).json(ret);
     });
+
+    app.get('/api/getTaskInfo/:userId', async (req, res, next) => {
+      // Incoming: userId
+      // Outgoing: task info or error
+  
+      const userId = req.params.userId;
+  
+      try {
+          const db = client.db('LargeProject');
+          const taskInfo = await db.collection('TaskProgress').findOne({ UserId: userId });
+  
+          if (taskInfo) {
+              res.status(200).json(taskInfo);
+          } else {
+              res.status(404).json({ error: 'Task info not found for the provided user' });
+          }
+      } catch (e) {
+          res.status(500).json({ error: e.message });
+      }
+  });
 }
