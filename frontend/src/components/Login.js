@@ -48,7 +48,7 @@ function Login() {
           if (res.id <= 0) {
               setMessage('User/Password combination incorrect');
           } else {
-              var user = { firstName: res.firstName, lastName: res.lastName, id: res.id };
+              var user = { firstName: firstName, lastName: lastName, id: userId };
               console.log(user.firstName);
               console.log(user.lastName);
               console.log(user.id);
