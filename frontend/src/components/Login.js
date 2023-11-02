@@ -54,7 +54,7 @@ function Login() {
               console.log(user.id);
               localStorage.setItem('user_data', JSON.stringify(user));
 
-              setMessage('');
+              setMessage('/home');
               window.location.href = ''; /// sends the user to the home page of the website
           }
       } catch (e) {
