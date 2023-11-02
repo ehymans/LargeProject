@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -8,19 +10,37 @@ class RegisterScreen extends StatefulWidget {
   RegisterScreenState createState() => RegisterScreenState();
 }
 
+const String url = "https://progress-tracker-4331-88c53c23c126.herokuapp.com";
+
+int num = 0;
+
+Future<void> registerUser(
+    String firstName, String lastName, String login, String password) async {
+  Map data = {
+    "FirstName": firstName,
+    "LastName": lastName,
+    "Login": login,
+    "password": password
+  };
+  var jsonData = jsonEncode(data);
+  var response = await http.post(Uri.parse("$url/api/register"),
+      body: jsonData, headers: {'Content-type': 'application/json'});
+  print(response.statusCode);
+  if (response.statusCode == 200) {
+    print(data);
+    print('Register successfully');
+    num = 1;
+  } else {
+    print('failed');
+    num = 0;
+  }
+}
+
 class RegisterScreenState extends State<RegisterScreen> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
-
-  // void register(String userName, String password) async {
-  //   try {
-
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +75,20 @@ class RegisterScreenState extends State<RegisterScreen> {
             SizedBox(height: 40),
             GestureDetector(
               onTap: () {
-                // register(userNameController.text.toString(),
-                //     passwordController.text.toString());
+                registerUser(
+                    firstNameController.text.toString(),
+                    lastNameController.text.toString(),
+                    userNameController.text.toString(),
+                    passwordController.text.toString());
+                if (num == 1) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Succesfully Registered')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Register Failed')),
+                  );
+                }
               },
               child: Container(
                 height: 50,

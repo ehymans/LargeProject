@@ -1,5 +1,8 @@
 import 'package:app/register.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +23,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
+const String url = "https://progress-tracker-4331-88c53c23c126.herokuapp.com";
+
+int num = 0;
+
+Future<void> signIn(String login, String password) async {
+  Map data = {
+    "login": login,
+    "password": password,
+  };
+
+  const Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  var jsonData = jsonEncode(data).toString();
+  var results;
+  var response;
+  response = await http.post(Uri.parse("$url/api/login"),
+      body: jsonData, headers: header);
+  if (response.statusCode == 200) {
+    //     print(response.body);
+    print('Login successful');
+    print(response.body.toString() == '{"error":"Login/Password incorrect"}');
+    if (response.body.toString() == '{"error":"Login/Password incorrect"}') {
+      num = 0;
+    } else {
+      num = 1;
+    }
+  } else {
+    print('failed');
+    num = 1;
+  }
+}
+
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -30,7 +68,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -50,12 +88,12 @@ class _LoginState extends State<Login> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: TextFormField(
-                  controller: emailController,
+                  controller: loginController,
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Email"),
+                      border: OutlineInputBorder(), labelText: "Username"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
+                      return 'Please enter your username';
                     }
                     return null;
                   },
@@ -100,13 +138,14 @@ class _LoginState extends State<Login> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        if (emailController.text == "abc" &&
-                            passwordController.text == "abc") {
+                        signIn(loginController.text.toString(),
+                            passwordController.text.toString());
+                        if (num == 1) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage(
-                                      email: emailController.text,
+                                      login: loginController.text,
                                     )),
                           );
                         } else {
@@ -134,9 +173,9 @@ class _LoginState extends State<Login> {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.email});
+  const HomePage({super.key, required this.login});
 
-  final String email;
+  final String login;
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +185,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(email),
+            Text(login),
             Center(
               child: ElevatedButton(
                 onPressed: () {
