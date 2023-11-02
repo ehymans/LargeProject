@@ -235,7 +235,9 @@ exports.setApp = function (app , client)
       var _ret = [];
       for( var i=0; i<results.length; i++ )
       {
-        _ret.push( results[i].Card );
+        _ret.push( results[i].TaskName );
+        _ret.push( results[i].TaskDescription );
+        _ret.push( results[i].TaskDifficulty );
       }     
 
       var ret = {results:_ret, error:error};
