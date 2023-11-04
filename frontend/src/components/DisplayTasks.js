@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './DisplayTasks.css'; // Ensure this path is correct
+
 
 function DisplayTasks() {
   const [tasks, setTasks] = useState([]);
