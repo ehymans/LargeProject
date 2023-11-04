@@ -10,7 +10,7 @@ const HomePage = () =>
 {
     return(
         <div>
-          
+          <HomeHeader />
             <DisplayTasks />
         </div>
     );
