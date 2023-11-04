@@ -6,9 +6,14 @@ function DisplayTasks() {
 
   useEffect(() => {
     const _ud = localStorage.getItem('user_data');
-    if (_ud) {
-      const ud = JSON.parse(_ud);
-      
+    let ud = null;
+    try {
+      ud = JSON.parse(_ud);
+    } catch (error) {
+      console.error('Error parsing user data from localStorage', error);
+    }
+    
+    if (ud && ud.id) {
       fetch(`/api/getTaskInfo/${ud.id}`)
         .then((response) => {
           if (!response.ok) {
@@ -20,7 +25,7 @@ function DisplayTasks() {
           setTasks(data); // Assuming data is an array of tasks
         })
         .catch((error) => {
-          console.error('API Error:', error);
+          console.error('Failed to load tasks:', error);
         });
     }
   }, []);
