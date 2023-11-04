@@ -10,8 +10,7 @@ const HomePage = () =>
 {
     return(
         <div>
-            <HomeHeader />
-            <LoggedInName />
+          
             <DisplayTasks />
         </div>
     );
