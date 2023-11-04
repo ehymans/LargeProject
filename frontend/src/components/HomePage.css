@@ -1,46 +1,4 @@
-/* Global Styles */
-.container{
-    display: flex;
-}
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #2a2a2a; /* Dark background color similar to the image */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-}
 
-#loggedInDiv {
-    width: 100%;
-    height: 100vh;
-   
-    flex-direction:inherit;
-    align-items:flex-start;
-    justify-content: flex-start;
-    padding: 20px;
-   
-    border-radius: 0; /* Remove border-radius to take up the whole screen */
-    color: #fff; /* Default text color to white */
-}
-
-/* Add Task button alignment */
-#addTask {
-    margin-top: 20px; /* Add space between text and button */
-}
-
-/* Styles for the user name span */
-#userName {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fefefe;
-    margin-bottom: 10px;
-}
-
-/* Styles for the "Create Event" button */
 button {
     background-color: #ff4b5c; /* Bright red similar to the image */
     border: none;
