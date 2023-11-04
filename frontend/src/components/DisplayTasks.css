@@ -1,41 +1,41 @@
-/* Styling for the container of ovals */
+.tasks-container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-  .task-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally in the middle of the screen */
-    justify-content: center; /* Center vertically in the middle of the screen */
-    height: 100vh; /* 100% of the viewport height */
-    overflow-y: auto; /* Enable vertical scrolling when content overflows */
-  }
-  /* Styling for individual ovals */
-  .task-oval {
-    background-color: #f0f0f0; /* Background color of the oval */
-    border-radius: 50%; /* Makes it an oval shape */
-    width: 200px; /* Adjust width as needed */
-    height: 100px; /* Adjust height as needed */
-    text-align: center;
-    padding: 10px;
-    margin: 10px 0; /* Spacing between ovals */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional box shadow for a card-like effect */
-  }
-  
-  /* Styling for the text within the ovals */
-  .task-oval h3 {
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-  }
-  
-  .task-oval p {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-  }
-  
-  /* Additional styling for the task importance or other data */
-  .task-oval p:last-child {
-    font-weight: bold;
-    color: #007bff; /* Adjust color as needed */
-  }
-  
+.tasks-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tasks-table-container {
+  overflow-x: auto; /* For horizontal scrolling if table gets too wide */
+}
+
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse; /* For a cleaner look */
+  margin-bottom: 20px;
+}
+
+.tasks-table th,
+.tasks-table td {
+  border: 1px solid #ddd; /* Light grey border */
+  padding: 8px;
+  text-align: left;
+}
+
+.tasks-table th {
+  background-color: #f4f4f4; /* Light grey background */
+  color: #333; /* Dark text for headers */
+}
+
+/* Zebra striping for rows */
+.tasks-table tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.tasks-table tr:hover {
+  background-color: #f1f1f1; /* Hover effect for rows */
+}
