@@ -1,64 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import jwt from 'jsonwebtoken';
-
 function TaskList() {
-  const [taskInfo, setTaskInfo] = useState({ UserId: '', CurrentExp: 0 });
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const getToken = () => {
-      // Retrieve the JWT token from where you store it (e.g., localStorage or cookies)
-      return localStorage.getItem('jwtToken'); // Adjust based on your token storage approach
-    };
-
-    const token = getToken();
-    if (token) {
-      try {
-        const decodedToken = jwt.decode(token);
-
-        if (decodedToken && decodedToken.userId) {
-          const userId = decodedToken.userId;
-
-          fetch(`/api/getTaskInfo/${userId}`)
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.status}`);
-              }
-              return response.json();
-            })
-            .then((data) => {
-              setTaskInfo(data);
-            })
-            .catch((error) => {
-              console.error('API Error:', error);
-            });
+    // Fetch task data from your backend API
+    fetch('/api/getTaskInfo/:userId') // Replace USER_ID with the actual user ID
+    fetch('/api/getTaskInfo/userId') // Replace USER_ID with the actual user ID
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.status}`);
         }
-      } catch (error) {
-        console.error('JWT Error:', error);
-      }
-    }
+        return response.json();
+      })
+      .then((data) => {
+        setTasks([data]); // Assuming data is an object representing a task
+      })
+      .catch((error) => {
+        console.error('API Error:', error);
+      });
   }, []);
-
   return (
     <div className="task-list">
-      <h3>Task Information</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Current Experience</th>
-            {/* Add more table headers as needed */}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{taskInfo.UserId}</td>
-            <td>{taskInfo.CurrentExp}</td>
-            {/* Add more table cells for additional task information */}
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-export default TaskList;
+      {tasks.map((task, index) => (
+        <div key={index} className="task-oval">
+          <h3>Task Information</h3>
+          <p>User ID: {task.UserId}</p>
+          <p>Current Experience: {task.CurrentExp}</p>
+          {/* Add more task info properties here as needed */}
+        </div>
