@@ -1,41 +1,4 @@
-/* Remove default margin and padding from the body */
-body, html {
-  margin: 0;
-  padding: 0;
-}
 
-/* Make sure the parent containers are not pushing content down */
-.container, .tasks-container {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-/* If the elements are not aligned to the top, check if they are flex children and adjust accordingly */
-#loggedInDiv {
-  align-self: start; /* If #loggedInDiv is a flex or grid item */
-}
-
-.tasks-container {
-  align-self: start; /* If .tasks-container is a flex or grid item */
-}
-
-/* Additional adjustments if you're using Flexbox or Grid for layout */
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Align children to the start of the container */
-}
-
-.tasks-table-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Align children to the start of the container */
-}
-
-/* If the component has specific padding, reset it */
-.tasks-header, .tasks-table-container, #loggedInDiv {
-  padding: 0;
-}
 
 button {
     background-color: #ff4b5c; /* Bright red similar to the image */
