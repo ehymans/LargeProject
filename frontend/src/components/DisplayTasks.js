@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 function DisplayTasks() {
   const [tasks, setTasks] = useState([]);
-  const [search, setSearch] = useState(''); // Add a state to hold the search string
 
   useEffect(() => {
-    const _ud = localStorage.getItem('user_data');
-    let ud = JSON.parse(_ud || '{}');
-    
     const fetchData = async () => {
+      const _ud = localStorage.getItem('user_data');
+      const ud = JSON.parse(_ud || '{}');
+
       if (ud && ud.id && ud.jwtToken) {
         try {
           const response = await fetch('/api/searchtasks', {
@@ -19,7 +18,7 @@ function DisplayTasks() {
             },
             body: JSON.stringify({
               userId: ud.id,
-              search: search, // Use the search state here or a different value as needed
+              search: '', // Since we're not using search, this can be an empty string
               jwtToken: ud.jwtToken // Include the JWT token from user data
             }),
           });
@@ -41,30 +40,18 @@ function DisplayTasks() {
     };
 
     fetchData();
-  }, [search]); // Add 'search' as a dependency if you want to fetch data when it changes
-
-  // Optionally, create a handler to update the search state
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-  };
+  }, []); // The empty array means this useEffect will run once, similar to componentDidMount
 
   return (
     <div className="tasks-container">
       <h2 className="tasks-header">Your Tasks</h2>
-      {/* Add a search input to update the search state */}
-      <input
-        type="text"
-        value={search}
-        onChange={handleSearchChange}
-        placeholder="Search tasks..."
-      />
       <div className="tasks-table-container">
         <table className="tasks-table">
           <thead>
             <tr>
               <th>Task Name</th>
               <th>Description</th>
-              <th>Difficulty</th> {/* Updated to match the expected data */}
+              <th>Difficulty</th>
             </tr>
           </thead>
           <tbody>
