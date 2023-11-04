@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './HomePage.css';
+
 import CircularProgressBar from './CircularProgressBar';
 
 function LoggedInName() {
