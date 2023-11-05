@@ -4,7 +4,7 @@ import "./HomePage.css";
 
 function DisplayTasks() {
   const [tasks, setTasks] = useState([]);
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       const _ud = localStorage.getItem("user_data");
