@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import './HomePage.css'
+import React, { useState, useEffect } from "react";
+import "./HomePage.css";
 
-import CircularProgressBar from './CircularProgressBar';
+import CircularProgressBar from "./CircularProgressBar";
 
 function LoggedInName() {
   const [user, setUser] = useState({});
   const [progress, setProgress] = useState(0);
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [taskInfo, setTaskInfo] = useState({
-    taskName: '',
-    taskDescription: '',
-    taskDate: '',
-    taskTime: '',
-    taskImportance: '',
+    taskName: "",
+    taskDescription: "",
+    taskDate: "",
+    taskTime: "",
+    taskImportance: "",
   });
 
   useEffect(() => {
-    let _ud = localStorage.getItem('user_data');
+    let _ud = localStorage.getItem("user_data");
     if (_ud) {
       let ud = JSON.parse(_ud);
       console.log(ud.id);
       console.log(ud.firstName);
       console.log(ud.lastName);
-    }
-    else{
+    } else {
       console.log("ud not found");
     }
   }, []);
@@ -39,29 +38,29 @@ function LoggedInName() {
   const handleTaskFormSubmit = (e) => {
     e.preventDefault();
     // Prepare the data to send to the API
-    var _ud = localStorage.getItem('user_data');
+    var _ud = localStorage.getItem("user_data");
     var ud = JSON.parse(_ud);
     var userId = ud.id;
     const data = {
-      userId: userId, 
+      userId: userId,
       taskName: taskInfo.taskName,
       taskDescription: taskInfo.taskDescription,
-      taskDifficulty: taskInfo.taskImportance, 
+      taskDifficulty: taskInfo.taskImportance,
     };
 
-    fetch('/api/addTask', {
-      method: 'POST',
+    fetch("/api/addTask", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log('API Response:', result);
+        console.log("API Response:", result);
       })
       .catch((error) => {
-        console.error('API Error:', error);
+        console.error("API Error:", error);
       });
 
     setShowTaskForm(false);
@@ -82,17 +81,22 @@ function LoggedInName() {
         {/* Basic text */}
         <h1>Welcome</h1>
         {/* Add Task button */}
-        <button type="button" id="addTask" className="buttons" onClick={addTask}>
+        <button
+          type="button"
+          id="addTask"
+          className="buttons"
+          onClick={addTask}
+        >
           Add Task
         </button>
         {showTaskForm && (
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
-              type = "text"
-              name = "taskName"
-              placeholder = "Task Name"
+              type="text"
+              name="taskName"
+              placeholder="Task Name"
               value={taskInfo.taskName}
-              onChange = {handleTaskInputChange}
+              onChange={handleTaskInputChange}
             />
             <input
               type="text"
