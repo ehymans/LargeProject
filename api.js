@@ -3,7 +3,7 @@ require("mongodb");
 
 exports.setApp = function (app, client) {
   app.post("/api/addExperience", async (req, res, next) => {
-    // incoming: userId, awardExp
+    // incoming: userId, awardExp 
     // outgoing: error
 
     const { userId, awardExp, jwtToken } = req.body;
