@@ -22,7 +22,10 @@ function LoggedInName() {
       console.log(ud.id);
       console.log(ud.firstName);
       console.log(ud.lastName);
-    } else {
+      setUser({ name: `${ud.firstName} ${ud.lastName}` });
+    } 
+    else 
+    {
       console.log("ud not found");
     }
   }, []);

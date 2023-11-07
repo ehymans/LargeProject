@@ -1,16 +1,80 @@
 
-
+/*
 button {
-    background-color: #ff4b5c; /* Bright red similar to the image */
+    background-color: #ff4b5c; 
     border: none;
     border-radius: 5px;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.3s ease-out; /* Smooth transition for hover effect */
+    transition: 0.3s ease-out; 
 }
 
+
 button:hover {
-    background-color: #e43f4f; /* Slightly darker shade of red for hover */
+    background-color: #e43f4f; 
 }
+*/
+/* HomePage.css */
+
+/* Gradient background for the overall page */
+.container {
+    background: linear-gradient(to right, #74ebd5, #acb6e5); /* Example gradient */
+    min-height: 100vh; /* Make sure it covers the whole page */
+    padding: 20px; /* Padding around the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background for the text and form elements */
+#loggedInDiv {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    max-width: 600px; /* Maximum width of the element */
+    width: 100%; /* Ensures it takes up less space on larger screens */
+    margin: auto; /* Centers the div */
+}
+
+/* Style for task form */
+.task-form {
+    background: #fff; /* Solid white background for the form */
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+.task-form input,
+.task-form button {
+    margin-bottom: 10px; /* Adds space between form items */
+    width: 100%; /* Full width inputs and button */
+    padding: 10px; /* Padding for inputs and button */
+    border-radius: 4px; /* Rounded corners for inputs and button */
+}
+
+.task-form input {
+    border: 1px solid #ddd; /* Light gray border for inputs */
+}
+
+.task-form button {
+    background-color: #ff4b5c; /* Red background for the button */
+    border: none;
+    color: #fff;
+}
+
+/* Adjustments to the button hover effect */
+.task-form button:hover {
+    background-color: #e43f4f; /* Darker red on hover */
+}
+
+/* Ensures that elements inside #loggedInDiv align properly */
+#loggedInDiv > * {
+    display: block; /* Makes every child element a block-level element */
+    margin-bottom: 10px; /* Adds bottom margin */
+}
+
+/* Additional styling can be added as needed */
