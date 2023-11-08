@@ -89,12 +89,13 @@ function LoggedInName() {
       <div className="panel">
         {/* This is the panel header with the title and add button */}
         <div className="panel-header">
-          <h1 className="panel-title">Add New Task</h1>
-          {!showTaskForm && ( // Conditionally show this button
+          {/* Change the title based on whether tasks are present */}
+          <h1 className="panel-title">{tasks.length > 0 ? 'Your Tasks' : 'Add New Task'}</h1>
+          {!showTaskForm && (
             <button
               type="button"
               id="addTask"
-              onClick={() => setShowTaskForm(true)} // Toggle to show the form
+              onClick={() => setShowTaskForm(true)}
             >
               Add Task
             </button>
@@ -132,7 +133,9 @@ function LoggedInName() {
           </form>
         )}
         
-        {/* Display the list of tasks below */}
+      {/* Display the list of tasks below */}
+      {/* Make sure this div is always rendered, but it only gets populated when tasks are present */}
+      {tasks.length > 0 && (
         <div className="tasks-list">
           {tasks.map((task, index) => (
             <div key={index} className="task">
@@ -142,8 +145,9 @@ function LoggedInName() {
             </div>
           ))}
         </div>
-      </div>
+      )}
     </div>
-  );
+  </div>
+);
 }
 export default LoggedInName;
