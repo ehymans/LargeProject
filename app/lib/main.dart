@@ -1,5 +1,11 @@
 import 'package:app/register.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'home.dart';
+
+var num = 0;
 
 void main() {
   runApp(MyApp());
@@ -30,7 +36,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -50,12 +56,12 @@ class _LoginState extends State<Login> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: TextFormField(
-                  controller: emailController,
+                  controller: loginController,
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Email"),
+                      border: OutlineInputBorder(), labelText: "Username"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
+                      return 'Please enter your username';
                     }
                     return null;
                   },
@@ -98,15 +104,16 @@ class _LoginState extends State<Login> {
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
                 child: Center(
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        if (emailController.text == "abc" &&
-                            passwordController.text == "abc") {
+                        signIn(loginController.text.toString(),
+                            passwordController.text.toString());
+                        if (num == 1) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomePage(
-                                      email: emailController.text,
+                                builder: (context) => HomeScreen(
+                                      login: loginController.text,
                                     )),
                           );
                         } else {
@@ -133,10 +140,68 @@ class _LoginState extends State<Login> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.email});
+const String url = "https://progress-tracker-4331-88c53c23c126.herokuapp.com";
 
-  final String email;
+Future<void> signIn(String login, String password) async {
+  Map data = {
+    "login": login,
+    "password": password,
+  };
+
+  const Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  var jsonData = jsonEncode(data).toString();
+  var response;
+  response = await http.post(Uri.parse("$url/api/login"),
+      body: jsonData, headers: header);
+  if (response.statusCode == 200) {
+    //     print(response.body);
+    // print(response.body.toString() == '{"error":"Login/Password incorrect"}');
+    if (response.body.toString() == '{"error":"Login/Password incorrect"}') {
+      num = 0;
+      print('Login failed');
+    } else {
+      print('Login successful');
+      num = 1;
+    }
+  } else {
+    print('failed');
+    num = 1;
+  }
+}
+
+Future<void> addTask(String id, String taskName, String taskDescription,
+    String taskDifficulty) async {
+  Map data = {
+    "userId": id,
+    "taskName": taskName,
+    "taskDescription": taskDescription,
+    "taskDifficulty": taskDifficulty,
+  };
+
+  const Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  var jsonData = jsonEncode(data).toString();
+  var response;
+  response = await http.post(Uri.parse("$url/api/addTask"),
+      body: jsonData, headers: header);
+  if (response.statusCode == 200) {
+    print('Task added');
+  } else {
+    print('Failed to add task');
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key, required this.login});
+
+  final String login;
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +211,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(email),
+            Text(login),
             Center(
               child: ElevatedButton(
                 onPressed: () {
