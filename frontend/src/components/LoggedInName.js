@@ -89,17 +89,14 @@ function LoggedInName() {
       <div className="panel">
         {/* This is the panel header with the title and add button */}
         <div className="panel-header">
-          {/* Change the title based on whether tasks are present */}
-          <h1 className="panel-title">{tasks.length > 0 ? 'Your Tasks' : 'Add New Task'}</h1>
-          {!showTaskForm && (
-            <button
-              type="button"
-              id="addTask"
-              onClick={() => setShowTaskForm(true)}
-            >
-              Add Task
-            </button>
-          )}
+          <h1 className="panel-title">Your Tasks</h1>
+          <button
+            type="button"
+            id="addTask"
+            onClick={() => setShowTaskForm(true)}
+          >
+            Add Task
+          </button>
         </div>
 
         {/* Task form that shows upon clicking the add task button */}
@@ -135,27 +132,15 @@ function LoggedInName() {
         
       {/* Display the list of tasks below */}
       {/* Make sure this div is always rendered, but it only gets populated when tasks are present */}
-    {/* This is the tasks list which is now inside the panel div */}
       {tasks.length > 0 && (
-        <div className="tasks-table-container">
-          <table className="tasks-table">
-            <thead>
-              <tr>
-                <th>Task Name</th>
-                <th>Description</th>
-                <th>Difficulty</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasks.map((task, index) => (
-                <tr key={index}>
-                  <td>{task.taskName}</td>
-                  <td>{task.taskDescription}</td>
-                  <td>{task.taskImportance}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="tasks-list">
+          {tasks.map((task, index) => (
+            <div key={index} className="task">
+              <h2>{task.taskName}</h2>
+              <p>{task.taskDescription}</p>
+              <p>Difficulty: {task.taskImportance}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>
