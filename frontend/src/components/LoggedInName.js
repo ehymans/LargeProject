@@ -7,14 +7,15 @@ function LoggedInName() {
   const [user, setUser] = useState({});
   const [progress, setProgress] = useState(0);
   const [showTaskForm, setShowTaskForm] = useState(false);
-  const [taskInfo, setTaskInfo] = useState
-  const [tasks, setTasks] = useState([]);({
+  const [taskInfo, setTaskInfo] = useState({
     taskName: "",
     taskDescription: "",
     taskDate: "",
     taskTime: "",
     taskImportance: "",
   });
+  const [tasks, setTasks] = useState([]); // This should be a separate line.
+  
 
   useEffect(() => {
     let _ud = localStorage.getItem("user_data");
