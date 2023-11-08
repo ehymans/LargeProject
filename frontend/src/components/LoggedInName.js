@@ -7,7 +7,8 @@ function LoggedInName() {
   const [user, setUser] = useState({});
   const [progress, setProgress] = useState(0);
   const [showTaskForm, setShowTaskForm] = useState(false);
-  const [taskInfo, setTaskInfo] = useState({
+  const [taskInfo, setTaskInfo] = useState
+  const [tasks, setTasks] = useState([]);({
     taskName: "",
     taskDescription: "",
     taskDate: "",
@@ -61,13 +62,18 @@ function LoggedInName() {
       .then((response) => response.json())
       .then((result) => {
         console.log("API Response:", result);
+        setTasks([...tasks, taskInfo]); // Add the new task to the tasks array
+        setTaskInfo({ // Reset task info
+          taskName: "",
+          taskDescription: "",
+          taskImportance: "",
+        });
+        setShowTaskForm(false); // Hide the form after submitting
       })
       .catch((error) => {
         console.error("API Error:", error);
       });
-
-    setShowTaskForm(false);
-  };
+    };
 
   const handleTaskInputChange = (e) => {
     const { name, value } = e.target;
@@ -83,13 +89,15 @@ function LoggedInName() {
         {/* This is the panel header with the title and add button */}
         <div className="panel-header">
           <h1 className="panel-title">Add New Task</h1>
-          <button
-            type="button"
-            id="addTask"
-            onClick={addTask}
-          >
-            Add Task
-          </button>
+          {!showTaskForm && ( // Conditionally show this button
+            <button
+              type="button"
+              id="addTask"
+              onClick={() => setShowTaskForm(true)} // Toggle to show the form
+            >
+              Add Task
+            </button>
+          )}
         </div>
 
         {/* Task form that shows upon clicking the add task button */}
@@ -122,6 +130,17 @@ function LoggedInName() {
             <button type="submit">Submit Task</button>
           </form>
         )}
+        
+        {/* Display the list of tasks below */}
+        <div className="tasks-list">
+          {tasks.map((task, index) => (
+            <div key={index} className="task">
+              <h2>{task.taskName}</h2>
+              <p>{task.taskDescription}</p>
+              <p>Difficulty: {task.taskImportance}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
