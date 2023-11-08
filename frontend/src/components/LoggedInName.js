@@ -79,19 +79,20 @@ function LoggedInName() {
 
   return (
     <div className="container">
-      <div id="loggedInDiv">
-        <span id="userName">{user.name}</span>
-        {/* Basic text */}
-        <h1>Welcome</h1>
-        {/* Add Task button */}
-        <button
-          type="button"
-          id="addTask"
-          className="buttons"
-          onClick={addTask}
-        >
-          Add Task
-        </button>
+      <div className="panel">
+        {/* This is the panel header with the title and add button */}
+        <div className="panel-header">
+          <h1 className="panel-title">Add New Task</h1>
+          <button
+            type="button"
+            id="addTask"
+            onClick={addTask}
+          >
+            Add Task
+          </button>
+        </div>
+
+        {/* Task form that shows upon clicking the add task button */}
         {showTaskForm && (
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
@@ -108,19 +109,21 @@ function LoggedInName() {
               value={taskInfo.taskDescription}
               onChange={handleTaskInputChange}
             />
-            <input
-              type="text"
+            <select
               name="taskImportance"
-              placeholder="Task Importance"
               value={taskInfo.taskImportance}
               onChange={handleTaskInputChange}
-            />
-            <button type="submit">Add</button>
+            >
+              <option value="">Select Difficulty</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button type="submit">Submit Task</button>
           </form>
         )}
       </div>
     </div>
   );
 }
-
 export default LoggedInName;
