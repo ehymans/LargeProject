@@ -89,14 +89,17 @@ function LoggedInName() {
       <div className="panel">
         {/* This is the panel header with the title and add button */}
         <div className="panel-header">
-          <h1 className="panel-title">Your Tasks</h1>
-          <button
-            type="button"
-            id="addTask"
-            onClick={() => setShowTaskForm(true)}
-          >
-            Add Task
-          </button>
+          {/* Change the title based on whether tasks are present */}
+          <h1 className="panel-title">{tasks.length > 0 ? 'Your Tasks' : 'Add New Task'}</h1>
+          {!showTaskForm && (
+            <button
+              type="button"
+              id="addTask"
+              onClick={() => setShowTaskForm(true)}
+            >
+              Add Task
+            </button>
+          )}
         </div>
 
         {/* Task form that shows upon clicking the add task button */}
