@@ -1,6 +1,7 @@
 .tasks-container {
   width: 100%;
-  padding: 60px 20px 20px; /* Add top padding to account for the fixed header */
+  padding: 60px 20px 20px;
+  /* Add top padding to account for the fixed header */
   box-sizing: border-box;
 }
 
@@ -10,32 +11,60 @@
 }
 
 .tasks-table-container {
-  overflow-x: auto; /* For horizontal scrolling if the table gets too wide */
+  overflow-x: auto;
+  /* For horizontal scrolling if the table gets too wide */
 }
 
 .tasks-table {
   width: 100%;
-  border-collapse: collapse; /* For a cleaner look */
+  border-collapse: collapse;
+  /* For a cleaner look */
   margin-bottom: 20px;
 }
 
 .tasks-table th,
 .tasks-table td {
-  border: 1px solid #ddd; /* Light grey border */
+  border: 1px solid #ddd;
+  /* Light grey border */
   padding: 8px;
   text-align: left;
 }
 
+.tasks-table td:nth-child(5),
+.tasks-table td:nth-child(6) {
+  border: none;
+}
+
 .tasks-table th {
-  background-color: #f4f4f4; /* Light grey background */
-  color: #333; /* Dark text for headers */
+  background-color: #f4f4f4;
+  /* Light grey background */
+  color: #333;
+  /* Dark text for headers */
 }
 
 /* Zebra striping for rows */
-.tasks-table tr:nth-child(odd) {
+.tasks-table tr:nth-child(odd) .data {
   background-color: #f9f9f9;
 }
 
-.tasks-table tr:hover {
-  background-color: #f1f1f1; /* Hover effect for rows */
+.tasks-table tr:hover .data {
+  background-color: #f1f1f1;
+  /* Hover effect for rows */
+}
+
+.tasks-table input {
+  background-color: transparent;
+  /* border: none; */
+}
+
+.tasks-table textarea {
+  background-color: transparent;
+  /* border: none; */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.completed-task {
+  text-decoration: line-through;
 }

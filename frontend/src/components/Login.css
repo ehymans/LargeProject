@@ -36,26 +36,27 @@
   z-index: 0;
 }
 // This is the old background, Julian adding in a new background.
-*/ 
+*/
 * {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
-.background-container{
- /* background-color: #555577;*/
- /*background-image: linear-gradient(to right, #222233, #555577);*/
+.background-container {
+  /* background-color: #555577;*/
+  /*background-image: linear-gradient(to right, #222233, #555577);*/
 
-  &::after{
+  &::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width:100%;
+    width: 100%;
     height: 100%;
   }
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -74,7 +75,8 @@ body {
 
 
 /* Reset some default styles */
-body, h1 {
+body,
+h1 {
   margin: 0;
   padding: 0;
 }
@@ -87,23 +89,27 @@ body, h1 {
   right: 0;
   bottom: 0;
   z-index: -1;
-  background: inherit; 
+  background: inherit;
   filter: blur(5px);
   border-radius: 10px;
-  margin: -1px; /* Adjust the pseudo-element size by 1 pixel */
+  margin: -1px;
+  /* Adjust the pseudo-element size by 1 pixel */
 }
 
 
 #loginDiv {
-  box-sizing: border-box;  /* ensure padding and borders are included in width */
+  box-sizing: border-box;
+  /* ensure padding and borders are included in width */
   text-align: center;
   padding: 15px;
   background-color: #111122;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  z-index: 2; /* Increase z-index */
+  z-index: 2;
+  /* Increase z-index */
   width: 400px;
-  position: relative; /* Ensure z-index takes effect */
+  position: relative;
+  /* Ensure z-index takes effect */
   overflow: hidden;
 }
 
@@ -121,7 +127,7 @@ body, h1 {
   font-family: 'Courier New', Courier, monospace;
   margin-bottom: 20px;
   color: white;
-  
+
 }
 
 .form-group {
@@ -152,20 +158,22 @@ input[type="password"] {
 }
 
 .login-button {
-  background-color: #FF6B6B; /* Salmon pink color */
+  background-color: #FF6B6B;
+  /* Salmon pink color */
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
   font-size: 16px;
-  width:100%;
+  width: 100%;
   transition: background-color 0.3s;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .login-button:hover {
-  background-color: #FF4848; /* Slightly darker salmon pink on hover */
+  background-color: #FF4848;
+  /* Slightly darker salmon pink on hover */
 }
 
 
@@ -173,4 +181,53 @@ input[type="password"] {
   margin-top: 10px;
   color: #777;
   font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.verify-box {
+  color: white;
+}
+
+.verify-btn {
+  margin-top: 10px;
+}
+
+.verify-box h2 {
+  color: #FF4848;
+}
+
+.forget-para-div {}
+
+.forget-para {
+  color: white;
+  width: fit-content;
+  float: right;
+}
+
+.forget-para:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.forget-pass-div {
+  box-sizing: border-box;
+  /* ensure padding and borders are included in width */
+  text-align: center;
+  padding: 15px;
+  padding-bottom: 50px;
+  background-color: #111122;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  /* Increase z-index */
+  width: 400px;
+  position: relative;
+  /* Ensure z-index takes effect */
+  overflow: hidden;
+  color: white;
+}
+
+.forget-pass-div input {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 70%;
 }

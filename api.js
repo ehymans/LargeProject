@@ -1,9 +1,25 @@
 require("express");
 require("mongodb");
 const { ObjectId } = require("mongodb");
+require("dotenv").config();
+const nodemailer = require("nodemailer");
+
+// Create a Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: process.env.SENDER_EMAIL,
+    pass: process.env.SENDER_EMAIL_PASSWORD,
+  },
+});
+
+function generateOTP() {
+  const otp = Math.floor(100000 + Math.random() * 900000);
+  return otp.toString();
+}
 exports.setApp = function (app, client) {
   app.post("/api/addExperience", async (req, res, next) => {
-    // incoming: userId, awardExp 
+    // incoming: userId, awardExp
     // outgoing: error
 
     const { userId, awardExp, jwtToken } = req.body;
@@ -84,13 +100,14 @@ exports.setApp = function (app, client) {
   });
 
   app.post("/api/addTask", async (req, res, next) => {
-    const { userId, taskName, taskDescription, taskDifficulty, jwtToken } = req.body;
-  
+    const { userId, taskName, taskDescription, taskDifficulty, jwtToken } =
+      req.body;
+
     try {
       const db = client.db("LargeProject");
-  
+
       // Get the current maximum task ID in the collection
-  
+
       // Increment the task ID
 
       const newTask = {
@@ -99,7 +116,7 @@ exports.setApp = function (app, client) {
         TaskDescription: taskDescription,
         TaskDifficulty: taskDifficulty,
       };
-  
+
       await db.collection("Tasks").insertOne(newTask);
       res.status(200).json({ success: "Task added" });
     } catch (e) {
@@ -107,7 +124,6 @@ exports.setApp = function (app, client) {
       res.status(500).json({ error: e.message });
     }
   });
-  
 
   app.post("/api/register", async (req, res, next) => {
     // Incoming: first name, last name, username, password
@@ -246,24 +262,26 @@ exports.setApp = function (app, client) {
   app.post("/api/deletetask", async (req, res, next) => {
     // Incoming: taskId, jwtToken
     const { taskId, jwtToken } = req.body;
-  
+
     try {
       const db = client.db("LargeProject");
-  
+
       // Convert taskId to ObjectId
       const objectId = new ObjectId(taskId);
-  
+
       // Check if the task exists
-      const existingTask = await db.collection("Tasks").findOne({ _id: objectId });
-  
+      const existingTask = await db
+        .collection("Tasks")
+        .findOne({ _id: objectId });
+
       if (!existingTask) {
         // Task not found
         return res.status(404).json({ error: "Task not found" });
       }
-  
+
       // Delete the task from the database
       await db.collection("Tasks").deleteOne({ _id: objectId });
-  
+
       res.status(200).json({ success: "Task deleted" });
     } catch (e) {
       // Handle any database or other errors
@@ -271,27 +289,29 @@ exports.setApp = function (app, client) {
     }
   });
 
-
   const { ObjectId } = require("mongodb");
 
   app.post("/api/updatetask", async (req, res, next) => {
     // Incoming: _id, taskName, taskDescription, taskDifficulty, jwtToken
-    const { _id, taskName, taskDescription, taskDifficulty, jwtToken } = req.body;
-  
+    const { _id, taskName, taskDescription, taskDifficulty, jwtToken } =
+      req.body;
+
     try {
       const db = client.db("LargeProject");
-  
+
       // Convert _id to ObjectId
       const objectId = new ObjectId(_id);
-  
+
       // Check if the task exists
-      const existingTask = await db.collection("Tasks").findOne({ _id: objectId });
-  
+      const existingTask = await db
+        .collection("Tasks")
+        .findOne({ _id: objectId });
+
       if (!existingTask) {
         // Task not found
         return res.status(404).json({ error: "Task not found" });
       }
-  
+
       // Update the task fields
       await db.collection("Tasks").updateOne(
         { _id: objectId },
@@ -303,12 +323,163 @@ exports.setApp = function (app, client) {
           },
         }
       );
-  
+
       res.status(200).json({ success: "Task updated" });
     } catch (e) {
       // Handle any database or other errors
       res.status(500).json({ error: e.message });
     }
   });
-  
+
+  app.delete("/api/deletetask/:id", async (req, res) => {
+    try {
+      const UserObjectId = new ObjectId(req.params.id);
+      const db = client.db("LargeProject");
+      const task = await db
+        .collection("Tasks")
+        .deleteOne({ _id: UserObjectId });
+      res.status(200).send("task Deleted");
+    } catch (err) {
+      console.error("Error deleting task: " + err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+
+  app.put("/api/updatetask/:id", async (req, res) => {
+    try {
+      const db = client.db("LargeProject");
+      const collection = db.collection("Tasks");
+      const updatedTask = await collection.findOneAndUpdate(
+        { _id: new ObjectId(req.params.id) },
+        { $set: req.body },
+        { returnOriginal: false }
+      );
+      if (updatedTask) {
+        res.status(200).send("Task Updated!");
+      }
+    } catch (err) {
+      console.error("Error updating task: " + err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+
+  app.get("/api/getcode/:email", async (req, res) => {
+    try {
+      const email = req.params.email;
+      const randomOTP = generateOTP();
+      console.log(randomOTP);
+      const mailOptions = {
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        subject: "OTP to Verify Email!",
+        text: `Here is your 6 digits OTP "${randomOTP}" to verify email.`,
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log("Error sending email:", error);
+          return res.status(500).send("Error sending email.");
+        }
+        console.log("Email sent:", info.response);
+        res.status(200).json({ code: randomOTP });
+      });
+    } catch (error) {
+      console.log("Error while sending email: ", error);
+      res.status(500).send("Internal server error");
+    }
+  });
+
+  app.patch("/api/reset-password/:UserID", async (req, res) => {
+    try {
+      const db = client.db("LargeProject");
+      const collection = db.collection("Users");
+      const user = await collection.findOneAndUpdate(
+        { _id: new ObjectId(req.params.UserID) },
+        { $set: req.body },
+        { returnOriginal: false }
+      );
+      if (user) {
+        await db
+          .collection("userotp")
+          .deleteOne({ userID: new ObjectId(req.params.UserID) });
+        res.status(200).send("Password updated!");
+      } else {
+        res.status(404).send("User not found!");
+      }
+    } catch (error) {
+      console.log("Error while updating password: ", error);
+      res.status(500).send("Internal server error!");
+    }
+  });
+
+  app.post("/api/send-reset-link", async (req, res) => {
+    try {
+      const origin = req.get("Referer");
+      const db = client.db("LargeProject");
+      const collection = db.collection("Users");
+      const user = await collection.findOne(req.body);
+      if (user) {
+        const randomOTP = generateOTP();
+        console.log(randomOTP);
+        const existingUserCode = await db
+          .collection("userotp")
+          .findOne({ userID: user._id });
+        if (existingUserCode) {
+          console.log("OTP exist");
+          const updatedUserCode = await db
+            .collection("userotp")
+            .findOneAndUpdate(
+              { userID: user._id },
+              { $set: { OTP: randomOTP } },
+              { returnOriginal: false }
+            );
+        } else {
+          console.log("OTP not found");
+          const newUserCode = {
+            userID: user._id,
+            OTP: randomOTP,
+          };
+          await db.collection("userotp").insertOne(newUserCode);
+        }
+
+        const mailOptions = {
+          from: process.env.SENDER_EMAIL,
+          to: req.body.Email,
+          subject: "OTP to Verify Email and Reset Password Link!",
+          text: `Here is your 6 digits OTP "${randomOTP}" to verify email and link to reset password is ${
+            origin + "reset-password/" + user._id
+          }`,
+        };
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.log("Error sending email:", error);
+            return res.status(500).send("Error sending email.");
+          }
+          console.log("Email sent:", info.response);
+          res.status(200).json({ code: randomOTP });
+        });
+      } else {
+        res.status(404).send("User not found!");
+      }
+    } catch (error) {
+      console.log("Error while sending email: ", error);
+      res.status(500).send("Internal server error");
+    }
+  });
+
+  app.get("/api/fetchotp/:userID", async (req, res) => {
+    try {
+      console.log(req.params.userID);
+      const db = client.db("LargeProject");
+      const user = await db
+        .collection("userotp")
+        .findOne({ userID: new ObjectId(req.params.userID) });
+      if (user) {
+        res.status(200).send(user.OTP);
+      } else {
+        res.status(404).send("User not found!");
+      }
+    } catch (error) {
+      res.status(500).send("Internal server error!");
+    }
+  });
 };
