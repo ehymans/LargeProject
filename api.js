@@ -235,4 +235,32 @@ exports.setApp = function (app, client) {
     var ret = { results, error: error };
     res.status(200).json(ret);
   });
+
+  app.post("/api/deletetask", async (req, res, next) => {
+    // Incoming: taskId, jwtToken
+    const { taskId, jwtToken } = req.body;
+  
+    try {
+      const db = client.db("LargeProject");
+  
+      // Assuming some authentication logic with jwtToken here
+  
+      // Check if the task exists
+      const existingTask = await db.collection("Tasks").findOne({ _id: taskId });
+  
+      if (!existingTask) {
+        // Task not found
+        return res.status(404).json({ error: "Task not found" });
+      }
+  
+      // Delete the task from the database
+      await db.collection("Tasks").deleteOne({ _id: taskId });
+  
+      res.status(200).json({ success: "Task deleted" });
+    } catch (e) {
+      // Handle any database or other errors
+      res.status(500).json({ error: e.message });
+    }
+  });
+
 };
