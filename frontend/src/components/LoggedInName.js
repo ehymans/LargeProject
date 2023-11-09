@@ -75,22 +75,20 @@ function LoggedInName({ prevState, setUpdateTask }) {
   };
 
   return (
-    <div className="container">
-      <div className="panel">
-        {/* This is the panel header with the title and add button */}
-        <div className="panel-header">
-          {/* Change the title based on whether tasks are present */}
-          <h1 className="panel-title">{tasks.length > 0 ? 'Your Tasks' : 'Add New Task'}</h1>
-          {!showTaskForm && (
-            <button
-              type="button"
-              id="addTask"
-              onClick={() => setShowTaskForm(true)}
-            >
-              Add Task
-            </button>
-          )}
-        </div>
+     <div className="container">
+      <div id="loggedInDiv">
+        <span id="userName">{user.name}</span>
+        {/* Basic text */}
+        <h1>Welcome</h1>
+        {/* Add Task button */}
+        <button
+          type="button"
+          id="addTask"
+          className="buttons"
+          onClick={addTask}
+        >
+          Add Task
+        </button>
         {showTaskForm && (
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
@@ -120,17 +118,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
             <button type="submit">Submit Task</button>
           </form>
         )}
-          {tasks.length > 0 && (
-        <div className="tasks-list">
-          {tasks.map((task, index) => (
-            <div key={index} className="task">
-              <h2>{task.taskName}</h2>
-              <p>{task.taskDescription}</p>
-              <p>Difficulty: {task.taskImportance}</p>
-            </div>
-          ))}
-        </div>
-      )}
+          
       </div>
     </div>
   );
