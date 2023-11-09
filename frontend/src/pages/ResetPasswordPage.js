@@ -65,7 +65,7 @@ function ResetPasswordPage() {
         <div>
             {message === 'Invalid link!' ? <div style={{ color: 'red' }}>This link will not work. Please try to generate a new one from forget password page.</div> :
                 <div className='Reset-pass'>
-                    <div style={{ color: 'white' }}>Enter 6 digits OTP:</div>
+                    <div style={{ color: 'white' }}>Enter the 6 digit code:</div>
                     <input
                         name='otp'
                         value={otp}
