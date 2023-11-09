@@ -242,11 +242,10 @@ exports.setApp = function (app, client) {
   
     try {
       const db = client.db("LargeProject");
-  
-      // Assuming some authentication logic with jwtToken here
-  
+      let id = taskId;
+      let o_id = new ObjectId(id);
       // Check if the task exists
-      const existingTask = await db.collection("Tasks").findOne({ _id: taskId });
+      const existingTask = await db.collection("Tasks").findOne({"_id":o_id});
   
       if (!existingTask) {
         // Task not found
