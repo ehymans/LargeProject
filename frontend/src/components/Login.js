@@ -2,7 +2,7 @@ import decode from "jwt-decode";
 import React, { useState } from "react";
 import axios from "axios";
 
-import "./Login.css";
+import "./Login.css"; 
 
 // Remove unused variables
 // const app_name = 'progress-tracker-4331-88c53c23c126';
