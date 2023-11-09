@@ -90,6 +90,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
               Add Task
             </button>
           )}
+        </div>
         {showTaskForm && (
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
