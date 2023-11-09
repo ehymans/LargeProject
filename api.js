@@ -249,8 +249,12 @@ exports.setApp = function (app, client) {
   
     try {
       const db = client.db("LargeProject");
+  
+      // Convert taskId to ObjectId
+      const objectId = new ObjectId(taskId);
+  
       // Check if the task exists
-      const existingTask = await db.collection("Tasks").findOne({"_id":taskId});
+      const existingTask = await db.collection("Tasks").findOne({ _id: objectId });
   
       if (!existingTask) {
         // Task not found
@@ -258,7 +262,7 @@ exports.setApp = function (app, client) {
       }
   
       // Delete the task from the database
-      await db.collection("Tasks").deleteOne({ _id: taskId });
+      await db.collection("Tasks").deleteOne({ _id: objectId });
   
       res.status(200).json({ success: "Task deleted" });
     } catch (e) {
