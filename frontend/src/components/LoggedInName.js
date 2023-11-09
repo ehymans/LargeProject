@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css";
-var bp = require("./Path.js");
+var bp = require("./Path.js"); 
 
 function LoggedInName({ prevState, setUpdateTask }) {
   const [user, setUser] = useState({});
