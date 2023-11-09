@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { retrieveToken } from "../tokenStorage";
 import "./DisplayTasks.css";
 import axios from "axios";
-var bp = require("./Path.js");
+var bp = require("./Path.js"); 
 
 function DisplayTasks({ updateTask }) {
   const [tasks, setTasks] = useState([]);
