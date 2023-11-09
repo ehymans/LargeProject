@@ -156,7 +156,7 @@ function DisplayTasks({ updateTask }) {
             <tr>
               <th>Task Name</th>
               <th>Description</th>
-              <th>Difficulty</th>
+              <th>Importance</th>
               <th>Completed</th>
             </tr>
           </thead>
