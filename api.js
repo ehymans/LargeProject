@@ -90,13 +90,10 @@ exports.setApp = function (app, client) {
       const db = client.db("LargeProject");
   
       // Get the current maximum task ID in the collection
-      const maxTaskId = await db.collection("Tasks").find().sort({ id: -1 }).limit(1).toArray();
   
       // Increment the task ID
-      const newTaskId = maxTaskId.length > 0 ? maxTaskId[0].id + 1 : 1;
-  
+
       const newTask = {
-        id: newTaskId,
         UserID: userId,
         TaskName: taskName,
         TaskDescription: taskDescription,
@@ -253,7 +250,7 @@ exports.setApp = function (app, client) {
     try {
       const db = client.db("LargeProject");
       // Check if the task exists
-      const existingTask = await db.collection("Tasks").findOne({"id":taskId});
+      const existingTask = await db.collection("Tasks").findOne({"_id":taskId});
   
       if (!existingTask) {
         // Task not found
