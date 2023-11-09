@@ -111,9 +111,9 @@ function LoggedInName({ prevState, setUpdateTask }) {
               onChange={handleTaskInputChange}
             >
               <option value="">Select Importance</option>
-              <option value="Easy">Easy</option>
+              <option value="Low">Low</option>
               <option value="Medium">Medium</option>
-              <option value="Hard">Hard</option>
+              <option value="High">High</option>
             </select>
             <button type="submit">Submit Task</button>
           </form>
