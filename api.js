@@ -372,8 +372,8 @@ exports.setApp = function (app, client) {
       const mailOptions = {
         from: process.env.SENDER_EMAIL,
         to: email,
-        subject: "OTP to Verify Email!",
-        text: `Here is your 6 digits OTP "${randomOTP}" to verify email.`,
+        subject: "Dare2Do Verify Email!",
+        text: `Here is your 6 digit one-time code: "${randomOTP}" to verify email.`,
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -445,8 +445,8 @@ exports.setApp = function (app, client) {
         const mailOptions = {
           from: process.env.SENDER_EMAIL,
           to: req.body.Email,
-          subject: "OTP to Verify Email and Reset Password Link!",
-          text: `Here is your 6 digits OTP "${randomOTP}" to verify email and link to reset password is ${
+          subject: "Dare2Do Password Reset & Email Verification",
+          text: `Here is your 6 digit one-time code: "${randomOTP}" to verify your email and a link to reset your password: ${
             origin + "reset-password/" + user._id
           }`,
         };
