@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import './ResetPasswordPage.css';
 import axios from 'axios';
-var bp = require('../components/Path.js');
+var bp = require('../components/Path.js'); 
 
 
 function ResetPasswordPage() {
