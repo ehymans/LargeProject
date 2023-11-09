@@ -122,9 +122,9 @@ function Register() {
           <div className="verify-box">
             <h2>Please verify your email address!</h2>
             <div>
-              An email is sent to your email address having 6 digits OTP code!
+              An email has been sent to your email address with a 6 digit code!
             </div>
-            <p>Please enter the OTP to verify</p>
+            <p>Please enter the 6 digit code to verify</p>
             <input
               type="text"
               value={otpCode}
