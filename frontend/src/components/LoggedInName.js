@@ -110,7 +110,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
               value={taskInfo.taskImportance}
               onChange={handleTaskInputChange}
             >
-              <option value="">Select Importance</option>
+              <option value="">Select Priority</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
