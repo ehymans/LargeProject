@@ -76,19 +76,20 @@ function LoggedInName({ prevState, setUpdateTask }) {
 
   return (
     <div className="container">
-      <div id="loggedInDiv">
-        <span id="userName">{user.name}</span>
-        {/* Basic text */}
-        <h1>Welcome</h1>
-        {/* Add Task button */}
-        <button
-          type="button"
-          id="addTask"
-          className="buttons"
-          onClick={addTask}
-        >
-          Add Task
-        </button>
+      <div className="panel">
+        {/* This is the panel header with the title and add button */}
+        <div className="panel-header">
+          {/* Change the title based on whether tasks are present */}
+          <h1 className="panel-title">{tasks.length > 0 ? 'Your Tasks' : 'Add New Task'}</h1>
+          {!showTaskForm && (
+            <button
+              type="button"
+              id="addTask"
+              onClick={() => setShowTaskForm(true)}
+            >
+              Add Task
+            </button>
+          )}
         {showTaskForm && (
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
@@ -105,16 +106,30 @@ function LoggedInName({ prevState, setUpdateTask }) {
               value={taskInfo.taskDescription}
               onChange={handleTaskInputChange}
             />
-            <input
-              type="text"
+            <select
               name="taskImportance"
-              placeholder="Task Importance"
               value={taskInfo.taskImportance}
               onChange={handleTaskInputChange}
-            />
-            <button type="submit">Add</button>
+            >
+              <option value="">Select Difficulty</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button type="submit">Submit Task</button>
           </form>
         )}
+          {tasks.length > 0 && (
+        <div className="tasks-list">
+          {tasks.map((task, index) => (
+            <div key={index} className="task">
+              <h2>{task.taskName}</h2>
+              <p>{task.taskDescription}</p>
+              <p>Difficulty: {task.taskImportance}</p>
+            </div>
+          ))}
+        </div>
+      )}
       </div>
     </div>
   );
