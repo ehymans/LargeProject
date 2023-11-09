@@ -127,7 +127,7 @@ exports.setApp = function (app, client) {
 
   app.post("/api/register", async (req, res, next) => {
     // Incoming: first name, last name, username, password
-    const { firstName, lastName, username, password } = req.body;
+    const { firstName, lastName, username, password, email } = req.body;
 
     try {
       const db = client.db("LargeProject");
@@ -146,6 +146,7 @@ exports.setApp = function (app, client) {
           FirstName: firstName,
           LastName: lastName,
           Login: username,
+          Email: email,
           Password: password,
         };
 
