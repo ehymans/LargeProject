@@ -252,9 +252,8 @@ exports.setApp = function (app, client) {
   
     try {
       const db = client.db("LargeProject");
-      let o_id = new ObjectId(taskId);
       // Check if the task exists
-      const existingTask = await db.collection("Tasks").findOne({"_id":o_id});
+      const existingTask = await db.collection("Tasks").findOne({"_id":taskId});
   
       if (!existingTask) {
         // Task not found
