@@ -1,6 +1,6 @@
 require("express");
 require("mongodb");
-import { ObjectId } from "mongodb";
+const { ObjectId } = require("mongodb");
 exports.setApp = function (app, client) {
   app.post("/api/addExperience", async (req, res, next) => {
     // incoming: userId, awardExp 
@@ -242,8 +242,7 @@ exports.setApp = function (app, client) {
   
     try {
       const db = client.db("LargeProject");
-      let id = taskId;
-      let o_id = new ObjectId(id);
+      let o_id = new ObjectId(taskId);
       // Check if the task exists
       const existingTask = await db.collection("Tasks").findOne({"_id":o_id});
   
