@@ -84,16 +84,25 @@ exports.setApp = function (app, client) {
   });
 
   app.post("/api/addTask", async (req, res, next) => {
-    const { userId, taskName, taskDescription, taskDifficulty, jwtToken } =
-      req.body;
+    const { userId, taskName, taskDescription, taskDifficulty, jwtToken } = req.body;
+  
     try {
       const db = client.db("LargeProject");
+  
+      // Get the current maximum task ID in the collection
+      const maxTaskId = await db.collection("Tasks").find().sort({ _id: -1 }).limit(1).toArray();
+  
+      // Increment the task ID
+      const newTaskId = maxTaskId.length > 0 ? maxTaskId[0]._id + 1 : 1;
+  
       const newTask = {
+        _id: newTaskId,
         UserID: userId,
         TaskName: taskName,
         TaskDescription: taskDescription,
         TaskDifficulty: taskDifficulty,
       };
+  
       await db.collection("Tasks").insertOne(newTask);
       res.status(200).json({ success: "Task added" });
     } catch (e) {
@@ -101,6 +110,7 @@ exports.setApp = function (app, client) {
       res.status(500).json({ error: e.message });
     }
   });
+  
 
   app.post("/api/register", async (req, res, next) => {
     // Incoming: first name, last name, username, password
