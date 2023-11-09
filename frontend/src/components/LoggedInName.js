@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css";
+var bp = require("./Path.js");
 
-import CircularProgressBar from "./CircularProgressBar";
- 
-function LoggedInName() {
+function LoggedInName({ prevState, setUpdateTask }) {
   const [user, setUser] = useState({});
   const [progress, setProgress] = useState(0);
   const [showTaskForm, setShowTaskForm] = useState(false);
@@ -14,8 +13,6 @@ function LoggedInName() {
     taskTime: "",
     taskImportance: "",
   });
-  const [tasks, setTasks] = useState([]); // This should be a separate line.
-  
 
   useEffect(() => {
     let _ud = localStorage.getItem("user_data");
@@ -24,10 +21,7 @@ function LoggedInName() {
       console.log(ud.id);
       console.log(ud.firstName);
       console.log(ud.lastName);
-      setUser({ name: `${ud.firstName} ${ud.lastName}` });
-    } 
-    else 
-    {
+    } else {
       console.log("ud not found");
     }
   }, []);
@@ -53,7 +47,7 @@ function LoggedInName() {
       taskDifficulty: taskInfo.taskImportance,
     };
 
-    fetch("/api/addTask", {
+    fetch(bp.buildPath("api/addTask"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,18 +57,14 @@ function LoggedInName() {
       .then((response) => response.json())
       .then((result) => {
         console.log("API Response:", result);
-        setTasks([...tasks, taskInfo]); // Add the new task to the tasks array
-        setTaskInfo({ // Reset task info
-          taskName: "",
-          taskDescription: "",
-          taskImportance: "",
-        });
-        setShowTaskForm(false); // Hide the form after submitting
+        setUpdateTask(!prevState);
       })
       .catch((error) => {
         console.error("API Error:", error);
       });
-    };
+
+    setShowTaskForm(false);
+  };
 
   const handleTaskInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,23 +76,19 @@ function LoggedInName() {
 
   return (
     <div className="container">
-      <div className="panel">
-        {/* This is the panel header with the title and add button */}
-        <div className="panel-header">
-          {/* Change the title based on whether tasks are present */}
-          <h1 className="panel-title">{tasks.length > 0 ? 'Your Tasks' : 'Add New Task'}</h1>
-          {!showTaskForm && (
-            <button
-              type="button"
-              id="addTask"
-              onClick={() => setShowTaskForm(true)}
-            >
-              Add Task
-            </button>
-          )}
-        </div>
-
-        {/* Task form that shows upon clicking the add task button */}
+      <div id="loggedInDiv">
+        <span id="userName">{user.name}</span>
+        {/* Basic text */}
+        <h1>Welcome</h1>
+        {/* Add Task button */}
+        <button
+          type="button"
+          id="addTask"
+          className="buttons"
+          onClick={addTask}
+        >
+          Add Task
+        </button>
         {showTaskForm && (
           <form className="task-form" onSubmit={handleTaskFormSubmit}>
             <input
@@ -119,35 +105,19 @@ function LoggedInName() {
               value={taskInfo.taskDescription}
               onChange={handleTaskInputChange}
             />
-            <select
+            <input
+              type="text"
               name="taskImportance"
+              placeholder="Task Importance"
               value={taskInfo.taskImportance}
               onChange={handleTaskInputChange}
-            >
-              <option value="">Select Difficulty</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-            <button type="submit">Submit Task</button>
+            />
+            <button type="submit">Add</button>
           </form>
         )}
-        
-      {/* Display the list of tasks below */}
-      {/* Make sure this div is always rendered, but it only gets populated when tasks are present */}
-      {tasks.length > 0 && (
-        <div className="tasks-list">
-          {tasks.map((task, index) => (
-            <div key={index} className="task">
-              <h2>{task.taskName}</h2>
-              <p>{task.taskDescription}</p>
-              <p>Difficulty: {task.taskImportance}</p>
-            </div>
-          ))}
-        </div>
-      )}
+      </div>
     </div>
-  </div>
-);
+  );
 }
+
 export default LoggedInName;

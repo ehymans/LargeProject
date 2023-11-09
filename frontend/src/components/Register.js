@@ -1,66 +1,104 @@
-import React, { useState } from 'react';
-import './Login.css';
-
-const app_name = 'progress-tracker-4331-88c53c23c126';
-var bp = require('./Path.js');
+import React, { useState } from "react";
+import "./Login.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+const app_name = "progress-tracker-4331-88c53c23c126";
+var bp = require("./Path.js");
 const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
 
-
 function Register() {
-  const [registerFirstName, setRegisterFirstName] = useState('');
-  const [registerLastName, setRegisterLastName] = useState('');
-  const [registerUsername, setRegisterUsername] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [passwordStrength, setPasswordStrength] = useState('');
+  const [registerFirstName, setRegisterFirstName] = useState("");
+  const [registerLastName, setRegisterLastName] = useState("");
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [verifyEmail, setVerifyEmail] = useState(false);
+  const [otpCode, setOTPCode] = useState("");
+  const [serverGeneratedCode, setServerGeneratedCode] = useState("");
+  const navigate = useNavigate();
 
-  const doRegister = async (event) => {
+  //Email Validation
+  function VerifyEmail(email) {
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    return emailRegex.test(email);
+  }
+
+  const handleVerify = async (event) => {
     event.preventDefault();
+    setMessage("");
     console.log(registerFirstName);
     console.log(registerLastName);
     console.log(registerUsername);
+    console.log(registerEmail);
     console.log(registerPassword);
-    
+
+    if (!VerifyEmail(registerEmail)) {
+      setMessage("Invalid email!");
+      return;
+    }
+    const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
+    if (!registerPassword.match(passwordPattern)) {
+      setMessage(
+        "Password must be at least 8 characters with at least 1 number and 1 special character."
+      );
+      return;
+    }
+    try {
+      const res = await axios.get(bp.buildPath(`api/getcode/${registerEmail}`));
+      console.log(res);
+      if (res.status === 200) {
+        setServerGeneratedCode(res.data.code);
+        setVerifyEmail(true);
+      }
+    } catch (error) {
+      console.log("Error while sending email: ", error);
+      setMessage("Unable to verify at this moment!");
+    }
+  };
+
+  const doRegister = async () => {
     var obj = {
       firstName: registerFirstName,
       lastName: registerLastName,
       username: registerUsername,
+      email: registerEmail,
       password: registerPassword,
     };
-    
-    var storage = require('../tokenStorage.js');
-    var js = JSON.stringify(obj);
-    const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
-    if (!registerPassword.match(passwordPattern)) {
-      setMessage("Password must be at least 8 characters with at least 1 number and 1 special character.");
-      return;
-    }
 
-    try 
-    {
-      const response = await fetch(bp.buildPath('api/register'), {
-        method: 'POST',
+    var storage = require("../tokenStorage.js");
+    var js = JSON.stringify(obj);
+    try {
+      const response = await fetch(bp.buildPath("api/register"), {
+        method: "POST",
         body: js,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
-  
-      var data = (await response.text());
+
+      var data = await response.text();
       var res = JSON.parse(data);
-      if( res.error && res.error.length > 0 )
-      {
+      if (res.error && res.error.length > 0) {
         setMessage("API Error:" + res.error);
-      }
-      else
-      {
-        setMessage('User added');
+      } else {
+        setMessage("User added");
         storage.storeToken(res.jwtToken);
       }
-  }
-  catch(e)
-  {
-    setMessage(e.toString());
-  }
-  }; 
+    } catch (e) {
+      setMessage(e.toString());
+    }
+  };
+
+  const handleMatchOTP = async () => {
+    setMessage("");
+    if (serverGeneratedCode === otpCode) {
+      await doRegister();
+      alert("User added! Please login now.");
+      navigate("/login");
+    } else {
+      setMessage("Invalid OTP code!");
+    }
+  };
 
   const handlePasswordChange = (event) => {
     const password = event.target.value;
@@ -68,11 +106,11 @@ function Register() {
 
     // Update password strength indicator
     if (password.length === 0) {
-      setPasswordStrength('');
+      setPasswordStrength("");
     } else {
       const passwordStrengthMessage = password.match(passwordPattern)
-        ? 'Password is strong.'
-        : 'Password requirements: at least 8 characters, 1 number, and 1 special character.';
+        ? "Password is strong."
+        : "Password requirements: at least 8 characters, 1 number, and 1 special character.";
       setPasswordStrength(passwordStrengthMessage);
     }
   };
@@ -80,48 +118,75 @@ function Register() {
   return (
     <div className="background-container">
       <div id="loginDiv">
-        <form onSubmit={doRegister} className="login-form">
-          <h2 className="form-title">REGISTER</h2>
-          <div className="form-group">
+        {verifyEmail ? (
+          <div className="verify-box">
+            <h2>Please verify your email address!</h2>
+            <div>
+              An email is sent to your email address having 6 digits OTP code!
+            </div>
+            <p>Please enter the OTP to verify</p>
             <input
               type="text"
-              id="registerFirstName"
-              placeholder="First Name"
-              value={registerFirstName}
-              onChange={(e) => setRegisterFirstName(e.target.value)}
+              value={otpCode}
+              onChange={(e) => setOTPCode(e.target.value)}
             />
+            <button onClick={handleMatchOTP} className="verify-btn">
+              Verify
+            </button>
           </div>
-          <div className="form-group">
-            <input
-              type="text"
-              id="registerLastName"
-              placeholder="Last Name"
-              value={registerLastName}
-              onChange={(e) => setRegisterLastName(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              id="registerUsername"
-              placeholder="Username"
-              value={registerUsername}
-              onChange={(e) => setRegisterUsername(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              id="registerPassword"
-              placeholder="Password"
-              value={registerPassword}
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <button type="submit" id="registerButton" className="login-button">
-            SUBMIT
-          </button>
-        </form>
+        ) : (
+          <form onSubmit={handleVerify} className="login-form">
+            <h2 className="form-title">REGISTER</h2>
+            <div className="form-group">
+              <input
+                type="text"
+                id="registerFirstName"
+                placeholder="First Name"
+                value={registerFirstName}
+                onChange={(e) => setRegisterFirstName(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                id="registerLastName"
+                placeholder="Last Name"
+                value={registerLastName}
+                onChange={(e) => setRegisterLastName(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                id="registerUsername"
+                placeholder="Username"
+                value={registerUsername}
+                onChange={(e) => setRegisterUsername(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                id="registerEmail"
+                placeholder="Email"
+                value={registerEmail}
+                onChange={(e) => setRegisterEmail(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                id="registerPassword"
+                placeholder="Password"
+                value={registerPassword}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <button type="submit" id="registerButton" className="login-button">
+              SUBMIT
+            </button>
+          </form>
+        )}
         <p id="registerResult" className="login-message">
           {message}
         </p>
