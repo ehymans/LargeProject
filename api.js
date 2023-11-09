@@ -271,4 +271,44 @@ exports.setApp = function (app, client) {
     }
   });
 
+
+  const { ObjectId } = require("mongodb");
+
+  app.post("/api/updatetask", async (req, res, next) => {
+    // Incoming: _id, taskName, taskDescription, taskDifficulty, jwtToken
+    const { _id, taskName, taskDescription, taskDifficulty, jwtToken } = req.body;
+  
+    try {
+      const db = client.db("LargeProject");
+  
+      // Convert _id to ObjectId
+      const objectId = new ObjectId(_id);
+  
+      // Check if the task exists
+      const existingTask = await db.collection("Tasks").findOne({ _id: objectId });
+  
+      if (!existingTask) {
+        // Task not found
+        return res.status(404).json({ error: "Task not found" });
+      }
+  
+      // Update the task fields
+      await db.collection("Tasks").updateOne(
+        { _id: objectId },
+        {
+          $set: {
+            TaskName: taskName || existingTask.TaskName,
+            TaskDescription: taskDescription || existingTask.TaskDescription,
+            TaskDifficulty: taskDifficulty || existingTask.TaskDifficulty,
+          },
+        }
+      );
+  
+      res.status(200).json({ success: "Task updated" });
+    } catch (e) {
+      // Handle any database or other errors
+      res.status(500).json({ error: e.message });
+    }
+  });
+  
 };
