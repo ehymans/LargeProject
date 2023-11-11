@@ -7,7 +7,7 @@
 
 .home-header .title {
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .home-header .btn {
@@ -23,4 +23,5 @@
 
 .home-header .btn:hover {
     background-color: rgb(130, 33, 33);
+    cursor: pointer;
 }

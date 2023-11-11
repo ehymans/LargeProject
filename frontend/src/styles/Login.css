@@ -68,7 +68,7 @@ body {
 
 body {
   font-family: 'Courier New', Courier, monospace;
-  background-image: linear-gradient(to right, #222233, #555577);
+  background-color: #454242;
   background-size: 100% 100%;
   position: relative;
 }
