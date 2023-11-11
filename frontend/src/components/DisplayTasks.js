@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { retrieveToken } from "../tokenStorage";
-import "./DisplayTasks.css";
+import "../styles/DisplayTasks.css";
 import axios from "axios";
 var bp = require("./Path.js"); 
 

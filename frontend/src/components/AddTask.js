@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./HomePage.css";
+import "../styles/AddTask.css";
 var bp = require("./Path.js"); 
 
 function LoggedInName({ prevState, setUpdateTask }) {

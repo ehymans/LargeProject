@@ -1,6 +1,6 @@
 import React, { useState } from "react"; 
 
-import LoggedInName from "../components/LoggedInName";
+import AddTask from "../components/AddTask";
 import HomeHeader from "../components/HomeHeader";
 import DisplayTasks from "../components/DisplayTasks";
 
@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <div>
       <HomeHeader />
-      <LoggedInName prevState={updateTask} setUpdateTask={setUpdateTask} />
+      <AddTask prevState={updateTask} setUpdateTask={setUpdateTask} />
       <DisplayTasks updateTask={updateTask} />
     </div>
   );

@@ -9,7 +9,6 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 //import CardPage from './pages/CardPage';
 
 function App() {
-  console.log('App');
   return (
     <BrowserRouter>
       <Routes>
