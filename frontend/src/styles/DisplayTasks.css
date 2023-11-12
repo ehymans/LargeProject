@@ -50,6 +50,12 @@
   padding: 0px 0px;
   padding-left: 15%;
   padding-right: 12%;
+
+  /* Slicing Text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .task-card .strike-description {
