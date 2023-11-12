@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 List<DropdownMenuItem<String>> get dropdownItems {
   List<DropdownMenuItem<String>> menuItems = [
-    DropdownMenuItem(child: Text("Easy"), value: "Easy"),
+    DropdownMenuItem(child: Text("Low"), value: "Low"),
     DropdownMenuItem(child: Text("Medium"), value: "Medium"),
     DropdownMenuItem(child: Text("Hard"), value: "Hard"),
   ];
@@ -25,8 +25,8 @@ class HomeScreenState extends State<HomeScreen> {
   TextEditingController taskDescriptionController = TextEditingController();
   TextEditingController taskDifficultyController = TextEditingController();
 
-  List<String> difficulty = ['Easy', 'Medium', 'Hard'];
-  String? selectedDifficulty = 'Easy';
+  List<String> difficulty = ['Low', 'Medium', 'High'];
+  String? selectedDifficulty = 'Low';
 
   @override
   Widget build(BuildContext context) {

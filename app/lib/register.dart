@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'dart:convert';
-import 'dart:js';
+// import 'package:http/http.dart' as http;
+// import 'dart:async';
+// import 'dart:convert';
+import 'api.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -11,21 +11,39 @@ class RegisterScreen extends StatefulWidget {
   RegisterScreenState createState() => RegisterScreenState();
 }
 
-class RegisterScreenState extends State<RegisterScreen> {
-  final apiUrl = "https://github.com/ehymans/LargeProject/blob/main/api.js";
+const String url = "https://progress-tracker-4331-88c53c23c126.herokuapp.com";
 
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+var num = 0;
+
+// Future<void> registerUser(
+//     String firstName, String lastName, String login, String password) async {
+//   Map data = {
+//     "first name": firstName,
+//     "last name": lastName,
+//     "username": login,
+//     "password": password
+//   };
+//   var jsonData = jsonEncode(data);
+//   var response = await http.post(Uri.parse("$url/api/register"),
+//       body: jsonData, headers: {'Content-type': 'application/json'});
+//   print(response.statusCode);
+//   print(response.body);
+//   if (response.statusCode == 200) {
+//     print(data);
+//     print('Register successful');
+//     num = 1;
+//   } else {
+//     print('failed');
+//     num = 0;
+//   }
+// }
+
+class RegisterScreenState extends State<RegisterScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
-
-  // void register(String, firstName, String, lastName, String userName, String password) async {
-  //   try {
-
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  // }
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +73,30 @@ class RegisterScreenState extends State<RegisterScreen> {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: emailController,
+              decoration: InputDecoration(hintText: 'Email'),
+            ),
+            SizedBox(height: 20),
+            TextFormField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(hintText: 'Password')),
             SizedBox(height: 40),
             GestureDetector(
-              onTap: () {
-                // register(userNameController.text.toString(),
-                //     passwordController.text.toString());
+              onTap: () async {
+                registerUser(
+                    firstNameController.text.toString(),
+                    lastNameController.text.toString(),
+                    userNameController.text.toString(),
+                    passwordController.text.toString());
+                if (num == 0) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Succesfully Registered')));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Register Failed')),
+                  );
+                }
               },
               child: Container(
                 height: 50,
