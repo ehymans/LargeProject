@@ -1,3 +1,4 @@
+import 'package:app/email.dart';
 import 'package:flutter/material.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:async';
@@ -37,6 +38,11 @@ var num = 0;
 //     num = 0;
 //   }
 // }
+
+//  VerifyEmail(email) {
+//     const emailRegex = "/^\S+@\S+\.\S+$/";
+//     return emailRegex.test(email);
+//   }
 
 class RegisterScreenState extends State<RegisterScreen> {
   TextEditingController firstNameController = TextEditingController();
@@ -84,19 +90,48 @@ class RegisterScreenState extends State<RegisterScreen> {
             SizedBox(height: 40),
             GestureDetector(
               onTap: () async {
-                registerUser(
-                    firstNameController.text.toString(),
-                    lastNameController.text.toString(),
-                    userNameController.text.toString(),
-                    passwordController.text.toString());
-                if (num == 0) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Succesfully Registered')));
+                final code = await verifyEmail(emailController.text.toString());
+                if (code == 1) {
+                } else if (code == 0) {
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Register Failed')),
+                  if (!mounted) return;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EmailScreen(
+                            code: code,
+                            fName: firstNameController.text.toString(),
+                            lName: lastNameController.text.toString(),
+                            uName: userNameController.text.toString(),
+                            pass: passwordController.text.toString(),
+                            email: emailController.text.toString())),
                   );
                 }
+
+                // final num = await registerUser(
+                //     firstNameController.text.toString(),
+                //     lastNameController.text.toString(),
+                //     userNameController.text.toString(),
+                //     emailController.text.toString(),
+                //     passwordController.text.toString());
+                // if (num == 1) {
+                //   if (!mounted) return;
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //       const SnackBar(content: Text('Succesfully Registered')));
+                // } else if (num == 2) {
+                //   if (!mounted) return;
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //       const SnackBar(content: Text('Invalid Email')));
+                // } else if (num == 3) {
+                //   if (!mounted) return;
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //       const SnackBar(content: Text('Invalid Password')));
+                // } else {
+                //   if (!mounted) return;
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text('Register Failed')),
+                //   );
+                // }
               },
               child: Container(
                 height: 50,
