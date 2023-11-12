@@ -31,9 +31,9 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dare2Do Home Page'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Dare2Do Home Page'),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
