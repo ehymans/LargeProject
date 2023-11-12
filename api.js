@@ -446,9 +446,8 @@ exports.setApp = function (app, client) {
           from: process.env.SENDER_EMAIL,
           to: req.body.Email,
           subject: "Dare2Do Password Reset & Email Verification",
-          text: `Here is your 6 digit one-time code: "${randomOTP}" to verify your email and a link to reset your password: ${
-            origin + "reset-password/" + user._id
-          }`,
+          text: `Here is your 6 digit one-time code: "${randomOTP}" to verify your email and a link to reset your password: ${origin + "reset-password/" + user._id
+            }`,
         };
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
@@ -468,6 +467,9 @@ exports.setApp = function (app, client) {
   });
 
   app.get("/api/fetchotp/:userID", async (req, res) => {
+    if (!(typeof req.params.userID === 'string' && /^[0-9a-fA-F]{24}$/.test(req.params.userID))) {
+      return res.status(404).send("User not found!");
+    }
     try {
       console.log(req.params.userID);
       const db = client.db("LargeProject");
@@ -480,6 +482,7 @@ exports.setApp = function (app, client) {
         res.status(404).send("User not found!");
       }
     } catch (error) {
+      console.log('Error: ', error);
       res.status(500).send("Internal server error!");
     }
   });

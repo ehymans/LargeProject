@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Login.css"; 
+import "../styles/Register.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const app_name = "progress-tracker-4331-88c53c23c126";
@@ -116,80 +116,82 @@ function Register() {
   };
 
   return (
-    <div className="background-container">
-      <div id="loginDiv">
-        {verifyEmail ? (
-          <div className="verify-box">
-            <h2>Please verify your email address!</h2>
-            <div>
-              An email has been sent to your email address with a 6 digit code!
-            </div>
-            <p>Please enter the 6 digit code to verify</p>
-            <input
-              type="text"
-              value={otpCode}
-              onChange={(e) => setOTPCode(e.target.value)}
-            />
-            <button onClick={handleMatchOTP} className="verify-btn">
-              Verify
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={handleVerify} className="login-form">
-            <h2 className="form-title">REGISTER</h2>
-            <div className="form-group">
+    <div className="register">
+      <div className="intermediary-container">
+        <div id="registerDiv">
+          {verifyEmail ? (
+            <div className="verify-box">
+              <h2>Please verify your email address!</h2>
+              <div>
+                An email has been sent to your email address with a 6 digit code!
+              </div>
+              <p>Please enter the 6 digit code to verify</p>
               <input
                 type="text"
-                id="registerFirstName"
-                placeholder="First Name"
-                value={registerFirstName}
-                onChange={(e) => setRegisterFirstName(e.target.value)}
+                value={otpCode}
+                onChange={(e) => setOTPCode(e.target.value)}
               />
+              <button onClick={handleMatchOTP} className="verify-btn">
+                Verify
+              </button>
             </div>
-            <div className="form-group">
-              <input
-                type="text"
-                id="registerLastName"
-                placeholder="Last Name"
-                value={registerLastName}
-                onChange={(e) => setRegisterLastName(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                id="registerUsername"
-                placeholder="Username"
-                value={registerUsername}
-                onChange={(e) => setRegisterUsername(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                id="registerEmail"
-                placeholder="Email"
-                value={registerEmail}
-                onChange={(e) => setRegisterEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                id="registerPassword"
-                placeholder="Password"
-                value={registerPassword}
-                onChange={handlePasswordChange}
-              />
-            </div>
-            <button type="submit" id="registerButton" className="login-button">
-              SUBMIT
-            </button>
-          </form>
-        )}
-        <p id="registerResult" className="login-message">
-          {message}
-        </p>
+          ) : (
+            <form onSubmit={handleVerify} className="register-form">
+              <h1 className="form-title">REGISTER</h1>
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="registerFirstName"
+                  placeholder="First Name"
+                  value={registerFirstName}
+                  onChange={(e) => setRegisterFirstName(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="registerLastName"
+                  placeholder="Last Name"
+                  value={registerLastName}
+                  onChange={(e) => setRegisterLastName(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="registerUsername"
+                  placeholder="Username"
+                  value={registerUsername}
+                  onChange={(e) => setRegisterUsername(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="registerEmail"
+                  placeholder="Email"
+                  value={registerEmail}
+                  onChange={(e) => setRegisterEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  id="registerPassword"
+                  placeholder="Password"
+                  value={registerPassword}
+                  onChange={handlePasswordChange}
+                />
+              </div>
+              <button type="submit" id="registerButton" className="register-button">
+                SUBMIT
+              </button>
+            </form>
+          )}
+          <p id="registerResult" className="register-message">
+            {message}
+          </p>
+        </div>
       </div>
     </div>
   );

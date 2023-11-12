@@ -11,7 +11,7 @@
     color: #fff;
     border: none;
     border-radius: 0;
-    padding: 8px 10vw;
+    padding: 8px 15vw;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
@@ -49,6 +49,7 @@
 }
 
 .modal .task-form input {
+    width: 100%;
     margin: 5px 0px;
     border: black 1px solid;
     padding: 8px 3px;
@@ -56,6 +57,7 @@
 }
 
 .modal .task-form select {
+    width: 100%;
     margin: 5px 0px;
     border: black 1px solid;
     padding: 8px 3px;
