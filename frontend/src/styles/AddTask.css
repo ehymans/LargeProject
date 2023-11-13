@@ -35,6 +35,8 @@
     border: 1px solid grey;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     width: 50vw;
+    font-family: 'Montserrat', sans-serif;
+
 }
 
 .modal .modal-main {

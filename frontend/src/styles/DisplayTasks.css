@@ -15,6 +15,10 @@
   padding: 10px 5px;
   padding-top: 15px;
   box-shadow: 2px 2px 10px grey;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 210px;
 }
 
 .task-card .title {
@@ -48,18 +52,24 @@
   margin-bottom: 15px;
   font-weight: 500;
   padding: 0px 0px;
-  padding-left: 15%;
-  padding-right: 12%;
+  padding-left: 10%;
+  padding-right: 10%;
 
   /* Slicing Text */
-  white-space: nowrap;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
 }
 
 .task-card .strike-description {
   text-decoration: line-through;
+}
+
+.task-card .completion-status {
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .task-card .btn-container {
@@ -81,7 +91,7 @@
 
 .task-card .btn1 {
   background-color: rgb(71, 71, 181);
-  padding: 3px 25px;
+  padding: 3px 22px;
   padding-top: 5px;
 }
 
@@ -112,6 +122,7 @@
   border: 1px solid grey;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   width: 50vw;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .modal1 .modal-main {
