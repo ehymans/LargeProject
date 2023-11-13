@@ -2,7 +2,7 @@ import decode from "jwt-decode";
 import React, { useState } from "react";
 import axios from "axios";
 
-import "./Login.css"; 
+import "../styles/Login.css";
 
 // Remove unused variables
 // const app_name = 'progress-tracker-4331-88c53c23c126';
@@ -111,7 +111,7 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <br />
-            <button onClick={handleForgetPassword}>Submit</button>
+            <button className="submit-btn" onClick={handleForgetPassword}>Submit</button>
             <p
               style={{ color: "red" }}
               id="loginResult"
