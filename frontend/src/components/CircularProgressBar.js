@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './CircularProgressBar.css';
+import '../styles/CircularProgressBar.css';
 
 function CircularProgressBar() {
   const [counter, setCounter] = useState(0);

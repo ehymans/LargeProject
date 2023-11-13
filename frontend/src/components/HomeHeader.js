@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './PageTitle';
+import '../styles/HomeHeader.css';
 function HomeHeader() {
   const [user, setUser] = useState({});
 
@@ -24,11 +24,10 @@ function HomeHeader() {
   };
 
   return (
-    <div className="page-title">
-      
-      <div className="page-buttons">
-        
-        <button onClick={doLogout}>Logout</button>
+    <div className="home-header">
+      <div className='title'>Dare2Do</div>
+      <div className="btn-div">
+        <button className='btn' onClick={doLogout}>Logout</button>
       </div>
     </div>
   );
