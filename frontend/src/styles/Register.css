@@ -1,0 +1,88 @@
+    /* Register Box Styles */
+    #registerDiv::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background: inherit;
+      filter: blur(5px);
+      border-radius: 10px;
+      margin: -1px;
+    }
+
+    #registerDiv {
+      box-sizing: border-box;
+      text-align: center;
+      padding: 15px;
+      background-color: #111122;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      width: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      margin-right: 0;
+      padding: 15px 15px;
+    }
+
+    .form-title {
+      font-size: 24px;
+      font-family: 'Courier New', Courier, monospace;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .register .intermediary-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .register .form-group {
+      margin-bottom: 15px;
+    }
+
+    .register-form input[type="text"],
+    .register-form input[type="email"],
+    .register-form input[type="password"],
+    .verify-box input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      font-family: 'Roboto', 'Arial', sans-serif;
+      z-index: 2;
+      /* Add a higher z-index value to make input elements clickable */
+    }
+
+    .register-button, .verify-btn {
+      background-color: #FF6B6B;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: background-color 0.3s;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .register-button:hover, .verify-btn:hover {
+      background-color: #FF4848;
+    }
+
+    .register-message {
+      margin-top: 10px;
+      color: #777;
+      font-family: 'Roboto', 'Arial', sans-serif;
+    }

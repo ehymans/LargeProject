@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
-import './ResetPasswordPage.css';
+import '../styles/ResetPasswordPage.css';
 import axios from 'axios';
 var bp = require('../components/Path.js'); 
 
@@ -62,7 +62,7 @@ function ResetPasswordPage() {
         console.log(password);
     }
     return (
-        <div>
+        <div className='reset-password-container'>
             {message === 'Invalid link!' ? <div style={{ color: 'red' }}>This link will not work. Please try to generate a new one from forget password page.</div> :
                 <div className='Reset-pass'>
                     <div style={{ color: 'white' }}>Enter the 6 digit code:</div>

@@ -1,0 +1,27 @@
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    margin: 20px 2vw;
+}
+
+.home-header .title {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.home-header .btn {
+    background-color: rgb(183, 31, 31);
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.home-header .btn:hover {
+    background-color: rgb(130, 33, 33);
+    cursor: pointer;
+}
