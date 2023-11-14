@@ -113,17 +113,30 @@ function DisplayTasks({ updateTask }) {
     }));
   };
 
-  const toggleSelect = async (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      TaskCompleted: e.target.checked,
-    }));
+  const toggleSelect = async (e, id) => {
+    let taskID;
+    if (id) {
+      setFormData((prevState) => ({
+        ...prevState,
+        TaskCompleted: e.target.checked,
+        TaskID: id,
+      }));
+      taskID = id;
+    }
+    else {
+      setFormData((prevState) => ({
+        ...prevState,
+        TaskCompleted: e.target.checked,
+      }));
+      taskID = formData.TaskID;
+    }
     const Data = {
       TaskCompleted: e.target.checked,
     };
+    console.log('Task ID: ', taskID);
     try {
       const response = await axios.put(
-        bp.buildPath(`api/updatetask/${formData.TaskID}`),
+        bp.buildPath(`api/updatetask/${taskID}`),
         Data
       );
       if (response.status === 200) {
@@ -215,7 +228,7 @@ function DisplayTasks({ updateTask }) {
           >
             <option value="">Select Priority</option>
             <option value="Low">Low</option>
-            <option value="Moderate">Medium</option>
+            <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
           <br />
@@ -252,11 +265,14 @@ function DisplayTasks({ updateTask }) {
             <div className="title">
               {task.TaskName}
             </div>
-            <div className={`difficulty ${task.TaskDifficulty === 'Low' ? "low-difficulty" : task.TaskDifficulty === 'Moderate' ? "moderate-difficulty" : "high-difficulty"}`}>
+            <div className={`difficulty ${task.TaskDifficulty === 'Low' ? "low-difficulty" : task.TaskDifficulty === 'Medium' ? "moderate-difficulty" : "high-difficulty"}`}>
               {task.TaskDifficulty}
             </div>
             <div className={`description ${task.TaskCompleted && (task.TaskCompleted === true ? "strike-description" : '')}`}>
               {task.TaskDescription}
+            </div>
+            <div className="completion-status">
+              <input type="checkbox" name="TaskCompleted" checked={formData.TaskID === task._id ? formData.TaskCompleted : task.TaskCompleted} onChange={(e) => toggleSelect(e, task._id)} />
             </div>
             <div className="btn-container">
               <button onClick={() => handleClick(task)} className="btn btn1">
