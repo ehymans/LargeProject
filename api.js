@@ -1,7 +1,7 @@
 require("express");
 require("mongodb");
 const { ObjectId } = require("mongodb");
-require("dotenv").config();
+require("dotenv").config(); 
 const nodemailer = require("nodemailer");
 
 // Create a Nodemailer transporter
