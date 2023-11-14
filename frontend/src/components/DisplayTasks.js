@@ -271,7 +271,7 @@ function DisplayTasks({ updateTask }) {
             <div className={`description ${task.TaskCompleted && (task.TaskCompleted === true ? "strike-description" : '')}`}>
               {task.TaskDescription}
             </div>
-            <div className="completion-status">
+            <div className="completion-status">Completed
               <input type="checkbox" name="TaskCompleted" checked={formData.TaskID === task._id ? formData.TaskCompleted : task.TaskCompleted} onChange={(e) => toggleSelect(e, task._id)} />
             </div>
             <div className="btn-container">
