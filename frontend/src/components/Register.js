@@ -36,10 +36,39 @@ function Register() {
     console.log(registerEmail);
     console.log(registerPassword);
 
-    if (!VerifyEmail(registerEmail)) {
+    // Username and Email uniqueness checks -> added 11/15/23 - EWH
+    if (!registerUsername) 
+    {
+      setMessage("Username is required!");
+      return;
+    }
+
+    const usernameExists = await checkUsernameExists(registerUsername);
+    if (usernameExists) 
+    {
+      setMessage("Username is already taken!");
+      return;
+    }
+
+    if (!VerifyEmail(registerEmail)) 
+    {
       setMessage("Invalid email!");
       return;
     }
+
+    const emailExists = await checkEmailExists(registerEmail);
+    if (emailExists) {
+      setMessage("Email is already in use!");
+      return;
+    }
+    
+    // Confirm Password check
+    if (registerPassword !== confirmPassword) 
+    {
+      setMessage("Passwords do not match!");
+      return;
+    }
+    
     const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
     if (!registerPassword.match(passwordPattern)) 
     {
@@ -65,25 +94,7 @@ function Register() {
     }
 
     // Username and Email uniqueness checks -> added 11/15/23 - EWH
-    if (!registerUsername) 
-    {
-      setMessage("Username is required!");
-      return;
-    }
 
-    const usernameExists = await checkUsernameExists(registerUsername);
-    if (usernameExists) 
-    {
-      setMessage("Username is already taken!");
-      return;
-    }
-
-    const emailExists = await checkEmailExists(registerEmail);
-    if (emailExists) 
-    {
-      setMessage("Email is already in use!");
-      return;
-    }
 
     // Confirm Password check
     if (registerPassword !== confirmPassword) 
