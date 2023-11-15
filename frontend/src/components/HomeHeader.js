@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../AuthContext'; // Adjust the path as necessary
 import '../styles/HomeHeader.css';
+
 function HomeHeader() {
   const [user, setUser] = useState({});
+  const { logout } = useContext(AuthContext); // Using AuthContext
 
   useEffect(() => {
     let _ud = localStorage.getItem('user_data');
@@ -13,6 +16,7 @@ function HomeHeader() {
 
   const doLogout = (event) => {
     event.preventDefault();
+    logout(); // Clear the token using AuthContext
     localStorage.removeItem('user_data'); // Clear the user data upon logout
     window.location.href = '/'; // Redirect to the login page
     alert('Logged out successfully');
