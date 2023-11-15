@@ -55,7 +55,7 @@ function Login() {
       const decoded = decode(accessToken, { complete: true });
 
 
-      //var ud = decoded;
+      var ud = decoded;
       //console.log(ud);
 
       var userId = ud.userId;
