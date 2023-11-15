@@ -29,7 +29,9 @@ try {
   console.log("here2");
 
   // edit so it does not await the API call.
-} catch (e) {
+} 
+catch (e) 
+{
   console.log(e.message);
 }
 app.use((req, res, next) => {
@@ -45,6 +47,13 @@ app.use((req, res, next) => {
   next();
 });
 console.log("here3");
+
+app.use((req, res, next) => {
+  if (req.header('x-forwarded-proto') !== 'https')
+    res.redirect(`https://${req.header('host')}${req.url}`)
+  else
+    next();
+});
 
 app.listen(PORT, () => {
   console.log("Server listening on port " + PORT);
