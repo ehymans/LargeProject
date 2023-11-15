@@ -65,22 +65,29 @@ function Register() {
     }
 
     // Username and Email uniqueness checks -> added 11/15/23 - EWH
-    if (!registerUsername) {
+    if (!registerUsername) 
+    {
       setMessage("Username is required!");
       return;
     }
-    if (await checkUsernameExists(registerUsername)) {
+
+    const usernameExists = await checkUsernameExists(registerUsername);
+    if (usernameExists) 
+    {
       setMessage("Username is already taken!");
       return;
     }
 
-    if (await checkEmailExists(registerEmail)) {
+    const emailExists = await checkEmailExists(registerEmail);
+    if (emailExists) 
+    {
       setMessage("Email is already in use!");
       return;
     }
 
     // Confirm Password check
-    if (registerPassword !== confirmPassword) {
+    if (registerPassword !== confirmPassword) 
+    {
       setMessage("Passwords do not match!");
       return;
     }
