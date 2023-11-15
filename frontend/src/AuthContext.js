@@ -14,7 +14,8 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setAuthToken(null);
-        storeToken({ accessToken: null });
+        localStorage.removeItem('token');
+        //storeToken({ accessToken: null });
     };
 
     return (
