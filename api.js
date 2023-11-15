@@ -389,6 +389,42 @@ exports.setApp = function (app, client) {
     }
   });
 
+  app.get("/api/checkusername/:username", async (req, res) => {
+    try {
+      const db = client.db("LargeProject");
+      const username = req.params.username.toLowerCase(); // Assuming usernames are case-insensitive
+  
+      const user = await db.collection("Users").findOne({ Login: username });
+      if (user) {
+        res.status(200).json({ exists: true });
+      } else {
+        res.status(200).json({ exists: false });
+      }
+    } catch (error) {
+      console.error("Error checking username: ", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+
+  app.get("/api/checkemail/:email", async (req, res) => {
+    try {
+      const db = client.db("LargeProject");
+      const email = req.params.email.toLowerCase(); // Assuming emails are case-insensitive
+  
+      const user = await db.collection("Users").findOne({ Email: email });
+      if (user) {
+        res.status(200).json({ exists: true });
+      } else {
+        res.status(200).json({ exists: false });
+      }
+    } catch (error) {
+      console.error("Error checking email: ", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+
   app.patch("/api/reset-password/:UserID", async (req, res) => {
     try {
       const db = client.db("LargeProject");
