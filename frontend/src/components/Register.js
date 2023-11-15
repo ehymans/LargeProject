@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const app_name = "progress-tracker-4331-88c53c23c126";
 var bp = require("./Path.js");
+
 const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
 
 function Register() {
@@ -14,6 +15,7 @@ function Register() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [message, setMessage] = useState("");
   const [passwordStrength, setPasswordStrength] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");     // New state for confirm password - EWH
   const [verifyEmail, setVerifyEmail] = useState(false);
   const [otpCode, setOTPCode] = useState("");
   const [serverGeneratedCode, setServerGeneratedCode] = useState("");
@@ -39,22 +41,48 @@ function Register() {
       return;
     }
     const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
-    if (!registerPassword.match(passwordPattern)) {
+    if (!registerPassword.match(passwordPattern)) 
+    {
       setMessage(
         "Password must be at least 8 characters with at least 1 number and 1 special character."
       );
       return;
     }
-    try {
+    try 
+    {
       const res = await axios.get(bp.buildPath(`api/getcode/${registerEmail}`));
       console.log(res);
-      if (res.status === 200) {
+      if (res.status === 200) 
+      {
         setServerGeneratedCode(res.data.code);
         setVerifyEmail(true);
       }
-    } catch (error) {
+    } 
+    catch (error) 
+    {
       console.log("Error while sending email: ", error);
       setMessage("Unable to verify at this moment!");
+    }
+
+    // Username and Email uniqueness checks -> added 11/15/23 - EWH
+    if (!registerUsername) {
+      setMessage("Username is required!");
+      return;
+    }
+    if (await checkUsernameExists(registerUsername)) {
+      setMessage("Username is already taken!");
+      return;
+    }
+
+    if (await checkEmailExists(registerEmail)) {
+      setMessage("Email is already in use!");
+      return;
+    }
+
+    // Confirm Password check
+    if (registerPassword !== confirmPassword) {
+      setMessage("Passwords do not match!");
+      return;
     }
   };
 
@@ -97,6 +125,28 @@ function Register() {
       navigate("/login");
     } else {
       setMessage("Invalid OTP code!");
+    }
+  };
+
+  // Function to check if username exists -> added 11/15/23 - EWH
+  const checkUsernameExists = async (username) => {
+    try {
+      const response = await axios.get(bp.buildPath(`api/checkusername/${username}`));
+      return response.data.exists;
+    } catch (error) {
+      console.error("Error checking username", error);
+      return false;
+    }
+  };
+
+  // Function to check if email exists -> added 11/15/23 - EWH
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await axios.get(bp.buildPath(`api/checkemail/${email}`));
+      return response.data.exists;
+    } catch (error) {
+      console.error("Error checking email", error);
+      return false;
     }
   };
 
@@ -181,6 +231,15 @@ function Register() {
                   placeholder="Password"
                   value={registerPassword}
                   onChange={handlePasswordChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
               <button type="submit" id="registerButton" className="register-button">
