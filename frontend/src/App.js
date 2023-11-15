@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
+import { AuthProvider } from './AuthContext'; // Import AuthProvider
+
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
@@ -10,18 +12,24 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />{" "}
-        {/* Add a route for /login */}
-        <Route path="/register" element={<RegisterPage />} />{" "}
-        {/* Add a route for /register */}
-        <Route path="/reset-password/:userID" element={<ResetPasswordPage />} />
-      </Routes>
-    </BrowserRouter>
+      <AuthProvider> {/* Wrap your application with AuthProvider */}
+          <BrowserRouter>
+              <Routes>
+                  <Route path="/" element={<LoginPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/reset-password/:userID" element={<ResetPasswordPage />} />
+                  <Route 
+                      path="/home" 
+                      element={
+                          <ProtectedRoute>
+                              <HomePage />
+                          </ProtectedRoute>
+                      } 
+                  />
+              </Routes>
+          </BrowserRouter>
+      </AuthProvider>
   );
 }
-
 export default App;

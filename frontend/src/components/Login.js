@@ -1,11 +1,11 @@
 import decode from "jwt-decode";
-import React, { useState } from "react";
+//import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 
 import "../styles/Login.css";
 
-// Remove unused variables
-// const app_name = 'progress-tracker-4331-88c53c23c126';
+import { AuthContext } from '../AuthContext';
 
 // Import or define buildPath
 var bp = require("./Path.js");
@@ -18,6 +18,8 @@ function Login() {
   const [fogetPass, setForgetPass] = useState(false);
   const [email, setEmail] = useState("");
 
+  const { login } = useContext(AuthContext); // Using AuthContext
+
   //Email Validation
   function VerifyEmail(email) {
     const emailRegex = /^\S+@\S+\.\S+$/;
@@ -29,46 +31,57 @@ function Login() {
 
     var obj = { login: loginName.value, password: loginPassword.value };
     var js = JSON.stringify(obj);
-    console.log("test");
-    try {
+    //console.log("test");
+
+    try 
+    {
       const response = await fetch(bp.buildPath("api/login"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
       });
       var res = JSON.parse(await response.text());
-      //   console.log("test2");
-      storage.storeToken(res);
-      //   console.log("test2.2");
+
+      //storage.storeToken(res);
+
       const { accessToken } = res;
-      //   console.log("test2.3");
-      if (!accessToken) {
+
+      if (!accessToken) 
+      {
         setMessage("Username/Password incorrect.");
         return;
       }
       //   console.log('Received access token:', accessToken);
       const decoded = decode(accessToken, { complete: true });
-      //   console.log("test3");
 
-      var ud = decoded;
-      console.log(ud);
+
+      //var ud = decoded;
+      //console.log(ud);
+
       var userId = ud.userId;
       var firstName = ud.firstName;
       var lastName = ud.lastName;
-      //   console.log("test4");
-      if (res.id <= 0) {
+
+      if (res.id <= 0) 
+      {
         setMessage("User/Password combination incorrect");
-      } else {
+      } 
+      else 
+      {
         var user = { firstName: firstName, lastName: lastName, id: userId };
-        console.log(user.firstName);
-        console.log(user.lastName);
-        console.log(user.id);
+        //console.log(user.firstName);
+        //console.log(user.lastName);
+        //console.log(user.id);
         localStorage.setItem("user_data", JSON.stringify(user));
+
+        login(accessToken); // Update authentication state using AuthContext
 
         setMessage("");
         window.location.href = "/home"; /// sends the user to the home page of the website
       }
-    } catch (e) {
+    } 
+    catch (e) 
+    {
       alert(e.toString());
       return;
     }

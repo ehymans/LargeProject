@@ -57,7 +57,8 @@ function Register() {
     }
 
     const emailExists = await checkEmailExists(registerEmail);
-    if (emailExists) {
+    if (emailExists) 
+    {
       setMessage("Email is already in use!");
       return;
     }
@@ -68,7 +69,7 @@ function Register() {
       setMessage("Passwords do not match!");
       return;
     }
-    
+
     const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(.{8,})$/;
     if (!registerPassword.match(passwordPattern)) 
     {
@@ -93,15 +94,6 @@ function Register() {
       setMessage("Unable to verify at this moment!");
     }
 
-    // Username and Email uniqueness checks -> added 11/15/23 - EWH
-
-
-    // Confirm Password check
-    if (registerPassword !== confirmPassword) 
-    {
-      setMessage("Passwords do not match!");
-      return;
-    }
   };
 
   const doRegister = async () => {

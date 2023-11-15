@@ -1,25 +1,3 @@
-
-/*
-button {
-    background-color: #ff4b5c; 
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease-out; 
-}
-
-
-button:hover {
-    background-color: #e43f4f; 
-}
-*/
-/* HomePage.css */
-
-/* Additional styles for the panel layout */
-
 .panel {
     background-color: rgba(50, 50, 93, 0.95); /* dark blue with higher transparency */
     border-radius: 10px; /* smoother corners */
