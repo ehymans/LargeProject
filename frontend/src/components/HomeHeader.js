@@ -33,7 +33,9 @@ function HomeHeader() {
         }
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
+        console.log('tasks in progress:', data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
+        console.log('tasks completed: ', data.tasksCompleted);
       } 
       catch (error) 
       {

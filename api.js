@@ -366,7 +366,7 @@ exports.setApp = function (app, client) {
         tasksInProgress,
         tasksCompleted
       });
-  
+      console.log('no error getting user tasks');
     } 
     catch (err) 
     {
