@@ -1,6 +1,41 @@
 .home-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    margin: 20px 2vw;
+    padding: 10px 2vw; /* Add padding for some space inside the box */
+    background-color: rgba(0, 0, 0, 0.5); /* Set a semi-transparent background for the floating effect */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for more depth */
+}
+
+.home-header .title {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.home-header .btn {
+    background-color: rgb(183, 31, 31);
+    color: #fff;
+    border: none;
+    border-radius: 5px; /* Slightly rounded corners for the button */
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.home-header .btn:hover {
+    background-color: rgb(130, 33, 33);
+}
+
+/*
+// Previous (stable) css from 11/15/23
+.home-header {
+    display: flex;
+    justify-content: space-between;
     color: #fff;
     margin: 20px 2vw;
 }
@@ -25,4 +60,4 @@
 .home-header .btn:hover {
     background-color: rgb(130, 33, 33);
     cursor: pointer;
-}
+}*/
