@@ -17,7 +17,7 @@ function generateOTP() {
   const otp = Math.floor(100000 + Math.random() * 900000);
   return otp.toString();
 }
-exports.setApp = function (app, client) {
+exports.setApp = function (app, client, broadcastUpdate) {
   app.post("/api/addExperience", async (req, res, next) => {
     // incoming: userId, awardExp
     // outgoing: error
@@ -125,7 +125,7 @@ exports.setApp = function (app, client) {
 
       // Broadcast the updated counts to all connected clients
       broadcastUpdate({ tasksInProgress, tasksCompleted });
-      
+
       res.status(200).json({ success: "Task added" });
     } 
     catch (e) 

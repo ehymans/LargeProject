@@ -28,7 +28,8 @@ try
 
   var api = require("./api.js");
 
-  api.setApp(app, client);
+  api.setApp(app, client, broadcastUpdate);
+
 
 
 } 
@@ -60,12 +61,14 @@ wss.on('connection', (ws) => {
 
 // Function to broadcast messages to all connected clients
 function broadcastUpdate(data) {
+  const message = JSON.stringify({ type: 'update', payload: data });
   wss.clients.forEach(client => {
     if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(data));
+      client.send(message);
     }
   });
 }
+
 
 //
 // Export the broadcast function to use in other parts of your application
