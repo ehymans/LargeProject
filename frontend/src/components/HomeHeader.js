@@ -30,8 +30,12 @@ function HomeHeader() {
         }
 
         const data = await response.json();
+        console.log("start of fetch");
         setTasksInProgress(data.tasksInProgress);
+        console.log(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
+        console.log(data.tasksCompleted);
+        console.log("end of fetch");
       } 
       catch (error) 
       {
