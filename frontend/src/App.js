@@ -12,7 +12,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
-      <AuthProvider> {/* Wrap your application with AuthProvider */}
+      <AuthProvider> {/* wrap application with AuthProvider */}
           <BrowserRouter>
               <Routes>
                   <Route path="/" element={<LoginPage />} />

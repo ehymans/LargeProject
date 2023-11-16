@@ -117,10 +117,19 @@ exports.setApp = function (app, client) {
         TaskDifficulty: taskDifficulty,
         TaskCompleted: taskCompleted,             // EWH added 11/15/23 -> may need to delete?
       };
-
       await db.collection("Tasks").insertOne(newTask);
+
+    // After adding the task, calculate the updated counts
+      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
+      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
+
+      // Broadcast the updated counts to all connected clients
+      broadcastUpdate({ tasksInProgress, tasksCompleted });
+      
       res.status(200).json({ success: "Task added" });
-    } catch (e) {
+    } 
+    catch (e) 
+    {
       // Handle any database or other errors
       res.status(500).json({ error: e.message });
     }

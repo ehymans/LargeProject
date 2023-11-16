@@ -10,53 +10,64 @@ function HomeHeader() {
 
   useEffect(() => {
     let _ud = localStorage.getItem('user_data');
-    let ud = {};
-    if (_ud) {
-      ud = JSON.parse(_ud);
-      console.log(ud);
-      setUser(ud);
-    }
+    let ud = JSON.parse(_ud || '{}');
+    setUser(ud);
 
-    // Fetch the tasks data
+    // Fetch initial tasks data
     async function fetchTasks() {
       try {
-        console.log('Request Payload:', JSON.stringify({ userId: ud.id }));
-        const response = await fetch('/api/usertasks', { // Use the correct path to your tasks API
+        const response = await fetch('/api/usertasks', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${ud.token}`, // do not need?
+            'Authorization': `Bearer ${ud.token}`,
           },
           body: JSON.stringify({ userId: ud.id }),
         });
 
-        if (!response.ok) 
-        {
+        if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
+
         const data = await response.json();
-        console.log('Tasks data:', data); // Debugging
         setTasksInProgress(data.tasksInProgress);
-        console.log('tasks in progress:', data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
-        console.log('tasks completed: ', data.tasksCompleted);
-      } 
-      catch (error) 
-      {
+      } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
     }
 
     fetchTasks();
+
+    // WebSocket connection
+    const ws = new WebSocket('wss://progress-tracker-4331-88c53c23c126.herokuapp.com/');
+
+    ws.onopen = () => {
+      console.log('Connected to WebSocket');
+    };
+
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      setTasksInProgress(data.tasksInProgress);
+      setTasksCompleted(data.tasksCompleted);
+    };
+
+    ws.onclose = () => {
+      console.log('Disconnected from WebSocket');
+    };
+
+    return () => {
+      ws.close();
+    };
   }, []);
 
   const doLogout = (event) => {
     event.preventDefault();
     logout(); // Clear the token using AuthContext
-    localStorage.removeItem('user_data'); // Clear the user data upon logout
-    window.location.href = '/'; // Redirect to the login page
-    alert('Logged out successfully');
+    localStorage.removeItem('user_data'); // Clear user data upon logout
+    window.location.href = '/'; // Redirect to login page
   };
+
   return (
     <div className="home-header">
       <div>
@@ -71,10 +82,10 @@ function HomeHeader() {
       </div>
     </div>
   );
-  
 }
 
 export default HomeHeader;
+
 
 
 

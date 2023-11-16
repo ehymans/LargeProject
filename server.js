@@ -1,34 +1,36 @@
-console.log("here");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const path = require("path"); // MAY NEED TO DELETE!!
+const path = require("path");
+const WebSocket = require('ws');
+const http = require('http');
+
 const PORT = process.env.PORT || 5000; 
 
 const app = express();
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
 app.use(cors());
 app.use(bodyParser.json());
 
-try {
-  console.log("here");
+try 
+{
   require("dotenv").config();
-  console.log("here2");
-  const url = process.env.MONGODB_URI;
-  console.log(url);
-  console.log("here3");
-  const MongoClient = require("mongodb").MongoClient;
-  console.log("here4");
-  const client = new MongoClient(url);
-  console.log("here5");
-  client.connect(console.log("mongodb connected"));
-  console.log("here6");
-  var api = require("./api.js");
-  console.log("here7");
-  api.setApp(app, client);
-  console.log("here8");
-  console.log("here2");
 
-  // edit so it does not await the API call.
+  const url = process.env.MONGODB_URI;
+
+  const MongoClient = require("mongodb").MongoClient;
+
+  const client = new MongoClient(url);
+
+  client.connect(console.log("mongodb connected"));
+
+  var api = require("./api.js");
+
+  api.setApp(app, client);
+
+
 } 
 catch (e) 
 {
@@ -46,7 +48,27 @@ app.use((req, res, next) => {
   );
   next();
 });
-console.log("here3");
+
+// WebSocket connection logic
+wss.on('connection', (ws) => {
+  console.log('Client connected to WebSocket');
+
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
+});
+
+// Function to broadcast messages to all connected clients
+function broadcastUpdate(data) {
+  wss.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(data));
+    }
+  });
+}
+
+// Export the broadcast function to use in other parts of your application
+module.exports = { broadcastUpdate };
 
 app.use((req, res, next) => {
   if (req.header('x-forwarded-proto') !== 'https')
@@ -55,10 +77,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.listen(PORT, () => {
+// Replace app.listen with server.listen
+server.listen(PORT, () => {
   console.log("Server listening on port " + PORT);
 });
-
 ///////////////////////////////////////////////////
 // For Heroku deployment
 
@@ -71,5 +93,4 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 
-  console.log("here3");
 }
