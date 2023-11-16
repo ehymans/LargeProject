@@ -13,6 +13,7 @@ function HomeHeader() {
     let ud = {};
     if (_ud) {
       ud = JSON.parse(_ud);
+      console.log(ud);
       setUser(ud);
     }
 
