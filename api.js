@@ -292,39 +292,6 @@ exports.setApp = function (app, client) {
 
   const { ObjectId } = require("mongodb");
 
-  /*
-  // refined version of update task - set TaskComplete to false upon creation. 11/15/23 - EWH
-  // keep both api endpoints - app.post and app.put as they are for different functions.
-  app.put("/api/updatetask/:id", async (req, res) => {
-    try {
-      const db = client.db("LargeProject");
-      const collection = db.collection("Tasks");
-      const taskId = new ObjectId(req.params.id);
-      const taskUpdate = req.body;
-  
-      // Ensure that TaskCompleted is explicitly set to true or false
-      if (taskUpdate.TaskCompleted === undefined) {
-        taskUpdate.TaskCompleted = false;
-      }
-  
-      const updatedTask = await collection.findOneAndUpdate(
-        { _id: taskId },
-        { $set: taskUpdate },
-        { returnOriginal: false }
-      );
-  
-      if (updatedTask.ok) {
-        res.status(200).send("Task Updated!");
-      } else {
-        res.status(400).send("Task update failed");
-      }
-    } catch (err) {
-      console.error("Error updating task: " + err);
-      res.status(500).send("Internal Server Error");
-    }
-  });*/
-  
-
   app.post("/api/updatetask", async (req, res, next) => {
     // Incoming: _id, taskName, taskDescription, taskDifficulty, jwtToken
     const { _id, taskName, taskDescription, taskDifficulty, jwtToken } =
@@ -365,36 +332,6 @@ exports.setApp = function (app, client) {
     }
   });
 
-  app.put("/api/updatetask/:id", async (req, res) => {
-    try {
-      const db = client.db("LargeProject");
-      const collection = db.collection("Tasks");
-      const taskId = new ObjectId(req.params.id);
-      const taskUpdate = req.body;
-  
-      // Ensure that TaskCompleted is explicitly set to true or false if not provided
-      if (taskUpdate.TaskCompleted === undefined) {
-        taskUpdate.TaskCompleted = false;
-      }
-  
-      const updatedTask = await collection.findOneAndUpdate(
-        { _id: taskId },
-        { $set: taskUpdate },
-        { returnOriginal: false }
-      );
-  
-      if (updatedTask.value) {
-        res.status(200).json({ message: "Task Updated!", task: updatedTask.value });
-      } else {
-        res.status(404).send("Task not found");
-      }
-    } catch (err) {
-      console.error("Error updating task: " + err);
-      res.status(500).send("Internal Server Error");
-    }
-  });
-  
-
   // total user tasks API endpoint (NOT TESTED COMPLETELY!!!) - EWH
   app.get("/api/usertasks", async (req, res) => {
     try {
@@ -415,7 +352,9 @@ exports.setApp = function (app, client) {
       tasks.forEach(task => {
         if (task.TaskCompleted) {
           tasksCompleted++;
-        } else {
+        } 
+        else 
+        {
           tasksInProgress++;
         }
       });
@@ -426,7 +365,9 @@ exports.setApp = function (app, client) {
         tasksCompleted
       });
   
-    } catch (err) {
+    } 
+    catch (err) 
+    {
       console.error("Error retrieving user tasks: " + err);
       res.status(500).send("Internal Server Error");
     }
@@ -447,7 +388,6 @@ exports.setApp = function (app, client) {
     }
   });
 
-  /*
   app.put("/api/updatetask/:id", async (req, res) => {
     try {
       const db = client.db("LargeProject");
@@ -464,7 +404,7 @@ exports.setApp = function (app, client) {
       console.error("Error updating task: " + err);
       res.status(500).send("Internal Server Error");
     }
-  });*/
+  });
 
   app.get("/api/getcode/:email", async (req, res) => {
     try {
