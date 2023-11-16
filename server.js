@@ -5,10 +5,6 @@ const path = require("path");
 const WebSocket = require('ws');
 const http = require('http');
 
-var api = require("./api.js");
-api.setApp(app, client, broadcastUpdate);
-
-
 const PORT = process.env.PORT || 5000; 
 
 const app = express();
@@ -75,7 +71,6 @@ function broadcastUpdate(data) {
 // Export the broadcast function to use in other parts of your application
 //module.exports = { broadcastUpdate };
 //
-
 app.use((req, res, next) => {
   if (req.header('x-forwarded-proto') !== 'https')
     res.redirect(`https://${req.header('host')}${req.url}`)

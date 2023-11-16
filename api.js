@@ -4,8 +4,6 @@ const { ObjectId } = require("mongodb");
 require("dotenv").config(); 
 const nodemailer = require("nodemailer");
 
-const { broadcastUpdate } = require('./server');
-
 // Create a Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "Gmail",
@@ -19,9 +17,7 @@ function generateOTP() {
   const otp = Math.floor(100000 + Math.random() * 900000);
   return otp.toString();
 }
-module.exports.setApp = function(app, client, broadcastUpdate) 
-{
-
+exports.setApp = function (app, client) {
   app.post("/api/addExperience", async (req, res, next) => {
     // incoming: userId, awardExp
     // outgoing: error
@@ -129,7 +125,7 @@ module.exports.setApp = function(app, client, broadcastUpdate)
 
       // Broadcast the updated counts to all connected clients
       broadcastUpdate({ tasksInProgress, tasksCompleted });
-
+      
       res.status(200).json({ success: "Task added" });
     } 
     catch (e) 
