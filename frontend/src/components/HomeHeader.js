@@ -19,6 +19,7 @@ function HomeHeader() {
     // Fetch the tasks data
     async function fetchTasks() {
       try {
+        console.log('Request Payload:', JSON.stringify({ userId: ud.userId }));
         const response = await fetch('/api/usertasks', { // Use the correct path to your tasks API
           method: 'POST',
           headers: {
