@@ -18,7 +18,7 @@ function HomeHeader() {
     // Fetch the tasks data
     async function fetchTasks() {
       try {
-        const response = await fetch('/api/path-to-tasks', { // Use the correct path to your tasks API
+        const response = await fetch('/api/usertasks', { // Use the correct path to your tasks API
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
