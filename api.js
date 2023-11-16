@@ -341,7 +341,7 @@ exports.setApp = function (app, client) {
       if (!req.userId) {
         return res.status(403).send("User is not authenticated");
       }*/
-      const {userId} = req.body;
+      const userId = req.query.userId;
       const db = client.db("LargeProject");
       const tasks = await db.collection("Tasks")
         .find({ UserID: userId, TaskDeleted: {$ne: true} }) // Assuming 'UserID' is the field and TaskDeleted is not true
