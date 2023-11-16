@@ -57,19 +57,21 @@ function HomeHeader() {
     window.location.href = '/'; // Redirect to the login page
     alert('Logged out successfully');
   };
-
   return (
     <div className="home-header">
-      <div className='title'>Dare2Do - Welcome {user.firstName}!</div>
       <div>
-        <div>Tasks In Progress: {tasksInProgress}</div>
-        <div>Tasks Completed: {tasksCompleted}</div>
+        <div className='title'>Dare2Do - Welcome {user.firstName}!</div>
+        <div className='task-info'>
+          <div>Tasks In Progress: {tasksInProgress}</div>
+          <div>Tasks Completed: {tasksCompleted}</div>
+        </div>
       </div>
       <div className="btn-div">
         <button className='btn' onClick={doLogout}>Logout</button>
       </div>
     </div>
   );
+  
 }
 
 export default HomeHeader;
