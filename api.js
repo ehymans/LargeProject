@@ -100,7 +100,7 @@ exports.setApp = function (app, client) {
   });
 
   app.post("/api/addTask", async (req, res, next) => {
-    const { userId, taskName, taskDescription, taskDifficulty, jwtToken } =
+    const { userId, taskName, taskDescription, taskDifficulty, taskCompleted, jwtToken } =
       req.body;
 
     try {
@@ -115,7 +115,7 @@ exports.setApp = function (app, client) {
         TaskName: taskName,
         TaskDescription: taskDescription,
         TaskDifficulty: taskDifficulty,
-        TaskCompleted: false,             // EWH added 11/15/23 -> may need to delete?
+        TaskCompleted: taskCompleted,             // EWH added 11/15/23 -> may need to delete?
       };
 
       await db.collection("Tasks").insertOne(newTask);
