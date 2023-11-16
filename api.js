@@ -389,6 +389,7 @@ exports.setApp = function (app, client) {
     }
   });
 
+  /*
   app.put("/api/updatetask/:id", async (req, res) => {
     try {
       const db = client.db("LargeProject");
@@ -416,9 +417,9 @@ exports.setApp = function (app, client) {
       console.error("Error updating task: " + err);
       res.status(500).send("Internal Server Error");
     }
-  });
+  });*/
   
-  /*
+
   //
   // commented out to enable testing of task counter - 11/15/23 - EWH
   //
@@ -438,7 +439,7 @@ exports.setApp = function (app, client) {
       console.error("Error updating task: " + err);
       res.status(500).send("Internal Server Error");
     }
-  });*/
+  });
 
   app.get("/api/getcode/:email", async (req, res) => {
     try {
