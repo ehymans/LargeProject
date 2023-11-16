@@ -67,8 +67,10 @@ function broadcastUpdate(data) {
   });
 }
 
+//
 // Export the broadcast function to use in other parts of your application
-module.exports = { broadcastUpdate };
+//module.exports = { broadcastUpdate };
+//
 
 app.use((req, res, next) => {
   if (req.header('x-forwarded-proto') !== 'https')
@@ -94,3 +96,5 @@ if (process.env.NODE_ENV === "production") {
   });
 
 }
+// Export the broadcast function to use in other parts of your application
+module.exports = { broadcastUpdate };
