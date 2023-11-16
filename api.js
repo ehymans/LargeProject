@@ -115,7 +115,7 @@ exports.setApp = function (app, client) {
         TaskName: taskName,
         TaskDescription: taskDescription,
         TaskDifficulty: taskDifficulty,
-        //TaskCompleted: false,             // EWH added 11/15/23 -> may need to delete?
+        TaskCompleted: false,             // EWH added 11/15/23 -> may need to delete?
       };
 
       await db.collection("Tasks").insertOne(newTask);
