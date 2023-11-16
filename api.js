@@ -115,6 +115,7 @@ exports.setApp = function (app, client) {
         TaskName: taskName,
         TaskDescription: taskDescription,
         TaskDifficulty: taskDifficulty,
+        TaskCompleted: false,             // EWH added 11/15/23 -> may need to delete?
       };
 
       await db.collection("Tasks").insertOne(newTask);
@@ -332,7 +333,7 @@ exports.setApp = function (app, client) {
     }
   });
 
-  // total user tasks API endpoint (NOT TESTED COMPLETELY!!!) - EWH
+  // total user tasks API endpoint (NOT TESTED COMPLETELY!!!) - EWH - 11/15/23
   app.get("/api/usertasks", async (req, res) => {
     try {
       // Assuming you have some form of authentication and user ID is stored in the request after successful auth
@@ -387,7 +388,40 @@ exports.setApp = function (app, client) {
       res.status(500).send("Internal Server Error");
     }
   });
-
+  
+  app.put("/api/updatetask/:id", async (req, res) => {
+    try {
+      const db = client.db("LargeProject");
+      const collection = db.collection("Tasks");
+      const taskId = new ObjectId(req.params.id);
+      const taskUpdate = req.body;
+  
+      // If TaskCompleted is not provided, don't update it
+      if (taskUpdate.TaskCompleted === undefined) {
+        delete taskUpdate.TaskCompleted;
+      }
+  
+      const updatedTask = await collection.findOneAndUpdate(
+        { _id: taskId },
+        { $set: taskUpdate },
+        { returnOriginal: false }
+      );
+  
+      if (updatedTask.value) {
+        res.status(200).json({ message: "Task Updated!", task: updatedTask.value });
+      } else {
+        res.status(404).send("Task not found");
+      }
+    } catch (err) {
+      console.error("Error updating task: " + err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  
+  /*
+  //
+  // commented out to enable testing of task counter - 11/15/23 - EWH
+  //
   app.put("/api/updatetask/:id", async (req, res) => {
     try {
       const db = client.db("LargeProject");
@@ -404,7 +438,7 @@ exports.setApp = function (app, client) {
       console.error("Error updating task: " + err);
       res.status(500).send("Internal Server Error");
     }
-  });
+  });*/
 
   app.get("/api/getcode/:email", async (req, res) => {
     try {
