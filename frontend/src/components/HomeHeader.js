@@ -32,6 +32,7 @@ function HomeHeader() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        console.log('Tasks data:', data); // Debugging
         setTasksInProgress(data.tasksInProgress);
         console.log('tasks in progress:', data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
