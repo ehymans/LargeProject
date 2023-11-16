@@ -4,6 +4,8 @@ const { ObjectId } = require("mongodb");
 require("dotenv").config(); 
 const nodemailer = require("nodemailer");
 
+const { broadcastUpdate } = require('./server');
+
 // Create a Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "Gmail",
@@ -125,7 +127,7 @@ exports.setApp = function (app, client) {
 
       // Broadcast the updated counts to all connected clients
       broadcastUpdate({ tasksInProgress, tasksCompleted });
-      
+
       res.status(200).json({ success: "Task added" });
     } 
     catch (e) 
