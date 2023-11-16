@@ -334,7 +334,7 @@ exports.setApp = function (app, client) {
   });
 
   // total user tasks API endpoint (NOT TESTED COMPLETELY!!!) - EWH - 11/15/23
-  app.get("/api/usertasks", async (req, res) => {
+  app.post("/api/usertasks", async (req, res) => {
     try {
       // Assuming you have some form of authentication and user ID is stored in the request after successful auth
       /*

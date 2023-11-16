@@ -20,11 +20,12 @@ function HomeHeader() {
     async function fetchTasks() {
       try {
         const response = await fetch('/api/usertasks', { // Use the correct path to your tasks API
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${ud.token}`, // do not need?
-          }
+          },
+          body: JSON.stringify({ userId: ud.userId }),
         });
 
         if (!response.ok) 
