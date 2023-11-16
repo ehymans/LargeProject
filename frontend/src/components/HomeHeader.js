@@ -29,7 +29,7 @@ function HomeHeader() {
 
   return (
     <div className="home-header">
-      <div className='title'>Dare2Do</div>
+      <div className='title'>Dare2Do - Welcome {user.firstName}!</div>
       <div className="btn-div">
         <button className='btn' onClick={doLogout}>Logout</button>
       </div>
