@@ -23,16 +23,20 @@ function HomeHeader() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            //'Authorization': `Bearer ${ud.token}`, // do not need?
+            'Authorization': `Bearer ${ud.token}`, // do not need?
           },
         });
-        if (!response.ok) {
+
+        if (!response.ok) 
+        {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.error('There was a problem with the fetch operation:', error);
       }
     }
