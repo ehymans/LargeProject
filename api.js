@@ -19,7 +19,9 @@ function generateOTP() {
   const otp = Math.floor(100000 + Math.random() * 900000);
   return otp.toString();
 }
-exports.setApp = function (app, client) {
+module.exports.setApp = function(app, client, broadcastUpdate) 
+{
+
   app.post("/api/addExperience", async (req, res, next) => {
     // incoming: userId, awardExp
     // outgoing: error
