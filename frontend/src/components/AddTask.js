@@ -64,7 +64,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
       taskName: taskInfo.taskName,
       taskDescription: taskInfo.taskDescription,
       taskDifficulty: taskInfo.taskImportance,
-      //taskCompleted: false,       // edited here 11/16/23 EWH
+      taskCompleted: false,       // edited here 11/16/23 EWH
     };
 
     fetch(bp.buildPath("api/addTask"), {
