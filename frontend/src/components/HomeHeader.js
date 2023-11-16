@@ -25,6 +25,7 @@ function HomeHeader() {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${ud.token}`, // do not need?
           },
+          body: JSON.stringify({ userId: ud.userId }),
         });
 
         if (!response.ok) 
