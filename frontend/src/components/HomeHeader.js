@@ -32,7 +32,9 @@ function HomeHeader() {
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.error('There was a problem with the fetch operation:', error);
       }
     }
@@ -49,7 +51,9 @@ function HomeHeader() {
     ws.onmessage = (e) => {
       const data = JSON.parse(e.data);
       setTasksInProgress(data.tasksInProgress);
+      console.log(data.tasksInProgress);
       setTasksCompleted(data.tasksCompleted);
+      console.log(data.tasksCompleted);
     };
 
     ws.onclose = () => {
