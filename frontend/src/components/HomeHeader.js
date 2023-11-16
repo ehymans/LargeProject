@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../AuthContext'; // Adjust the path as necessary
+import { AuthContext } from '../AuthContext'; 
 import '../styles/HomeHeader.css';
 
 function HomeHeader() {
@@ -23,7 +23,7 @@ function HomeHeader() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${ud.token}`, // Adjust if you use different auth headers
+            //'Authorization': `Bearer ${ud.token}`, // do not need?
           },
         });
         if (!response.ok) {
