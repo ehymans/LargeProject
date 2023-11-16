@@ -337,9 +337,10 @@ exports.setApp = function (app, client) {
   app.get("/api/usertasks", async (req, res) => {
     try {
       // Assuming you have some form of authentication and user ID is stored in the request after successful auth
+      /*
       if (!req.userId) {
         return res.status(403).send("User is not authenticated");
-      }
+      }*/
   
       const db = client.db("LargeProject");
       const tasks = await db.collection("Tasks")
