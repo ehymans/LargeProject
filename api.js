@@ -346,10 +346,10 @@ exports.setApp = function (app, client) {
       const tasks = await db.collection("Tasks")
         .find({ UserID: req.userId, TaskDeleted: {$ne: true} }) // Assuming 'UserID' is the field and TaskDeleted is not true
         .toArray();
-  
+      
       let tasksInProgress = 0;
       let tasksCompleted = 0;
-  
+      console.log(req.userId);
       // Count in progress and completed tasks
       tasks.forEach(task => {
         if (task.TaskCompleted) {
@@ -359,6 +359,7 @@ exports.setApp = function (app, client) {
         {
           tasksInProgress++;
         }
+        console.log("Task:", task);
       });
   
       // Send the counts as the response
