@@ -332,6 +332,44 @@ exports.setApp = function (app, client) {
     }
   });
 
+  // total user tasks API endpoint (NOT TESTED COMPLETELY!!!) - EWH
+  app.get("/api/usertasks", async (req, res) => {
+    try {
+      // Assuming you have some form of authentication and user ID is stored in the request after successful auth
+      if (!req.userId) {
+        return res.status(403).send("User is not authenticated");
+      }
+  
+      const db = client.db("LargeProject");
+      const tasks = await db.collection("Tasks")
+        .find({ UserID: req.userId, TaskDeleted: {$ne: true} }) // Assuming 'UserID' is the field and TaskDeleted is not true
+        .toArray();
+  
+      let tasksInProgress = 0;
+      let tasksCompleted = 0;
+  
+      // Count in progress and completed tasks
+      tasks.forEach(task => {
+        if (task.TaskCompleted) {
+          tasksCompleted++;
+        } else {
+          tasksInProgress++;
+        }
+      });
+  
+      // Send the counts as the response
+      res.status(200).json({
+        tasksInProgress,
+        tasksCompleted
+      });
+  
+    } catch (err) {
+      console.error("Error retrieving user tasks: " + err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  
+
   app.delete("/api/deletetask/:id", async (req, res) => {
     try {
       const UserObjectId = new ObjectId(req.params.id);
