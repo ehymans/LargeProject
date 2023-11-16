@@ -1,3 +1,7 @@
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../AuthContext'; // Adjust the path as necessary
+import '../styles/HomeHeader.css';
+
 function HomeHeader() {
   const [user, setUser] = useState({});
   const [tasksInProgress, setTasksInProgress] = useState(0);
