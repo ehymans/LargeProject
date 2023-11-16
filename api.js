@@ -341,15 +341,15 @@ exports.setApp = function (app, client) {
       if (!req.userId) {
         return res.status(403).send("User is not authenticated");
       }*/
-  
+      const {userId} = req.body;
       const db = client.db("LargeProject");
       const tasks = await db.collection("Tasks")
-        .find({ UserID: req.userId, TaskDeleted: {$ne: true} }) // Assuming 'UserID' is the field and TaskDeleted is not true
+        .find({ UserID: userId, TaskDeleted: {$ne: true} }) // Assuming 'UserID' is the field and TaskDeleted is not true
         .toArray();
       
       let tasksInProgress = 0;
       let tasksCompleted = 0;
-      console.log(req.userId);
+      console.log("this is the user ID:", userId);
       // Count in progress and completed tasks
       tasks.forEach(task => {
         if (task.TaskCompleted) {
