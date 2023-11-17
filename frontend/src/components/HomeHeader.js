@@ -30,13 +30,10 @@ function HomeHeader() {
         }
 
         const data = await response.json();
-        console.log("start of fetch");
         setTasksInProgress(data.tasksInProgress);
-        console.log(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
-        console.log(data.tasksCompleted);
-        console.log("end of fetch");
-      } 
+
+      }  
       catch (error) 
       {
         console.error('There was a problem with the fetch operation:', error);
@@ -45,8 +42,8 @@ function HomeHeader() {
 
     fetchTasks();
     console.log("start of fetch");
-    console.log(data.tasksInProgress);
-    console.log(data.tasksCompleted);
+    console.log(setTasksCompleted);
+    console.log(setTasksInProgress);
     console.log("end of fetch");
     // WebSocket connection
     const ws = new WebSocket('wss://progress-tracker-4331-88c53c23c126.herokuapp.com/');
