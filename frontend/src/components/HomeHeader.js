@@ -14,8 +14,10 @@ function HomeHeader() {
     setUser(ud);
 
     // Fetch initial tasks data
-    async function fetchTasks() {
-      try {
+    async function fetchTasks() 
+    {
+      try 
+      {
         const response = await fetch('/api/usertasks', {
           method: 'POST',
           headers: {
@@ -28,8 +30,6 @@ function HomeHeader() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        fetchTasks();
-
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
@@ -41,7 +41,7 @@ function HomeHeader() {
       }
     }
 
-    //fetchTasks();
+    fetchTasks();
 
     // WebSocket connection
     const ws = new WebSocket('wss://dare2do.online');
