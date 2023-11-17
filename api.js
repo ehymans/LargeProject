@@ -313,7 +313,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
       const {userId} = req.body;
       const db = client.db("LargeProject");
       const tasks = await db.collection("Tasks")
-        .find({ UserID: userId, TaskCompleted: {$ne: true} }) // Assuming 'UserID' is the field and TaskDeleted is not true
+        .find({ UserID: userId }) // Assuming 'UserID' is the field and TaskCompleted is not true
         .toArray();
       
       let tasksInProgress = 0;
