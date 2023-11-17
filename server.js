@@ -100,3 +100,4 @@ if (process.env.NODE_ENV === "production") {
 }
 // Export the broadcast function to use in other parts of your application
 module.exports = { broadcastUpdate };
+console.log(broadcastUpdate);
