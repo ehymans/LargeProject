@@ -41,24 +41,28 @@ function HomeHeader() {
     }
 
     fetchTasks();
-    console.log("start of fetch");
-    console.log(setTasksCompleted);
-    console.log(setTasksInProgress);
-    console.log("end of fetch");
     // WebSocket connection
-    const ws = new WebSocket('wss://progress-tracker-4331-88c53c23c126.herokuapp.com/');
+    const ws = new WebSocket('wss://dare2do.online');
 
     ws.onopen = () => {
       console.log('Connected to WebSocket');
     };
 
     ws.onmessage = (e) => {
-      const data = JSON.parse(e.data);
-      setTasksInProgress(data.tasksInProgress);
-      console.log(data.tasksInProgress);
-      setTasksCompleted(data.tasksCompleted);
-      console.log(data.tasksCompleted);
+      try {
+        const message = JSON.parse(e.data);
+        if (message.type === 'update' && message.payload) {
+          console.log("Received payload:", message.payload);
+          setTasksInProgress(message.payload.tasksInProgress);
+          setTasksCompleted(message.payload.tasksCompleted);
+        } else {
+          console.error("Invalid message format received");
+        }
+      } catch (error) {
+        console.error("Error parsing WebSocket message:", error);
+      }
     };
+    
 
     ws.onclose = () => {
       console.log('Disconnected from WebSocket');
