@@ -345,7 +345,29 @@ exports.setApp = function (app, client, broadcastUpdate) {
     }
   });
   
-
+  app.delete("/api/deletetask/:id", async (req, res) => {
+    try {
+      const taskId = new ObjectId(req.params.id);
+      const db = client.db("LargeProject");
+  
+      // Delete the task
+      await db.collection("Tasks").deleteOne({ _id: taskId });
+  
+      // Recalculate the tasks counts
+      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
+      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
+  
+      // Broadcast the update
+      broadcastUpdate({ tasksInProgress, tasksCompleted });
+  
+      res.status(200).send("Task Deleted");
+    } catch (err) {
+      console.error("Error deleting task:", err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+   
+/*
   app.delete("/api/deletetask/:id", async (req, res) => {
     try {
       const UserObjectId = new ObjectId(req.params.id);
@@ -358,7 +380,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
       console.error("Error deleting task: " + err);
       res.status(500).send("Internal Server Error");
     }
-  });
+  });*/
 
   /*
   app.put("/api/updatetask/:id", async (req, res) => {
