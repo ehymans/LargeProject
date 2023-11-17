@@ -79,11 +79,11 @@ function DisplayTasks({ updateTask }) {
       TaskDescription: formData.TaskDescription,
       TaskDifficulty: formData.TaskDifficulty,
       UserID: ud.id,
+      TaskCompleted: formData.TaskCompleted,      // added 11/17/23 - EWH (may need to remove)
     };
     try {
       const response = await axios.put(
-        bp.buildPath(`api/updatetask/${formData.TaskID}`),
-        Data
+        bp.buildPath(`api/updatetask/${formData.TaskID}`), Data
       );
       if (response.status === 200) {
         toast.success('Task Updated Successfully!', {

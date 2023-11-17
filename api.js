@@ -99,42 +99,6 @@ exports.setApp = function (app, client, broadcastUpdate) {
     res.status(200).json(ret);
   });
 
-  app.post("/api/addTask", async (req, res, next) => {
-    const { userId, taskName, taskDescription, taskDifficulty, taskCompleted, jwtToken } =
-      req.body;
-
-    try {
-      const db = client.db("LargeProject");
-
-      // Get the current maximum task ID in the collection
-
-      // Increment the task ID
-
-      const newTask = {
-        UserID: userId,
-        TaskName: taskName,
-        TaskDescription: taskDescription,
-        TaskDifficulty: taskDifficulty,
-        TaskCompleted: taskCompleted,             // EWH added 11/15/23 -> may need to delete?
-      };
-      await db.collection("Tasks").insertOne(newTask);
-
-    // After adding the task, calculate the updated counts
-      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
-      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
-
-      // Broadcast the updated counts to all connected clients
-      broadcastUpdate({ tasksInProgress, tasksCompleted });
-
-      res.status(200).json({ success: "Task added" });
-    } 
-    catch (e) 
-    {
-      // Handle any database or other errors
-      res.status(500).json({ error: e.message });
-    }
-  });
-
   app.post("/api/register", async (req, res, next) => {
     // Incoming: first name, last name, username, password
     const { firstName, lastName, username, password, email } = req.body;
@@ -261,6 +225,72 @@ exports.setApp = function (app, client, broadcastUpdate) {
   });
 
   const { ObjectId } = require("mongodb");
+
+  app.post("/api/addTask", async (req, res, next) => {
+    const { userId, taskName, taskDescription, taskDifficulty, taskCompleted, jwtToken } =
+      req.body;
+
+    try {
+      const db = client.db("LargeProject");
+
+      // Get the current maximum task ID in the collection
+
+      // Increment the task ID
+
+      const newTask = {
+        UserID: userId,
+        TaskName: taskName,
+        TaskDescription: taskDescription,
+        TaskDifficulty: taskDifficulty,
+        TaskCompleted: taskCompleted,             // EWH added 11/15/23 -> may need to delete?
+      };
+      await db.collection("Tasks").insertOne(newTask);
+
+    // After adding the task, calculate the updated counts
+      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
+      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
+
+      // Broadcast the updated counts to all connected clients
+      broadcastUpdate({ tasksInProgress, tasksCompleted });
+
+      res.status(200).json({ success: "Task added" });
+    } 
+    catch (e) 
+    {
+      // Handle any database or other errors
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+
+  // PUT endpoint
+  app.put("/api/updatetask/:id", async (req, res) => {
+    try 
+    {
+      const db = client.db("LargeProject");
+      const collection = db.collection("Tasks");
+      const updatedTask = await collection.findOneAndUpdate(
+        { _id: new ObjectId(req.params.id) },
+        { $set: req.body },
+        { returnOriginal: false }
+      );
+      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
+      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
+
+      // Broadcast the updated counts to all connected clients
+      broadcastUpdate({ tasksInProgress, tasksCompleted });
+
+      if (updatedTask) {
+        res.status(200).send("Task Updated!");
+      }
+    } 
+    catch (err) 
+    {
+      console.error("Error updating task: " + err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+
 
   app.post("/api/updatetask", async (req, res, next) => {
     // Incoming: _id, taskName, taskDescription, taskDifficulty, jwtToken
@@ -416,24 +446,6 @@ exports.setApp = function (app, client, broadcastUpdate) {
   //
   // commented out to enable testing of task counter - 11/15/23 - EWH
   //
-  app.put("/api/updatetask/:id", async (req, res) => {
-    try {
-      const db = client.db("LargeProject");
-      const collection = db.collection("Tasks");
-      const updatedTask = await collection.findOneAndUpdate(
-        { _id: new ObjectId(req.params.id) },
-        { $set: req.body },
-        { returnOriginal: false }
-      );
-      if (updatedTask) {
-        res.status(200).send("Task Updated!");
-      }
-    } catch (err) {
-      console.error("Error updating task: " + err);
-      res.status(500).send("Internal Server Error");
-    }
-  });
-
   app.get("/api/getcode/:email", async (req, res) => {
     try {
       const email = req.params.email;
