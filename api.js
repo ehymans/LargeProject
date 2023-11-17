@@ -223,7 +223,36 @@ exports.setApp = function (app, client, broadcastUpdate) {
       res.status(500).json({ error: e.message });
     }
   });
-
+  
+  app.delete("/api/deletetask/:id", async (req, res) => {
+    try {
+      const taskId = new ObjectId(req.params.id);
+      const db = client.db("LargeProject");
+  
+      // Fetch the task to get the UserID before deletion
+      const taskToDelete = await db.collection("Tasks").findOne({ _id: taskId });
+      if (!taskToDelete) {
+        return res.status(404).send("Task not found");
+      }
+      const userId = taskToDelete.UserID;
+  
+      // Delete the task
+      await db.collection("Tasks").deleteOne({ _id: taskId });
+  
+      // Recalculate the tasks counts
+      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
+      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
+  
+      // Broadcast the update
+      broadcastUpdate({ tasksInProgress, tasksCompleted });
+  
+      res.status(200).send("Task Deleted");
+    } catch (err) {
+      console.error("Error deleting task:", err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  
   const { ObjectId } = require("mongodb");
 
   app.post("/api/addTask", async (req, res, next) => {
@@ -375,27 +404,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
     }
   });
 
-  app.delete("/api/deletetask/:id", async (req, res) => {
-    try {
-      const taskId = new ObjectId(req.params.id);
-      const db = client.db("LargeProject");
-  
-      // Delete the task
-      await db.collection("Tasks").deleteOne({ _id: taskId });
-  
-      // Recalculate the tasks counts
-      //const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
-      //const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
-  
-      // Broadcast the update
-      //broadcastUpdate({ tasksInProgress, tasksCompleted });
-  
-      res.status(200).send("Task Deleted");
-    } catch (err) {
-      console.error("Error deleting task:", err);
-      res.status(500).send("Internal Server Error");
-    }
-  });
+
    
 /*
   app.delete("/api/deletetask/:id", async (req, res) => {
