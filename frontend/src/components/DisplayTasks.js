@@ -79,7 +79,7 @@ function DisplayTasks({ updateTask }) {
       TaskDescription: formData.TaskDescription,
       TaskDifficulty: formData.TaskDifficulty,
       UserID: ud.id,
-      TaskCompleted: formData.TaskCompleted,      // added 11/17/23 - EWH (may need to remove)
+      //TaskCompleted: formData.TaskCompleted,      // added 11/17/23 - EWH (may need to remove)
     };
     try {
       const response = await axios.put(
