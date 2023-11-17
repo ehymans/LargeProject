@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-const String url = "https://progress-tracker-4331-88c53c23c126.herokuapp.com";
+const String url = "https://dare2do.online";
 
 Future<int> signIn(String login, String password) async {
   Map data = {
@@ -21,7 +21,7 @@ Future<int> signIn(String login, String password) async {
   response = await http.post(Uri.parse("$url/api/login"),
       body: jsonData, headers: header);
   if (response.statusCode == 200) {
-    //     print(response.body);
+    print(response.body);
     // print(response.body.toString() == '{"error":"Login/Password incorrect"}');
     if (response.body.toString() == '{"error":"Login/Password incorrect"}') {
       print('Login failed');
