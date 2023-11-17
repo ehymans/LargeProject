@@ -49,21 +49,31 @@ function HomeHeader() {
     };
 
     ws.onmessage = (e) => {
-      try {
-        const message = JSON.parse(e.data);
-        if (message.type === 'update' && message.payload) {
-          console.log("Received payload:", message.payload);
-          setTasksInProgress(message.payload.tasksInProgress);
-          setTasksCompleted(message.payload.tasksCompleted);
-        } else {
-          console.error("Invalid message format received");
+      if(e.data === 'ping')
+      {
+        ws.send('pong');
+      }
+      else
+      {
+        try 
+        {
+          const message = JSON.parse(e.data);
+          if (message.type === 'update' && message.payload) {
+            console.log("Received payload:", message.payload);
+            setTasksInProgress(message.payload.tasksInProgress);
+            setTasksCompleted(message.payload.tasksCompleted);
+          } else {
+            console.error("Invalid message format received");
+          }
+        } 
+        catch (error) 
+        {
+          console.error("Error parsing WebSocket message:", error);
         }
-      } catch (error) {
-        console.error("Error parsing WebSocket message:", error);
       }
     };
     
-
+    // clean up logic
     ws.onclose = () => {
       console.log('Disconnected from WebSocket');
     };

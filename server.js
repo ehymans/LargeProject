@@ -50,6 +50,37 @@ app.use((req, res, next) => {
   next();
 });
 
+// ping-pong heartbeat logic (bc of dumb heroku rules)
+const interval = setInterval(function ping() {
+  wss.clients.forEach(function each(ws) {
+    if (ws.isAlive === false) return ws.terminate();
+    
+    ws.isAlive = false;
+    ws.ping();
+  });
+}, 30000); // Ping every 30 seconds
+
+wss.on('connection', function connection(ws) {
+  ws.isAlive = true;
+  ws.on('pong', function heartbeat() {
+    ws.isAlive = true;
+  });
+
+  // Your existing WebSocket 'connection' logic goes here
+  console.log('Client connected to WebSocket');
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
+});
+
+/*
+wss.on('close', function close() 
+{
+  clearInterval(interval);
+});*/
+
+
+/*
 // WebSocket connection logic
 wss.on('connection', (ws) => {
   console.log('Client connected to WebSocket');
@@ -57,7 +88,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     console.log('Client disconnected');
   });
-});
+});*/
 
 // Function to broadcast messages to all connected clients
 function broadcastUpdate(data) {
