@@ -266,12 +266,14 @@ exports.setApp = function (app, client, broadcastUpdate) {
 
       // Increment the task ID
 
+      const date = new Date();
       const newTask = {
         UserID: userId,
         TaskName: taskName,
         TaskDescription: taskDescription,
         TaskDifficulty: taskDifficulty,
         TaskCompleted: taskCompleted,             // EWH added 11/15/23 -> may need to delete?
+        Date: date,
       };
       await db.collection("Tasks").insertOne(newTask);
 
