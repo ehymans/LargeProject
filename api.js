@@ -208,6 +208,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
     res.status(200).json(ret);
   });
 
+
   app.post("/api/searchtasks", async (req, res, next) => {
     var error = "";
     const { userId, search, jwtToken } = req.body;
@@ -252,13 +253,6 @@ exports.setApp = function (app, client, broadcastUpdate) {
       // Delete the task from the database
       await db.collection("Tasks").deleteOne({ _id: objectId });
 
-       // After task deletion, calculate the updated counts
-      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
-      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
-
-      // Broadcast the updated counts to all connected clients
-      broadcastUpdate({ tasksInProgress, tasksCompleted });
-  
       res.status(200).json({ success: "Task deleted" });
     } catch (e) {
       // Handle any database or other errors
@@ -300,16 +294,9 @@ exports.setApp = function (app, client, broadcastUpdate) {
           },
         }
       );
-      // After task update, calculate the updated counts
-      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
-      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
 
-        // Broadcast the updated counts to all connected clients
-        broadcastUpdate({ tasksInProgress, tasksCompleted });
-        res.status(200).json({ success: "Task updated" });
-    } 
-    catch (e) 
-    {
+      res.status(200).json({ success: "Task updated" });
+    } catch (e) {
       // Handle any database or other errors
       res.status(500).json({ error: e.message });
     }
@@ -361,26 +348,18 @@ exports.setApp = function (app, client, broadcastUpdate) {
 
   app.delete("/api/deletetask/:id", async (req, res) => {
     try {
-      const taskId = new ObjectId(req.params.id);
+      const UserObjectId = new ObjectId(req.params.id);
       const db = client.db("LargeProject");
-  
-      // Delete the task
-      await db.collection("Tasks").deleteOne({ _id: taskId });
-  
-      // Recalculate the tasks counts
-      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
-      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
-  
-      // Broadcast the update
-      broadcastUpdate({ tasksInProgress, tasksCompleted });
-  
-      res.status(200).send("Task Deleted");
+      const task = await db
+        .collection("Tasks")
+        .deleteOne({ _id: UserObjectId });
+      res.status(200).send("task Deleted");
     } catch (err) {
-      console.error("Error deleting task:", err);
+      console.error("Error deleting task: " + err);
       res.status(500).send("Internal Server Error");
     }
   });
-  
+
   /*
   app.put("/api/updatetask/:id", async (req, res) => {
     try {
@@ -417,29 +396,22 @@ exports.setApp = function (app, client, broadcastUpdate) {
   //
   app.put("/api/updatetask/:id", async (req, res) => {
     try {
-      const taskId = new ObjectId(req.params.id);
       const db = client.db("LargeProject");
-  
-      // Update the task
-      await db.collection("Tasks").updateOne(
-        { _id: taskId },
-        { $set: req.body }
+      const collection = db.collection("Tasks");
+      const updatedTask = await collection.findOneAndUpdate(
+        { _id: new ObjectId(req.params.id) },
+        { $set: req.body },
+        { returnOriginal: false }
       );
-  
-      // Recalculate the tasks counts
-      const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
-      const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
-  
-      // Broadcast the update
-      broadcastUpdate({ tasksInProgress, tasksCompleted });
-  
-      res.status(200).send("Task Updated!");
+      if (updatedTask) {
+        res.status(200).send("Task Updated!");
+      }
     } catch (err) {
-      console.error("Error updating task:", err);
+      console.error("Error updating task: " + err);
       res.status(500).send("Internal Server Error");
     }
   });
-  
+
   app.get("/api/getcode/:email", async (req, res) => {
     try {
       const email = req.params.email;
