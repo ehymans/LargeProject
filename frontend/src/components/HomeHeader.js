@@ -4,8 +4,8 @@ import '../styles/HomeHeader.css';
 
 function HomeHeader() {
   const [user, setUser] = useState({});
-  const [tasksInProgress, setTasksInProgress] = useState(0);
-  const [tasksCompleted, setTasksCompleted] = useState(0);
+  const [tasksInProgress, setTasksInProgress] = useState(null);
+  const [tasksCompleted, setTasksCompleted] = useState(null);
   const { logout } = useContext(AuthContext); // Using AuthContext
 
   useEffect(() => {
