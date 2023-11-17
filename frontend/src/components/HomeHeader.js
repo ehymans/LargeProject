@@ -44,7 +44,10 @@ function HomeHeader() {
     }
 
     fetchTasks();
-
+    console.log("start of fetch");
+    console.log(data.tasksInProgress);
+    console.log(data.tasksCompleted);
+    console.log("end of fetch");
     // WebSocket connection
     const ws = new WebSocket('wss://progress-tracker-4331-88c53c23c126.herokuapp.com/');
 
