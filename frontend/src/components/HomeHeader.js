@@ -28,6 +28,7 @@ function HomeHeader() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
+        fetchTasks();
 
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
@@ -40,7 +41,8 @@ function HomeHeader() {
       }
     }
 
-    fetchTasks();
+    //fetchTasks();
+
     // WebSocket connection
     const ws = new WebSocket('wss://dare2do.online');
 
