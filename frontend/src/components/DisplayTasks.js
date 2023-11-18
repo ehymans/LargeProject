@@ -76,6 +76,45 @@ function DisplayTasks({ updateTask }) {
     const _ud = localStorage.getItem("user_data");
     const ud = JSON.parse(_ud || "{}");
     const Data = {
+      _id: formData.TaskID, // Include the task ID
+      TaskName: formData.TaskName,
+      TaskDescription: formData.TaskDescription,
+      TaskDifficulty: formData.TaskDifficulty,
+      // Include any other fields required by your task schema
+      // UserID can be omitted if it's retrieved from the JWT token in the backend
+    };
+  
+    try {
+      const response = await axios.post(
+        bp.buildPath("api/updatetask"), 
+        Data
+      );
+  
+      if (response.status === 200) {
+        toast.success('Task Updated Successfully!', {
+          position: 'top-right',
+          autoClose: 5000,
+        });
+        fetchData();
+        handleModalClose();
+        console.log("Tasks List Updated!");
+      }
+    } catch (error) {
+      console.error("Error while updating task: ", error);
+      toast.error('Unable to update task. Something went wrong!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+    }
+  };
+  
+
+
+  /*
+  const handleUpdate = async () => {
+    const _ud = localStorage.getItem("user_data");
+    const ud = JSON.parse(_ud || "{}");
+    const Data = {
       TaskName: formData.TaskName,
       TaskDescription: formData.TaskDescription,
       TaskDifficulty: formData.TaskDifficulty,
@@ -102,7 +141,7 @@ function DisplayTasks({ updateTask }) {
       });
 
     }
-  };
+  };*/
 
   //Updates Value after every change
   const handleChange = (e) => {
