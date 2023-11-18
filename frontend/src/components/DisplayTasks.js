@@ -76,13 +76,12 @@ function DisplayTasks({ updateTask }) {
     const _ud = localStorage.getItem("user_data");
     const ud = JSON.parse(_ud || "{}");
     const Data = {
-      _id: formData.TaskID, // Include the task ID
-      TaskName: formData.TaskName,
-      TaskDescription: formData.TaskDescription,
-      TaskDifficulty: formData.TaskDifficulty,
-      TaskCompleted: formData.TaskCompleted,
-      // Include any other fields required by your task schema
-      // UserID can be omitted if it's retrieved from the JWT token in the backend
+      _id: formData.TaskID,
+      taskName: formData.TaskName, // Changed to 'taskName' to match backend
+      taskDescription: formData.TaskDescription, // Changed to 'taskDescription'
+      taskDifficulty: formData.TaskDifficulty, // Changed to 'taskDifficulty'
+      TaskCompleted: formData.TaskCompleted, // Kept as 'TaskCompleted'
+      jwtToken: retrieveToken(), // Include the JWT token if needed
     };
   
     try {
