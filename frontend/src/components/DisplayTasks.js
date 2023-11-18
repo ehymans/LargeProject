@@ -80,6 +80,7 @@ function DisplayTasks({ updateTask }) {
       TaskName: formData.TaskName,
       TaskDescription: formData.TaskDescription,
       TaskDifficulty: formData.TaskDifficulty,
+      TaskCompleted: formData.TaskCompleted,
       // Include any other fields required by your task schema
       // UserID can be omitted if it's retrieved from the JWT token in the backend
     };
