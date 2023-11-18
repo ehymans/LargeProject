@@ -51,7 +51,8 @@ function DisplayTasks({ updateTask }) {
 
         const data = await response.json();
 
-        if (data.results) {
+        if (data.results) 
+        {
           setTasks(data.results); // Assuming data.results is the array of tasks
         } else {
           setTasks([]); // Handle the case where no results are returned
@@ -79,7 +80,6 @@ function DisplayTasks({ updateTask }) {
       TaskDescription: formData.TaskDescription,
       TaskDifficulty: formData.TaskDifficulty,
       UserID: ud.id,
-      //TaskCompleted: formData.TaskCompleted,      // added 11/17/23 - EWH (may need to remove)
     };
     try {
       const response = await axios.put(
@@ -260,7 +260,7 @@ function DisplayTasks({ updateTask }) {
       </Modal >
 
       <div className="tasks-container">
-        {tasks.map((task, index) => (
+        {tasks.filter(task => !task.TaskCompleted).map((task, index) => (
           <div key={index} className={`task-card ${task.TaskCompleted ? "completed-task" : ""}`}>
             <div className="title">
               {task.TaskName}
