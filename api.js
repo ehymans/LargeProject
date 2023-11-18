@@ -346,10 +346,10 @@ exports.setApp = function (app, client, broadcastUpdate) {
 
       if (updatedTask.value) {
         const userId = updatedTask.value.UserID;
-        const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
-        const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
+        //const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
+        //const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
       
-        broadcastUpdate({ tasksInProgress, tasksCompleted });
+        //broadcastUpdate({ tasksInProgress, tasksCompleted });
         res.status(200).send("Task Updated!");
       } 
       else 
