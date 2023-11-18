@@ -334,15 +334,16 @@ exports.setApp = function (app, client, broadcastUpdate) {
 
   // PUT endpoint
   app.put("/api/updatetask/:id", async (req, res) => {
-    try 
-    {
+    try {
       const db = client.db("LargeProject");
       const collection = db.collection("Tasks");
-      const updatedTask = await collection.findOneAndUpdate(
-        { _id: new ObjectId(req.params.id) },
-        { $set: req.body },
-        { returnOriginal: false }
-      );
+      const taskID = new ObjectId(req.params.id);
+  
+      // Check if task exists
+      const taskExists = await collection.findOne({ _id: taskID });
+      if (!taskExists) {
+        return res.status(404).send("Task not found");
+      }
 
       if (updatedTask.value) {
         const userId = updatedTask.value.UserID;
