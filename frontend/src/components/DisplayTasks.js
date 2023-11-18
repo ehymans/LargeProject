@@ -95,7 +95,7 @@ function DisplayTasks({ updateTask }) {
         console.log("Tasks List Updated!");
       }
     } catch (error) {
-      console.log("Error while updating task: ", error);
+      console.log("Error while updating task (line 98): ", error);
       toast.error('Unable to update task. Something went wrong!', {
         position: 'top-right', // Set the toast position
         autoClose: 3000, // Close the toast after 3 seconds (optional)
@@ -149,7 +149,7 @@ function DisplayTasks({ updateTask }) {
         console.log("Tasks list Updated!");
       }
     } catch (error) {
-      console.log("Error while updating task status: ", error);
+      console.log("Error while updating task status (line 152): ", error);
       toast.error('Unable to update task completion status. Something went wrong!', {
         position: 'top-right', // Set the toast position
         autoClose: 3000, // Close the toast after 3 seconds (optional)
