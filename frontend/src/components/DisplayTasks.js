@@ -113,6 +113,7 @@ function DisplayTasks({ updateTask }) {
     }));
   };
 
+  /*
   const toggleSelect = async (e, id) => {
     let taskID;
     if (id) {
@@ -132,8 +133,19 @@ function DisplayTasks({ updateTask }) {
     }
     const Data = {
       TaskCompleted: e.target.checked,
-    };
-    console.log('Task ID: ', taskID);
+    };*/
+    const toggleSelect = async (e, id) => {
+      const isChecked = e.target.checked;
+      let taskID = id ? id : formData.TaskID;
+    
+      const Data = {
+        // Include all necessary fields expected by your API
+        TaskID: taskID,
+        TaskCompleted: isChecked,
+        // Include other fields if needed
+      };
+    //console.log('Task ID: ', taskID);
+    console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
     try {
       const response = await axios.put(
         bp.buildPath(`api/updatetask/${taskID}`),
