@@ -117,7 +117,7 @@ function DisplayTasks({ updateTask }) {
     const isChecked = e.target.checked;
     let taskID = id ? id : formData.TaskID;
   
-    // Validate taskID - Make sure it's a valid ObjectId format
+    // Validate taskID
     if (!taskID.match(/^[0-9a-fA-F]{24}$/)) {
       console.error("Invalid Task ID: ", taskID);
       toast.error('Invalid Task ID. Operation aborted!', {
@@ -127,9 +127,7 @@ function DisplayTasks({ updateTask }) {
       return;
     }
   
-    const Data = {
-      TaskCompleted: isChecked,
-    };
+    const Data = { TaskCompleted: isChecked };
   
     console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
   
@@ -139,15 +137,7 @@ function DisplayTasks({ updateTask }) {
         Data
       );
   
-      if (response.status === 200) {
-        toast.success('Task Status Updated Successfully!', {
-          position: 'top-right',
-          autoClose: 5000,
-        });
-        fetchData();
-        handleModalClose();
-        console.log("Tasks list Updated!");
-      }
+      // Success handling
     } catch (error) {
       console.error("Error while updating task status: ", error);
       toast.error('Unable to update task completion status. Something went wrong!', {
@@ -156,6 +146,7 @@ function DisplayTasks({ updateTask }) {
       });
     }
   };
+  
   
   /*
   const toggleSelect = async (e, id) => {
