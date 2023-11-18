@@ -113,6 +113,50 @@ function DisplayTasks({ updateTask }) {
     }));
   };
 
+  const toggleSelect = async (e, id) => {
+    const isChecked = e.target.checked;
+    let taskID = id ? id : formData.TaskID;
+  
+    // Validate taskID - Make sure it's a valid ObjectId format
+    if (!taskID.match(/^[0-9a-fA-F]{24}$/)) {
+      console.error("Invalid Task ID: ", taskID);
+      toast.error('Invalid Task ID. Operation aborted!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      return;
+    }
+  
+    const Data = {
+      TaskCompleted: isChecked,
+    };
+  
+    console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
+  
+    try {
+      const response = await axios.put(
+        bp.buildPath(`api/updatetask/${taskID}`),
+        Data
+      );
+  
+      if (response.status === 200) {
+        toast.success('Task Status Updated Successfully!', {
+          position: 'top-right',
+          autoClose: 5000,
+        });
+        fetchData();
+        handleModalClose();
+        console.log("Tasks list Updated!");
+      }
+    } catch (error) {
+      console.error("Error while updating task status: ", error);
+      toast.error('Unable to update task completion status. Something went wrong!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+    }
+  };
+  
   /*
   const toggleSelect = async (e, id) => {
     let taskID;
@@ -133,17 +177,7 @@ function DisplayTasks({ updateTask }) {
     }
     const Data = {
       TaskCompleted: e.target.checked,
-    };*/
-    const toggleSelect = async (e, id) => {
-      const isChecked = e.target.checked;
-      let taskID = id ? id : formData.TaskID;
-    
-      const Data = {
-        // Include all necessary fields expected by your API
-        TaskID: taskID,
-        TaskCompleted: isChecked,
-        // Include other fields if needed
-      };
+    };
     //console.log('Task ID: ', taskID);
     console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
     try {
@@ -167,7 +201,7 @@ function DisplayTasks({ updateTask }) {
         autoClose: 3000, // Close the toast after 3 seconds (optional)
       });
     }
-  };
+  };*/
 
   const handleDelete = async (task) => {
     const confirmed = window.confirm('Are you sure you want to delete this task?');
