@@ -235,12 +235,18 @@ exports.setApp = function (app, client, broadcastUpdate) {
         return res.status(404).send("Task not found");
       }
       const userId = taskToDelete.UserID;
-  
+
+      if(!(taskToDelete.TaskCompleted))
+      {
+        // only delete task from DB if completed is false --> will not decrement completed counter!
+        await db.collection("Tasks").deleteOne({ _id: taskId });        
+      }
       // Delete the task
-      await db.collection("Tasks").deleteOne({ _id: taskId });
+      //await db.collection("Tasks").deleteOne({ _id: taskId });
   
       // Recalculate the tasks counts
       const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
+      
       const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
   
       // Broadcast the update
