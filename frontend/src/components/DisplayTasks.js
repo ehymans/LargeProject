@@ -117,7 +117,6 @@ function DisplayTasks({ updateTask }) {
     const isChecked = e.target.checked;
     let taskID = id ? id : formData.TaskID;
   
-    // Validate taskID
     if (!taskID.match(/^[0-9a-fA-F]{24}$/)) {
       console.error("Invalid Task ID: ", taskID);
       toast.error('Invalid Task ID. Operation aborted!', {
@@ -127,17 +126,29 @@ function DisplayTasks({ updateTask }) {
       return;
     }
   
-    const Data = { TaskCompleted: isChecked };
+    const Data = {
+      _id: taskID,
+      TaskCompleted: isChecked,
+      // Add other fields if needed as per your task schema
+    };
   
     console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
   
     try {
-      const response = await axios.put(
-        bp.buildPath(`api/updatetask/${taskID}`),
+      const response = await axios.post(
+        bp.buildPath("api/updatetask"),
         Data
       );
   
-      // Success handling
+      if (response.status === 200) {
+        toast.success('Task Status Updated Successfully!', {
+          position: 'top-right',
+          autoClose: 5000,
+        });
+        fetchData();
+        handleModalClose();
+        console.log("Tasks list Updated!");
+      }
     } catch (error) {
       console.error("Error while updating task status: ", error);
       toast.error('Unable to update task completion status. Something went wrong!', {
@@ -146,6 +157,7 @@ function DisplayTasks({ updateTask }) {
       });
     }
   };
+  
   
   
   /*
