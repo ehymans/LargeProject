@@ -25,7 +25,7 @@
 
 /* CSS for the Modal component */
 .modal {
-    position: relative;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
