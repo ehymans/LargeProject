@@ -8,10 +8,10 @@ function HomeHeader() {
   const [tasksInProgress, setTasksInProgress] = useState(null);
   const [tasksCompleted, setTasksCompleted] = useState(null);
 
-  //const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
-  //const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
-  const [level, setLevel] = useState(null);
-  const [progress, setProgress] = useState(null);
+  const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
+  const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
+
+
   const { logout } = useContext(AuthContext); // Using AuthContext
 
 
