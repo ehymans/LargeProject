@@ -6,9 +6,10 @@ body {
   position: relative;
 }
 
+/*
 .modal, .modal1 {
-  position: relative; /* This makes sure that the child absolute positioning is relative to the modal */
-}
+  position: relative; 
+}*/
 
 /*
 .cross-icon {
