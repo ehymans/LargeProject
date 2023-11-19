@@ -122,31 +122,29 @@ function HomeHeader() {
     }
   };
   
-
   function calculateLevel(tasksInProgress, tasksCompleted) {
-    // Level 0 to 1 transition based on adding a task
+    // Level 0 to 1 transition
     if (tasksInProgress > 0 && tasksCompleted === 0) return 1;
-
-    // Level progression based on tasks completed
+  
+    // Level 1 to 2 transition
+    if (tasksCompleted >= 2 && tasksCompleted < 5) return 2;
+  
+    // Level 2 to 3 transition
     if (tasksCompleted >= 5) return 3;
-    if (tasksCompleted >= 2) return 2;
-    
-    // If tasks are in progress but not enough to level up, stay at level 1
-    return 0;
+  
+    return 0; // Default to level 0
   }
-
-
   
   function calculateProgress(tasksCompleted, level) {
     switch(level) {
       case 1: 
-        // No additional progress calculation needed for level 1 as per your description
+        // Progress to Level 1 happens immediately upon adding a task
         return 100;
       case 2: 
-        // For level 2, progress is based on completing 2 tasks
+        // Progress to Level 2 is based on completing 2 tasks
         return Math.min(100, (tasksCompleted / 2) * 100);
       case 3: 
-        // For level 3, progress is based on completing 3 additional tasks (5 in total)
+        // Progress to Level 3 is based on completing 3 additional tasks beyond the 2 completed for Level 2
         return Math.min(100, ((tasksCompleted - 2) / 3) * 100);
       default: 
         return 0;
