@@ -130,7 +130,6 @@ function HomeHeader() {
     window.location.href = '/'; // Redirect to login page
   };
 
-// ...
 
   const updateLevelAndProgress = () => {
     const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
@@ -194,6 +193,9 @@ function HomeHeader() {
         // Calculate progress based on tasks completed out of 5 total
         progress = ((tasksCompleted - 2) / 3) * 100;
         break;
+        case 3:
+          progress = ((tasksCompleted - 5) / 5) * 100;
+          break;
       default:
         progress = 0;
     }
