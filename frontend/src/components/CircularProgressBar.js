@@ -4,14 +4,31 @@ import '../styles/CircularProgressBar.css';
 function CircularProgressBar({ progress }) {
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
-  const [counter, setCounter] = useState(progress); // Initialize with passed progress
+  //const [counter, setCounter] = useState(progress); // Initialize with passed progress
+  const [counter, setCounter] = useState(0); // Initialize counter at 0
   const offset = circumference - (counter / 100) * circumference;
 
   useEffect(() => {
-    // Update counter based on the passed progress prop
-    setCounter(progress);
-  }, [progress]); // React to changes in progress
-  
+    // Animate counter to the new progress value
+    let animationFrameId;
+    
+    const animateProgress = () => {
+      setCounter((prevCounter) => {
+        if (prevCounter < progress) {
+          animationFrameId = requestAnimationFrame(animateProgress);
+          return prevCounter + 1; // This controls the speed of the animation
+        } else {
+          return progress; // When it reaches the progress, stop the animation
+        }
+      });
+    };
+
+    animateProgress();
+    
+    // Clean up the animation frame
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [progress]);
+
   return (
     <div className="skill">
       <div className="outer">
@@ -30,8 +47,8 @@ function CircularProgressBar({ progress }) {
             cy="80" 
             r={radius} 
             stroke-linecap="round"
-            stroke-width="10" 
-            stroke="url(#GradientColor)"
+            stroke-width="10"
+            stroke={progress > 0 ? "url(#GradientColor)" : "lightgrey"} // Change color to grey if progress is 0
             fill="none"
             stroke-dasharray={circumference}
             stroke-dashoffset={offset}  // Use the offset value calculated above

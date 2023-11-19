@@ -32,6 +32,7 @@
 }
 
 circle {
+    transition: stroke-dashoffset 1s ease-out; /* Adjust the duration as needed */
     fill: none;
     stroke: url(#GradientColor);
     stroke-width: 20px;
