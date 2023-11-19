@@ -132,7 +132,7 @@ function HomeHeader() {
     if (tasksCompleted >= 2) return 2;
     
     // If tasks are in progress but not enough to level up, stay at level 1
-    return 1;
+    return 0;
   }
 
 
