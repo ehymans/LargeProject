@@ -50,12 +50,17 @@ function HomeHeader() {
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
-
+        console.log('API called L53');
+        console.log('api result:', data.tasksInProgress);
+        console.log('api result:', data.tasksCompleted);
       if (data) {
         const newLevel = calculateLevel(data.tasksInProgress, data.tasksCompleted);
         const newProgress = calculateProgress(data.tasksInProgress, data.tasksCompleted, newLevel);
         setLevel(newLevel);
         setProgress(newProgress);
+        console.log('within if(data)');
+        console.log('newLevel:', newLevel);
+        console.log('newProgress:', newProgress);
       }
 
       }  
@@ -112,8 +117,8 @@ function HomeHeader() {
   const doLogout = (event) => {
     event.preventDefault();
       // Save current state before logging out
-    localStorage.setItem('user_level', level);
-    localStorage.setItem('user_progress', progress);
+    //localStorage.setItem('user_level', level);
+    //localStorage.setItem('user_progress', progress);
     logout(); // Clear the token using AuthContext
     localStorage.removeItem('user_data'); // Clear user data upon logout
     //localStorage.removeItem('user_level'); // Clear user level
@@ -123,6 +128,7 @@ function HomeHeader() {
 
   useEffect(() => {
     // Call this function whenever tasksInProgress or tasksCompleted changes
+    console.log('updateLevelAndProgress useEffect call');
     updateLevelAndProgress();
   }, [tasksInProgress, tasksCompleted]);
   
