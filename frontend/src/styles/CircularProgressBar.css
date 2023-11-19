@@ -1,16 +1,10 @@
-/* body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
-
 .skill {
     width: 160px;
     height: 160px;
-    top: -80px; /* Half of the height to move it up */
-    right: -80px; /* Position it to the right inside the header, adjust as needed */
-    position: relative; /* Position it absolutely to the left-section */
+    position: absolute; /* Changed to absolute positioning */
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
 }
 
 .outer {
@@ -21,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative; /* Add relative here to contain the absolute svg */
 }
 
 .inner {
@@ -35,18 +30,20 @@
 #number {
     font-weight: 600;
     color: #555;
-    font-size: 1.5em; /* Adjust font size as needed */
-    text-align: center; /* Center the text */
+    font-size: 1.5em;
+    text-align: center;
 }
 
 circle {
-    transition: stroke-dashoffset 1s ease-out; /* Adjust the duration as needed */
+    transition: stroke-dashoffset 1s ease-out;
     fill: none;
     stroke: url(#GradientColor);
-    stroke-width: 20px;
+    stroke-width: 20px; /* Consider reducing this if the circle appears cut off */
 }
 
 svg {
+    position: absolute; /* Added position absolute */
     top: 0;
     left: 0;
+    transform: translate(-20px, -20px); /* Adjust this if needed to center the SVG */
 }
