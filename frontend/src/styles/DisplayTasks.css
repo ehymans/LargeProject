@@ -132,6 +132,7 @@
 
 .modal1 .cross-icon {
   position: absolute;
+  z-index: 10;
   top: 10px; /* Adjust to move the icon down from the top of the modal1 */
   right: 10px; /* Adjust to move the icon left from the right side of the modal1 */
   cursor: pointer;
