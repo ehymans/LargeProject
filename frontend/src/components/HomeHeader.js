@@ -31,6 +31,9 @@ function HomeHeader() {
     //console.log('Level from localStorage:', savedLevel);
     //console.log('Progress from localStorage:', savedProgress);
 
+  
+
+
     // Fetch initial tasks data
     async function fetchTasks() 
     {
@@ -127,12 +130,8 @@ function HomeHeader() {
     window.location.href = '/'; // Redirect to login page
   };
 
-  useEffect(() => {
-    // Call this function whenever tasksInProgress or tasksCompleted changes
-    console.log('updateLevelAndProgress useEffect call');
-    updateLevelAndProgress();
-  }, [tasksInProgress, tasksCompleted]);
-  
+// ...
+
   const updateLevelAndProgress = () => {
     const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
     const newProgress = calculateProgress(tasksInProgress, tasksCompleted, newLevel);
@@ -141,18 +140,30 @@ function HomeHeader() {
       setProgress(100); // Set to 100% momentarily
 
       setTimeout(() => {
-        setLevel(newLevel);
-        setProgress(0); // Reset to 0% for the new level
-        localStorage.setItem('user_level', newLevel);
-        localStorage.setItem('user_progress', 0);
+        setLevelAndProgress(newLevel, 0); // Reset to 0% for the new level
       }, 1000);
     } else {
-      setProgress(newProgress); // Update progress for the current level
-      localStorage.setItem('user_progress', newProgress);
+      setLevelAndProgress(level, newProgress); // Update progress for the current level
     }
     console.log('New level:', newLevel);
     console.log('New progress:', newProgress);
   };
+
+  const setLevelAndProgress = (newLevel, newProgress) => {
+    setLevel(newLevel);
+    setProgress(newProgress);
+    localStorage.setItem('user_level', newLevel);
+    localStorage.setItem('user_progress', newProgress);
+  };
+
+  useEffect(() => {
+    // Call this function whenever tasksInProgress or tasksCompleted changes
+    console.log('updateLevelAndProgress useEffect call');
+    if (tasksInProgress !== null && tasksCompleted !== null) {
+      updateLevelAndProgress();
+    }
+  }, [tasksInProgress, tasksCompleted]);
+
 
   function calculateLevel(tasksInProgress, tasksCompleted) {
     // Level 0 to 1: 1 task in progress, 0 completed
