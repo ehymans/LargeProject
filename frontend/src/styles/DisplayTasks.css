@@ -112,7 +112,7 @@
 
 /* CSS for the Modal component */
 .modal1 {
-  position: relative;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -134,7 +134,7 @@
   float: right;
   cursor: pointer;
   transform: translate(10px, -10px);
-}*/
+}
 
 .modal1 h1 {
   text-align: center;
