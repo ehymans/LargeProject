@@ -97,42 +97,54 @@ function HomeHeader() {
     localStorage.removeItem('user_data'); // Clear user data upon logout
     window.location.href = '/'; // Redirect to login page
   };
-  
+
   useEffect(() => {
     // Call this function whenever tasksInProgress or tasksCompleted changes
     updateLevelAndProgress();
   }, [tasksInProgress, tasksCompleted]);
   
-  const updateLevelAndProgress = () => {
-    const newLevel = calculateLevel(tasksInProgress);
-    let newProgress;
-  
-    if (level !== newLevel) {
-      // Temporarily set progress to 100% when leveling up
-      setProgress(100);
-      // Use a timeout to decrease progress to 0% after a short delay
-      setTimeout(() => setProgress(0), 1000); // Delay can be adjusted
-    } else {
-      newProgress = calculateProgress(tasksCompleted, newLevel);
-      setProgress(newProgress);
-    }
-  
-    setLevel(newLevel);
-  };
-  
-  function calculateLevel(tasksInProgress) {
-    // Level up when a task is added
-    return tasksInProgress > 0 ? 1 : 0;
+
+  // In updateLevelAndProgress function
+  const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
+  let newProgress = calculateProgress(tasksCompleted, newLevel);
+
+  if (level !== newLevel) {
+    setProgress(100);
+    setTimeout(() => {
+      setProgress(0);
+      setLevel(newLevel);
+    }, 1000); // Adjust delay as needed
+  } else {
+    setProgress(newProgress);
   }
+
+  function calculateLevel(tasksInProgress, tasksCompleted) {
+    // Level 0 to 1 transition based on adding a task
+    if (tasksInProgress > 0 && tasksCompleted === 0) return 1;
+
+    // Level progression based on tasks completed
+    if (tasksCompleted >= 5) return 3;
+    if (tasksCompleted >= 2) return 2;
+    
+    // If tasks are in progress but not enough to level up, stay at level 1
+    return 1;
+  }
+
+
   
-  function calculateProgress(tasks, level) {
-    // Calculate progress based on the level and tasks completed
-    // This logic might remain the same or change based on your new criteria
+  function calculateProgress(tasksCompleted, level) {
     switch(level) {
-      case 1: return 100;
-      case 2: return (tasks - 3) / 3 * 100;
-      case 3: return (tasks - 5) / 5 * 100;
-      default: return 0;
+      case 1: 
+        // No additional progress calculation needed for level 1 as per your description
+        return 100;
+      case 2: 
+        // For level 2, progress is based on completing 2 tasks
+        return Math.min(100, (tasksCompleted / 2) * 100);
+      case 3: 
+        // For level 3, progress is based on completing 3 additional tasks (5 in total)
+        return Math.min(100, ((tasksCompleted - 2) / 3) * 100);
+      default: 
+        return 0;
     }
   }
   
