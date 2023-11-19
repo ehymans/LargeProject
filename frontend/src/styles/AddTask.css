@@ -44,11 +44,19 @@
     padding-bottom: 20px;
 }
 
+.cross-icon {
+    position: absolute; /* Position the icon absolutely within the modal */
+    top: 10px; /* Adjust as necessary */
+    left: 10px; /* Adjust as necessary */
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+    /* Other styles for the icon */
+}
+/*
 .modal .cross-icon {
     float: right;
     cursor: pointer;
     transform: translate(10px, -10px);
-}
+}*/
 
 .modal .task-form input {
     width: 100%;
