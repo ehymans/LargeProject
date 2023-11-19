@@ -33,7 +33,7 @@ function CircularProgressBar({ progress }) {
     <div className="skill">
       <div className="outer">
         <div className="inner">
-          <div>{counter}%</div>  {/* Directly use state value here */}
+          <div id="number">{counter}%</div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
           <defs>
@@ -48,9 +48,10 @@ function CircularProgressBar({ progress }) {
             r={radius} 
             stroke-linecap="round"
             stroke-width="10" 
-            stroke="#eee"  // A light color for the base outline
+            stroke="#eee"  // Base outline for 0%
             fill="none"
             stroke-dasharray={circumference}
+            stroke-dashoffset={circumference} // Full circumference for 0%
           />
           <circle 
             cx="80" 

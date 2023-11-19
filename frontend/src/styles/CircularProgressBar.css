@@ -6,11 +6,11 @@
 } */
 
 .skill {
-    position: absolute; /* Position it absolutely to the left-section */
     width: 160px;
     height: 160px;
     top: -80px; /* Half of the height to move it up */
     right: -80px; /* Position it to the right inside the header, adjust as needed */
+    position: relative; /* Position it absolutely to the left-section */
 }
 
 .outer {
@@ -18,6 +18,9 @@
     width: 160px;
     border-radius: 50%;
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inner {
@@ -32,6 +35,8 @@
 #number {
     font-weight: 600;
     color: #555;
+    font-size: 1.5em; /* Adjust font size as needed */
+    text-align: center; /* Center the text */
 }
 
 circle {
