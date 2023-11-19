@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .home-header {
     position: relative;
     display: flex;
@@ -16,14 +18,15 @@
 .home-header .left-section {
     position: absolute; /* Position the progress bar absolutely */
     top: 50%; /* Align top edge to the vertical center of the header */
-    left: 50%; /* Align left edge to the horizontal center of the header */
+    left: 20%; /* Align left edge to the horizontal center of the header */
     transform: translate(-50%, -50%); /* Center the progress bar */
-    z-index: 10; /* Make sure the progress bar is above other elements */
+    
 }
 
 /* Adjusted CSS for the center section */
 .home-header .center-section {
-    flex: 3; /* Adjust as needed based on your layout */
+    margin-left: 15%; /* Add a left margin to push content to the right */
+    flex: 1; /* You can change this to control the width of the center section */
 }
 
 /* CSS for the right section containing the logout button */
@@ -40,6 +43,8 @@
     margin-top: 10px; /* Space from tasks info */
 }
 .home-header .task-info {
+    font-family: 'Roboto', sans-serif; /* This is the new font */
+    font-size: 20px; /* Adjust font size as needed */
     margin-top: 10px; /* Add some space between the title and task info */
     font-size: 20px; /* Adjust font size as needed */
 }
