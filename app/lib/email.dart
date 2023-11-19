@@ -74,12 +74,13 @@ class EmailScreenState extends State<EmailScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Succesfully Registered')));
+                        final accessTkn =
+                            await signIn(widget.uName, widget.pass);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => HomeScreen(
-                                    login: widget.uName,
-                                  )),
+                                  login: widget.uName, token: accessTkn)),
                         );
                       } else if (num == 2) {
                         if (!mounted) return;
