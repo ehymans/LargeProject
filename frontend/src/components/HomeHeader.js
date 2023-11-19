@@ -114,9 +114,7 @@ function HomeHeader() {
       // Use a timeout to reset progress to 0% and update level after a short delay
       setTimeout(() => {
         setLevel(newLevel);
-        // Calculate the new progress after leveling up and reset to that value
-        const newProgress = calculateProgress(tasksCompleted, newLevel);
-        setProgress(newProgress);
+        setProgress(0); // Reset progress to 0% for the new level
       }, 1000); // Delay can be adjusted
     } else {
       // Calculate and update progress for the current level
@@ -124,6 +122,7 @@ function HomeHeader() {
       setProgress(newProgress);
     }
   };
+  
   
   function calculateLevel(tasksInProgress, tasksCompleted) {
     // Level 0 to 1 transition
@@ -138,6 +137,7 @@ function HomeHeader() {
     return 0; // Default to level 0
   }
   
+  
   function calculateProgress(tasksCompleted, level) {
     switch(level) {
       case 1: 
@@ -145,8 +145,7 @@ function HomeHeader() {
         return 100;
       case 2: 
         // Progress to Level 2 is based on completing 2 tasks
-        // Since Level 1 is reached by adding a task, progress remains at 0 until tasks are completed
-        return tasksCompleted >= 1 ? Math.min(100, (tasksCompleted / 2) * 100) : 0;
+        return Math.min(100, (tasksCompleted / 2) * 100);
       case 3: 
         // Progress to Level 3 is based on completing 3 additional tasks beyond the 2 completed for Level 2
         return Math.min(100, ((tasksCompleted - 2) / 3) * 100);
