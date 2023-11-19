@@ -6,7 +6,7 @@ function CircularProgressBar({ progress }) {
   const circumference = 2 * Math.PI * radius;
   //const [counter, setCounter] = useState(progress); // Initialize with passed progress
   const [counter, setCounter] = useState(0); // Initialize counter at 0
-  const offset = circumference - (counter / 100) * circumference;
+  const offset = circumference - (progress / 100) * circumference;
 
   useEffect(() => {
     // Animate counter to the new progress value
@@ -52,7 +52,6 @@ function CircularProgressBar({ progress }) {
             stroke="#eee"  // Base outline for 0%
             fill="none"
             stroke-dasharray={circumference}
-            stroke-dashoffset={circumference} // Full circumference for 0%
           />
           <circle 
             cx="80" 
