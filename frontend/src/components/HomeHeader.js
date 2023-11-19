@@ -111,10 +111,13 @@ function HomeHeader() {
 
   const doLogout = (event) => {
     event.preventDefault();
+      // Save current state before logging out
+    localStorage.setItem('user_level', level);
+    localStorage.setItem('user_progress', progress);
     logout(); // Clear the token using AuthContext
     localStorage.removeItem('user_data'); // Clear user data upon logout
-    localStorage.removeItem('user_level'); // Clear user level
-    localStorage.removeItem('user_progress'); // Clear user progress
+    //localStorage.removeItem('user_level'); // Clear user level
+    //localStorage.removeItem('user_progress'); // Clear user progress
     window.location.href = '/'; // Redirect to login page
   };
 
