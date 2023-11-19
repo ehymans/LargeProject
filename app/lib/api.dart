@@ -2,10 +2,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'task.dart';
 
 const String url = "https://dare2do.online";
 
-Future<int> signIn(String login, String password) async {
+Future<String> signIn(String login, String password) async {
   Map data = {
     "login": login,
     "password": password,
@@ -20,19 +21,21 @@ Future<int> signIn(String login, String password) async {
   var response;
   response = await http.post(Uri.parse("$url/api/login"),
       body: jsonData, headers: header);
+
+  var receivedData = json.decode(response.body);
+  var token = receivedData["accessToken"];
   if (response.statusCode == 200) {
-    print(response.body);
     // print(response.body.toString() == '{"error":"Login/Password incorrect"}');
     if (response.body.toString() == '{"error":"Login/Password incorrect"}') {
       print('Login failed');
-      return 0;
+      return "0";
     } else {
       print('Login successful');
-      return 1;
+      return token;
     }
   } else {
     print('failed');
-    return 0;
+    return "0";
   }
 }
 
@@ -92,6 +95,38 @@ Future<void> addTask(String id, String taskName, String taskDescription,
   } else {
     print('Failed to add task');
   }
+}
+
+Future<List<Task>> displayTasks(String id, String token) async {
+  Map uData = {"userId": id, "search": "", "accessToken": token};
+
+  var jsonData = jsonEncode(uData).toString();
+
+  const Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  var response = await http.post(Uri.parse("$url/api/searchtasks"),
+      body: jsonData, headers: header);
+
+  List<Task> result = [];
+
+  var results = jsonDecode(response.body);
+  print(results);
+  final data = results["results"] as List;
+  int length = data.length;
+
+  for (int i = 0; i < length; i++) {
+    Task temp = Task();
+    temp.taskName = results["results"][i]["TaskName"];
+    temp.taskDescription = results["results"][i]["TaskDescription"];
+    temp.taskDifficulty = results["results"][i]["TaskDifficulty"];
+    // temp.taskCompleted = results["results"][i]["TaskCompleted"];
+    result.add(temp);
+  }
+
+  return result;
 }
 
 Future<int> verifyEmail(String email) async {

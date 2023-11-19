@@ -192,16 +192,6 @@ class RegisterScreenState extends State<RegisterScreen> {
                         }
                       } else {
                         if (!mounted) return;
-                        // if (firstNameController.text.toString() == '' ||
-                        //     lastNameController.text.toString() == '' ||
-                        //     userNameController.text.toString() == '' ||
-                        //     passwordController.text.toString() == '' ||
-                        //     confirmController.text.toString() == '') {
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //     const SnackBar(
-                        //         content: Text('At least one field is empty')),
-                        //   );
-                        // } else
                         if (!passMatch) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
