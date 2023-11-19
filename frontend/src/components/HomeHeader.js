@@ -106,18 +106,21 @@ function HomeHeader() {
 
   const updateLevelAndProgress = () => {
     const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
-    let newProgress;
   
     if (level !== newLevel) {
       // Temporarily set progress to 100% when leveling up
       setProgress(100);
-      // Use a timeout to decrease progress to 0% and update level after a short delay
+  
+      // Use a timeout to reset progress to 0% and update level after a short delay
       setTimeout(() => {
-        setProgress(0);
         setLevel(newLevel);
+        // Calculate the new progress after leveling up and reset to that value
+        const newProgress = calculateProgress(tasksCompleted, newLevel);
+        setProgress(newProgress);
       }, 1000); // Delay can be adjusted
     } else {
-      newProgress = calculateProgress(tasksCompleted, newLevel);
+      // Calculate and update progress for the current level
+      const newProgress = calculateProgress(tasksCompleted, level);
       setProgress(newProgress);
     }
   };
