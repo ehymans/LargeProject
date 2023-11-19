@@ -483,6 +483,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
         console.log("Task:", task);
       });
   
+      broadcastUpdate({ tasksInProgress, tasksCompleted })
       // Send the counts as the response
       res.status(200).json({
         tasksInProgress,
