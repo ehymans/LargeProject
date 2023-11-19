@@ -97,8 +97,47 @@ function HomeHeader() {
     localStorage.removeItem('user_data'); // Clear user data upon logout
     window.location.href = '/'; // Redirect to login page
   };
+  
+  useEffect(() => {
+    // Call this function whenever tasksInProgress or tasksCompleted changes
+    updateLevelAndProgress();
+  }, [tasksInProgress, tasksCompleted]);
+  
+  const updateLevelAndProgress = () => {
+    const newLevel = calculateLevel(tasksInProgress);
+    let newProgress;
+  
+    if (level !== newLevel) {
+      // Temporarily set progress to 100% when leveling up
+      setProgress(100);
+      // Use a timeout to decrease progress to 0% after a short delay
+      setTimeout(() => setProgress(0), 1000); // Delay can be adjusted
+    } else {
+      newProgress = calculateProgress(tasksCompleted, newLevel);
+      setProgress(newProgress);
+    }
+  
+    setLevel(newLevel);
+  };
+  
+  function calculateLevel(tasksInProgress) {
+    // Level up when a task is added
+    return tasksInProgress > 0 ? 1 : 0;
+  }
+  
+  function calculateProgress(tasks, level) {
+    // Calculate progress based on the level and tasks completed
+    // This logic might remain the same or change based on your new criteria
+    switch(level) {
+      case 1: return 100;
+      case 2: return (tasks - 3) / 3 * 100;
+      case 3: return (tasks - 5) / 5 * 100;
+      default: return 0;
+    }
+  }
+  
 
-
+  /*
   useEffect(() => {
     // Call this function whenever tasksCompleted changes
     updateLevelAndProgress();
@@ -129,7 +168,7 @@ function HomeHeader() {
       case 3: return (tasks - 5) / 5 * 100;
       default: return 0;
     }
-  }
+  }*/
 
   return (
     <div className="home-header">
