@@ -127,19 +127,30 @@ function HomeHeader() {
   }
   
   function calculateProgress(tasksInProgress, tasksCompleted, level) {
+    let progress = 0;
+  
     switch(level) {
       case 0:
-        return tasksInProgress > 0 ? 100 : 0;
+        progress = tasksInProgress > 0 ? 100 : 0;
+        break;
       case 1:
-        return tasksCompleted === 0 ? 0 : 100;
+        progress = tasksCompleted >= 1 ? 100 : 0;
+        break;
       case 2:
-        return (tasksCompleted - 1) * 50;
+        // 50% for one task completed, 100% for two or more tasks completed
+        progress = tasksCompleted === 1 ? 50 : (tasksCompleted >= 2 ? 100 : 0);
+        break;
       case 3:
-        return (tasksCompleted - 2) * 33.3;
+        // Increment progress by 33.3% for each task completed beyond the first 2
+        progress = Math.min(100, (tasksCompleted - 2) * 33.3);
+        break;
       default:
-        return 0;
+        progress = 0;
     }
+  
+    return progress;
   }
+  
   /*
   const updateLevelAndProgress = () => {
     const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
