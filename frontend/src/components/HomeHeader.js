@@ -8,7 +8,7 @@ function HomeHeader() {
   const [tasksInProgress, setTasksInProgress] = useState(null);
   const [tasksCompleted, setTasksCompleted] = useState(null);
 
-  const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
+  //const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
   const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
 
   const { logout } = useContext(AuthContext); // Using AuthContext
@@ -155,13 +155,13 @@ function HomeHeader() {
 
   function calculateLevel(tasksInProgress, tasksCompleted) {
     // Level 0 to 1: 1 task in progress, 0 completed
-    if (level === 0 && tasksInProgress >= 1 && tasksCompleted === 0) return 1;
+    if (tasksInProgress >= 1 && tasksCompleted === 0) return 1;
     
     // Level 1 to 2: 2 tasks completed
-    if (level === 1 && tasksCompleted >= 2) return 2;
+    if (tasksCompleted >= 2) return 2;
   
     // Level 2 to 3: 5 total tasks completed
-    if (level === 2 && tasksCompleted >= 5) return 3;
+    if (tasksCompleted >= 5) return 3;
   
     return level;
   }
