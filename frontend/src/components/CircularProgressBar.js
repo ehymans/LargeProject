@@ -30,7 +30,7 @@ function CircularProgressBar({ progress }) {
   }, [progress]);
 
   return (
-    <div className="skill">
+    <div className="circular-progress-bar skill">
       <div className="outer">
         <div className="inner">
           <div id="number">{counter}%</div>

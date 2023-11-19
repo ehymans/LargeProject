@@ -41,12 +41,13 @@ circle {
     stroke-width: 20px; /* Consider reducing this if the circle appears cut off */
 }
 
-svg {
-    position: absolute; /* Added position absolute */
+.circular-progress-bar svg {
+    position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center the svg within .outer */
+    transform: translate(-50%, -50%);
 }
+
 .base-circle {
     stroke: #eee; /* A light gray color for the unfilled part */
     stroke-width: 10; /* Match this to the stroke-width of the progress circle */
