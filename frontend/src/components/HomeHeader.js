@@ -20,10 +20,10 @@ function HomeHeader() {
     setUser(ud);
 
     // Initialize level and progress from localStorage
-    //const savedLevel = parseInt(localStorage.getItem('user_level'), 10) || 0;
-    //const savedProgress = parseFloat(localStorage.getItem('user_progress')) || 0;
-    //setLevel(savedLevel);
-    //setProgress(savedProgress);
+    const savedLevel = parseInt(localStorage.getItem('user_level'), 10) || 0;
+    const savedProgress = parseFloat(localStorage.getItem('user_progress')) || 0;
+    setLevel(savedLevel);
+    setProgress(savedProgress);
 
     // Fetch initial tasks data
     async function fetchTasks() 
@@ -108,6 +108,8 @@ function HomeHeader() {
     event.preventDefault();
     logout(); // Clear the token using AuthContext
     localStorage.removeItem('user_data'); // Clear user data upon logout
+    localStorage.removeItem('user_level'); // Clear user level
+    localStorage.removeItem('user_progress'); // Clear user progress
     window.location.href = '/'; // Redirect to login page
   };
 
