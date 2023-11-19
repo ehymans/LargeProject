@@ -8,7 +8,6 @@
 .skill {
     width: 160px;
     height: 160px;
-    position: absolute;
 }
 
 .outer {
@@ -39,7 +38,6 @@ circle {
 }
 
 svg {
-    position: absolute;
     top: 0;
     left: 0;
 }

@@ -1,15 +1,39 @@
 .home-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Change to flex-start to align items to the top */
+    align-items: flex-start;
     color: #fff;
     margin: 20px 2vw;
-    padding: 20px 2vw; /* Adjust padding as needed */
+    padding: 20px 2vw;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* New CSS for the left section containing the CircularProgressBar */
+.home-header .left-section {
+    flex: 1; /* Adjust as needed to give space */
+    align-self: center; /* Center the progress bar vertically */
+}
+
+/* Adjusted CSS for the center section */
+.home-header .center-section {
+    flex: 3; /* Adjust as needed based on your layout */
+}
+
+/* CSS for the right section containing the logout button */
+.home-header .btn-div {
+    flex: 1; /* Adjust as needed to give space */
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Additional styles for level information */
+.home-header .level-info {
+    font-size: 18px; /* Adjust as you see fit */
+    margin-top: 10px; /* Space from tasks info */
+}
 .home-header .task-info {
     margin-top: 10px; /* Add some space between the title and task info */
     font-size: 20px; /* Adjust font size as needed */
