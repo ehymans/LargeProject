@@ -121,8 +121,8 @@ function HomeHeader() {
     //localStorage.setItem('user_progress', progress);
     logout(); // Clear the token using AuthContext
     localStorage.removeItem('user_data'); // Clear user data upon logout
-    //localStorage.removeItem('user_level'); // Clear user level
-    //localStorage.removeItem('user_progress'); // Clear user progress
+    localStorage.removeItem('user_level'); // Clear user level
+    localStorage.removeItem('user_progress'); // Clear user progress
     window.location.href = '/'; // Redirect to login page
   };
 
@@ -190,108 +190,6 @@ function HomeHeader() {
     return parseFloat(progress.toFixed(1)); // Format to one decimal place and convert back to a number
   }
   
-  /*
-  const updateLevelAndProgress = () => {
-    const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
-    const newProgress = calculateProgress(tasksInProgress, tasksCompleted, level);
-    setProgress(newProgress);
-
-    if (level !== newLevel) {
-      // Temporarily set progress to 100% when leveling up
-      setProgress(100);
-  
-      // Use a timeout to reset progress to 0% and update level after a short delay
-      setTimeout(() => {
-        setLevel(newLevel);
-        setProgress(0); // Reset progress to 0% for the new level
-      }, 1000); // Delay can be adjusted
-    } else {
-      // Calculate and update progress for the current level
-      const newProgress = calculateProgress(tasksCompleted, level);
-      setProgress(newProgress);
-    }
-  };
-  
-  
-  function calculateLevel(tasksInProgress, tasksCompleted) {
-    // Level 0 to 1 transition
-    if (tasksInProgress > 0 && tasksCompleted === 0) return 1;
-  
-    // Level 1 to 2 transition
-    if (tasksCompleted >= 2 && tasksCompleted < 5) return 2;
-  
-    // Level 2 to 3 transition
-    if (tasksCompleted >= 5) return 3;
-  
-    return 0; // Default to level 0
-  }
-  
-  
-  function calculateProgress(tasksInProgress, tasksCompleted, level) {
-    switch(level) {
-      case 1: 
-        // Level 1: No progress until a task is completed
-        return 0;
-      case 2: 
-        // Level 2: Increment progress by 50% for each completed task
-        if (tasksCompleted === 1) {
-          return 50;
-        } else if (tasksCompleted >= 2) {
-          return 100;
-        }
-        return 0;
-      case 3: 
-        // Level 3: Increment progress by 33.3% for each task completed beyond the first 2
-        if (tasksCompleted === 3) {
-          return 33.3;
-        } else if (tasksCompleted === 4) {
-          return 66.6;
-        } else if (tasksCompleted >= 5) {
-          return 100;
-        }
-        return 0;
-      default: 
-        // Level 0: progress is 100% when the first task is added
-        return tasksInProgress > 0 ? 100 : 0;
-    }
-  }*/
-  
-  
-  
-  
-
-  /*
-  useEffect(() => {
-    // Call this function whenever tasksCompleted changes
-    updateLevelAndProgress();
-  }, [tasksCompleted]);
-
-  const updateLevelAndProgress = () => {
-    const newLevel = calculateLevel(tasksCompleted);
-    const newProgress = calculateProgress(tasksCompleted, newLevel);
-
-    setLevel(newLevel);
-    setProgress(newProgress);
-  };
-
-
-  function calculateLevel(tasks) {
-    // Define level based on the number of tasks completed
-    if (tasks >= 5) return 3;
-    if (tasks >= 3) return 2;
-    if (tasks > 0) return 1;
-    return 0;
-  }
-
-  function calculateProgress(tasks, level) {
-    // Calculate progress based on the level and tasks completed
-    switch(level) {
-      case 1: return 100;
-      case 2: return (tasks - 3) / 3 * 100;
-      case 3: return (tasks - 5) / 5 * 100;
-      default: return 0;
-    }
-  }*/
 
   return (
     <div className="home-header">
