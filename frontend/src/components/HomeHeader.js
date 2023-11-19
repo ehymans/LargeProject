@@ -103,7 +103,44 @@ function HomeHeader() {
     updateLevelAndProgress();
   }, [tasksInProgress, tasksCompleted]);
   
-
+  const updateLevelAndProgress = () => {
+    const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
+    const newProgress = calculateProgress(tasksInProgress, tasksCompleted, newLevel);
+  
+    if (level !== newLevel) {
+      setProgress(100); // Set to 100% momentarily
+  
+      setTimeout(() => {
+        setLevel(newLevel);
+        setProgress(0); // Reset to 0% for the new level
+      }, 1000);
+    } else {
+      setProgress(newProgress); // Update progress for the current level
+    }
+  };
+  
+  function calculateLevel(tasksInProgress, tasksCompleted) {
+    if (tasksInProgress > 0 && tasksCompleted === 0) return 1; // Level 0 to 1
+    if (tasksCompleted >= 2 && tasksCompleted < 5) return 2; // Level 1 to 2
+    if (tasksCompleted >= 5) return 3; // Level 2 to 3
+    return 0;
+  }
+  
+  function calculateProgress(tasksInProgress, tasksCompleted, level) {
+    switch(level) {
+      case 0:
+        return tasksInProgress > 0 ? 100 : 0;
+      case 1:
+        return tasksCompleted === 0 ? 0 : 100;
+      case 2:
+        return (tasksCompleted - 1) * 50;
+      case 3:
+        return (tasksCompleted - 2) * 33.3;
+      default:
+        return 0;
+    }
+  }
+  /*
   const updateLevelAndProgress = () => {
     const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
     const newProgress = calculateProgress(tasksInProgress, tasksCompleted, level);
@@ -167,7 +204,7 @@ function HomeHeader() {
         // Level 0: progress is 100% when the first task is added
         return tasksInProgress > 0 ? 100 : 0;
     }
-  }
+  }*/
   
   
   
