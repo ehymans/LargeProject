@@ -485,12 +485,11 @@ exports.setApp = function (app, client, broadcastUpdate) {
   
       broadcastUpdate({ tasksInProgress, tasksCompleted })
       // Send the counts as the response
-      res.status(200).json({ success: "Task count yes" });
-      /*
+
       res.status(200).json({
         tasksInProgress,
         tasksCompleted
-      });*/
+      });
       console.log('no error getting user tasks');
     } 
     catch (err) 
