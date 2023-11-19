@@ -20,10 +20,10 @@ function HomeHeader() {
     setUser(ud);
 
     // Initialize level and progress from localStorage
-    const savedLevel = parseInt(localStorage.getItem('user_level'), 10) || 0;
-    const savedProgress = parseFloat(localStorage.getItem('user_progress')) || 0;
-    setLevel(savedLevel);
-    setProgress(savedProgress);
+    //const savedLevel = parseInt(localStorage.getItem('user_level'), 10) || 0;
+    //const savedProgress = parseFloat(localStorage.getItem('user_progress')) || 0;
+    //setLevel(savedLevel);
+    //setProgress(savedProgress);
 
     // Fetch initial tasks data
     async function fetchTasks() 
@@ -45,6 +45,12 @@ function HomeHeader() {
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
+        
+        // After fetching, calculate level and progress
+        const newLevel = calculateLevel(data.tasksInProgress, data.tasksCompleted);
+        const newProgress = calculateProgress(data.tasksInProgress, data.tasksCompleted, newLevel);
+        setLevel(newLevel);
+        setProgress(newProgress);
 
       }  
       catch (error) 
