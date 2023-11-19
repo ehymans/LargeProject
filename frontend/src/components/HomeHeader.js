@@ -45,12 +45,13 @@ function HomeHeader() {
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
-        
-        // After fetching, calculate level and progress
+
+      if (data) {
         const newLevel = calculateLevel(data.tasksInProgress, data.tasksCompleted);
         const newProgress = calculateProgress(data.tasksInProgress, data.tasksCompleted, newLevel);
         setLevel(newLevel);
         setProgress(newProgress);
+      }
 
       }  
       catch (error) 
