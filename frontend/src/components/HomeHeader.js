@@ -143,19 +143,32 @@ function HomeHeader() {
   function calculateProgress(tasksInProgress, tasksCompleted, level) {
     switch(level) {
       case 1: 
-        // Level 1 is reached by adding a task, progress remains at 0 until tasks are completed
+        // Level 1: No progress until a task is completed
         return 0;
       case 2: 
-        // Level 2: progress increments by 50% per task completed, starting from 1 completed task
-        return tasksCompleted >= 1 ? Math.min(100, ((tasksCompleted - 1) / 2) * 100) : 0;
+        // Level 2: Increment progress by 50% for each completed task
+        if (tasksCompleted === 1) {
+          return 50;
+        } else if (tasksCompleted >= 2) {
+          return 100;
+        }
+        return 0;
       case 3: 
-        // Level 3: progress increments by 33.3% per task completed, starting from 3 completed tasks
-        return Math.min(100, ((tasksCompleted - 2) / 3) * 100);
+        // Level 3: Increment progress by 33.3% for each task completed beyond the first 2
+        if (tasksCompleted === 3) {
+          return 33.3;
+        } else if (tasksCompleted === 4) {
+          return 66.6;
+        } else if (tasksCompleted >= 5) {
+          return 100;
+        }
+        return 0;
       default: 
         // Level 0: progress is 100% when the first task is added
         return tasksInProgress > 0 ? 100 : 0;
     }
   }
+  
   
   
   
