@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/CircularProgressBar.css';
 
-function CircularProgressBar() {
-  const [counter, setCounter] = useState(0);
+function CircularProgressBar({ progress }) {
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
+  const [counter, setCounter] = useState(progress); // Initialize with passed progress
   const offset = circumference - (counter / 100) * circumference;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (counter < 100) {
-        setCounter(prevCounter => prevCounter + 1);  // Increment the counter
-      } else {
-        clearInterval(interval);  // Clear interval when counter reaches 100
-      }
-    }, 30);
-
-    return () => clearInterval(interval);  // clear the interval when the component is unmounted
-  }, [counter]);  // Add counter to the dependency array
-
+    // Update counter based on the passed progress prop
+    setCounter(progress);
+  }, [progress]); // React to changes in progress
+  
   return (
     <div className="skill">
       <div className="outer">
