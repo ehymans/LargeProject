@@ -43,7 +43,11 @@ circle {
 
 svg {
     position: absolute; /* Added position absolute */
-    top: 0;
-    left: 0;
-    transform: translate(-20px, -20px); /* Adjust this if needed to center the SVG */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the svg within .outer */
+}
+.base-circle {
+    stroke: #eee; /* A light gray color for the unfilled part */
+    stroke-width: 10; /* Match this to the stroke-width of the progress circle */
 }

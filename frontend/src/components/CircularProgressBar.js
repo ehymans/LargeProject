@@ -43,6 +43,7 @@ function CircularProgressBar({ progress }) {
             </linearGradient>
           </defs>
           <circle 
+            className = "base-circle"
             cx="80" 
             cy="80" 
             r={radius} 
