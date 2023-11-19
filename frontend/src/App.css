@@ -6,10 +6,14 @@ body {
   position: relative;
 }
 
+.modal, .modal1 {
+  position: relative; /* This makes sure that the child absolute positioning is relative to the modal */
+}
+
 .cross-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 16px;
+  right: 16px;
   cursor: pointer;
   font-size: 25px; /* Adjust size as needed */
 }
