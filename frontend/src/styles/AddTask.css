@@ -44,13 +44,17 @@
     padding-bottom: 20px;
 }
 
-.cross-icon {
+
+/* Should this include .modal .cross-icon? --> icon doesn't show up on the toast notification!!*/
+
+.modal .cross-icon {
     position: absolute; /* Position the icon absolutely within the modal */
     top: 10px; /* Adjust as necessary */
     left: 10px; /* Adjust as necessary */
     cursor: pointer; /* Change the cursor to a pointer on hover */
     /* Other styles for the icon */
 }
+
 /*
 .modal .cross-icon {
     float: right;
