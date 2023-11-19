@@ -483,7 +483,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
         console.log("Task:", task);
       });
   
-      broadcastUpdate({ tasksInProgress, tasksCompleted })
+      //broadcastUpdate({ tasksInProgress, tasksCompleted })
       // Send the counts as the response
 
       res.status(200).json({
@@ -491,6 +491,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
         tasksCompleted
       });
       console.log('no error getting user tasks');
+      broadcastUpdate({ tasksInProgress, tasksCompleted })
     } 
     catch (err) 
     {
