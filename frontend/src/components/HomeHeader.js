@@ -105,8 +105,9 @@ function HomeHeader() {
   
 
   const updateLevelAndProgress = () => {
-    const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
-  
+    const newProgress = calculateProgress(tasksInProgress, tasksCompleted, level);
+    setProgress(newProgress);
+
     if (level !== newLevel) {
       // Temporarily set progress to 100% when leveling up
       setProgress(100);
@@ -138,21 +139,23 @@ function HomeHeader() {
   }
   
   
-  function calculateProgress(tasksCompleted, level) {
+  function calculateProgress(tasksInProgress, tasksCompleted, level) {
     switch(level) {
       case 1: 
-        // Progress to Level 1 is immediate upon adding a task
-        return 100;
+        // Level 1 is reached by adding a task, progress remains at 0 until tasks are completed
+        return 0;
       case 2: 
-        // Progress to Level 2 is based on completing 2 tasks
-        return Math.min(100, (tasksCompleted / 2) * 100);
+        // Level 2: progress increments by 50% per task completed, starting from 1 completed task
+        return tasksCompleted >= 1 ? Math.min(100, ((tasksCompleted - 1) / 2) * 100) : 0;
       case 3: 
-        // Progress to Level 3 is based on completing 3 additional tasks beyond the 2 completed for Level 2
+        // Level 3: progress increments by 33.3% per task completed, starting from 3 completed tasks
         return Math.min(100, ((tasksCompleted - 2) / 3) * 100);
       default: 
-        return 0;
+        // Level 0: progress is 100% when the first task is added
+        return tasksInProgress > 0 ? 100 : 0;
     }
   }
+  
   
   
 
