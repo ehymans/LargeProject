@@ -12,8 +12,9 @@ body {
 
 .cross-icon {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 0; /* Adjust to align with the top edge of the modal */
+  right: 0; /* Adjust to align with the right edge of the modal */
+  margin-top: 10px; /* Adjust to give some space from the top */
+  margin-right: 10px; /* Adjust to give some space from the right */
   cursor: pointer;
-  font-size: 25px; /* Adjust size as needed */
 }
