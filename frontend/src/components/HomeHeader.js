@@ -120,10 +120,16 @@ function HomeHeader() {
   };
   
   function calculateLevel(tasksInProgress, tasksCompleted) {
-    if (tasksInProgress > 0 && tasksCompleted === 0) return 1; // Level 0 to 1
-    if (tasksCompleted >= 2 && tasksCompleted < 5) return 2; // Level 1 to 2
-    if (tasksCompleted >= 5) return 3; // Level 2 to 3
-    return 0;
+    // Level 0 to 1: 1 task in progress, 0 completed
+    if (level === 0 && tasksInProgress >= 1 && tasksCompleted === 0) return 1;
+    
+    // Level 1 to 2: 2 tasks completed
+    if (level === 1 && tasksCompleted >= 2) return 2;
+  
+    // Level 2 to 3: 5 total tasks completed
+    if (level === 2 && tasksCompleted >= 5) return 3;
+  
+    return level;
   }
   
   function calculateProgress(tasksInProgress, tasksCompleted, level) {
@@ -131,22 +137,24 @@ function HomeHeader() {
   
     switch(level) {
       case 0:
+        // 100% if at least one task is in progress
         progress = tasksInProgress > 0 ? 100 : 0;
         break;
       case 1:
-        // 50% for one task completed, 100% for two or more tasks completed
-        progress = tasksCompleted === 1 ? 50 : (tasksCompleted >= 2 ? 100 : 0);
+        // Calculate progress based on tasks completed out of 2 required
+        progress = (tasksCompleted / 2) * 100;
         break;
       case 2:
-        // Increment progress by 33.3% for each task completed beyond the first 2
-        progress = Math.min(100, (tasksCompleted - 2) * 33.3);
+        // Calculate progress based on tasks completed out of 5 total
+        progress = ((tasksCompleted - 2) / 3) * 100;
         break;
       default:
         progress = 0;
     }
   
-    return progress;
+    return Math.min(100, progress); // Ensure progress doesn't exceed 100%
   }
+  
   
   /*
   const updateLevelAndProgress = () => {
