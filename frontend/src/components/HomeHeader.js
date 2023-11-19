@@ -19,6 +19,12 @@ function HomeHeader() {
     let ud = JSON.parse(_ud || '{}');
     setUser(ud);
 
+    // Initialize level and progress from localStorage
+    const savedLevel = parseInt(localStorage.getItem('user_level'), 10) || 0;
+    const savedProgress = parseFloat(localStorage.getItem('user_progress')) || 0;
+    setLevel(savedLevel);
+    setProgress(savedProgress);
+
     // Fetch initial tasks data
     async function fetchTasks() 
     {
@@ -106,19 +112,22 @@ function HomeHeader() {
   const updateLevelAndProgress = () => {
     const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
     const newProgress = calculateProgress(tasksInProgress, tasksCompleted, newLevel);
-  
+
     if (level !== newLevel) {
       setProgress(100); // Set to 100% momentarily
-  
+
       setTimeout(() => {
         setLevel(newLevel);
         setProgress(0); // Reset to 0% for the new level
+        localStorage.setItem('user_level', newLevel);
+        localStorage.setItem('user_progress', 0);
       }, 1000);
     } else {
       setProgress(newProgress); // Update progress for the current level
+      localStorage.setItem('user_progress', newProgress);
     }
   };
-  
+
   function calculateLevel(tasksInProgress, tasksCompleted) {
     // Level 0 to 1: 1 task in progress, 0 completed
     if (level === 0 && tasksInProgress >= 1 && tasksCompleted === 0) return 1;
