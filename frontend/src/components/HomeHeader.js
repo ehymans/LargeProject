@@ -173,7 +173,8 @@ function HomeHeader() {
   
     // Level 2 to 3: 5 total tasks completed
     if (tasksCompleted >= 5) return 3;
-  
+
+    if (tasksCompleted >= 10) return 4;
     return level;
   }
   
@@ -193,9 +194,9 @@ function HomeHeader() {
         // Calculate progress based on tasks completed out of 5 total
         progress = ((tasksCompleted - 2) / 3) * 100;
         break;
-        case 3:
-          progress = ((tasksCompleted - 5) / 5) * 100;
-          break;
+      case 3:
+        progress = ((tasksCompleted - 5) / 5) * 100;
+        break;
       default:
         progress = 0;
     }
