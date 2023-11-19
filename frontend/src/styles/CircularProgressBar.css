@@ -6,8 +6,11 @@
 } */
 
 .skill {
+    position: absolute; /* Position it absolutely to the left-section */
     width: 160px;
     height: 160px;
+    top: -80px; /* Half of the height to move it up */
+    right: -80px; /* Position it to the right inside the header, adjust as needed */
 }
 
 .outer {
