@@ -5,3 +5,11 @@ body {
   background-size: 100% 100%;
   position: relative;
 }
+
+.cross-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 25px; /* Adjust size as needed */
+}

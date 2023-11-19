@@ -1,7 +1,3 @@
-.add-task {
-    /* margin: 0; */
-}
-
 .add-task .btn-div {
     text-align: center;
 }
@@ -46,14 +42,14 @@
 
 
 /* Should this include .modal .cross-icon? --> icon doesn't show up on the toast notification!!*/
-
+/*
 .cross-icon {
-    position: absolute; /* Position the icon absolutely within the modal */
-    top: 10px; /* Adjust as necessary */
-    left: 10px; /* Adjust as necessary */
-    cursor: pointer; /* Change the cursor to a pointer on hover */
-    /* Other styles for the icon */
-}
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    cursor: pointer; 
+    
+}*/
 
 /*
 .modal .cross-icon {

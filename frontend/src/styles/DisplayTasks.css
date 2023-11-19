@@ -129,11 +129,12 @@
   padding-bottom: 10px;
 }
 
+/*
 .modal1 .cross-icon {
   float: right;
   cursor: pointer;
   transform: translate(10px, -10px);
-}
+}*/
 
 .modal1 h1 {
   text-align: center;
