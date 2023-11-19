@@ -47,11 +47,21 @@ function CircularProgressBar({ progress }) {
             cy="80" 
             r={radius} 
             stroke-linecap="round"
-            stroke-width="10"
-            stroke={progress > 0 ? "url(#GradientColor)" : "lightgrey"} // Change color to grey if progress is 0
+            stroke-width="10" 
+            stroke="#eee"  // A light color for the base outline
             fill="none"
             stroke-dasharray={circumference}
-            stroke-dashoffset={offset}  // Use the offset value calculated above
+          />
+          <circle 
+            cx="80" 
+            cy="80" 
+            r={radius} 
+            stroke-linecap="round"
+            stroke-width="10" 
+            stroke="url(#GradientColor)"
+            fill="none"
+            stroke-dasharray={circumference}
+            stroke-dashoffset={offset}
           />
         </svg>
       </div>
