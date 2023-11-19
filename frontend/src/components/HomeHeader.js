@@ -138,11 +138,12 @@ function HomeHeader() {
   function calculateProgress(tasksCompleted, level) {
     switch(level) {
       case 1: 
-        // Progress to Level 1 happens immediately upon adding a task
+        // Progress to Level 1 is immediate upon adding a task
         return 100;
       case 2: 
         // Progress to Level 2 is based on completing 2 tasks
-        return Math.min(100, (tasksCompleted / 2) * 100);
+        // Since Level 1 is reached by adding a task, progress remains at 0 until tasks are completed
+        return tasksCompleted >= 1 ? Math.min(100, (tasksCompleted / 2) * 100) : 0;
       case 3: 
         // Progress to Level 3 is based on completing 3 additional tasks beyond the 2 completed for Level 2
         return Math.min(100, ((tasksCompleted - 2) / 3) * 100);
@@ -150,6 +151,7 @@ function HomeHeader() {
         return 0;
     }
   }
+  
   
 
   /*
