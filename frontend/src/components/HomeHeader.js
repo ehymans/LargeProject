@@ -152,7 +152,8 @@ function HomeHeader() {
         progress = 0;
     }
   
-    return Math.min(100, progress); // Ensure progress doesn't exceed 100%
+    //return Math.min(100, progress); // Ensure progress doesn't exceed 100%
+    return parseFloat(progress.toFixed(1)); // Format to one decimal place and convert back to a number
   }
   
   
