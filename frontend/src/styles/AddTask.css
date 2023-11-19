@@ -42,6 +42,7 @@
 
 
 /* Should this include .modal .cross-icon? --> icon doesn't show up on the toast notification!!*/
+
 /*
 .cross-icon {
     position: absolute; 
@@ -51,12 +52,12 @@
     
 }*/
 
-/*
 .modal .cross-icon {
-    float: right;
+    position: absolute;
+    top: 10px; /* Adjust to move the icon down from the top of the modal */
+    right: 10px; /* Adjust to move the icon left from the right side of the modal */
     cursor: pointer;
-    transform: translate(10px, -10px);
-}*/
+  }
 
 .modal .task-form input {
     width: 100%;
