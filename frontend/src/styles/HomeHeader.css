@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    min-height: 200px;
     align-items: flex-start;
     color: #fff;
     margin: 20px 2vw;
