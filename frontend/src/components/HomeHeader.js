@@ -105,6 +105,7 @@ function HomeHeader() {
   
 
   const updateLevelAndProgress = () => {
+    const newLevel = calculateLevel(tasksInProgress, tasksCompleted);
     const newProgress = calculateProgress(tasksInProgress, tasksCompleted, level);
     setProgress(newProgress);
 
