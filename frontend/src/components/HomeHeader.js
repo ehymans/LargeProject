@@ -167,16 +167,19 @@ function HomeHeader() {
   function calculateLevel(tasksInProgress, tasksCompleted) {
     // Level 0 to 1: 1 task in progress, 0 completed
     if (tasksInProgress >= 1 && tasksCompleted === 0) return 1;
-    
+      
     // Level 1 to 2: 2 tasks completed
-    if (tasksCompleted >= 2) return 2;
+    if (tasksCompleted >= 2 && tasksCompleted < 5) return 2;
   
     // Level 2 to 3: 5 total tasks completed
-    if (tasksCompleted >= 5) return 3;
-
+    if (tasksCompleted >= 5 && tasksCompleted < 10) return 3;
+  
+    // Level 3: 10 total tasks completed
     if (tasksCompleted >= 10) return 4;
+  
     return level;
   }
+  
   
   function calculateProgress(tasksInProgress, tasksCompleted, level) {
     let progress = 0;
