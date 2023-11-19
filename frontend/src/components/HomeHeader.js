@@ -8,13 +8,16 @@ function HomeHeader() {
   const [tasksInProgress, setTasksInProgress] = useState(null);
   const [tasksCompleted, setTasksCompleted] = useState(null);
 
-  const [level, setLevel] = useState(0); // State for user level
-  const [progress, setProgress] = useState(0); // State for progress
+  const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
+  const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
 
   const { logout } = useContext(AuthContext); // Using AuthContext
 
 
   useEffect(() => {
+    
+    console.log('useEffect called');
+
     let _ud = localStorage.getItem('user_data');
     let ud = JSON.parse(_ud || '{}');
     setUser(ud);
@@ -24,6 +27,8 @@ function HomeHeader() {
     const savedProgress = parseFloat(localStorage.getItem('user_progress')) || 0;
     setLevel(savedLevel);
     setProgress(savedProgress);
+    console.log('Level from localStorage:', savedLevel);
+    console.log('Progress from localStorage:', savedProgress);
 
     // Fetch initial tasks data
     async function fetchTasks() 
@@ -135,6 +140,8 @@ function HomeHeader() {
       setProgress(newProgress); // Update progress for the current level
       localStorage.setItem('user_progress', newProgress);
     }
+    console.log('New level:', newLevel);
+    console.log('New progress:', newProgress);
   };
 
   function calculateLevel(tasksInProgress, tasksCompleted) {
