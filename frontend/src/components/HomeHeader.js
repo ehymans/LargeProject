@@ -134,13 +134,10 @@ function HomeHeader() {
         progress = tasksInProgress > 0 ? 100 : 0;
         break;
       case 1:
-        progress = tasksCompleted >= 1 ? 100 : 0;
-        break;
-      case 2:
         // 50% for one task completed, 100% for two or more tasks completed
         progress = tasksCompleted === 1 ? 50 : (tasksCompleted >= 2 ? 100 : 0);
         break;
-      case 3:
+      case 2:
         // Increment progress by 33.3% for each task completed beyond the first 2
         progress = Math.min(100, (tasksCompleted - 2) * 33.3);
         break;
