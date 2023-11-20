@@ -45,7 +45,11 @@ const HomePage = () => {
           {showCompletedTasks ? "Show Current Tasks" : "Show Completed Tasks"}
         </button>
       </div>
-      <DisplayTasks updateTask={updateTask} sortOption={sortOption} />
+      <DisplayTasks 
+        updateTask={updateTask} 
+        sortOption={sortOption} 
+        showCompletedTasks={showCompletedTasks} 
+      />
     </div>
   );
 };
