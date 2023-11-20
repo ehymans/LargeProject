@@ -71,12 +71,18 @@ function DisplayTasks({ updateTask }) {
     let sortedTasks = [...tasks];
     switch (sortOption) {
       case 'priority':
-        // Example sorting by priority (adjust according to your data structure)
-        sortedTasks.sort((a, b) => a.TaskDifficulty.localeCompare(b.TaskDifficulty));
+        // Custom sorting for priority
+        sortedTasks.sort((a, b) => {
+          const priorityOrder = ['High', 'Medium', 'Low']; // Define the order
+          return priorityOrder.indexOf(a.TaskDifficulty) - priorityOrder.indexOf(b.TaskDifficulty);
+        });
         break;
-      case 'dateAdded':
-        // Example sorting by date added (adjust according to your data structure)
-        // sortedTasks.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
+      case 'oldest':
+        // No need to sort as tasks are already in ascending order
+        break;
+      case 'newest':
+        // Reversing the order of tasks
+        sortedTasks.reverse();
         break;
       case 'name':
         // Sorting by name
@@ -290,7 +296,8 @@ function DisplayTasks({ updateTask }) {
         <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
           <option value="">Sort by</option>
           <option value="priority">Priority</option>
-          <option value="dateAdded">Date Added</option>
+          <option value="oldest">Oldest</option>
+          <option value="newest">Newest</option>
           <option value="name">Name</option>
         </select>
       </div>
