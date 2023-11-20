@@ -166,7 +166,7 @@ body {
 .login-message {
   margin-top: 10px;
   color: #777;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .verify-box {
@@ -187,11 +187,13 @@ body {
   color: white;
   width: fit-content;
   float: right;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .forget-para:hover {
   cursor: pointer;
   opacity: 0.8;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .forget-pass-div {
