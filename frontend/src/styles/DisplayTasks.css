@@ -125,6 +125,21 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+@keyframes fadeInGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.new-task-animation {
+  animation: fadeInGrow 0.5s ease-out forwards;
+}
+
 .modal1 .modal-main {
   padding-bottom: 10px;
 }

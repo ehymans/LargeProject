@@ -14,8 +14,15 @@ Modal.setAppElement(document.body);
 
 function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
   const [tasks, setTasks] = useState([]);
+  
+
+  const [isInitialLoad, setIsInitialLoad] = useState(true); // New state to track initial load
+
+
   const [editTaskID, setEditTaskID] = useState("");
+  
   const [IsOpenPopup, setIsOpenPopup] = useState(false);
+  
   const [checkedTaskID, setCheckedTaskID] = useState("");
   
   //const [sortOption, setSortOption] = useState(''); // Added for sorting
@@ -54,13 +61,21 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
 
         const data = await response.json();
 
-        if (data.results) 
+        if (data.results) {
+          setTasks(data.results); // Set the tasks
+
+          // Reset the initial load state after the animation duration
+          setTimeout(() => {
+            setIsInitialLoad(false);
+          }, 500); // Adjust the time to match your animation duration
+        } 
+        else 
         {
-          setTasks(data.results); // Assuming data.results is the array of tasks
-        } else {
           setTasks([]); // Handle the case where no results are returned
         }
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.error("Failed to load tasks:", error);
       }
     }
@@ -299,7 +314,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
       
       <div className="tasks-container">
         {getFilteredTasks().map((task, index) => (
-          <div key={index} className={`task-card ${task.TaskCompleted ? "completed-task" : ""}`}>
+           <div key={index} className={`task-card ${task.TaskCompleted ? "completed-task" : ""} ${isInitialLoad ? "new-task-animation" : ""}`}>
             <div className="title">
               {task.TaskName}
             </div>
