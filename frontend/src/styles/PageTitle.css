@@ -22,7 +22,7 @@
 }
 
 .page-title button {
-  background-color: #FF6B6B;
+  background-color: rgb(183, 31, 31);
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -36,5 +36,5 @@
 
 .page-title button:hover {
   cursor: pointer;
-  background-color: #FF4848;
+  background-color: rgb(130, 33, 33);
 }
