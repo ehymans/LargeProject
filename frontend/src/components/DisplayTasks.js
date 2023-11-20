@@ -12,7 +12,7 @@ var bp = require("./Path.js");
 // Set the app element for react-modal
 Modal.setAppElement(document.body);
 
-function DisplayTasks({ updateTask, sortOption }) {
+function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
   const [tasks, setTasks] = useState([]);
   const [editTaskID, setEditTaskID] = useState("");
   const [IsOpenPopup, setIsOpenPopup] = useState(false);
@@ -65,6 +65,13 @@ function DisplayTasks({ updateTask, sortOption }) {
       }
     }
   };
+
+
+  const getFilteredTasks = () => {
+    let sortedTasks = getSortedTasks(); // Use your existing sorting function
+    return sortedTasks.filter(task => showCompletedTasks ? task.TaskCompleted : !task.TaskCompleted);
+  };
+
 
   // Function to handle sorting
   const getSortedTasks = () => {
@@ -291,7 +298,7 @@ function DisplayTasks({ updateTask, sortOption }) {
       </Modal >
       
       <div className="tasks-container">
-        {getSortedTasks().filter(task => !task.TaskCompleted).map((task, index) => (
+        {getFilteredTasks().map((task, index) => (
           <div key={index} className={`task-card ${task.TaskCompleted ? "completed-task" : ""}`}>
             <div className="title">
               {task.TaskName}
@@ -303,7 +310,12 @@ function DisplayTasks({ updateTask, sortOption }) {
               {task.TaskDescription}
             </div>
             <div className="completion-status">Completed?   
-              <input type="checkbox" name="TaskCompleted" checked={formData.TaskID === task._id ? formData.TaskCompleted : task.TaskCompleted} onChange={(e) => toggleSelect(e, task._id)} />
+              <input 
+                type="checkbox" 
+                name="TaskCompleted" 
+                checked={formData.TaskID === task._id ? formData.TaskCompleted : task.TaskCompleted} 
+                onChange={(e) => toggleSelect(e, task._id)} 
+              />
             </div>
             <div className="btn-container">
               <button onClick={() => handleClick(task)} className="btn btn1">

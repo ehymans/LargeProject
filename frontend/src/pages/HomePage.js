@@ -12,12 +12,16 @@ const HomePage = () => {
 
   const [sortOption, setSortOption] = useState('oldest'); // Default sort state
   
+  const [showCompletedTasks, setShowCompletedTasks] = useState(false);
 
   // Handler for sort dropdown change
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
   };
 
+  const handleShowCompletedClick = () => {
+    setShowCompletedTasks(prevState => !prevState);
+  };
 
   return (
     <div>
@@ -33,6 +37,13 @@ const HomePage = () => {
           {/* You may need to wrap AddTask in a div if it's not already and apply the common styles */}
           <AddTask className="common-btn-style" prevState={updateTask} setUpdateTask={setUpdateTask} />
         </div>
+        <button 
+          type="button" 
+          className="common-btn-style" 
+          onClick={handleToggleTasksView}
+        >
+          {showCompletedTasks ? "Show Current Tasks" : "Show Completed Tasks"}
+        </button>
       </div>
       <DisplayTasks updateTask={updateTask} sortOption={sortOption} />
     </div>
