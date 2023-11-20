@@ -1,12 +1,13 @@
 import React from 'react';
 
-import PageTitle from '../components/PageTitle';
+import PageTitle from '../components/LandingHeader';
 import Landing from '../components/Landing';
+import LandingHeader from '../components/LandingHeader';
 
 const LandingPage = () => {
   return (
     <div>
-      <PageTitle />
+      <LandingHeader />
       <Landing />
     </div>
   );
