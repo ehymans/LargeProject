@@ -65,7 +65,9 @@
     -moz-appearance: none;
     appearance: none;
   }
-
+  .common-btn-style:hover {
+    background-color: rgb(130, 33, 33);
+}
   /* Style to change the arrow color */
   .sort-dropdown::after {
     content: '\25BC';

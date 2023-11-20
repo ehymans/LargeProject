@@ -38,7 +38,7 @@
 
 /* Additional styles for level information */
 .home-header .level-info {
-    font-size: 18px; /* Adjust as you see fit */
+    font-size: 20px; /* Adjust as you see fit */
     margin-top: 10px; /* Space from tasks info */
 }
 .home-header .task-info {
