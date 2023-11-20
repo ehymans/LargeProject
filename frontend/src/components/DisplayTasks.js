@@ -296,7 +296,7 @@ function DisplayTasks({ updateTask }) {
       </div>
 
       <div className="tasks-container">
-        {tasks.filter(task => !task.TaskCompleted).map((task, index) => (
+        {getSortedTasks().filter(task => !task.TaskCompleted).map((task, index) => (
           <div key={index} className={`task-card ${task.TaskCompleted ? "completed-task" : ""}`}>
             <div className="title">
               {task.TaskName}
