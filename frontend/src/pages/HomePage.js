@@ -9,14 +9,22 @@ import '../styles/HomePage.css'; // Import the CSS for HomePage layout
 const HomePage = () => {
   const [updateTask, setUpdateTask] = useState(false);
   // Define the sortOption state here
+  
   const [sortOption, setSortOption] = useState('oldest'); // Default sort state
+  
+
+  // Handler for sort dropdown change
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
+
 
   return (
     <div>
       <HomeHeader />
       <div className="task-action-container">
         {/* Sort by dropdown can be a separate component or directly coded here */}
-        <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+         <select className="sort-dropdown" value={sortOption} onChange={handleSortChange}>
           <option value="oldest">Sort by: Oldest</option>
           <option value="newest">Sort by: Newest</option>
           <option value="priority">Sort by: Priority</option>

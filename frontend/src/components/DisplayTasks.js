@@ -12,13 +12,13 @@ var bp = require("./Path.js");
 // Set the app element for react-modal
 Modal.setAppElement(document.body);
 
-function DisplayTasks({ updateTask }) {
+function DisplayTasks({ updateTask, sortOption }) {
   const [tasks, setTasks] = useState([]);
   const [editTaskID, setEditTaskID] = useState("");
   const [IsOpenPopup, setIsOpenPopup] = useState(false);
   const [checkedTaskID, setCheckedTaskID] = useState("");
   
-  const [sortOption, setSortOption] = useState(''); // Added for sorting
+  //const [sortOption, setSortOption] = useState(''); // Added for sorting
 
   const [formData, setFormData] = useState({
     TaskID: "",
@@ -79,7 +79,8 @@ function DisplayTasks({ updateTask }) {
         break;
       case 'newest':
         // Reversing the order of tasks
-        sortedTasks.reverse();
+        //sortedTasks.reverse();
+        sortedTasks = [...tasks].reverse();
         break;
       case 'name':
         // Sorting by name
