@@ -42,7 +42,21 @@
   .modal .cross-icon {
     color: white;
   }
-
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #003366; /* Dark blue, non-transparent */
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid grey;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    width: 50vw;
+    font-family: 'Montserrat', sans-serif;
+}
+  /*
+Old modal 11/20/23
 .modal {
     position: fixed;
     top: 50%;
@@ -55,7 +69,7 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
     width: 50vw;
     font-family: 'Montserrat', sans-serif;
-}
+}*/
 
 .modal .modal-main {
     text-align: center;
