@@ -3,23 +3,23 @@
 }
 
 .add-task .btn {
-    background-color: rgb(183, 31, 31);
+    background-color: #1E90FF; /* Changed to a more neutral color */
     color: #fff;
     border: none;
-    border-radius: 10px; /* Adjust to your liking */
-    padding: 8px 5vw; /* Reduced horizontal padding */
+    border-radius: 5px;
+    padding: 10px 15px;
     cursor: pointer;
-    font-size: 16px; /* Removed duplicate font-size property */
-    transition: background-color 0.3s;
+    font-size: 18px;
+    transition: background-color 0.2s ease-in-out;
     font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
 }
 
 
 .add-task .btn:hover {
-    background-color: rgb(130, 33, 33);
+    background-color: #4169E1; /* A slightly darker shade for hover state */
 }
 
-/* CSS for the Modal component */
 .modal {
     position: fixed;
     top: 50%;
@@ -29,7 +29,7 @@
     border-radius: 5px;
     padding: 20px;
     border: 1px solid grey;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
     width: 50vw;
     font-family: 'Montserrat', sans-serif;
 
@@ -40,18 +40,6 @@
     padding-bottom: 20px;
 }
 
-
-/* Should this include .modal .cross-icon? --> icon doesn't show up on the toast notification!!*/
-
-/*
-.cross-icon {
-    position: absolute; 
-    top: 10px; 
-    left: 10px; 
-    cursor: pointer; 
-    
-}*/
-
 .modal .cross-icon {
     position: absolute;
     top: 10px; /* Adjust to move the icon down from the top of the modal */
@@ -59,27 +47,21 @@
     cursor: pointer;
   }
 
-.modal .task-form input {
-    width: 100%;
-    margin: 5px 0px;
-    border: black 1px solid;
-    padding: 8px 3px;
-    border-radius: 5px;
-}
-
+.modal .task-form input,
 .modal .task-form select {
-    width: 100%;
-    margin: 5px 0px;
-    border: black 1px solid;
-    padding: 8px 3px;
-    border-radius: 5px;
+    /* Combined styles for input and select */
+    border: 2px solid #1E90FF; /* Border color changed to match button */
+    padding: 12px; /* Increased padding for better touch area */
+    /* ... Other styles remain unchanged ... */
 }
 
 .modal .task-form button {
     border: none;
     border-radius: 5px;
     margin-top: 25px;
-    background-color: rgb(183, 31, 31);
+    background-color: #32CD32; /* Changed to a 'success' green color */
+    padding: 12px 25px; /* Increased padding for a larger button */
+    font-weight: 600; /* Made text bolder */
     color: #fff;
     padding: 10px 30px;
     cursor: pointer;
@@ -88,12 +70,12 @@
 }
 
 .modal .task-form button:hover {
-    background-color: rgb(130, 33, 33);
-    cursor: pointer;
+    background-color: #228B22; /* Darker green for hover state */
 }
 
 @media only screen and (max-width: 768px) {
     .modal {
         width: 80vw;
+        padding: 15px; /* Increased padding for smaller screens */
     }
 }
