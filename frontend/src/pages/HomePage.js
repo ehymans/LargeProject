@@ -8,27 +8,25 @@ import '../styles/HomePage.css'; // Import the CSS for HomePage layout
 
 const HomePage = () => {
   const [updateTask, setUpdateTask] = useState(false);
+  // Define the sortOption state here
+  const [sortOption, setSortOption] = useState('oldest'); // Default sort state
+
   return (
     <div>
       <HomeHeader />
-      <div className="task-action-container"> {/* Flex container for buttons */}
-        <div className="sort-task-container">
-        <div className="sort-dropdown">
-          <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-            <option value="oldest">Sort by: Oldest</option>
-            <option value="newest">Sort by: Newest</option>
-            <option value="priority">Sort by: Priority</option>
-            <option value="name">Sort by: Name</option>
-          </select>
+      <div className="task-action-container">
+        {/* Sort by dropdown can be a separate component or directly coded here */}
+        <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+          <option value="oldest">Sort by: Oldest</option>
+          <option value="newest">Sort by: Newest</option>
+          <option value="priority">Sort by: Priority</option>
+          <option value="name">Sort by: Name</option>
+        </select>
+        <AddTask prevState={updateTask} setUpdateTask={setUpdateTask} />
       </div>
-        </div>
-        <div className="add-task-container">
-          <AddTask prevState={updateTask} setUpdateTask={setUpdateTask} />
-        </div>
-      </div>
-      <DisplayTasks updateTask={updateTask} />
+      <DisplayTasks updateTask={updateTask} sortOption={sortOption} setSortOption={setSortOption} />
     </div>
   );
-}
+};
 
 export default HomePage;
