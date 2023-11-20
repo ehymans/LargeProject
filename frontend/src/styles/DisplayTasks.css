@@ -140,6 +140,17 @@
   animation: fadeInGrow 0.5s ease-out forwards;
 }
 
+@keyframes teleportAnimation {
+  0% { opacity: 1; transform: translateX(0); }
+  50% { opacity: 0; transform: translateX(20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.teleport-animation {
+  animation: teleportAnimation 0.5s ease-in-out;
+}
+
+
 .modal1 .modal-main {
   padding-bottom: 10px;
 }
