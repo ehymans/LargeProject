@@ -36,7 +36,10 @@ function LoggedInName({ prevState, setUpdateTask }) {
     setIsOpenPopup(true);
     document.querySelector('.home-header').classList.add('blurred-background'); // Use the actual class that wraps your main content
     document.querySelector('.tasks-container').classList.add('blurred-background');
-    document.querySelector('.common-btn-style').classList.add('blurred-background');
+    document.querySelector('.common-btn-style').classList.add('blurred-background'); //.add-task-container 
+    // .panel
+    document.querySelector('.add-task-container ').classList.add('blurred-background');
+    document.querySelector('.panel').classList.add('blurred-background');
   };
 
   //Close Modal
@@ -54,6 +57,8 @@ function LoggedInName({ prevState, setUpdateTask }) {
     document.querySelector('.home-header').classList.remove('blurred-background');
     document.querySelector('.tasks-container').classList.remove('blurred-background');
     document.querySelector('.common-btn-style').classList.remove('blurred-background');
+    document.querySelector('.add-task-container ').classList.remove('blurred-background');
+    document.querySelector('.panel').classList.remove('blurred-background');
   };
 
   // const addExperience = () => {
