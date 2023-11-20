@@ -4,7 +4,7 @@ import AddTask from "../components/AddTask";
 import HomeHeader from "../components/HomeHeader";
 import DisplayTasks from "../components/DisplayTasks";
 
-import './HomePage.css'; // Import the CSS for HomePage layout
+import '../styles/HomePage.css'; // Import the CSS for HomePage layout
 
 const HomePage = () => {
   const [updateTask, setUpdateTask] = useState(false);
