@@ -9,7 +9,7 @@ function Landing() {
         <div class="landing-container">
         <div class="landing-content">
           <h1>Welcome to Dare2DO</h1>
-          <p>With our gameified task manager, finding motivation to get things done has never been easier.</p>
+          <p>With our gamified task manager, finding motivation to get things done has never been easier.</p>
           <div class="landing-actions">
             <a href="#" class="landing-button">Log In</a>
             <a href="#" class="landing-button">Sign Up</a>
