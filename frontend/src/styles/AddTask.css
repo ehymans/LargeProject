@@ -3,21 +3,23 @@
 }
 
 .add-task .btn {
-    background-color: #1E90FF; /* Changed to a more neutral color */
+    background: linear-gradient(145deg, #1E90FF, #1a7fd3); /* Modern gradient effect */
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px; /* Rounded borders for a modern look */
     padding: 10px 15px;
     cursor: pointer;
     font-size: 18px;
-    transition: background-color 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+    box-shadow: 5px 5px 15px rgba(30, 144, 255, 0.4), -5px -5px 15px #1E90FF; /* Neumorphism effect */
 }
 
 
 .add-task .btn:hover {
-    background-color: #4169E1; /* A slightly darker shade for hover state */
+    background: linear-gradient(155deg, #1E90FF, #1a7fd3); /* Slightly different gradient for hover */
+    box-shadow: 0 0 15px #1E90FF; /* Glow effect on hover */
+    transform: translateY(-2px); /* Slight raise effect on hover */
 }
 
 
@@ -83,32 +85,58 @@ Old modal 11/20/23
     cursor: pointer;
   }
 
-.modal .task-form input,
-.modal .task-form select {
-    /* Combined styles for input and select */
-    border: 2px solid #1E90FF; /* Border color changed to match button */
-    padding: 12px; /* Increased padding for better touch area */
-    width: 100%;
-    margin: 5px 0px;
-    border: black 1px solid;
-}
+  .modal .task-form input,
+  .modal .task-form select {
+      border: none;
+      padding: 12px;
+      width: 100%;
+      margin: 5px 0px;
+      background: #222233; /* Dark mode input fields */
+      color: #fff; /* White text color for contrast */
+      border-radius: 12px; /* Rounded borders for a modern look */
+      box-shadow: inset 5px 5px 10px #1b1b25, inset -5px -5px 10px #292942; /* Neumorphism effect */
+  }
 
-.modal .task-form button {
-    border: none;
-    border-radius: 5px;
-    margin-top: 25px;
-    background-color: #32CD32; /* Changed to a 'success' green color */
-    padding: 12px 25px; /* Increased padding for a larger button */
-    font-weight: 600; /* Made text bolder */
+  .modal .task-form button {
+    background: #32CD32; /* Modern button color */
     color: #fff;
-    padding: 10px 30px;
+    border-radius: 12px; /* Rounded borders for a modern look */
+    padding: 12px 30px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    border: none;
+    box-shadow: 4px 4px 10px #2baf2b, -4px -4px 10px #36ff36; /* Neumorphism effect */
+    transition: background-color 0.3s, box-shadow 0.2s, transform 0.2s;
 }
 
 .modal .task-form button:hover {
     background-color: #228B22; /* Darker green for hover state */
+    box-shadow: 0 0 15px #22a822; /* Glow effect on hover */
+    transform: translateY(-2px); /* Slight raise effect on hover */
+}
+.icon {
+    margin-right: 8px;
+}
+/* Apply this to the container of the input if you add an icon */
+.icon-input-container {
+    display: flex;
+    align-items: center;
+    background: #222233;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: inset 5px 5px 10px #1b1b25, inset -5px -5px 10px #292942;
+}
+
+/* Use this for the icon inside the input container */
+.icon-input-container i {
+    color: #fff;
+    margin-right: 10px;
+}
+
+/* Additional modern font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+body {
+    font-family: 'Nunito', sans-serif;
 }
 
 @media only screen and (max-width: 768px) {
