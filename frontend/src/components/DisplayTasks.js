@@ -77,9 +77,6 @@ function DisplayTasks({ updateTask }) {
           return priorityOrder.indexOf(a.TaskDifficulty) - priorityOrder.indexOf(b.TaskDifficulty);
         });
         break;
-      case 'oldest':
-        // No need to sort as tasks are already in ascending order
-        break;
       case 'newest':
         // Reversing the order of tasks
         sortedTasks.reverse();
@@ -88,6 +85,7 @@ function DisplayTasks({ updateTask }) {
         // Sorting by name
         sortedTasks.sort((a, b) => a.TaskName.localeCompare(b.TaskName));
         break;
+      case 'oldest':
       default:
         // No sorting or default sorting logic
     }
@@ -294,11 +292,10 @@ function DisplayTasks({ updateTask }) {
       {/* Sorting Dropdown */}
       <div className="sort-dropdown">
         <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option value="">Sort by</option>
-          <option value="priority">Priority</option>
-          <option value="oldest">Oldest</option>
-          <option value="newest">Newest</option>
-          <option value="name">Name</option>
+          <option value="oldest">Sort by: Oldest</option>
+          <option value="newest">Sort by: Newest</option>
+          <option value="priority">Sort by: Priority</option>
+          <option value="name">Sort by: Name</option>
         </select>
       </div>
 
