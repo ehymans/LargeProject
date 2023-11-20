@@ -40,7 +40,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
     document.querySelector('.common-btn-style').classList.add('blurred-background'); //.add-task-container 
     //document.querySelector('button.common-btn-style').classList.add('blurred-background'); //.add-task-container 
     // .panel
-    document.querySelector('btn-div').classList.add('blurred-background');
+    //document.querySelector('btn-div').classList.add('blurred-background');
     //document.querySelector('.panel').classList.add('blurred-background');
   };
 
@@ -60,7 +60,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
     document.querySelector('.task-action-container').classList.remove('blurred-background');
     document.querySelector('.tasks-container').classList.remove('blurred-background');
     document.querySelector('.common-btn-style').classList.remove('blurred-background');
-    document.querySelector('btn-div').classList.remove('blurred-background');
+   // document.querySelector('btn-div').classList.remove('blurred-background');
     document.querySelector('.panel').classList.remove('blurred-background');
   };
 
