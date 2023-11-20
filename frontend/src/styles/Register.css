@@ -65,7 +65,7 @@
     }
 
     .register-button, .verify-btn {
-      background-color: #FF6B6B;
+      background-color: rgb(183, 31, 31);
       color: #fff;
       border: none;
       border-radius: 5px;
@@ -78,7 +78,7 @@
     }
 
     .register-button:hover, .verify-btn:hover {
-      background-color: #FF4848;
+      background-color: rgb(130, 33, 33);
     }
 
     .register-message {
