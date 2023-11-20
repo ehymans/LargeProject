@@ -21,6 +21,18 @@
 }
 
 .modal {
+    background-color: rgba(50, 50, 93, 0.95); /* dark blue with higher transparency */
+    border-radius: 10px; /* smoother corners */
+    padding: 2em;
+    width: auto; /* adjust according to your layout */
+    margin: 2em auto; /* centers the panel */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); 
+    display: flex;
+    gap: 1em; /* adds space between elements */
+}
+
+/*
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -29,11 +41,10 @@
     border-radius: 5px;
     padding: 20px;
     border: 1px solid grey;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
-    width: 50vw;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); */
+   /* width: 50vw;
     font-family: 'Montserrat', sans-serif;
-
-}
+*/
 
 .modal .modal-main {
     text-align: center;
@@ -52,7 +63,9 @@
     /* Combined styles for input and select */
     border: 2px solid #1E90FF; /* Border color changed to match button */
     padding: 12px; /* Increased padding for better touch area */
-    /* ... Other styles remain unchanged ... */
+    width: 100%;
+    margin: 5px 0px;
+    border: black 1px solid;
 }
 
 .modal .task-form button {
