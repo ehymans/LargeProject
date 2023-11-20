@@ -1,0 +1,76 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  /* This container may not be needed anymore if it's only for the landing content */
+  .landing-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Content Section */
+  .landing-content {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px; /* Adjust as necessary */
+    margin-top: -400px; /* Adjust this to move content up without affecting the nav bar */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  /* Headings and Text */
+  .landing-content h1 {
+    font-size: 48px; /* Large font size for heading */
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .landing-content p {
+    font-size: 24px; /* Large font size for subheading */
+    color: white;
+    margin-bottom: 50px; /* Space before buttons */
+  }
+  
+  /* Call-to-Action Buttons */
+  .landing-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+  }
+  
+  .landing-button {
+    background-color: rgb(183, 31, 31); /* Button color */
+    color: white;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    padding: 15px 30px; /* Button size */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+  
+  .landing-button:hover {
+    background-color: rgb(130, 33, 33); /* Hover effect */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .landing-content h1 {
+      font-size: 36px;
+    }
+  
+    .landing-content p {
+      font-size: 18px;
+    }
+  }
+  
