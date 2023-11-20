@@ -34,6 +34,8 @@ function LoggedInName({ prevState, setUpdateTask }) {
   //Show Modal when button is clicked
   const handleClick = (e) => {
     setIsOpenPopup(true);
+    document.querySelector('.home-header').classList.add('blurred-background'); // Use the actual class that wraps your main content
+    document.querySelector('.tasks-container').classList.add('blurred-background');
   };
 
   //Close Modal
@@ -46,6 +48,10 @@ function LoggedInName({ prevState, setUpdateTask }) {
       taskImportance: "",
     });
     setIsOpenPopup(false);
+    setIsOpenPopup(false);
+    // Remove the blur from both elements
+    document.querySelector('.home-header').classList.remove('blurred-background');
+    document.querySelector('.tasks-container').classList.remove('blurred-background');
   };
 
   // const addExperience = () => {

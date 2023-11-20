@@ -21,6 +21,28 @@
 }
 
 
+/* Add this class to blur the background */
+.blurred-background {
+    filter: blur(8px);
+  }
+  
+  /* Add this class to the modal overlay to create an animation */
+  .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.8); /* Darken the background */
+    animation: fadeIn 0.5s ease-in-out; /* Animation for fade in */
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Change text color to white for the heading and cross icon */
+  .modal .modal-main h1,
+  .modal .cross-icon {
+    color: white;
+  }
+
 .modal {
     position: fixed;
     top: 50%;
