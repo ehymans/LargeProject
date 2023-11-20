@@ -61,7 +61,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
     document.querySelector('.tasks-container').classList.remove('blurred-background');
     document.querySelector('.common-btn-style').classList.remove('blurred-background');
    // document.querySelector('btn-div').classList.remove('blurred-background');
-    document.querySelector('.panel').classList.remove('blurred-background');
+    //document.querySelector('.panel').classList.remove('blurred-background');
   };
 
   // const addExperience = () => {
