@@ -129,6 +129,43 @@
   padding-bottom: 10px;
 }
 
+.sort-dropdown select {
+  background-color: rgb(183, 31, 31);
+  color: #fff;
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  padding: 8px 5vw; /* Vertical and horizontal padding */
+  cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s; /* Smooth transition for background color change */
+  font-weight: bold; /* Bold font */
+  width: auto; /* Adjust width as necessary */
+  margin-bottom: 20px; /* Space below the dropdown */
+  -webkit-appearance: none; /* Removes default styling */
+  -moz-appearance: none; /* Removes default styling */
+  appearance: none; /* Removes default styling */
+}
+
+/* Custom arrow for the dropdown */
+.sort-dropdown select::-ms-expand {
+  display: none; /* For IE11 */
+}
+
+/* Style to change the arrow color */
+.sort-dropdown::after {
+  content: '\25BC';
+  color: white;
+  position: absolute;
+  right: 15px;
+  top: calc(50% - 3px);
+  pointer-events: none;
+}
+
+/* Container to position the arrow correctly */
+.sort-dropdown {
+  position: relative;
+  display: inline-block;
+}
 
 .modal1 .cross-icon {
   position: absolute;

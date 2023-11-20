@@ -17,6 +17,9 @@ function DisplayTasks({ updateTask }) {
   const [editTaskID, setEditTaskID] = useState("");
   const [IsOpenPopup, setIsOpenPopup] = useState(false);
   const [checkedTaskID, setCheckedTaskID] = useState("");
+  
+  const [sortOption, setSortOption] = useState(''); // Added for sorting
+
   const [formData, setFormData] = useState({
     TaskID: "",
     TaskName: "",
@@ -63,14 +66,32 @@ function DisplayTasks({ updateTask }) {
     }
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []); // The empty array means this useEffect will run once, similar to componentDidMount
+  // Function to handle sorting
+  const getSortedTasks = () => {
+    let sortedTasks = [...tasks];
+    switch (sortOption) {
+      case 'priority':
+        // Example sorting by priority (adjust according to your data structure)
+        sortedTasks.sort((a, b) => a.TaskDifficulty.localeCompare(b.TaskDifficulty));
+        break;
+      case 'dateAdded':
+        // Example sorting by date added (adjust according to your data structure)
+        // sortedTasks.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
+        break;
+      case 'name':
+        // Sorting by name
+        sortedTasks.sort((a, b) => a.TaskName.localeCompare(b.TaskName));
+        break;
+      default:
+        // No sorting or default sorting logic
+    }
+    return sortedTasks;
+  };
 
   useEffect(() => {
     // console.log('Tasks List Updated!');
     fetchData();
-  }, [updateTask]);
+  }, [updateTask, sortOption]);
 
   const handleUpdate = async () => {
     const _ud = localStorage.getItem("user_data");
@@ -107,41 +128,6 @@ function DisplayTasks({ updateTask }) {
       });
     }
   };
-  
-
-
-  /*
-  const handleUpdate = async () => {
-    const _ud = localStorage.getItem("user_data");
-    const ud = JSON.parse(_ud || "{}");
-    const Data = {
-      TaskName: formData.TaskName,
-      TaskDescription: formData.TaskDescription,
-      TaskDifficulty: formData.TaskDifficulty,
-      UserID: ud.id,
-    };
-    try {
-      const response = await axios.put(
-        bp.buildPath(`api/updatetask/${formData.TaskID}`), Data
-      );
-      if (response.status === 200) {
-        toast.success('Task Updated Successfully!', {
-          position: 'top-right',
-          autoClose: 5000,
-        });
-        fetchData();
-        handleModalClose();
-        console.log("Tasks List Updated!");
-      }
-    } catch (error) {
-      console.log("Error while updating task (line 98): ", error);
-      toast.error('Unable to update task. Something went wrong!', {
-        position: 'top-right', // Set the toast position
-        autoClose: 3000, // Close the toast after 3 seconds (optional)
-      });
-
-    }
-  };*/
 
   //Updates Value after every change
   const handleChange = (e) => {
@@ -196,54 +182,6 @@ function DisplayTasks({ updateTask }) {
       });
     }
   };
-  
-  
-  
-  /*
-  const toggleSelect = async (e, id) => {
-    let taskID;
-    if (id) {
-      setFormData((prevState) => ({
-        ...prevState,
-        TaskCompleted: e.target.checked,
-        TaskID: id,
-      }));
-      taskID = id;
-    }
-    else {
-      setFormData((prevState) => ({
-        ...prevState,
-        TaskCompleted: e.target.checked,
-      }));
-      taskID = formData.TaskID;
-    }
-    const Data = {
-      TaskCompleted: e.target.checked,
-    };
-    //console.log('Task ID: ', taskID);
-    console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
-    try {
-      const response = await axios.put(
-        bp.buildPath(`api/updatetask/${taskID}`),
-        Data
-      );
-      if (response.status === 200) {
-        toast.success('Task Status Updated Successfully!', {
-          position: 'top-right',
-          autoClose: 5000,
-        });
-        fetchData();
-        handleModalClose();
-        console.log("Tasks list Updated!");
-      }
-    } catch (error) {
-      console.log("Error while updating task status (line 152): ", error);
-      toast.error('Unable to update task completion status. Something went wrong!', {
-        position: 'top-right', // Set the toast position
-        autoClose: 3000, // Close the toast after 3 seconds (optional)
-      });
-    }
-  };*/
 
   const handleDelete = async (task) => {
     const confirmed = window.confirm('Are you sure you want to delete this task?');
@@ -346,6 +284,16 @@ function DisplayTasks({ updateTask }) {
           </div>
         </div>
       </Modal >
+      
+      {/* Sorting Dropdown */}
+      <div className="sort-dropdown">
+        <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+          <option value="">Sort by</option>
+          <option value="priority">Priority</option>
+          <option value="dateAdded">Date Added</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
 
       <div className="tasks-container">
         {tasks.filter(task => !task.TaskCompleted).map((task, index) => (
