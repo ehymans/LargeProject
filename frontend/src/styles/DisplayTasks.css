@@ -150,6 +150,14 @@
   animation: teleportAnimation 0.5s ease-in-out;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.show-completed-animation {
+  animation: fadeIn 0.5s ease-out forwards;
+}
 
 .modal1 .modal-main {
   padding-bottom: 10px;
