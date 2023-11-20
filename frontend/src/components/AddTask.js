@@ -35,11 +35,13 @@ function LoggedInName({ prevState, setUpdateTask }) {
   const handleClick = (e) => {
     setIsOpenPopup(true);
     document.querySelector('.home-header').classList.add('blurred-background'); // Use the actual class that wraps your main content
+    document.querySelector('.task-action-container').classList.add('blurred-background');
     document.querySelector('.tasks-container').classList.add('blurred-background');
     document.querySelector('.common-btn-style').classList.add('blurred-background'); //.add-task-container 
+    //document.querySelector('button.common-btn-style').classList.add('blurred-background'); //.add-task-container 
     // .panel
     document.querySelector('btn-div').classList.add('blurred-background');
-    document.querySelector('.panel').classList.add('blurred-background');
+    //document.querySelector('.panel').classList.add('blurred-background');
   };
 
   //Close Modal
@@ -55,6 +57,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
     setIsOpenPopup(false);
     // Remove the blur from both elements
     document.querySelector('.home-header').classList.remove('blurred-background');
+    document.querySelector('.task-action-container').classList.remove('blurred-background');
     document.querySelector('.tasks-container').classList.remove('blurred-background');
     document.querySelector('.common-btn-style').classList.remove('blurred-background');
     document.querySelector('btn-div').classList.remove('blurred-background');
