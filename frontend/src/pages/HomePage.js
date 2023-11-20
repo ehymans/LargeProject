@@ -19,7 +19,7 @@ const HomePage = () => {
     setSortOption(e.target.value);
   };
 
-  const handleShowCompletedClick = () => {
+  const handleToggleTasksView = () => {
     setShowCompletedTasks(prevState => !prevState);
   };
 
