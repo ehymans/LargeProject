@@ -20,6 +20,8 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
 
   const [isSorting, setIsSorting] = useState(false);
 
+  const [prevSortOption, setPrevSortOption] = useState(sortOption);
+  
   const [editTaskID, setEditTaskID] = useState("");
   
   const [IsOpenPopup, setIsOpenPopup] = useState(false);
@@ -119,16 +121,20 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
   useEffect(() => {
     // console.log('Tasks List Updated!');
     fetchData();
-    if(!isInitialLoad)
-    {
-      setIsSorting(true);
-      const timer = setTimeout(() => {
-        setIsSorting(false);
-      }, 500); // Match this duration with your CSS animation
-  
-      return () => clearTimeout(timer);
+    if (isInitialLoad) {
+      setTimeout(() => setIsInitialLoad(false), 500); // Duration of initial load animation
     }
 
+    if (sortOption !== prevSortOption) {
+      setIsSorting(true);
+      setPrevSortOption(sortOption);
+
+      const timer = setTimeout(() => {
+        setIsSorting(false);
+      }, 500); // Duration of sort animation
+
+      return () => clearTimeout(timer);
+    }
   }, [updateTask, sortOption]);
 
   const handleUpdate = async () => {
@@ -325,7 +331,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
       
       <div className="tasks-container">
         {getFilteredTasks().map((task, index) => (
-           <div key={index} className={`task-card ${isInitialLoad ? 'new-task-animation' : isSorting ? 'teleport-animation' : ''} ${task.TaskCompleted ? "completed-task" : ""}`}>
+          <div key={index} className={`task-card ${isInitialLoad ? 'initial-load-animation' : isSorting ? 'teleport-animation' : ''} ${task.TaskCompleted ? "completed-task" : ""}`}>
             <div className="title">
               {task.TaskName}
             </div>
