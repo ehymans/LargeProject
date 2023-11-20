@@ -9,7 +9,7 @@ import '../styles/HomePage.css'; // Import the CSS for HomePage layout
 const HomePage = () => {
   const [updateTask, setUpdateTask] = useState(false);
   // Define the sortOption state here
-  
+
   const [sortOption, setSortOption] = useState('oldest'); // Default sort state
   
 
@@ -23,16 +23,18 @@ const HomePage = () => {
     <div>
       <HomeHeader />
       <div className="task-action-container">
-        {/* Sort by dropdown can be a separate component or directly coded here */}
-         <select className="sort-dropdown" value={sortOption} onChange={handleSortChange}>
+        <select className="common-btn-style" value={sortOption} onChange={handleSortChange}>
           <option value="oldest">Sort by: Oldest</option>
           <option value="newest">Sort by: Newest</option>
           <option value="priority">Sort by: Priority</option>
           <option value="name">Sort by: Name</option>
-        </select>
-        <AddTask prevState={updateTask} setUpdateTask={setUpdateTask} />
+          </select>
+        <div>
+          {/* You may need to wrap AddTask in a div if it's not already and apply the common styles */}
+          <AddTask className="common-btn-style" prevState={updateTask} setUpdateTask={setUpdateTask} />
+        </div>
       </div>
-      <DisplayTasks updateTask={updateTask} sortOption={sortOption} setSortOption={setSortOption} />
+      <DisplayTasks updateTask={updateTask} sortOption={sortOption} />
     </div>
   );
 };

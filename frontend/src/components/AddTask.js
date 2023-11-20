@@ -147,7 +147,7 @@ function LoggedInName({ prevState, setUpdateTask }) {
         </div>
       </Modal>
       <div className="btn-div">
-        <button type="button" className="btn" onClick={handleClick}>
+        <button type="button" className="common-btn-style" onClick={handleClick}>
           Add a New Task
         </button>
       </div>
