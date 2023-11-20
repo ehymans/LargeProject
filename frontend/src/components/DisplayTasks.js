@@ -289,16 +289,6 @@ function DisplayTasks({ updateTask }) {
         </div>
       </Modal >
       
-      {/* Sorting Dropdown */}
-      <div className="sort-dropdown">
-        <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option value="oldest">Sort by: Oldest</option>
-          <option value="newest">Sort by: Newest</option>
-          <option value="priority">Sort by: Priority</option>
-          <option value="name">Sort by: Name</option>
-        </select>
-      </div>
-
       <div className="tasks-container">
         {getSortedTasks().filter(task => !task.TaskCompleted).map((task, index) => (
           <div key={index} className={`task-card ${task.TaskCompleted ? "completed-task" : ""}`}>

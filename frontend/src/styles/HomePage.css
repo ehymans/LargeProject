@@ -20,6 +20,25 @@
     cursor: pointer;
     transition: 0.3s ease-out;
   }
+
+
+  .task-buttons-container {
+    display: flex;
+    justify-content: center; /* Adjust if you want a different alignment */
+    align-items: center;
+    gap: 20px; /* Space between buttons */
+  }
+
+  /* Styles to make sure the AddTask component is not full width so it can sit next to the sort button */
+  .add-task-container {
+    display: inline-block; /* Or flex if it already uses Flexbox internally */
+    /* You might need additional styles depending on your AddTask component's structure */
+  }
+
+  .sort-task-container {
+    display: inline-block; /* This will make the div not take the full width */
+  }
+
   .panel-header {
     display: flex;
     justify-content: space-between;
@@ -58,9 +77,3 @@
     background-color: #ff4b5c; /* Add Task button color */
     /* rest of the styles are inherited from button */
   }
-  
-  /* Style for the submit button within the task form */
-  .task-form button {
-    /* Your specific styles for submit button */
-  }
-  
