@@ -87,32 +87,39 @@ Old modal 11/20/23
 
   .modal .task-form input,
   .modal .task-form select {
-      border: none;
+      border: 2px solid #1E90FF; /* Restyle border to be more visible */
       padding: 12px;
       width: 100%;
-      margin: 5px 0px;
-      background: #222233; /* Dark mode input fields */
-      color: #fff; /* White text color for contrast */
-      border-radius: 12px; /* Rounded borders for a modern look */
-      box-shadow: inset 5px 5px 10px #1b1b25, inset -5px -5px 10px #292942; /* Neumorphism effect */
+      margin: 10px 0; /* Increase margin for better spacing */
+      background: #2C3E50; /* A different shade for better visibility */
+      color: #fff; /* White text for contrast */
+      border-radius: 5px; /* Consistent border radius */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
   }
 
+  .modal .task-form input:focus,
+    .modal .task-form select:focus {
+    outline: none; /* Remove default focus outline */
+    border: 2px solid #3498DB; /* Highlight with a brighter blue */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Soft glow effect */
+}
+
   .modal .task-form button {
-    background: #32CD32; /* Modern button color */
+    background-color: #32CD32; /* Keep the success green color */
     color: #fff;
-    border-radius: 12px; /* Rounded borders for a modern look */
-    padding: 12px 30px;
+    border-radius: 5px;
+    padding: 12px 25px;
+    font-weight: 600;
     cursor: pointer;
     font-size: 16px;
     border: none;
-    box-shadow: 4px 4px 10px #2baf2b, -4px -4px 10px #36ff36; /* Neumorphism effect */
-    transition: background-color 0.3s, box-shadow 0.2s, transform 0.2s;
+    transition: background-color 0.3s, box-shadow 0.2s; /* Smooth transition for hover effect */
+    box-shadow: 0 2px 4px rgba(50, 205, 50, 0.4); /* Reduced glow effect */
 }
 
 .modal .task-form button:hover {
-    background-color: #228B22; /* Darker green for hover state */
-    box-shadow: 0 0 15px #22a822; /* Glow effect on hover */
-    transform: translateY(-2px); /* Slight raise effect on hover */
+    background-color: #228B22; /* Darker green for hover */
+    box-shadow: 0 2px 4px rgba(34, 139, 34, 0.6); /* Reduced glow effect on hover */
 }
 .icon {
     margin-right: 8px;
