@@ -84,18 +84,66 @@ Old modal 11/20/23
     right: 10px; /* Adjust to move the icon left from the right side of the modal */
     cursor: pointer;
   }
+  
+/* Style for the Task Name input */
+.modal .task-form input[name="taskName"] {
+    border: 2px solid #1E90FF; 
+    padding: 12px;
+    width: 100%;
+    margin: 10px 0;
+    background: #2C3E50;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px; /* Larger font size for task name */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
 
+/* Style for the Task Description input */
+.modal .task-form input[name="taskDescription"] {
+    border: 2px solid #1E90FF;
+    padding: 16px; /* More padding for a taller box */
+    width: 100%;
+    margin: 10px 0;
+    background: #2C3E50;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px; /* Standard font size for description */
+    height: 80px; /* Fixed height to make it taller */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the Priority select box */
+.modal .task-form select[name="taskImportance"] {
+    border: 2px solid #1E90FF;
+    padding: 8px; /* Less padding for a more compact look */
+    width: 100%;
+    margin: 10px 0;
+    background: #2C3E50;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px; /* Standard font size for select */
+    height: 40px; /* Fixed height to make it more compact */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure the text inside the select box is centered */
+.modal .task-form select {
+    display: flex;
+    align-items: center;
+}
+
+  /*
   .modal .task-form input,
   .modal .task-form select {
-      border: 2px solid #1E90FF; /* Restyle border to be more visible */
+      border: 2px solid #1E90FF; 
       padding: 12px;
       width: 100%;
-      margin: 10px 0; /* Increase margin for better spacing */
-      background: #2C3E50; /* A different shade for better visibility */
-      color: #fff; /* White text for contrast */
-      border-radius: 5px; /* Consistent border radius */
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  }
+      margin: 10px 0; 
+      background: #2C3E50; 
+      color: #fff; 
+      border-radius: 5px; 
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
+  }*/
 
   .modal .task-form input:focus,
     .modal .task-form select:focus {
