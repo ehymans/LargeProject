@@ -189,6 +189,11 @@
   cursor: pointer;
 }
 
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.8); /* Darken the background */
+  animation: fadeIn 0.3s ease-in-out; /* Animation for fade in */
+}
+
 .modal1 h1 {
   text-align: center;
 }

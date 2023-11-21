@@ -333,7 +333,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
 
       <div className="tasks-container">
         {getFilteredTasks().map((task, index) => (
-          <div key={index} className={`task-card ${isInitialLoad ? 'new-task-animation' : isSorting ? 'teleport-animation' : ''} ${showCompletedTasks ? 'show-completed-animation' : ''} ${task.TaskCompleted ? "completed-task" : ""}`}>
+          <div key={index} className={`task-card ${isInitialLoad ? 'new-task-animation' : isSorting ? 'teleport-animation' : ''} ${showCompletedTasks ? 'show-completed-animation' : ''} ${task.TaskCompleted ? "fade-out-animation" : ""}`}>
             <div className="title">
               {task.TaskName}
             </div>  
