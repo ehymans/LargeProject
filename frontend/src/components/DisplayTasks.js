@@ -330,7 +330,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
           </div>
         </div>
       </Modal >
-      
+
       <div className="tasks-container">
         {getFilteredTasks().map((task, index) => (
           <div key={index} className={`task-card ${isInitialLoad ? 'new-task-animation' : isSorting ? 'teleport-animation' : ''} ${showCompletedTasks ? 'show-completed-animation' : ''} ${task.TaskCompleted ? "completed-task" : ""}`}>
@@ -343,22 +343,26 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
             <div className={`description ${task.TaskCompleted && (task.TaskCompleted === true ? "strike-description" : '')}`}>
               {task.TaskDescription}
             </div>
-            <div className="completion-status">Completed?   
-              <input 
-                type="checkbox" 
-                name="TaskCompleted" 
-                checked={formData.TaskID === task._id ? formData.TaskCompleted : task.TaskCompleted} 
-                onChange={(e) => toggleSelect(e, task._id)} 
-              />
-            </div>
-            <div className="btn-container">
-              <button onClick={() => handleClick(task)} className="btn btn1">
-                EDIT
-              </button>
-              <button onClick={() => handleDelete(task)} className="btn btn2">
-                DELETE
-              </button>
-            </div>
+            { !task.TaskCompleted && (
+              <>
+                <div className="completion-status">Completed?   
+                  <input 
+                    type="checkbox" 
+                    name="TaskCompleted" 
+                    checked={formData.TaskID === task._id ? formData.TaskCompleted : task.TaskCompleted} 
+                    onChange={(e) => toggleSelect(e, task._id)} 
+                  />
+                </div>
+                <div className="btn-container">
+                  <button onClick={() => handleClick(task)} className="btn btn1">
+                    EDIT
+                  </button>
+                  <button onClick={() => handleDelete(task)} className="btn btn2">
+                    DELETE
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         ))}
       </div>
