@@ -84,46 +84,55 @@ Old modal 11/20/23
     right: 10px; /* Adjust to move the icon left from the right side of the modal */
     cursor: pointer;
   }
-  
+
 /* Style for the Task Name input */
 .modal .task-form input[name="taskName"] {
-    border: 2px solid #1E90FF; 
+    border: 2px solid #1E90FF;
     padding: 12px;
     width: 100%;
-    margin: 10px 0;
+    margin-bottom: 10px;
     background: #2C3E50;
     color: #fff;
     border-radius: 5px;
-    font-size: 18px; /* Larger font size for task name */
+    font-size: 18px;
+    font-family: 'Orbitron', sans-serif; /* Futuristic font for task name */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Style for the Task Description input */
 .modal .task-form input[name="taskDescription"] {
     border: 2px solid #1E90FF;
-    padding: 16px; /* More padding for a taller box */
+    padding: 16px;
     width: 100%;
-    margin: 10px 0;
-    background: #2C3E50;
+    margin-bottom: 10px;
+    background: rgba(44, 62, 80, 0.9); /* Slightly transparent background */
     color: #fff;
     border-radius: 5px;
-    font-size: 16px; /* Standard font size for description */
-    height: 80px; /* Fixed height to make it taller */
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif; /* Clean font for description */
+    height: 80px; /* Fixed height to allow for multiline input */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    resize: none; /* Disable resizing */
 }
 
-/* Style for the Priority select box */
+/* Style for the Task Importance select box */
 .modal .task-form select[name="taskImportance"] {
     border: 2px solid #1E90FF;
-    padding: 8px; /* Less padding for a more compact look */
+    padding: 8px;
     width: 100%;
-    margin: 10px 0;
+    margin-bottom: 10px;
     background: #2C3E50;
     color: #fff;
     border-radius: 5px;
-    font-size: 16px; /* Standard font size for select */
-    height: 40px; /* Fixed height to make it more compact */
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif; /* Keep the font clean and simple */
+    height: 40px; /* Compact design for minimalistic feel */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow icon */
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 12px;
 }
 
 /* Ensure the text inside the select box is centered */
@@ -145,11 +154,12 @@ Old modal 11/20/23
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
   }*/
 
-  .modal .task-form input:focus,
-    .modal .task-form select:focus {
-    outline: none; /* Remove default focus outline */
-    border: 2px solid #3498DB; /* Highlight with a brighter blue */
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Soft glow effect */
+/* Focus styles for inputs and select to maintain the futuristic feel */
+.modal .task-form input:focus,
+.modal .task-form select:focus {
+    outline: none;
+    border: 2px solid #3498DB;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
   .modal .task-form button {
