@@ -64,6 +64,8 @@
     -webkit-appearance: none; /* Removes default browser styles for dropdown */
     -moz-appearance: none;
     appearance: none;
+    min-width: 120px; /* Adjust this value based on your design */
+    white-space: nowrap; /* Prevents text wrapping */
   }
   .common-btn-style:hover {
     background-color: rgb(130, 33, 33);
