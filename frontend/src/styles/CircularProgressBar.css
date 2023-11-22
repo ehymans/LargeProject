@@ -48,6 +48,7 @@ circle {
     transform: translate(-50%, -50%);
 }
 
+/*
 @keyframes completionAnimation {
     0% { transform: scale(1); opacity: 1; }
     100% { transform: scale(1.5); opacity: 0; }
@@ -55,7 +56,8 @@ circle {
   
   .circular-progress-bar.completed {
     animation: completionAnimation 1s ease-out forwards;
-  }
+  }*/
+  
 .base-circle {
     stroke: #eee; /* A light gray color for the unfilled part */
     stroke-width: 10; /* Match this to the stroke-width of the progress circle */
