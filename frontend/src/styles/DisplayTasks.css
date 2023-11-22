@@ -97,6 +97,8 @@
   display: inline-block; /* Icon to indicate completion */
   margin-right: 5px; /* Spacing before the task name */
   /* Use a font library like FontAwesome or an image */
+  width: 20px;  /* Set your desired width */
+  height: 20px; /* Set your desired height */
   content: url('../images/checked.png'); /* Replace with the path to your checkmark icon */
 }
 
