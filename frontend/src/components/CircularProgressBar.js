@@ -7,7 +7,8 @@ function CircularProgressBar({ progress }) {
   //const [counter, setCounter] = useState(progress); // Initialize with passed progress
   const [counter, setCounter] = useState(0); // Initialize counter at 0
   const offset = circumference - (progress / 100) * circumference;
-
+  
+  const [completed, setCompleted] = useState(false); // New state for tracking completion
   useEffect(() => {
     // Animate counter to the new progress value
     let animationFrameId;
@@ -18,6 +19,7 @@ function CircularProgressBar({ progress }) {
           animationFrameId = requestAnimationFrame(animateProgress);
           return prevCounter + 1; // This controls the speed of the animation
         } else {
+          setCompleted(progress === 100); // Set completion state when progress reaches 100%
           return progress; // When it reaches the progress, stop the animation
         }
       });
@@ -30,7 +32,7 @@ function CircularProgressBar({ progress }) {
   }, [progress]);
 
   return (
-    <div className="circular-progress-bar skill">
+    <div className={`circular-progress-bar skill ${completed ? 'completed' : ''}`}>
       <div className="outer">
         <div className="inner">
           <div id="number">{counter}%</div>
