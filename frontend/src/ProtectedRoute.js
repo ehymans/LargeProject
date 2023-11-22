@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
     if (!authToken) {
         // User not authenticated
-        return <Navigate to="/login" />;
+        return <Navigate to="/" />;     // changed 11/22/23 - Ethan - Send user back to landing page bc its auto directing back to /home anyways
     }
 
     return children;
