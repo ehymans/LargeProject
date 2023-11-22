@@ -362,6 +362,11 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
                 </div>
               </>
             )}
+            {task.TaskCompleted && (
+              <div className="completed-icon">
+                { <img src="../images/checked.png" alt="Completed" /> }
+              </div>
+            )}
           </div>
         ))}
       </div>

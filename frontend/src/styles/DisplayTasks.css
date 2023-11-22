@@ -72,6 +72,35 @@
   margin-bottom: 15px;
 }
 
+
+/* Completed task styles */
+.task-card.completed-task {
+  background-color: #d3d3d3; /* Grey background */
+  color: #6b6b6b; /* Subdued text color */
+  box-shadow: inset 0 0 10px #000000; /* Inner shadow for a "pressed" look */
+  border-radius: 10px; /* Rounded corners */
+  opacity: 0.7; /* Slightly transparent */
+}
+
+.task-card.completed-task:hover {
+  opacity: 1; /* Full opacity on hover */
+}
+
+.task-card.completed-task .title,
+.task-card.completed-task .difficulty,
+.task-card.completed-task .description {
+  text-decoration: line-through; /* Strikethrough for completed tasks */
+}
+
+/* Icon to indicate completion */
+.task-card.completed-task .completed-icon {
+  display: inline-block; /* Icon to indicate completion */
+  margin-right: 5px; /* Spacing before the task name */
+  /* Use a font library like FontAwesome or an image */
+  content: url('../images/checked.png'); /* Replace with the path to your checkmark icon */
+}
+
+
 .task-card .btn-container {
   display: flex;
   justify-content: space-around;
