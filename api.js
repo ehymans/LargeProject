@@ -491,7 +491,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
         tasksCompleted
       });
       console.log('no error getting user tasks');
-      broadcastUpdate({ tasksInProgress, tasksCompleted })
+      //broadcastUpdate({ tasksInProgress, tasksCompleted })
     } 
     catch (err) 
     {
