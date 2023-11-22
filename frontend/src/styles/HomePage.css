@@ -9,16 +9,18 @@
     flex-direction: column;
     gap: 1em; /* adds space between elements */
   }
-  /* Add Task button style */
+
+
+
   button {
-    background-color: #ff4b5c; /* Bright red similar to the image */
+    background-color: #ff4b5c; 
     border: none;
     border-radius: 5px;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.3s ease-out;
+    /*transition: 0.3s ease-out;*/
   }
 
   .sort-dropdown select {
@@ -71,6 +73,11 @@
   on-btn-style:hover {
     background-color: rgb(130, 33, 33);
 }
+
+.dynamic-text-button {
+  flex: 1 1 auto; /* This will allow the button to grow */
+}
+
   /* Style to change the arrow color */
   .sort-dropdown::after {
     content: '\25BC';

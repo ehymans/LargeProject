@@ -39,7 +39,7 @@ const HomePage = () => {
         </div>
         <button 
           type="button" 
-          className="common-btn-style" 
+          className="common-btn-style dynamic-text-button" 
           onClick={handleToggleTasksView}
         >
           {showCompletedTasks ? "Show Current Tasks" : "Show Completed Tasks"}
