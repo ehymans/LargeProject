@@ -264,11 +264,19 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
       TaskCompleted: !!task.TaskCompleted,
     });
     setIsOpenPopup(true);
+    document.querySelector('.home-header').classList.add('blurred-background'); // Use the actual class that wraps your main content
+    document.querySelector('.task-action-container').classList.add('blurred-background');
+    document.querySelector('.tasks-container').classList.add('blurred-background');
+    document.querySelector('.common-btn-style').classList.add('blurred-background'); //.add-task-container
   };
 
   //Close Modal
   const handleModalClose = () => {
     setIsOpenPopup(false);
+    document.querySelector('.home-header').classList.remove('blurred-background');
+    document.querySelector('.task-action-container').classList.remove('blurred-background');
+    document.querySelector('.tasks-container').classList.remove('blurred-background');
+    document.querySelector('.common-btn-style').classList.remove('blurred-background');
   };
   return (
     <>

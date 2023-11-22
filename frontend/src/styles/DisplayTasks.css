@@ -110,6 +110,11 @@
   background-color: rgb(145, 19, 19);
 }
 
+/* Add this class to blur the background */
+.blurred-background {
+  filter: blur(8px);
+}
+
 .modal {
   position: fixed;
   top: 50%;
