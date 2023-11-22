@@ -19,41 +19,67 @@ const HomePage = () => {
 
 
   useEffect(() => {
-    // Initialize WebSocket connection here
+    async function fetchInitialTasks() {
+      // Extract user data from local storage or context
+      const _ud = localStorage.getItem('user_data');
+      const ud = JSON.parse(_ud || '{}');
+
+      try {
+        const response = await fetch('/api/usertasks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${ud.token}`,
+          },
+          body: JSON.stringify({ userId: ud.id }),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setTasksInProgress(data.tasksInProgress);
+        setTasksCompleted(data.tasksCompleted);
+        establishWebSocket(); // Establish WebSocket connection after data is fetched
+      } catch (error) {
+        console.error('Error fetching initial tasks:', error);
+      }
+    }
+
+    fetchInitialTasks();
+  }, []);
+
+  const establishWebSocket = () => {
     const ws = new WebSocket('wss://dare2do.online');
 
     ws.onopen = () => {
-        console.log('Connected to WebSocket');
+      console.log('Connected to WebSocket');
     };
 
     ws.onmessage = (e) => {
-        if (e.data === 'ping') {
-            ws.send('pong');
-        } else {
-            try {
-                const message = JSON.parse(e.data);
-                if (message.type === 'update' && message.payload) {
-                    setTasksInProgress(message.payload.tasksInProgress);
-                    setTasksCompleted(message.payload.tasksCompleted);
-                } else {
-                    console.error("Invalid message format received");
-                }
-            } catch (error) {
-                console.error("Error parsing WebSocket message:", error);
-            }
+      if (e.data === 'ping') {
+        ws.send('pong');
+      } else {
+        try {
+          const message = JSON.parse(e.data);
+          if (message.type === 'update' && message.payload) {
+            setTasksInProgress(message.payload.tasksInProgress);
+            setTasksCompleted(message.payload.tasksCompleted);
+          } else {
+            console.error("Invalid message format received");
+          }
+        } catch (error) {
+          console.error("Error parsing WebSocket message:", error);
         }
+      }
     };
-    
+
     ws.onclose = () => {
-        console.log('Disconnected from WebSocket');
+      console.log('Disconnected from WebSocket');
     };
 
     return () => ws.close();
-}, []);
+  };
 
-
-
-  // Handler for sort dropdown change
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
   };
