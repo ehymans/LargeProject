@@ -12,7 +12,7 @@ var bp = require("./Path.js");
 // Set the app element for react-modal
 Modal.setAppElement(document.body);
 
-function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
+function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgress, tasksCompleted }) {
   const [tasks, setTasks] = useState([]);
   
 
@@ -120,14 +120,22 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
     return sortedTasks;
   };
 
+  
+  useEffect(() => {
+    fetchData();  // This function should be updated to use the new props if necessary
+  }, [tasksInProgress, tasksCompleted]);
+
+
   useEffect(() => {
     // console.log('Tasks List Updated!');
     fetchData();
-    if (isInitialLoad) {
+    if (isInitialLoad) 
+    {
       setTimeout(() => setIsInitialLoad(false), 500); // Duration of initial load animation
     }
 
-    if (sortOption !== prevSortOption) {
+    if (sortOption !== prevSortOption) 
+    {
       setIsSorting(true);
       setPrevSortOption(sortOption);
 
@@ -136,7 +144,55 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
       }, 500); // Duration of sort animation
 
       return () => clearTimeout(timer);
-    }
+    } 
+
+    /*
+    const ws = new WebSocket('wss://dare2do.online'); // Use your WebSocket URL
+    ws.onopen = () => {
+      console.log('Connected to WebSocket in DisplayTasks');
+    };
+    ws.onmessage = (e) => {
+      try {
+        const message = JSON.parse(e.data);
+        if(e.data === 'ping')
+        {
+          ws.send('pong');
+        }
+        else
+        {
+          try 
+          {
+            const message = JSON.parse(e.data);
+            if (message.type === 'update' && message.payload) 
+            {
+              console.log("Received payload:", message.payload);
+              setTasksInProgress(message.payload.tasksInProgress);
+              setTasksCompleted(message.payload.tasksCompleted);
+            } 
+            else 
+            {
+              console.error("Invalid message format received");
+            }
+          } 
+          catch (error) 
+          {
+            console.error("Error parsing WebSocket message:", error);
+          }
+        }
+      } catch (error) {
+        console.error("Error parsing WebSocket message:", error);
+      }
+    };
+
+    ws.onclose = () => {
+      console.log('Disconnected from WebSocket in DisplayTasks');
+    };
+
+    // Clean up
+    return () => {
+      ws.close();
+    };*/
+
   }, [updateTask, sortOption]);
 
   const handleUpdate = async () => {
@@ -329,7 +385,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
           </form>
         </div>
       </Modal>
-
+        
       <div className="tasks-container">
         {getFilteredTasks().map((task, index) => (
           <div key={index} className={`task-card ${isInitialLoad ? 'new-task-animation' : isSorting ? 'teleport-animation' : ''} ${showCompletedTasks ? 'show-completed-animation' : ''} ${task.TaskCompleted ? "completed-task" : ""}`}>

@@ -14,6 +14,45 @@ const HomePage = () => {
   
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
 
+  const [tasksInProgress, setTasksInProgress] = useState(null);
+  const [tasksCompleted, setTasksCompleted] = useState(null);
+
+
+  useEffect(() => {
+    // Initialize WebSocket connection here
+    const ws = new WebSocket('wss://dare2do.online');
+
+    ws.onopen = () => {
+        console.log('Connected to WebSocket');
+    };
+
+    ws.onmessage = (e) => {
+        if (e.data === 'ping') {
+            ws.send('pong');
+        } else {
+            try {
+                const message = JSON.parse(e.data);
+                if (message.type === 'update' && message.payload) {
+                    setTasksInProgress(message.payload.tasksInProgress);
+                    setTasksCompleted(message.payload.tasksCompleted);
+                } else {
+                    console.error("Invalid message format received");
+                }
+            } catch (error) {
+                console.error("Error parsing WebSocket message:", error);
+            }
+        }
+    };
+    
+    ws.onclose = () => {
+        console.log('Disconnected from WebSocket');
+    };
+
+    return () => ws.close();
+}, []);
+
+
+
   // Handler for sort dropdown change
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
@@ -25,7 +64,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <HomeHeader />
+      <HomeHeader tasksInProgress={tasksInProgress} tasksCompleted={tasksCompleted} />
       <div className="task-action-container">
         <select className="common-btn-style" value={sortOption} onChange={handleSortChange}>
           <option value="oldest">Sort by: Oldest</option>
@@ -48,7 +87,9 @@ const HomePage = () => {
       <DisplayTasks 
         updateTask={updateTask} 
         sortOption={sortOption} 
-        showCompletedTasks={showCompletedTasks} 
+        showCompletedTasks={showCompletedTasks}
+        tasksInProgress={tasksInProgress}
+        tasksCompleted={tasksCompleted} 
       />
     </div>
   );

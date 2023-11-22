@@ -3,10 +3,13 @@ import { AuthContext } from '../AuthContext';
 import CircularProgressBar from './CircularProgressBar';
 import '../styles/HomeHeader.css';
 
-function HomeHeader() {
+function HomeHeader({ tasksInProgress, tasksCompleted }) {
   const [user, setUser] = useState({});
+
+  /*
   const [tasksInProgress, setTasksInProgress] = useState(null);
   const [tasksCompleted, setTasksCompleted] = useState(null);
+*/
 
   const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
   const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
@@ -52,8 +55,8 @@ function HomeHeader() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setTasksInProgress(data.tasksInProgress);
-        setTasksCompleted(data.tasksCompleted);
+        //setTasksInProgress(data.tasksInProgress);
+        //setTasksCompleted(data.tasksCompleted);
         console.log('API called L53');
         console.log('api result:', data.tasksInProgress);
         console.log('api result:', data.tasksCompleted);
@@ -76,6 +79,7 @@ function HomeHeader() {
 
     fetchTasks();
 
+    /*
     // WebSocket connection
     const ws = new WebSocket('wss://dare2do.online');
 
@@ -115,7 +119,8 @@ function HomeHeader() {
 
     return () => {
       ws.close();
-    };
+    };*/
+
   }, []);
 
   const doLogout = (event) => {
@@ -207,7 +212,12 @@ function HomeHeader() {
     //return Math.min(100, progress); // Ensure progress doesn't exceed 100%
     return parseFloat(progress.toFixed(1)); // Format to one decimal place and convert back to a number
   }
-  
+
+    useEffect(() => {
+      // Update level and progress based on tasksInProgress and tasksCompleted
+      // Use your existing logic for calculating level and progress here
+      updateLevelAndProgress()
+  }, [tasksInProgress, tasksCompleted]);
 
   return (
     <div className="home-header">
