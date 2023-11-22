@@ -203,11 +203,12 @@
   text-align: center;
 }
 
-.modal1 label {
+.modal label {
   font-weight: bolder;
 }
 
-.modal input[name="taskName"] {
+/* Style for the Task Name input */
+.modal .task-form input[name="taskName"] {
   border: 2px solid #1E90FF;
   padding: 12px;
   width: 100%;
@@ -220,8 +221,24 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Style for the Task Description input */
+.modal .task-form input[name="taskDescription"] {
+  border: 2px solid #1E90FF;
+  padding: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  background: rgba(44, 62, 80, 0.9); /* Slightly transparent background */
+  color: #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif; /* Clean font for description */
+  height: 80px; /* Fixed height to allow for multiline input */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  resize: none; /* Disable resizing */
+}
+
 /* Style for the Task Importance select box */
-.modal select[name="taskImportance"] {
+.modal .task-form select[name="taskImportance"] {
   border: 2px solid #1E90FF;
   padding: 8px;
   width: 100%;
@@ -240,14 +257,31 @@
   background-size: 12px;
 }
 
-.modal input:focus,
-.modal select:focus {
+/* Ensure the text inside the select box is centered */
+.modal .task-form select {
+  display: flex;
+  align-items: center;
+}
+
+.modal .task-form input:focus,
+.modal .task-form select:focus {
     outline: none;
     border: 2px solid #3498DB;
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
-
+.modal .task-form button {
+  background-color: #32CD32; /* Keep the success green color */
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  transition: background-color 0.3s, box-shadow 0.2s; /* Smooth transition for hover effect */
+  box-shadow: 0 2px 4px rgba(50, 205, 50, 0.4); /* Reduced glow effect */
+}
 
 /*
 .modal1 input[type="text"] {
@@ -271,16 +305,16 @@
   border-radius: 5px;
 }*/
 
-.modal1 input[type="checkbox"] {
+.modal input[type="checkbox"] {
   margin-bottom: 13px;
   transform: translateY(2px);
 }
 
-.modal1 .btn-div {
+.modal .btn-div {
   text-align: center;
 }
 
-.modal1 .btn {
+.modal .btn {
   border: none;
   border-radius: 5px;
   background-color: rgb(183, 31, 31);
@@ -291,7 +325,7 @@
   transition: background-color 0.3s;
 }
 
-.modal1 .btn:hover {
+.modal .btn:hover {
   background-color: rgb(130, 33, 33);
   cursor: pointer;
 }
@@ -307,7 +341,7 @@
     margin-left: 0px;
   }
 
-  .modal1 {
+  .modal {
     width: 80vw;
   }
 }

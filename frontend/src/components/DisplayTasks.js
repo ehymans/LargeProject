@@ -276,60 +276,51 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
         className="modal"
         overlayClassName="modal-overlay"
         isOpen={IsOpenPopup}
-        //style={customStyles}
         onRequestClose={handleModalClose}>
         <FaTimes size={25} onClick={handleModalClose} className='cross-icon' />
         <div className="modal-main">
           <h1>Edit Task</h1>
-          <label htmlFor="task-title">Task Title:</label>
-          <input
-            type="text"
-            id="task-title"
-            name="TaskName"
-            value={formData.TaskName}
-            onChange={handleChange}
-          />
-          <label htmlFor="difficulty">Task Priority:</label>
-          <br />
-          <select
-            type="text"
-            name="TaskDifficulty"
-            id="difficulty"
-            value={formData.TaskDifficulty}
-            onChange={handleChange}
-          >
-            <option value="">Select Priority</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-          <br />
-
-          <label htmlFor="description">Task Description:</label>
-          <input
-            type="text"
-            name="TaskDescription"
-            id="description"
-            value={formData.TaskDescription}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="completion-status">Task Completed: </label>
-          <input
-            type="checkbox"
-            name="TaskCompleted"
-            id="completion-status"
-            checked={
-              formData.TaskCompleted
-            }
-            onChange={(e) => toggleSelect(e)}
-          />
-          <br />
-          <div className="btn-div">
-            <button className="common-btn-style" onClick={handleUpdate}>Update Task</button>
-          </div>
+          <form className="task-form">
+            <input
+              type="text"
+              name="TaskName"
+              placeholder="Task Title"
+              value={formData.TaskName}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="TaskDescription"
+              placeholder="Task Description"
+              value={formData.TaskDescription}
+              onChange={handleChange}
+            />
+            <select
+              name="TaskDifficulty"
+              value={formData.TaskDifficulty}
+              onChange={handleChange}
+            >
+              <option value="">Select Priority</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+            <br />
+            <input
+              type="checkbox"
+              name="TaskCompleted"
+              id="completion-status"
+              checked={formData.TaskCompleted}
+              onChange={(e) => toggleSelect(e)}
+            />
+            <label htmlFor="completion-status">Task Completed</label>
+            <br />
+            <div className="btn-div">
+              <button className="common-btn-style" onClick={handleUpdate}>Update Task</button>
+            </div>
+          </form>
         </div>
-      </Modal >
+      </Modal>
 
       <div className="tasks-container">
         {getFilteredTasks().map((task, index) => (
