@@ -208,7 +208,7 @@
 }
 
 /* Style for the Task Name input */
-.modal .task-form input[name="taskName"] {
+.modal .task-form input[name="TaskName"] {
   border: 2px solid #1E90FF;
   padding: 12px;
   width: 100%;
@@ -222,7 +222,7 @@
 }
 
 /* Style for the Task Description input */
-.modal .task-form input[name="taskDescription"] {
+.modal .task-form input[name="TaskDescription"] {
   border: 2px solid #1E90FF;
   padding: 16px;
   width: 100%;
@@ -238,7 +238,7 @@
 }
 
 /* Style for the Task Importance select box */
-.modal .task-form select[name="taskImportance"] {
+.modal .task-form select[name="TaskDifficulty"] {
   border: 2px solid #1E90FF;
   padding: 8px;
   width: 100%;
