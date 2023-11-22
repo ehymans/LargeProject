@@ -273,7 +273,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
   return (
     <>
       <Modal
-        className="modal1"
+        className="modal"
         overlayClassName="modal-overlay"
         isOpen={IsOpenPopup}
         //style={customStyles}
@@ -326,7 +326,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks }) {
           />
           <br />
           <div className="btn-div">
-            <button className="btn" onClick={handleUpdate}>Update Task</button>
+            <button className="common-btn-style" onClick={handleUpdate}>Update Task</button>
           </div>
         </div>
       </Modal >
