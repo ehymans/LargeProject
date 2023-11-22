@@ -13,7 +13,10 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
 
   const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
   const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
-
+  
+  console.log('initial level/progress:');  
+  console.log(level);
+  console.log(progress);
 
   const { logout } = useContext(AuthContext); // Using AuthContext
 
@@ -163,6 +166,10 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
   useEffect(() => {
     // Call this function whenever tasksInProgress or tasksCompleted changes
     console.log('updateLevelAndProgress useEffect call');
+
+    console.log(tasksInProgress);   // debug  
+    console.log(tasksCompleted);    // debug
+
     if (tasksInProgress !== null && tasksCompleted !== null) {
       updateLevelAndProgress();
     }
