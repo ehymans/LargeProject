@@ -64,7 +64,7 @@
     -webkit-appearance: none; /* Removes default browser styles for dropdown */
     -moz-appearance: none;
     appearance: none;
-    flex: 0 1 auto; /* Allows the button to grow and shrink as needed */
+    min-width: 175px;
     white-space: nowrap; /* Prevents text wrapping */
   }
   .comm
