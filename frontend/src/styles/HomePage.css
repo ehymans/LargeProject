@@ -66,7 +66,7 @@
     -webkit-appearance: none; /* Removes default browser styles for dropdown */
     -moz-appearance: none;
     appearance: none;
-    flex: 0 1 auto; /* Allows the button to grow and shrink as needed */
+    min-width: 150px;
     white-space: nowrap; /* Prevents text wrapping */
   }
   .comm
@@ -75,7 +75,7 @@
 }
 
 .dynamic-text-button {
-  flex: 1 1 auto; /* This will allow the button to grow */
+  flex: 0 1 auto; /* This will allow the button to grow */
 }
 
   /* Style to change the arrow color */
