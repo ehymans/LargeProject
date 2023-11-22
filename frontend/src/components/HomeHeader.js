@@ -13,9 +13,9 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
 
   const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
   const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
-  
+
   console.log('initial level/progress:');  
-  console.log(level);
+  console.log(level);   
   console.log(progress);
 
   const { logout } = useContext(AuthContext); // Using AuthContext
@@ -81,48 +81,6 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     }
 
     fetchTasks();
-
-    /*
-    // WebSocket connection
-    const ws = new WebSocket('wss://dare2do.online');
-
-    ws.onopen = () => {
-      console.log('Connected to WebSocket');
-    };
-
-    ws.onmessage = (e) => {
-      if(e.data === 'ping')
-      {
-        ws.send('pong');
-      }
-      else
-      {
-        try 
-        {
-          const message = JSON.parse(e.data);
-          if (message.type === 'update' && message.payload) {
-            console.log("Received payload:", message.payload);
-            setTasksInProgress(message.payload.tasksInProgress);
-            setTasksCompleted(message.payload.tasksCompleted);
-          } else {
-            console.error("Invalid message format received");
-          }
-        } 
-        catch (error) 
-        {
-          console.error("Error parsing WebSocket message:", error);
-        }
-      }
-    };
-    
-    // clean up logic
-    ws.onclose = () => {
-      console.log('Disconnected from WebSocket');
-    };
-
-    return () => {
-      ws.close();
-    };*/
 
   }, []);
 
@@ -220,11 +178,12 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     return parseFloat(progress.toFixed(1)); // Format to one decimal place and convert back to a number
   }
 
+  /*
     useEffect(() => {
       // Update level and progress based on tasksInProgress and tasksCompleted
       // Use your existing logic for calculating level and progress here
       updateLevelAndProgress()
-  }, [tasksInProgress, tasksCompleted]);
+  }, [tasksInProgress, tasksCompleted]);*/
 
   return (
     <div className="home-header">
