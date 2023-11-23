@@ -53,7 +53,7 @@ const HomePage = () => {
 
   const establishWebSocket = (userId) => {
     const ws = new WebSocket(`wss://dare2do.online?userId=${userId}`);
-
+    let heartbeatInterval;
     ws.onopen = () => {
 
       console.log('Connected to WebSocket');
