@@ -1,14 +1,15 @@
 // import 'dart:async';
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:async';
-// import 'dart:convert';
 import 'home.dart';
 import 'api.dart';
 import 'color.dart';
+import 'task.dart';
+import 'landing.dart';
 
 var num = 0;
 
@@ -30,13 +31,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: createColor(Color(0xFFff4b5c)),
-          textTheme: TextTheme(
-              displayLarge: const TextStyle(
-            fontFamily: 'Courier',
-            fontSize: 72,
-          ))),
-      home: const Login(title: 'Dare2Do'),
+        primarySwatch: createColor(Color(0xFFB71F1F)),
+      ),
+      // home: const Login(title: 'Dare2Do'),
+      home: LandingPage(),
     );
   }
 }
@@ -65,8 +63,25 @@ class _LoginState extends State<Login> {
         titleTextStyle: TextStyle(
             fontFamily: 'Courier New',
             fontWeight: FontWeight.w600,
-            fontSize: 40),
-        backgroundColor: Color(0xFFff4b5c),
+            fontSize: 30),
+        backgroundColor: Color(0xFFB71F1F),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              loginController.text = '';
+              passwordController.text = '';
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterScreen()),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              backgroundColor: Color(0xFFB71F1F),
+            ),
+            child: Text("Register", style: TextStyle(color: Colors.white)),
+          ),
+        ],
       ),
       body: Container(
         height: size.height,
@@ -120,27 +135,11 @@ class _LoginState extends State<Login> {
                     },
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
-                  child: Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        loginController.text = '';
-                        passwordController.text = '';
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterScreen()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFff4b5c),
-                      ),
-                      child: const Text('Register'),
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
+
+                // ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
@@ -153,16 +152,19 @@ class _LoginState extends State<Login> {
                               passwordController.text.toString());
                           if (num != "0") {
                             if (!mounted) return;
-                            // print("HERE IS LOGIN");
-                            // print(loginController.text);
+                            List<Task> taskList =
+                                await displayTasks(loginController.text, num);
+                            User newUser =
+                                await userTasks(loginController.text);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeScreen(
-                                      login: loginController.text, token: num)),
+                                  builder: (context) => TaskScreen(
+                                      taskList: taskList,
+                                      login: loginController.text,
+                                      token: num,
+                                      user: newUser)),
                             );
-                            // loginController.text = '';
-                            // passwordController.text = '';
                           } else {
                             if (!mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -177,8 +179,10 @@ class _LoginState extends State<Login> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFff4b5c)),
-                      child: const Text('Login'),
+                        backgroundColor: Color(0xFFB71F1F),
+                      ),
+                      child: const Text('Login',
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ),
