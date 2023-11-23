@@ -6,11 +6,6 @@ import '../styles/HomeHeader.css';
 function HomeHeader({ tasksInProgress, tasksCompleted }) {
   const [user, setUser] = useState({});
 
-  /*
-  const [tasksInProgress, setTasksInProgress] = useState(null);
-  const [tasksCompleted, setTasksCompleted] = useState(null);
-*/
-
   const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
   const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
 
@@ -29,17 +24,8 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     let ud = JSON.parse(_ud || '{}');
     setUser(ud);
 
-    // Initialize level and progress from localStorage
-    //const savedLevel = parseInt(localStorage.getItem('user_level'), 10) || 0;
-    //const savedProgress = parseFloat(localStorage.getItem('user_progress')) || 0;
-    //setLevel(savedLevel);
-    //setProgress(savedProgress);
-    //console.log('Level from localStorage:', savedLevel);
-    //console.log('Progress from localStorage:', savedProgress);
 
-  
-
-
+    /*
     // Fetch initial tasks data
     async function fetchTasks() 
     {
@@ -80,7 +66,7 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
       }
     }
 
-    fetchTasks();
+    fetchTasks();*/
 
   }, []);
 
@@ -181,13 +167,6 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     //return Math.min(100, progress); // Ensure progress doesn't exceed 100%
     return parseFloat(progress.toFixed(1)); // Format to one decimal place and convert back to a number
   }
-
-  /*
-    useEffect(() => {
-      // Update level and progress based on tasksInProgress and tasksCompleted
-      // Use your existing logic for calculating level and progress here
-      updateLevelAndProgress()
-  }, [tasksInProgress, tasksCompleted]);*/
 
   return (
     <div className="home-header">
