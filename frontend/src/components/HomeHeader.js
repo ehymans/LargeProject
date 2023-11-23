@@ -125,10 +125,10 @@ useEffect(() => {
       description = 'Level 1: Complete 2 tasks to reach the next level!';
       break;
     case 2:
-      description = 'Level 2: Complete 3 more tasks to advance to level 3!';
+      description = 'Level 2: Complete 5 tasks to advance!';
       break;
     case 3:
-      description = 'Level 3: Complete 5 more tasks to reach the top level!';
+      description = 'Level 3: Complete 10 tasks! Keep going!';
       break;
     case 4:
       description = 'Level 4: Congratulations, you are at the top level!';
@@ -210,7 +210,7 @@ useEffect(() => {
         <div className='task-info'>
           <div>Tasks In Progress: {tasksInProgress}</div>
           <div>Tasks Completed: {tasksCompleted}</div>
-          <div className='level-info'>Level: {levelDescription}</div> {/* New div for level indication */}
+          <div className='level-info'>{levelDescription}</div> {/* New div for level indication */}
         </div>
       </div>
       <div className="btn-div">
