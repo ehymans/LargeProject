@@ -55,6 +55,13 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
         console.log('within if(data)');
         console.log('initial lvl:', newLevel);
         console.log('initial prog:', newProgress);
+        if (tasksInProgress !== null && tasksCompleted !== null) 
+        {
+          console.log('updateLevelAndProgress useEffect call');   // debug
+          //console.log(tasksInProgress);   // debug  
+          //console.log(tasksCompleted);    // debug
+          updateLevelAndProgress();
+        }
       }
 
       }  
@@ -105,6 +112,7 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     localStorage.setItem('user_progress', newProgress);
   };
 
+  /*
   useEffect(() => {
     // Call this function whenever tasksInProgress or tasksCompleted changes
     //console.log('updateLevelAndProgress useEffect call');
@@ -119,7 +127,7 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
       //console.log(tasksCompleted);    // debug
       updateLevelAndProgress();
     }
-  }, [tasksInProgress, tasksCompleted]);
+  }, [tasksInProgress, tasksCompleted]);*/
 
 
   function calculateLevel(tasksInProgress, tasksCompleted) {
