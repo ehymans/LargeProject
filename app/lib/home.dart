@@ -37,6 +37,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFB71F1F),
         title: const Text('Dare2Do'),
         titleTextStyle: TextStyle(
             fontFamily: "Courier New",
@@ -44,34 +45,40 @@ class HomeScreenState extends State<HomeScreen> {
             fontSize: 30),
         automaticallyImplyLeading: false,
         leading: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFB71F1F), elevation: 0),
           onPressed: () async {
-            // print("HERE IS OTHER LOGIN");
-            // print(widget.login);
             if (!mounted) return;
             List<Task> taskList =
                 await displayTasks(widget.login, widget.token);
+            User newUser = await userTasks(widget.login);
             Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => TaskScreen(
                       taskList: taskList,
                       login: widget.login,
-                      token: widget.token)),
+                      token: widget.token,
+                      user: newUser)),
             );
           },
-          child: Icon(Icons.home),
+          child: Icon(Icons.home, color: Colors.white),
         ),
         actions: [
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFB71F1F), elevation: 0),
             onPressed: () {
               // print("ADD");
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Welcome to the Add Task Page!')),
               );
             },
-            child: Icon(Icons.add),
+            child: Icon(Icons.add, color: Colors.white),
           ),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFB71F1F), elevation: 0),
             onPressed: () {
               Navigator.push(
                 context,
@@ -80,7 +87,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
               );
             },
-            child: Icon(Icons.exit_to_app),
+            child: Icon(Icons.exit_to_app, color: Colors.white),
           ),
         ],
       ),
@@ -125,7 +132,10 @@ class HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Container(
-                      color: Colors.white,
+                      //color: Colors.white,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
                       child: DropdownButton<String>(
                         items: dropdownItems,
                         value: selectedDifficulty,
@@ -137,38 +147,26 @@ class HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFB71F1F),
+                          elevation: 0),
                       onPressed: () async {
                         addTask(
                             widget.login,
                             taskNameController.text.toString(),
                             taskDescriptionController.text.toString(),
-                            selectedDifficulty.toString());
+                            selectedDifficulty.toString(),
+                            widget.token);
                         taskNameController.text = "";
                         taskDescriptionController.text = "";
                         selectedDifficulty = "Low";
                       },
-                      child: Text("Submit Task"),
+                      child: Text("Submit Task",
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ],
               ),
-              // ElevatedButton(
-              //   onPressed: () async {
-              //     // print("HERE IS OTHER LOGIN");
-              //     // print(widget.login);
-              //     if (!mounted) return;
-              //     List<Task> taskList =
-              //         await displayTasks(widget.login, widget.token);
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => TaskScreen(taskList: taskList)),
-              //     );
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //       backgroundColor: Color(0xFFff4b5c)),
-              //   child: const Text('View Tasks'),
-              // ),
             ],
           ),
         ),
@@ -182,11 +180,13 @@ class TaskScreen extends StatefulWidget {
       {super.key,
       required this.taskList,
       required this.login,
-      required this.token});
+      required this.token,
+      required this.user});
 
   final String login;
   final String token;
   final List<Task> taskList;
+  final User user;
 
   @override
   TaskScreenState createState() => TaskScreenState();
@@ -200,17 +200,65 @@ class TaskScreenState extends State<TaskScreen> {
     tList = widget.taskList;
   }
 
+  // bool isCompleted = false;
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    int inProgress = widget.user.tasksInProgress;
+    int completed = widget.user.tasksCompleted;
+    int level = calculateLevel(inProgress, completed);
+    double progress = calculateProgress(inProgress, completed, level);
+    // String percent = (progress * 100).toString();
+    print(progress);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dare2Do Tasks"),
+        backgroundColor: Color(0xFFB71F1F),
+        title: const Text('Dare2Do'),
         titleTextStyle: TextStyle(
-            fontFamily: 'Courier New',
+            fontFamily: "Courier New",
             fontWeight: FontWeight.w600,
-            fontSize: 40),
-        backgroundColor: Color(0xFFff4b5c),
+            fontSize: 30),
+        automaticallyImplyLeading: false,
+        leading: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFB71F1F), elevation: 0),
+          onPressed: () async {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Welcome to the Home Page!')),
+            );
+          },
+          child: Icon(Icons.home, color: Colors.white),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFB71F1F), elevation: 0),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      HomeScreen(login: widget.login, token: widget.token),
+                ),
+              );
+            },
+            child: Icon(color: Colors.white, Icons.add),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFB71F1F), elevation: 0),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Login(title: "Dare2DO"),
+                ),
+              );
+            },
+            child: Icon(Icons.exit_to_app, color: Colors.white),
+          ),
+        ],
       ),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -222,60 +270,154 @@ class TaskScreenState extends State<TaskScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [Color(0xFF222233), Color(0xFF555577)])),
-          child: ListView.separated(
-            itemCount: tList.length,
-            itemBuilder: (context, index) {
-              Color color = taskColor(tList[index].taskDifficulty);
-
-              return Container(
-                  child: SizedBox(
-                width: size.width,
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Container(
-                    width: size.width * 0.5,
-                    height: 200,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(width: 2, color: Colors.black)),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(tList[index].taskName,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  height: 120,
+                  width: size.width * 0.5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Color(0x32325df2),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Tasks In Progress: $inProgress",
                                 style: TextStyle(
-                                    fontFamily: 'Courier New',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(tList[index].taskDifficulty,
+                                    color: Colors.white, fontSize: 20)),
+                            Text("Tasks Completed: $completed",
                                 style: TextStyle(
-                                    fontFamily: 'Courier New',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w300,
-                                    color: color)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(tList[index].taskDescription,
+                                    color: Colors.white, fontSize: 20)),
+                            Text("Level: $level",
                                 style: TextStyle(
-                                    fontFamily: 'Courier New',
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w300)),
+                                    color: Colors.white, fontSize: 20))
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: SizedBox(
+                          height: 125,
+                          width: 125,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: Color(0xFFB71F1F),
+                              value: progress,
+                              valueColor: AlwaysStoppedAnimation(Colors.green),
+                              strokeWidth: 10,
+                            ),
                           ),
-                        ]),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ));
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Divider();
-            },
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: size.height * 0.9,
+                  child: ListView.separated(
+                    itemCount: tList.length,
+                    itemBuilder: (context, index) {
+                      Color color = taskColor(tList[index].taskDifficulty);
+                      //bool isCompleted = tList[index].taskCompleted;
+                      return SizedBox(
+                        width: size.width,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Container(
+                            width: size.width * 0.5,
+                            height: 200,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              // border: Border.all(width: 2, color: Colors.black)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(tList[index].taskName,
+                                      style: TextStyle(
+                                          fontFamily: 'Courier New',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(tList[index].taskDifficulty,
+                                      style: TextStyle(
+                                          fontFamily: 'Courier New',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w300,
+                                          color: color)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(tList[index].taskDescription,
+                                      style: TextStyle(
+                                          fontFamily: 'Courier New',
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w300)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Completed?"),
+                                      Checkbox(
+                                        value: tList[index].taskCompleted,
+                                        activeColor: Colors.blue,
+                                        checkColor: Colors.white,
+                                        onChanged: (value) {
+                                          setState(
+                                            () {
+                                              tList[index].taskCompleted =
+                                                  value!;
+                                              // Task newTask = Task();
+                                              // newTask.taskId = tList[index].taskId;
+                                              // newTask.taskName = tList[index].taskName;
+                                              // newTask.taskDescription =
+                                              //     tList[index].taskDescription;
+                                              // newTask.taskDifficulty =
+                                              //     tList[index].taskDifficulty;
+                                              // newTask.taskCompleted =
+                                              //     tList[index].taskCompleted;
+                                              updateTask(
+                                                  tList[index], widget.token);
+                                            },
+                                          );
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Divider();
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

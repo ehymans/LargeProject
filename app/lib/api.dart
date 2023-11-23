@@ -73,12 +73,14 @@ Future<int> registerUser(String firstName, String lastName, String login,
 }
 
 Future<void> addTask(String id, String taskName, String taskDescription,
-    String taskDifficulty) async {
+    String taskDifficulty, String token) async {
   Map data = {
     "userId": id,
     "taskName": taskName,
     "taskDescription": taskDescription,
     "taskDifficulty": taskDifficulty,
+    "taskCompleted": false,
+    "accessToken": token
   };
 
   const Map<String, String> header = {
@@ -119,14 +121,65 @@ Future<List<Task>> displayTasks(String id, String token) async {
 
   for (int i = 0; i < length; i++) {
     Task temp = Task();
+    temp.taskId = results["results"][i]["_id"];
     temp.taskName = results["results"][i]["TaskName"];
     temp.taskDescription = results["results"][i]["TaskDescription"];
     temp.taskDifficulty = results["results"][i]["TaskDifficulty"];
-    // temp.taskCompleted = results["results"][i]["TaskCompleted"];
+    if (results["results"][i]["TaskCompleted"] == false) {
+      temp.taskCompleted = false;
+    } else {
+      temp.taskCompleted = true;
+    }
+    temp.date = results["results"][i]["Date"];
     result.add(temp);
   }
 
   return result;
+}
+
+Future<void> updateTask(Task task, String token) async {
+  Map data = {
+    "_id": task.taskId,
+    "taskName": task.taskName,
+    "taskDescription": task.taskDescription,
+    "taskDifficulty": task.taskDifficulty,
+    "TaskCompleted": task.taskCompleted,
+    "accessToken": token
+  };
+
+  var jsonData = jsonEncode(data).toString();
+
+  const Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  var response = await http.post(Uri.parse("$url/api/updatetask"),
+      body: jsonData, headers: header);
+  var results = jsonDecode(response.body);
+  print(results);
+}
+
+Future<User> userTasks(String userId) async {
+  var data = {"userId": userId};
+
+  var jsonData = jsonEncode(data).toString();
+  const Map<String, String> header = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  var response = await http.post(Uri.parse("$url/api/usertasks"),
+      body: jsonData, headers: header);
+  var results = jsonDecode(response.body);
+  print(results);
+
+  User user = User();
+  user.userId = userId;
+  user.tasksInProgress = results["tasksInProgress"];
+  user.tasksCompleted = results["tasksCompleted"];
+
+  return user;
 }
 
 Future<int> verifyEmail(String email) async {

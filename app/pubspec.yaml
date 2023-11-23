@@ -9,7 +9,8 @@ environment:
   sdk: ^3.1.1
 
 dependencies:
-  http:
+  typewritertext: ^2.3.0
+  http: any
   flutter:
     sdk: flutter
 
@@ -20,7 +21,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
+
+  assets:
+  - images/background2.jpg
