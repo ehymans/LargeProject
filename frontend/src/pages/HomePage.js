@@ -59,8 +59,8 @@ const HomePage = () => {
     ws.onmessage = (e) => {
       if (e.data === 'ping') 
       {
-        ws.send('pong');
         console.log('pong');
+        ws.send('pong');
       } 
       else 
       {
