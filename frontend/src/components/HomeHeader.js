@@ -112,7 +112,7 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     localStorage.setItem('user_progress', newProgress);
   };
 
-  /*
+
   useEffect(() => {
     // Call this function whenever tasksInProgress or tasksCompleted changes
     //console.log('updateLevelAndProgress useEffect call');
@@ -122,12 +122,12 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
 
     if (tasksInProgress !== null && tasksCompleted !== null) 
     {
-      console.log('updateLevelAndProgress useEffect call');   // debug
+      console.log('updateLevelAndProgress useEffect call 2');   // debug
       //console.log(tasksInProgress);   // debug  
       //console.log(tasksCompleted);    // debug
       updateLevelAndProgress();
     }
-  }, [tasksInProgress, tasksCompleted]);*/
+  }, [tasksInProgress, tasksCompleted]);
 
 
   function calculateLevel(tasksInProgress, tasksCompleted) {
