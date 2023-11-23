@@ -24,8 +24,6 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     let ud = JSON.parse(_ud || '{}');
     setUser(ud);
 
-
-    /*
     // Fetch initial tasks data
     async function fetchTasks() 
     {
@@ -66,7 +64,7 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
       }
     }
 
-    fetchTasks();*/
+    fetchTasks();
 
   }, []);
 
