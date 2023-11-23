@@ -123,12 +123,16 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
 
   useEffect(() => {
     // Call this function whenever tasksInProgress or tasksCompleted changes
-    console.log('updateLevelAndProgress useEffect call');
+    //console.log('updateLevelAndProgress useEffect call');
 
-    console.log(tasksInProgress);   // debug  
-    console.log(tasksCompleted);    // debug
+    //console.log(tasksInProgress);   // debug  
+    //console.log(tasksCompleted);    // debug
 
-    if (tasksInProgress !== null && tasksCompleted !== null) {
+    if (tasksInProgress !== null && tasksCompleted !== null) 
+    {
+      console.log('updateLevelAndProgress useEffect call');   // debug
+      console.log(tasksInProgress);   // debug  
+      console.log(tasksCompleted);    // debug
       updateLevelAndProgress();
     }
   }, [tasksInProgress, tasksCompleted]);
