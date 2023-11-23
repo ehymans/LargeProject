@@ -250,7 +250,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
       const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
   
       // Broadcast the update
-      broadcastUpdate({ tasksInProgress, tasksCompleted });
+      //broadcastUpdate({ tasksInProgress, tasksCompleted });
   
       res.status(200).send("Task Deleted");
     } catch (err) {
@@ -288,8 +288,9 @@ exports.setApp = function (app, client, broadcastUpdate) {
       const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
       const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
 
+
       // Broadcast the updated counts to all connected clients
-      broadcastUpdate({ tasksInProgress, tasksCompleted });
+      //broadcastUpdate({ tasksInProgress, tasksCompleted });
 
       res.status(200).json({ success: "Task added" });
     } 
