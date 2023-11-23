@@ -120,7 +120,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
     return sortedTasks;
   };
 
-  
+
   useEffect(() => {
     fetchData();  // This function should be updated to use the new props if necessary
   }, [tasksInProgress, tasksCompleted]);
@@ -195,7 +195,8 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
 
   }, [updateTask, sortOption]);
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (event) => {
+    event.preventDefault();
     const _ud = localStorage.getItem("user_data");
     const ud = JSON.parse(_ud || "{}");
     const Data = {
