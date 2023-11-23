@@ -75,7 +75,7 @@ wss.on('connection', function connection(ws, req) {
 
   ws.isAlive = true;
   ws.on('pong', function heartbeat() {
-    console.log('pong');
+    //console.log('pong');
     ws.isAlive = true;
   });
 

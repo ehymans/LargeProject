@@ -55,17 +55,18 @@ const HomePage = () => {
     const ws = new WebSocket(`wss://dare2do.online?userId=${userId}`);
 
     ws.onopen = () => {
+
       console.log('Connected to WebSocket');
+    
+      // Send a heartbeat message every 30 seconds
+      heartbeatInterval = setInterval(() => {
+        ws.send(JSON.stringify({ type: 'heartbeat' }));
+        console.log('Heartbeat sent');
+      }, 30000);
+    
     };
 
     ws.onmessage = (e) => {
-      if (e.data === 'ping') 
-      {
-        console.log('pong');
-        ws.send('pong');
-      } 
-      else 
-      {
         try 
         {
           const message = JSON.parse(e.data);
@@ -77,6 +78,10 @@ const HomePage = () => {
             setTasksCompleted(message.payload.tasksCompleted);
             console.log(message.payload.tasksCompleted);
           } 
+          else if(message.type === 'heartbeat')
+          {
+            console.log('Heartbeat acknowledged by server');
+          }
           else 
           {
             console.error("Invalid message format received");
@@ -86,14 +91,17 @@ const HomePage = () => {
         {
           console.error("Error parsing WebSocket message:", error);
         }
-      }
-    };
+      };
 
     ws.onclose = () => {
       console.log('Disconnected from WebSocket');
+      clearInterval(heartbeatInterval); // Clear the interval on close
     };
 
-    return () => ws.close();
+    return () => {
+      ws.close();
+      clearInterval(heartbeatInterval); // Ensure interval is cleared when connection is closed
+    };
   };
 
   const handleSortChange = (e) => {

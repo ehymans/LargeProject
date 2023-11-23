@@ -115,8 +115,8 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     if (tasksInProgress !== null && tasksCompleted !== null) 
     {
       console.log('updateLevelAndProgress useEffect call');   // debug
-      console.log(tasksInProgress);   // debug  
-      console.log(tasksCompleted);    // debug
+      //console.log(tasksInProgress);   // debug  
+      //console.log(tasksCompleted);    // debug
       updateLevelAndProgress();
     }
   }, [tasksInProgress, tasksCompleted]);
