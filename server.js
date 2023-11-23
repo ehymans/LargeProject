@@ -78,7 +78,20 @@ wss.on('connection', function connection(ws, req) {
     //console.log('pong');
     ws.isAlive = true;
   });
-
+  
+  ws.on('message', function incoming(message) {
+    try {
+      const msg = JSON.parse(message);
+      if (msg.type === 'heartbeat') {
+        console.log('Heartbeat received from client');
+        // Send acknowledgment back to the client
+        ws.send(JSON.stringify({ type: 'heartbeat', status: 'acknowledged' }));
+      }
+      // You can add more conditions here to handle different types of messages
+    } catch (e) {
+      console.error('Error parsing message from client:', e);
+    }
+  });
   // Your existing WebSocket 'connection' logic goes here
   console.log('Client connected to WebSocket');
 

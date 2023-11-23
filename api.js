@@ -251,9 +251,9 @@ exports.setApp = function (app, client, broadcastUpdate) {
       
       // Broadcast the update
       //broadcastUpdate({ tasksInProgress, tasksCompleted });
-      broadcastUpdate(userId, { tasksInProgress, tasksCompleted });
   
       res.status(200).send("Task Deleted");
+      broadcastUpdate(userId, { tasksInProgress, tasksCompleted });
     } 
     catch (err) 
     {

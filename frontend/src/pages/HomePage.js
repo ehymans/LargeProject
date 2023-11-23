@@ -40,7 +40,7 @@ const HomePage = () => {
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
         establishWebSocket(ud.id); // Establish WebSocket connection after data is fetched
-        console.log('userID at HomePage.js: ', ud.id);
+        //console.log('userID at HomePage.js: ', ud.id);
       } 
       catch (error) 
       {
