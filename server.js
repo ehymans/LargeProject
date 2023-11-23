@@ -91,6 +91,7 @@ wss.on('connection', function connection(ws, req) {
 });
 
 /*
+//test
 wss.on('close', function close() 
 {
   clearInterval(interval);
