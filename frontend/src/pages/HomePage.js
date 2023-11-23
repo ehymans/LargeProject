@@ -40,6 +40,7 @@ const HomePage = () => {
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
         establishWebSocket(ud.id); // Establish WebSocket connection after data is fetched
+        console.log('userID at HomePage.js: ', ud.id);
       } catch (error) {
         console.error('Error fetching initial tasks:', error);
       }
@@ -59,6 +60,7 @@ const HomePage = () => {
       if (e.data === 'ping') 
       {
         ws.send('pong');
+        console.log('pong');
       } 
       else 
       {

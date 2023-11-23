@@ -60,6 +60,7 @@ const interval = setInterval(function ping() {
     
     ws.isAlive = false;
     ws.ping();
+    console.log('ping');
   });
 }, 30000); // Ping every 30 seconds
 
