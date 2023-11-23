@@ -3,6 +3,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const WebSocket = require('ws');
+
+// new (11-22-23) websocket essential vars
+const URL = require('url'); // Renamed to avoid conflict with existing 'url' variable
+const userConnections = new Map(); // Map to store user ID and WebSocket connection
+
 const http = require('http');
 
 const PORT = process.env.PORT || 5000; 
@@ -29,8 +34,6 @@ try
   var api = require("./api.js");
 
   api.setApp(app, client, broadcastUpdate);
-
-
 
 } 
 catch (e) 
@@ -60,7 +63,15 @@ const interval = setInterval(function ping() {
   });
 }, 30000); // Ping every 30 seconds
 
-wss.on('connection', function connection(ws) {
+wss.on('connection', function connection(ws, req) {
+  // Extract userId from query parameters
+  const queryParams = URL.parse(req.url, true).query;
+  const userId = queryParams.userId;
+
+  if (userId) {
+    userConnections.set(userId, ws); // Store the connection with the userId
+  }
+
   ws.isAlive = true;
   ws.on('pong', function heartbeat() {
     ws.isAlive = true;
@@ -68,8 +79,12 @@ wss.on('connection', function connection(ws) {
 
   // Your existing WebSocket 'connection' logic goes here
   console.log('Client connected to WebSocket');
+
   ws.on('close', () => {
     console.log('Client disconnected');
+    if (userId) {
+      userConnections.delete(userId); // Remove the connection when it's closed
+    }
   });
 });
 
@@ -91,13 +106,13 @@ wss.on('connection', (ws) => {
 });*/
 
 // Function to broadcast messages to all connected clients
-function broadcastUpdate(data) {
-  const message = JSON.stringify({ type: 'update', payload: data });
-  wss.clients.forEach(client => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(message);
-    }
-  });
+function broadcastUpdate(userId, data) 
+{
+  const message = JSON.stringify({ type: 'update', payload: data, userId });
+  const client = userConnections.get(userId);
+  if (client && client.readyState === WebSocket.OPEN) {
+    client.send(message);
+  }
 }
 
 

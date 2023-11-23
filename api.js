@@ -248,12 +248,14 @@ exports.setApp = function (app, client, broadcastUpdate) {
       const tasksInProgress = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: false });
       
       const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
-  
+      
       // Broadcast the update
       //broadcastUpdate({ tasksInProgress, tasksCompleted });
   
       res.status(200).send("Task Deleted");
-    } catch (err) {
+    } 
+    catch (err) 
+    {
       console.error("Error deleting task:", err);
       res.status(500).send("Internal Server Error");
     }
@@ -289,8 +291,8 @@ exports.setApp = function (app, client, broadcastUpdate) {
       const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
 
 
-      // Broadcast the updated counts to all connected clients
-      //broadcastUpdate({ tasksInProgress, tasksCompleted });
+      // broadcast only to that one relevant user
+      broadcastUpdate(userId, { tasksInProgress, tasksCompleted });
 
       res.status(200).json({ success: "Task added" });
     } 
@@ -403,7 +405,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
       const tasksCompleted = await db.collection("Tasks").countDocuments({ UserID: userId, TaskCompleted: true });
       
       // Broadcast the update
-      broadcastUpdate({ tasksInProgress, tasksCompleted });
+      broadcastUpdate(userId, { tasksInProgress, tasksCompleted });
   
       res.status(200).json({ success: "Task updated" });
     } catch (e) {
@@ -491,7 +493,7 @@ exports.setApp = function (app, client, broadcastUpdate) {
         tasksCompleted
       });
       console.log('no error getting user tasks');
-      //broadcastUpdate({ tasksInProgress, tasksCompleted });
+      broadcastUpdate(userId, { tasksInProgress, tasksCompleted });
     } 
     catch (err) 
     {

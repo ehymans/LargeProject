@@ -39,7 +39,7 @@ const HomePage = () => {
         const data = await response.json();
         setTasksInProgress(data.tasksInProgress);
         setTasksCompleted(data.tasksCompleted);
-        establishWebSocket(); // Establish WebSocket connection after data is fetched
+        establishWebSocket(ud.id); // Establish WebSocket connection after data is fetched
       } catch (error) {
         console.error('Error fetching initial tasks:', error);
       }
@@ -48,26 +48,35 @@ const HomePage = () => {
     fetchInitialTasks();
   }, []);
 
-  const establishWebSocket = () => {
-    const ws = new WebSocket('wss://dare2do.online');
+  const establishWebSocket = (userId) => {
+    const ws = new WebSocket(`wss://dare2do.online?userId=${userId}`);
 
     ws.onopen = () => {
       console.log('Connected to WebSocket');
     };
 
     ws.onmessage = (e) => {
-      if (e.data === 'ping') {
+      if (e.data === 'ping') 
+      {
         ws.send('pong');
-      } else {
-        try {
+      } 
+      else 
+      {
+        try 
+        {
           const message = JSON.parse(e.data);
-          if (message.type === 'update' && message.payload) {
+          if (message.type === 'update' && message.payload) 
+          {
             setTasksInProgress(message.payload.tasksInProgress);
             setTasksCompleted(message.payload.tasksCompleted);
-          } else {
+          } 
+          else 
+          {
             console.error("Invalid message format received");
           }
-        } catch (error) {
+        } 
+        catch (error) 
+        {
           console.error("Error parsing WebSocket message:", error);
         }
       }
