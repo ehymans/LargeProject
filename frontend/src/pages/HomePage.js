@@ -41,7 +41,9 @@ const HomePage = () => {
         setTasksCompleted(data.tasksCompleted);
         establishWebSocket(ud.id); // Establish WebSocket connection after data is fetched
         console.log('userID at HomePage.js: ', ud.id);
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.error('Error fetching initial tasks:', error);
       }
     }

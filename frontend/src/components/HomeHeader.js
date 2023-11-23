@@ -9,9 +9,9 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
   const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
   const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
 
-  console.log('initial level/progress:');  
-  console.log(level);   
-  console.log(progress);
+  //console.log('initial level/progress:');  
+  //console.log(level);   
+  //console.log(progress);
 
   const { logout } = useContext(AuthContext); // Using AuthContext
 
@@ -44,17 +44,17 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
         const data = await response.json();
         //setTasksInProgress(data.tasksInProgress);
         //setTasksCompleted(data.tasksCompleted);
-        console.log('API called L53');
-        console.log('api result:', data.tasksInProgress);
-        console.log('api result:', data.tasksCompleted);
+        //console.log('API called L53');
+        //console.log('api result:', data.tasksInProgress);
+        //console.log('api result:', data.tasksCompleted);
       if (data) {
         const newLevel = calculateLevel(data.tasksInProgress, data.tasksCompleted);
         const newProgress = calculateProgress(data.tasksInProgress, data.tasksCompleted, newLevel);
         setLevel(newLevel);
         setProgress(newProgress);
         console.log('within if(data)');
-        console.log('newLevel:', newLevel);
-        console.log('newProgress:', newProgress);
+        console.log('initial lvl:', newLevel);
+        console.log('initial prog:', newProgress);
       }
 
       }  
