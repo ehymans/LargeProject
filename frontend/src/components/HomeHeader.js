@@ -9,6 +9,8 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
   const [level, setLevel] = useState(parseInt(localStorage.getItem('user_level'), 10) || 0);
   const [progress, setProgress] = useState(parseFloat(localStorage.getItem('user_progress')) || 0);
 
+  const [levelDescription, setLevelDescription] = useState('');
+
   //console.log('initial level/progress:');  
   //console.log(level);   
   //console.log(progress);
@@ -112,6 +114,30 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     localStorage.setItem('user_progress', newProgress);
   };
 
+// Add a new useEffect hook that will update the level description whenever the level changes
+useEffect(() => {
+  let description = '';
+  switch (level) {
+    case 0:
+      description = 'Level 0: Add a new task to get started!';
+      break;
+    case 1:
+      description = 'Level 1: Complete 2 tasks to reach the next level!';
+      break;
+    case 2:
+      description = 'Level 2: Complete 3 more tasks to advance to level 3!';
+      break;
+    case 3:
+      description = 'Level 3: Complete 5 more tasks to reach the top level!';
+      break;
+    case 4:
+      description = 'Level 4: Congratulations, you are at the top level!';
+      break;
+    default:
+      description = `Level ${level}`;
+  }
+  setLevelDescription(description);
+}, [level]);
 
   useEffect(() => {
     // Call this function whenever tasksInProgress or tasksCompleted changes
@@ -184,7 +210,7 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
         <div className='task-info'>
           <div>Tasks In Progress: {tasksInProgress}</div>
           <div>Tasks Completed: {tasksCompleted}</div>
-          <div className='level-info'>Level: {level}</div> {/* New div for level indication */}
+          <div className='level-info'>Level: {levelDescription}</div> {/* New div for level indication */}
         </div>
       </div>
       <div className="btn-div">
