@@ -59,13 +59,11 @@
 
 .home-header .title {
     margin-top: 0; /* Reset margin */
-    padding-top: 20px; /* Adjust padding to align with Logout button */
     font-size: 30px;
     font-weight: 600;
     font-family: 'Courier New', Courier, monospace;
 }
 .home-header .btn {
-    position: absolute;
     top: 20px; /* Ensure this matches the padding-top of the title */
     right: 2vw;
 
