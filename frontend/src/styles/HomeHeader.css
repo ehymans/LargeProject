@@ -24,12 +24,13 @@
     z-index: 10; /* Make sure the progress bar is above other elements */
 }
 
-/* Adjusted CSS for the center section */
 .home-header .center-section {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: start; /* Align items to the start (left side) of the container */
+    margin-top: 0; /* Adjust as needed to align with the Logout button */
 }
 
 .home-header .btn-div {
@@ -55,6 +56,7 @@
 }
 
 .home-header .title {
+    margin-top: 20px; /* Adjust this to align with the Logout button */
     font-size: 30px;
     font-weight: 600;
     font-family: 'Courier New', Courier, monospace;
