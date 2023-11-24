@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     min-height: 200px;
-    align-items: center;
+    align-items: start;
     color: #fff;
     margin: 20px 2vw;
     padding: 20px 2vw;
@@ -30,6 +30,7 @@
     flex-direction: column;
     justify-content: flex-start; /* Align content to the start of the container */
     align-items: start; /* Align items to the start (left side) of the container */
+    padding-top: 0; /* Reset padding */
 }
 
 .home-header .btn-div {
@@ -55,13 +56,17 @@
 }
 
 .home-header .title {
-    align-self: flex-start; /* Align title to the start of the flex container */
-    margin-top: 20px; /* Match this with the top margin of the Logout button */
+    margin-top: 0; /* Reset margin */
+    padding-top: 20px; /* Adjust padding to align with Logout button */
     font-size: 30px;
     font-weight: 600;
     font-family: 'Courier New', Courier, monospace;
 }
 .home-header .btn {
+    position: absolute;
+    top: 20px; /* Ensure this matches the padding-top of the title */
+    right: 2vw;
+    
     background-color: rgb(183, 31, 31);
     color: #fff;
     border: none;
