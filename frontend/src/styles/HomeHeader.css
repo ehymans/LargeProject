@@ -32,13 +32,15 @@
     justify-content: center;
 }
 
-/* CSS for the right section containing the logout button */
 .home-header .btn-div {
-    flex: 0 0 auto;
-    align-items: center;
+    position: absolute; /* Change from flex to absolute positioning */
+    top: 20px; /* Position it 20px from the top */
+    right: 2vw; /* Position it 2vw from the right */
     display: flex;
+    align-items: center;
     justify-content: flex-end;
 }
+
 
 /* Additional styles for level information */
 .home-header .level-info {
