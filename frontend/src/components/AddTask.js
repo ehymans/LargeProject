@@ -168,8 +168,6 @@ function LoggedInName({ prevState, setUpdateTask }) {
           Add a New Task
         </button>
       </div>
-      <ToastContainer />
-
     </div >
   );
 }

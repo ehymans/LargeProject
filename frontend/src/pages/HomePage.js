@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react"; 
 
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Ensure this is imported if not already
+
 import AddTask from "../components/AddTask";
 import HomeHeader from "../components/HomeHeader";
 import DisplayTasks from "../components/DisplayTasks";
@@ -141,6 +144,7 @@ const HomePage = () => {
         tasksInProgress={tasksInProgress}
         tasksCompleted={tasksCompleted} 
       />
+       <ToastContainer position="top-right" autoClose={5000} />
     </div>
   );
 };

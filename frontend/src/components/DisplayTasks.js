@@ -215,7 +215,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
       );
   
       if (response.status === 200) {
-        toast.success('Task Updated Successfully!', {
+          toast.success('Task Updated Successfully!', {
           position: 'top-right',
           autoClose: 5000,
         });
@@ -427,7 +427,6 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
           </div>
         ))}
       </div>
-      <ToastContainer />
     </>
   );
 }
