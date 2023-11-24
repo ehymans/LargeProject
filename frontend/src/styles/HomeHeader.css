@@ -28,9 +28,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Align content to the start of the container */
     align-items: start; /* Align items to the start (left side) of the container */
-    margin-top: 0; /* Adjust as needed to align with the Logout button */
 }
 
 .home-header .btn-div {
@@ -56,12 +55,12 @@
 }
 
 .home-header .title {
-    margin-top: 20px; /* Adjust this to align with the Logout button */
+    align-self: flex-start; /* Align title to the start of the flex container */
+    margin-top: 20px; /* Match this with the top margin of the Logout button */
     font-size: 30px;
     font-weight: 600;
     font-family: 'Courier New', Courier, monospace;
 }
-
 .home-header .btn {
     background-color: rgb(183, 31, 31);
     color: #fff;
