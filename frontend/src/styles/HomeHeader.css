@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     min-height: 200px;
-    align-items: flex-start;
+    align-items: center;
     color: #fff;
     margin: 20px 2vw;
     padding: 20px 2vw;
@@ -16,7 +16,9 @@
 
 /* New CSS for the left section containing the CircularProgressBar */
 .home-header .left-section {
-    position: absolute; /* Position the progress bar absolutely */
+
+    flex: 0 0 auto;
+    margin-right: 20px;
     top: 50%; /* Align top edge to the vertical center of the header */
     left: 50%; /* Align left edge to the horizontal center of the header */
     transform: translate(-50%, -50%); /* Center the progress bar */
@@ -25,12 +27,15 @@
 
 /* Adjusted CSS for the center section */
 .home-header .center-section {
-    flex: 3; /* Adjust as needed based on your layout */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* CSS for the right section containing the logout button */
 .home-header .btn-div {
-    flex: 1; /* Adjust as needed to give space */
+    flex: 0 0 auto;
     align-items: center;
     display: flex;
     justify-content: flex-end;
@@ -45,7 +50,7 @@
     font-family: 'Roboto', sans-serif; /* This is the new font */
     font-size: 20px; /* Adjust font size as needed */
     margin-top: 10px; /* Add some space between the title and task info */
-    font-size: 20px; /* Adjust font size as needed */
+    margin-left: 20px;
 }
 
 .home-header .title {
