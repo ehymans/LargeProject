@@ -7,6 +7,8 @@
     min-height: 200px;
     align-items: start;
     color: #fff;
+    margin-top: 0; /* Adjust or remove the top margin */
+    padding-top: 0; /* Reduce or remove the top padding */
     margin: 20px 2vw;
     padding: 20px 2vw;
     background-color: rgba(0, 0, 0, 0.5);
@@ -66,7 +68,7 @@
     position: absolute;
     top: 20px; /* Ensure this matches the padding-top of the title */
     right: 2vw;
-    
+
     background-color: rgb(183, 31, 31);
     color: #fff;
     border: none;
