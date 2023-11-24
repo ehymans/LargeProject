@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .home-header {
-    position: relative;
     display: flex;
     justify-content: space-between;
-    min-height: 200px;
     align-items: center;
+    min-height: 200px;
     color: #fff;
     margin: 20px 2vw;
     padding: 20px 2vw;
@@ -26,7 +25,8 @@
 
 /* Adjusted CSS for the center section */
 .home-header .center-section {
-    flex: 1;
+    flex-grow: 1;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,7 +35,7 @@
 /* CSS for the right section containing the logout button */
 .home-header .btn-div {
     flex: 0 0 auto;
-    align-items: center;
+    /*align-items: center;*/
     display: flex;
     justify-content: flex-end;
 }
