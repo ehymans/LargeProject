@@ -217,7 +217,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
       if (response.status === 200) {
           toast.success('Task Updated Successfully!', {
           position: 'top-right',
-          autoClose: 5000,
+          autoClose: 3000,
         });
         fetchData();
         handleModalClose();
@@ -271,7 +271,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
       if (response.status === 200) {
         toast.success('Task Status Updated Successfully!', {
           position: 'top-right',
-          autoClose: 5000,
+          autoClose: 3000,
         });
         fetchData();
         handleModalClose();
@@ -297,7 +297,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
       if (response.status === 200) {
         toast.success('Task Deleted Successfully!', {
           position: 'top-right',
-          autoClose: 5000,
+          autoClose: 3000,
         });
         fetchData();
         console.log("Tasks List Updated!");
