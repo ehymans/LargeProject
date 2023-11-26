@@ -128,11 +128,13 @@ useEffect(() => {
       description = 'Level 2: Complete 5 tasks to advance!';
       break;
     case 3:
-      description = 'Level 3: Complete 10 tasks! Keep going!';
+      description = 'Level 3: Complete 10 tasks! Keep it up!';
       break;
     case 4:
-      description = 'Level 4: Congratulations, you are at the top level!';
+      description = 'Level 4: Complete 20 tasks!';
       break;
+    case 5:
+      description = 'Level 5: Congratulations, you are a Dare2Doer!'
     default:
       description = `Level ${level}`;
   }
@@ -168,6 +170,9 @@ useEffect(() => {
   
     // Level 3: 10 total tasks completed
     if (tasksCompleted >= 10) return 4;
+
+    // Level 4: 20 total tasks completed
+    if (tasksCompleted >= 20) return 5;
   
     return level;
   }
@@ -191,6 +196,9 @@ useEffect(() => {
         break;
       case 3:
         progress = ((tasksCompleted - 5) / 5) * 100;
+        break;
+      case 4:
+        progress = ((tasksCompleted - 10) / 10) * 100;
         break;
       default:
         progress = 0;
