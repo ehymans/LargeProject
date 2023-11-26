@@ -54,14 +54,14 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
         const newProgress = calculateProgress(data.tasksInProgress, data.tasksCompleted, newLevel);
         setLevel(newLevel);
         setProgress(newProgress);
-        console.log('within if(data)');
-        console.log('initial lvl:', newLevel);
-        console.log('initial prog:', newProgress);
+        //console.log('within if(data)');
+        //console.log('initial lvl:', newLevel);
+        //console.log('initial prog:', newProgress);
         if (tasksInProgress !== null && tasksCompleted !== null) 
         {
-          console.log('updateLevelAndProgress useEffect call');   // debug
-          console.log(tasksInProgress);   // debug  
-          console.log(tasksCompleted);    // debug
+          //console.log('updateLevelAndProgress useEffect call');   // debug
+          //console.log(tasksInProgress);   // debug  
+          //console.log(tasksCompleted);    // debug
           updateLevelAndProgress();
         }
       }
@@ -103,8 +103,8 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
     } else {
       setLevelAndProgress(level, newProgress); // Update progress for the current level
     }
-    console.log('New level:', newLevel);
-    console.log('New progress:', newProgress);
+    //console.log('New level:', newLevel);
+    //console.log('New progress:', newProgress);
   };
 
   const setLevelAndProgress = (newLevel, newProgress) => {
@@ -150,7 +150,7 @@ useEffect(() => {
 
     if (tasksInProgress !== null && tasksCompleted !== null) 
     {
-      console.log('updateLevelAndProgress useEffect call 2');   // debug
+      //console.log('updateLevelAndProgress useEffect call 2');   // debug
       //console.log(tasksInProgress);   // debug  
       //console.log(tasksCompleted);    // debug
       updateLevelAndProgress();
