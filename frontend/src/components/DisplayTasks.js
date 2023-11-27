@@ -49,7 +49,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Add any other headers your API expects, such as an authorization header
+            
           },
           body: JSON.stringify({
             userId: ud.id,
@@ -201,7 +201,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
     const ud = JSON.parse(_ud || "{}");
     const Data = {
       _id: formData.TaskID,
-      taskName: formData.TaskName, // Changed to 'taskName' to match backend
+      taskName: formData.TaskName, // Changed to 'taskName' to match backend 
       taskDescription: formData.TaskDescription, // Changed to 'taskDescription'
       taskDifficulty: formData.TaskDifficulty, // Changed to 'taskDifficulty'
       TaskCompleted: formData.TaskCompleted, // Kept as 'TaskCompleted'
@@ -260,7 +260,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
       // Add other fields if needed as per your task schema
     };
   
-    console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
+    //console.log('Task ID: ', taskID, 'Task Completed: ', isChecked);
   
     try {
       const response = await axios.post(
@@ -275,7 +275,7 @@ function DisplayTasks({ updateTask, sortOption, showCompletedTasks, tasksInProgr
         });
         fetchData();
         handleModalClose();
-        console.log("Tasks list Updated!");
+        //console.log("Tasks list Updated!");
       }
     } catch (error) {
       console.error("Error while updating task status: ", error);

@@ -76,10 +76,10 @@ const HomePage = () => {
           if (message.type === 'update' && message.payload) 
           {
             setTasksInProgress(message.payload.tasksInProgress);
-            console.log('message.payload data');
-            console.log(message.payload.tasksInProgress);
+            //console.log('message.payload data');
+            //console.log(message.payload.tasksInProgress);
             setTasksCompleted(message.payload.tasksCompleted);
-            console.log(message.payload.tasksCompleted);
+            //console.log(message.payload.tasksCompleted);
           } 
           else if(message.type === 'heartbeat')
           {

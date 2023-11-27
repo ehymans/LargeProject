@@ -20,7 +20,7 @@ function HomeHeader({ tasksInProgress, tasksCompleted }) {
 
   useEffect(() => {
     
-    console.log('useEffect called');
+    //console.log('useEffect called');
 
     let _ud = localStorage.getItem('user_data');
     let ud = JSON.parse(_ud || '{}');
