@@ -92,14 +92,14 @@ function LoggedInName({ prevState, setUpdateTask }) {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("API Response:", result);
+        //console.log("API Response:", result);
         setUpdateTask(!prevState);
         handleModalClose();
         toast.success('New Task is Added!', {
           position: 'top-right',
           autoClose: 3000,
         })
-        console.log('toast animation');
+        //console.log('toast animation');
       })
       .catch((error) => {
         console.error("API Error:", error);
